@@ -211,3 +211,12 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Restyled the final waitlist reminder as a prominent alert.
 - Added a warning icon on the left side.
 - The alert now uses a stronger pink/red border, accent strip, and warning treatment while preserving the existing translated text.
+
+
+## v28
+- Transfer Group Name is now forced to ALL CAPS in the UI, payload, and backend.
+- Applicant Current Server is now a dropdown limited to servers 1573–1636.
+- “Add a player you know” server selection is also a dropdown limited to 1573–1636.
+- Backend validation rejects servers outside 1573–1636.
+- Referrer Alliance is now a dropdown containing the supplied Server 1616 alliance list.
+- Added “Other / not listed” as a fallback because one alliance rank in the source list was obscured and no name was supplied.

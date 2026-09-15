@@ -71,7 +71,7 @@ function doPost(e) {
 
     const now = new Date();
     const groupMembers = Array.isArray(payload.groupMembers) ? payload.groupMembers : [];
-    const transferGroupName = payload.transferWithGroup === 'yes' ? clean_(payload.transferGroupName) : '';
+    const transferGroupName = payload.transferWithGroup === 'yes' ? upperClean_(payload.transferGroupName) : '';
     const knownPlayers = payload.transferWithGroup === 'yes' ? groupMembers.length : 0;
     const expectedRaw = digits_(payload.expectedAdditionalPlayers);
     const expectedAdditionalPlayers = payload.transferWithGroup === 'yes' && expectedRaw !== '' ? Number(expectedRaw) : '';
@@ -132,7 +132,7 @@ function doPost(e) {
           knownPlayers,
           expectedTotalGroupSize,
           unnamedPlayers,
-          clean_(payload.groupLeadUsername),
+          '',
           1,
           expectedTotalGroupSize === '' ? '' : Math.max(expectedTotalGroupSize - 1, 0),
           expectedTotalGroupSize === '' ? 'Group size not finalized' : (expectedTotalGroupSize > 1 ? 'Waiting for linked applications' : 'Complete')
@@ -148,9 +148,7 @@ function doPost(e) {
         if (unnamedPlayers !== '' && (!currentUnnamed || Number(currentUnnamed) < Number(unnamedPlayers))) {
           groups.getRange(groupRowNumber, 9).setValue(unnamedPlayers);
         }
-        if (!currentContact && payload.groupLeadUsername) {
-          groups.getRange(groupRowNumber, 10).setValue(clean_(payload.groupLeadUsername));
-        }
+
       }
 
       if (!memberApplicationExists_(members, clean_(payload.applicationId))) {
@@ -207,6 +205,8 @@ function validatePayload_(p) {
   const required = ['applicationId','confirmationCode','language','currentServer','username','alliance','professionLevel','killCount','heroPower','transferWithGroup'];
   required.forEach(k => { if (p[k] === undefined || p[k] === null || String(p[k]).trim() === '') throw new Error(`Missing required field: ${k}`); });
   ['currentServer','professionLevel','killCount','heroPower'].forEach(k => { if (!/^\d+$/.test(String(p[k]))) throw new Error(`${k} must contain digits only.`); });
+  const currentServerNum = Number(p.currentServer);
+  if (!Number.isInteger(currentServerNum) || currentServerNum < 1573 || currentServerNum > 1636) throw new Error('currentServer must be between 1573 and 1636.');
   ['buildingPower','technologyPower','dronePower','unitPower','overlordPower','decorationPower','reportedTransferScore'].forEach(k => {
     if (p[k] !== undefined && p[k] !== null && String(p[k]).trim() !== '' && !/^\d+$/.test(String(p[k]))) {
       throw new Error(`${k} must contain digits only.`);
@@ -223,6 +223,8 @@ function validatePayload_(p) {
     p.groupMembers.forEach((m, i) => {
       if (!m.name || !m.server || !m.alliance) throw new Error(`Incomplete group member ${i + 1}.`);
       if (!/^\d+$/.test(String(m.server))) throw new Error(`Invalid server for group member ${i + 1}.`);
+      const memberServerNum = Number(m.server);
+      if (!Number.isInteger(memberServerNum) || memberServerNum < 1573 || memberServerNum > 1636) throw new Error(`Group member ${i + 1} server must be between 1573 and 1636.`);
     });
   }
 }
@@ -346,5 +348,6 @@ function clean_(value) {
   return /^[=+\-@]/.test(s) ? `'${s}` : s;
 }
 function digits_(value) { return String(value == null ? '' : value).replace(/\D/g, ''); }
+function upperClean_(value) { return clean_(String(value == null ? '' : value).toLocaleUpperCase()); }
 function normalize_(value) { return String(value == null ? '' : value).trim().toLocaleLowerCase(); }
 function json_(obj) { return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON); }

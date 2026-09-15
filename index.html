@@ -557,6 +557,14 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--danger); b
 .group-name-field input {
   font-weight: 850;
   letter-spacing: .045em;
+  text-transform: uppercase;
+}
+.group-name-caps-note {
+  margin: 7px 0 0;
+  color: #f0a4b3;
+  font-size: .72rem;
+  font-weight: 750;
+  line-height: 1.45;
 }
 .group-name-critical-alert {
   display: grid;
@@ -1937,7 +1945,73 @@ body.welcome-open { overflow: hidden; }
           <div class="field-grid two-col">
             <div class="field-block">
               <label for="current-server"><span data-i18n="currentServer">What server are you currently on?</span> <em>*</em></label>
-              <input id="current-server" name="currentServer" type="text" inputmode="numeric" autocomplete="off" data-numeric="integer" data-required="true" placeholder="1625" />
+              <select id="current-server" name="currentServer" data-required="true">
+                <option value="" data-i18n="selectServer">Select a server</option>
+                <option value="1573">1573</option>
+                <option value="1574">1574</option>
+                <option value="1575">1575</option>
+                <option value="1576">1576</option>
+                <option value="1577">1577</option>
+                <option value="1578">1578</option>
+                <option value="1579">1579</option>
+                <option value="1580">1580</option>
+                <option value="1581">1581</option>
+                <option value="1582">1582</option>
+                <option value="1583">1583</option>
+                <option value="1584">1584</option>
+                <option value="1585">1585</option>
+                <option value="1586">1586</option>
+                <option value="1587">1587</option>
+                <option value="1588">1588</option>
+                <option value="1589">1589</option>
+                <option value="1590">1590</option>
+                <option value="1591">1591</option>
+                <option value="1592">1592</option>
+                <option value="1593">1593</option>
+                <option value="1594">1594</option>
+                <option value="1595">1595</option>
+                <option value="1596">1596</option>
+                <option value="1597">1597</option>
+                <option value="1598">1598</option>
+                <option value="1599">1599</option>
+                <option value="1600">1600</option>
+                <option value="1601">1601</option>
+                <option value="1602">1602</option>
+                <option value="1603">1603</option>
+                <option value="1604">1604</option>
+                <option value="1605">1605</option>
+                <option value="1606">1606</option>
+                <option value="1607">1607</option>
+                <option value="1608">1608</option>
+                <option value="1609">1609</option>
+                <option value="1610">1610</option>
+                <option value="1611">1611</option>
+                <option value="1612">1612</option>
+                <option value="1613">1613</option>
+                <option value="1614">1614</option>
+                <option value="1615">1615</option>
+                <option value="1616">1616</option>
+                <option value="1617">1617</option>
+                <option value="1618">1618</option>
+                <option value="1619">1619</option>
+                <option value="1620">1620</option>
+                <option value="1621">1621</option>
+                <option value="1622">1622</option>
+                <option value="1623">1623</option>
+                <option value="1624">1624</option>
+                <option value="1625">1625</option>
+                <option value="1626">1626</option>
+                <option value="1627">1627</option>
+                <option value="1628">1628</option>
+                <option value="1629">1629</option>
+                <option value="1630">1630</option>
+                <option value="1631">1631</option>
+                <option value="1632">1632</option>
+                <option value="1633">1633</option>
+                <option value="1634">1634</option>
+                <option value="1635">1635</option>
+                <option value="1636">1636</option>
+              </select>
               <p class="field-error" data-error-for="current-server"></p>
             </div>
             <div class="field-block">
@@ -2171,7 +2245,8 @@ body.welcome-open { overflow: hidden; }
 
               <div class="field-block group-name-field">
                 <label for="transfer-group-name"><span data-i18n="transferGroupNameQuestion">What is your Transfer Group Name?</span> <em>*</em></label>
-                <input id="transfer-group-name" name="transferGroupName" type="text" maxlength="50" autocomplete="off" spellcheck="false" placeholder="MOONFALL" />
+                <input id="transfer-group-name" name="transferGroupName" type="text" maxlength="50" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="MOONFALL" />
+                <p class="group-name-caps-note" data-i18n="transferGroupNameCaps">This field automatically converts the group name to ALL CAPS.</p>
                 <div class="group-name-critical-alert" role="note">
                   <span class="group-name-critical-icon" aria-hidden="true">!</span>
                   <div>
@@ -2234,7 +2309,29 @@ body.welcome-open { overflow: hidden; }
               </div>
               <div class="field-block">
                 <label for="referrer-alliance"><span data-i18n="referrerAlliance">Referrer's alliance / tag</span> <span class="optional-label" data-i18n="optional">Optional</span></label>
-                <input id="referrer-alliance" name="referrerAlliance" type="text" maxlength="80" placeholder="[Alliance]" />
+                <select id="referrer-alliance" name="referrerAlliance">
+                  <option value="" data-i18n="selectReferralAlliance">Select an alliance</option>
+                  <option value="[NvSP] Nova Sapphire">[NvSP] Nova Sapphire</option>
+                  <option value="[WaE] WorstAllianceEver">[WaE] WorstAllianceEver</option>
+                  <option value="[NvEM] Nova Emerald">[NvEM] Nova Emerald</option>
+                  <option value="[DRoN] 5 Drones and a Dream">[DRoN] 5 Drones and a Dream</option>
+                  <option value="[ECKO] ECKO Collective">[ECKO] ECKO Collective</option>
+                  <option value="[B14K] FALCON5">[B14K] FALCON5</option>
+                  <option value="[bnhH] CrystalGuardians">[bnhH] CrystalGuardians</option>
+                  <option value="[VGDs] AVENGERs">[VGDs] AVENGERs</option>
+                  <option value="[N201] MexAlliance">[N201] MexAlliance</option>
+                  <option value="[BR1c] LEGACY KING">[BR1c] LEGACY KING</option>
+                  <option value="[di82] Diamond">[di82] Diamond</option>
+                  <option value="[U5AN] Lane Eyre">[U5AN] Lane Eyre</option>
+                  <option value="[2T2c] TooTired2Care">[2T2c] TooTired2Care</option>
+                  <option value="[KIRN] KASTIRONs">[KIRN] KASTIRONs</option>
+                  <option value="[oriz] Orizaba">[oriz] Orizaba</option>
+                  <option value="[yykk] AmanssaLoko">[yykk] AmanssaLoko</option>
+                  <option value="[0920] 시모구">[0920] 시모구</option>
+                  <option value="[L1Fe] Eternal Life">[L1Fe] Eternal Life</option>
+                  <option value="[NG25] Los muchos">[NG25] Los muchos</option>
+                  <option value="OTHER / NOT LISTED" data-i18n="otherNotListed">Other / not listed</option>
+                </select>
               </div>
             </div>
           </div>
@@ -2302,7 +2399,73 @@ body.welcome-open { overflow: hidden; }
         </div>
         <div class="field-block">
           <label><span data-i18n-dynamic="memberServerNumber">Server number</span></label>
-          <input type="text" class="member-server" inputmode="numeric" />
+          <select class="member-server">
+            <option value="" data-i18n-dynamic="selectServer">Select a server</option>
+            <option value="1573">1573</option>
+            <option value="1574">1574</option>
+            <option value="1575">1575</option>
+            <option value="1576">1576</option>
+            <option value="1577">1577</option>
+            <option value="1578">1578</option>
+            <option value="1579">1579</option>
+            <option value="1580">1580</option>
+            <option value="1581">1581</option>
+            <option value="1582">1582</option>
+            <option value="1583">1583</option>
+            <option value="1584">1584</option>
+            <option value="1585">1585</option>
+            <option value="1586">1586</option>
+            <option value="1587">1587</option>
+            <option value="1588">1588</option>
+            <option value="1589">1589</option>
+            <option value="1590">1590</option>
+            <option value="1591">1591</option>
+            <option value="1592">1592</option>
+            <option value="1593">1593</option>
+            <option value="1594">1594</option>
+            <option value="1595">1595</option>
+            <option value="1596">1596</option>
+            <option value="1597">1597</option>
+            <option value="1598">1598</option>
+            <option value="1599">1599</option>
+            <option value="1600">1600</option>
+            <option value="1601">1601</option>
+            <option value="1602">1602</option>
+            <option value="1603">1603</option>
+            <option value="1604">1604</option>
+            <option value="1605">1605</option>
+            <option value="1606">1606</option>
+            <option value="1607">1607</option>
+            <option value="1608">1608</option>
+            <option value="1609">1609</option>
+            <option value="1610">1610</option>
+            <option value="1611">1611</option>
+            <option value="1612">1612</option>
+            <option value="1613">1613</option>
+            <option value="1614">1614</option>
+            <option value="1615">1615</option>
+            <option value="1616">1616</option>
+            <option value="1617">1617</option>
+            <option value="1618">1618</option>
+            <option value="1619">1619</option>
+            <option value="1620">1620</option>
+            <option value="1621">1621</option>
+            <option value="1622">1622</option>
+            <option value="1623">1623</option>
+            <option value="1624">1624</option>
+            <option value="1625">1625</option>
+            <option value="1626">1626</option>
+            <option value="1627">1627</option>
+            <option value="1628">1628</option>
+            <option value="1629">1629</option>
+            <option value="1630">1630</option>
+            <option value="1631">1631</option>
+            <option value="1632">1632</option>
+            <option value="1633">1633</option>
+            <option value="1634">1634</option>
+            <option value="1635">1635</option>
+            <option value="1636">1636</option>
+          </select>
           <p class="field-error"></p>
         </div>
       </div>
@@ -2460,6 +2623,11 @@ const I18N = {
     transferGroupNameShort: "Transfer Group Name",
     transferGroupNameSectionTitle: "Transfer Group Name",
     transferGroupNameSectionIntro: "Use one shared group name so we can connect applications from the same transfer group.",
+    selectServer: "Select a server",
+    selectReferralAlliance: "Select an alliance",
+    otherNotListed: "Other / not listed",
+    transferGroupNameCaps: "This field automatically converts the group name to ALL CAPS.",
+    serverRangeError: "Please select a server from 1573 to 1636.",
   },
   es: {
     serverTransferApplication: 'SOLICITUD DE TRANSFERENCIA', strongerTogether: 'UN MAÑANA MÁS FUERTE',
@@ -2540,6 +2708,11 @@ const I18N = {
     transferGroupNameShort: "Nombre del grupo",
     transferGroupNameSectionTitle: "Nombre del grupo de transferencia",
     transferGroupNameSectionIntro: "Usen un único nombre compartido para que podamos vincular las solicitudes del mismo grupo.",
+    selectServer: "Selecciona un servidor",
+    selectReferralAlliance: "Selecciona una alianza",
+    otherNotListed: "Otra / no aparece",
+    transferGroupNameCaps: "Este campo convierte automáticamente el nombre del grupo a MAYÚSCULAS.",
+    serverRangeError: "Selecciona un servidor entre 1573 y 1636.",
   },
   pt: {
     serverTransferApplication: 'INSCRIÇÃO DE TRANSFERÊNCIA', strongerTogether: 'UM AMANHÃ MAIS FORTE',
@@ -2620,6 +2793,11 @@ const I18N = {
     transferGroupNameShort: "Nome do grupo",
     transferGroupNameSectionTitle: "Nome do grupo de transferência",
     transferGroupNameSectionIntro: "Use um único nome compartilhado para podermos conectar as inscrições do mesmo grupo.",
+    selectServer: "Selecione um servidor",
+    selectReferralAlliance: "Selecione uma aliança",
+    otherNotListed: "Outra / não listada",
+    transferGroupNameCaps: "Este campo converte automaticamente o nome do grupo para LETRAS MAIÚSCULAS.",
+    serverRangeError: "Selecione um servidor entre 1573 e 1636.",
   },
   fr: {
     serverTransferApplication: 'DEMANDE DE TRANSFERT', strongerTogether: 'UN AVENIR PLUS FORT',
@@ -2700,6 +2878,11 @@ const I18N = {
     transferGroupNameShort: "Nom du groupe",
     transferGroupNameSectionTitle: "Nom du groupe de transfert",
     transferGroupNameSectionIntro: "Utilisez un seul nom partagé afin que nous puissions relier les demandes du même groupe.",
+    selectServer: "Sélectionnez un serveur",
+    selectReferralAlliance: "Sélectionnez une alliance",
+    otherNotListed: "Autre / non répertoriée",
+    transferGroupNameCaps: "Ce champ convertit automatiquement le nom du groupe en MAJUSCULES.",
+    serverRangeError: "Veuillez sélectionner un serveur entre 1573 et 1636.",
   },
   ar: {
     serverTransferApplication: 'طلب الانتقال إلى السيرفر', strongerTogether: 'غدٌ أقوى معًا',
@@ -2780,6 +2963,11 @@ const I18N = {
     transferGroupNameShort: "اسم مجموعة الانتقال",
     transferGroupNameSectionTitle: "اسم مجموعة الانتقال",
     transferGroupNameSectionIntro: "استخدموا اسم مجموعة مشتركًا واحدًا حتى نتمكن من ربط طلبات المجموعة نفسها.",
+    selectServer: "اختر سيرفر",
+    selectReferralAlliance: "اختر تحالفًا",
+    otherNotListed: "أخرى / غير مدرجة",
+    transferGroupNameCaps: "يحوّل هذا الحقل اسم المجموعة تلقائيًا إلى أحرف كبيرة حيثما ينطبق.",
+    serverRangeError: "يرجى اختيار سيرفر من 1573 إلى 1636.",
   },
   vi: {
     serverTransferApplication: 'ĐƠN CHUYỂN SERVER', strongerTogether: 'MỘT NGÀY MAI MẠNH MẼ HƠN',
@@ -2860,6 +3048,11 @@ const I18N = {
     transferGroupNameShort: "Tên Nhóm Chuyển Server",
     transferGroupNameSectionTitle: "Tên Nhóm Chuyển Server",
     transferGroupNameSectionIntro: "Dùng một tên nhóm chung để chúng tôi có thể liên kết các đơn thuộc cùng một nhóm.",
+    selectServer: "Chọn server",
+    selectReferralAlliance: "Chọn liên minh",
+    otherNotListed: "Khác / không có trong danh sách",
+    transferGroupNameCaps: "Trường này tự động chuyển tên nhóm thành CHỮ IN HOA.",
+    serverRangeError: "Vui lòng chọn server từ 1573 đến 1636.",
   },
   ko: {
     serverTransferApplication: '서버 이전 신청서', strongerTogether: '더 강한 내일',
@@ -2940,6 +3133,11 @@ const I18N = {
     transferGroupNameShort: "이동 그룹 이름",
     transferGroupNameSectionTitle: "이동 그룹 이름",
     transferGroupNameSectionIntro: "같은 이동 그룹의 신청서를 연결할 수 있도록 하나의 공용 그룹 이름을 사용하세요.",
+    selectServer: "서버 선택",
+    selectReferralAlliance: "연맹 선택",
+    otherNotListed: "기타 / 목록에 없음",
+    transferGroupNameCaps: "이 필드는 그룹 이름을 자동으로 대문자로 변환합니다.",
+    serverRangeError: "1573~1636 사이의 서버를 선택하세요.",
   },
   de: {
     serverTransferApplication: 'SERVER-TRANSFER-BEWERBUNG', strongerTogether: 'EINE STÄRKERE ZUKUNFT',
@@ -3020,6 +3218,11 @@ const I18N = {
     transferGroupNameShort: "Transfergruppenname",
     transferGroupNameSectionTitle: "Transfergruppenname",
     transferGroupNameSectionIntro: "Verwendet einen gemeinsamen Gruppennamen, damit wir Bewerbungen derselben Transfergruppe verbinden können.",
+    selectServer: "Server auswählen",
+    selectReferralAlliance: "Allianz auswählen",
+    otherNotListed: "Andere / nicht aufgeführt",
+    transferGroupNameCaps: "Dieses Feld wandelt den Gruppennamen automatisch in GROSSBUCHSTABEN um.",
+    serverRangeError: "Bitte wähle einen Server zwischen 1573 und 1636.",
   }
 };
 
@@ -3061,7 +3264,7 @@ function randomGroupChunk(length = 6) {
   return out;
 }
 function normalizeTransferGroupName(value) {
-  return String(value || '').trim().replace(/\s+/g, ' ');
+  return String(value || '').trim().replace(/\s+/g, ' ').toLocaleUpperCase();
 }
 
 
@@ -3203,6 +3406,15 @@ function validateCurrentStep() {
   });
 
 
+  if (state.step === 1) {
+    const currentServer = Number(document.getElementById('current-server')?.value || 0);
+    const currentServerEl = document.getElementById('current-server');
+    if (!Number.isInteger(currentServer) || currentServer < 1573 || currentServer > 1636) {
+      setFieldError(currentServerEl, t('serverRangeError'));
+      ok = false;
+    }
+  }
+
   if (state.step === 3) {
     const groupAnswer = form.querySelector('input[name="transferWithGroup"]:checked');
     const groupErr = document.querySelector('[data-error-for="transfer-with-group"]');
@@ -3226,7 +3438,14 @@ function validateCurrentStep() {
       document.querySelectorAll('.group-member-card').forEach(card => {
         const inputs = [...card.querySelectorAll('input, select')];
         const anyStarted = inputs.some(inp => inp.value.trim());
-        const valid = !anyStarted || inputs.every(inp => inp.value.trim() && (inp.classList.contains('member-server') ? /^\d+$/.test(digitsOnly(inp.value)) : true));
+        const valid = !anyStarted || inputs.every(inp => {
+          if (!inp.value.trim()) return false;
+          if (inp.classList.contains('member-server')) {
+            const n = Number(inp.value);
+            return Number.isInteger(n) && n >= 1573 && n <= 1636;
+          }
+          return true;
+        });
         inputs.forEach(inp => inp.classList.toggle('invalid', anyStarted && !inp.value.trim()));
         const err = card.querySelector('.field-error');
         if (!valid) { err.textContent = t('groupMemberError'); ok = false; } else err.textContent = '';
@@ -3263,10 +3482,12 @@ function renderGroupMembers() {
     const name = node.querySelector('.member-name');
     const server = node.querySelector('.member-server');
     const alliance = node.querySelector('.member-alliance');
-    name.value = member.name; server.value = member.server; alliance.value = member.alliance;
+    const allowedServer = Number(member.server) >= 1573 && Number(member.server) <= 1636 ? String(member.server) : '';
+    name.value = member.name; server.value = allowedServer; alliance.value = member.alliance;
+    member.server = allowedServer;
     node.querySelectorAll('[data-i18n-dynamic]').forEach(el => el.textContent = t(el.dataset.i18nDynamic));
     name.addEventListener('input', () => { member.name = name.value; updateGroupContactOptions(); updateGroupSummary(); saveDraft(); });
-    server.addEventListener('input', () => { server.value = digitsOnly(server.value); member.server = server.value; saveDraft(); });
+    server.addEventListener('change', () => { member.server = server.value; saveDraft(); });
     alliance.addEventListener('input', () => { member.alliance = alliance.value; updateGroupContactOptions(); saveDraft(); });
     groupMembersEl.appendChild(node);
   });
@@ -3402,6 +3623,8 @@ function restoreDraft() {
         else el.value = value;
       });
     });
+    const restoredGroupName = document.getElementById('transfer-group-name');
+    if (restoredGroupName && restoredGroupName.value) restoredGroupName.value = normalizeTransferGroupName(restoredGroupName.value);
     state.step = Math.max(1, Math.min(5, Number(data.step) || 1));
   } catch (_) {}
 }
@@ -3667,6 +3890,8 @@ document.querySelectorAll('input[name="transferWithGroup"]').forEach(r => r.addE
   updateGroupContactOptions(); updateGroupSummary();  saveDraft();
 }));
 document.getElementById('transfer-group-name').addEventListener('input', e => {
+  const upper = String(e.target.value || '').toLocaleUpperCase();
+  if (e.target.value !== upper) e.target.value = upper;
   updateGroupSummary();
   clearFieldError(e.target);
   saveDraft();
