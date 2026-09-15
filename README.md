@@ -205,3 +205,9 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Gold, Purple, Blue, and White now have colour-tinted borders/backgrounds even before selection.
 - Selected seats use a stronger colour-matched fill, glow, and radio indicator.
 - “Not confirmed yet” remains neutral so the actual seat colours are easier to scan.
+
+
+## v27
+- Restyled the final waitlist reminder as a prominent alert.
+- Added a warning icon on the left side.
+- The alert now uses a stronger pink/red border, accent strip, and warning treatment while preserving the existing translated text.

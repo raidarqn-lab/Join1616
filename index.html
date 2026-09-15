@@ -276,6 +276,80 @@ h2 { margin: 0; font-size: 1rem; }
 .notice-card p { margin: 7px 0; color: #b7cbd6; line-height: 1.6; }
 .notice-card strong { color: var(--pink-soft); }
 
+.waitlist-alert {
+  position: relative;
+  display: grid;
+  grid-template-columns: 54px minmax(0,1fr);
+  gap: 16px;
+  align-items: center;
+  margin: 30px 0 4px;
+  padding: 18px 20px;
+  border: 1px solid rgba(239,92,119,.58);
+  border-left: 4px solid #df536f;
+  border-radius: 12px;
+  background:
+    linear-gradient(90deg, rgba(104,31,51,.46), rgba(19,40,52,.56) 58%, rgba(10,29,42,.68));
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.025) inset,
+    0 10px 28px rgba(0,0,0,.12),
+    0 0 24px rgba(219,71,101,.10);
+}
+.waitlist-alert-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 44px;
+}
+.waitlist-alert-icon::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 36px;
+  background: linear-gradient(180deg, #f39aaa, #d74664);
+  clip-path: polygon(50% 2%, 98% 94%, 2% 94%);
+  filter: drop-shadow(0 0 8px rgba(226,75,104,.28));
+}
+.waitlist-alert-icon span {
+  position: relative;
+  z-index: 1;
+  margin-top: 7px;
+  color: #190d12;
+  font-size: 1.08rem;
+  font-weight: 950;
+  line-height: 1;
+}
+.waitlist-alert-copy h2 {
+  margin: 0 0 5px;
+  color: #ffb0bf;
+  font-size: .82rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.waitlist-alert-copy p {
+  margin: 0;
+  color: #e1d5d9;
+  font-size: .82rem;
+  line-height: 1.6;
+}
+@media (max-width: 620px) {
+  .waitlist-alert {
+    grid-template-columns: 44px minmax(0,1fr);
+    gap: 12px;
+    padding: 16px;
+  }
+  .waitlist-alert-icon {
+    width: 40px;
+    height: 38px;
+  }
+  .waitlist-alert-icon::before {
+    width: 36px;
+    height: 33px;
+  }
+}
+
+
 .language-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 25px; }
 .language-card { min-height: 84px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 5px; padding: 15px; border: 1px solid var(--border); border-radius: 10px; background: rgba(11,29,43,.65); cursor: pointer; }
 .language-card:hover { border-color: #53778f; background: rgba(20,47,65,.74); }
@@ -2171,9 +2245,14 @@ body.welcome-open { overflow: hidden; }
             <div class="char-count"><span id="comments-count">0</span> / 1500</div>
           </div>
 
-          <div class="notice-card compact">
-            <h2 data-i18n="beforeContinue">Before you continue</h2>
-            <p data-i18n="waitlistReminder">Remember: this application adds you to the Server 1616 waitlist. It does not guarantee a transfer spot.</p>
+          <div class="waitlist-alert" role="note">
+            <div class="waitlist-alert-icon" aria-hidden="true">
+              <span>!</span>
+            </div>
+            <div class="waitlist-alert-copy">
+              <h2 data-i18n="beforeContinue">Before you continue</h2>
+              <p data-i18n="waitlistReminder">Remember: this application adds you to the Server 1616 waitlist. It does not guarantee a transfer spot.</p>
+            </div>
           </div>
         </section>
 
