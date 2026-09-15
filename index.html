@@ -317,11 +317,102 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--danger); b
 .choice-card strong { display: block; font-size: .9rem; }
 .choice-card small { display: block; color: #8fa7b6; margin-top: 4px; line-height: 1.45; }
 .seat-fieldset { margin-top: 28px; }
-.choice-card.seat { min-height: 72px; }
-.choice-card.gold:has(input:checked) { border-color: #e8c46a; }
-.choice-card.purple:has(input:checked) { border-color: #bb91d8; }
-.choice-card.blue:has(input:checked) { border-color: #62aee8; }
-.choice-card.white:has(input:checked) { border-color: #e9eef2; }
+.choice-card.seat {
+  min-height: 76px;
+  border-width: 1px;
+  transition: border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+/* Seat colours should read as their actual colours even before selection. */
+.choice-card.seat.gold {
+  border-color: rgba(232,196,106,.55);
+  background: linear-gradient(135deg, rgba(174,128,31,.30), rgba(50,42,24,.34));
+}
+.choice-card.seat.gold .choice-dot {
+  border-color: rgba(242,207,118,.82);
+  background: rgba(232,196,106,.22);
+}
+.choice-card.seat.gold strong { color: #f4d98e; }
+
+.choice-card.seat.purple {
+  border-color: rgba(187,145,216,.55);
+  background: linear-gradient(135deg, rgba(115,62,151,.30), rgba(43,29,56,.38));
+}
+.choice-card.seat.purple .choice-dot {
+  border-color: rgba(203,166,228,.82);
+  background: rgba(187,145,216,.22);
+}
+.choice-card.seat.purple strong { color: #d9b6ef; }
+
+.choice-card.seat.blue {
+  border-color: rgba(98,174,232,.58);
+  background: linear-gradient(135deg, rgba(40,112,167,.32), rgba(24,46,65,.40));
+}
+.choice-card.seat.blue .choice-dot {
+  border-color: rgba(119,193,246,.86);
+  background: rgba(98,174,232,.22);
+}
+.choice-card.seat.blue strong { color: #a9d8fa; }
+
+.choice-card.seat.white {
+  border-color: rgba(233,238,242,.64);
+  background: linear-gradient(135deg, rgba(218,227,233,.19), rgba(71,83,91,.32));
+}
+.choice-card.seat.white .choice-dot {
+  border-color: rgba(245,248,250,.92);
+  background: rgba(233,238,242,.18);
+}
+.choice-card.seat.white strong { color: #f4f7f9; }
+
+/* Unknown stays deliberately neutral so the four seat colours stand out. */
+.choice-card.seat:not(.gold):not(.purple):not(.blue):not(.white) {
+  border-color: rgba(87,119,139,.52);
+  background: rgba(10,28,41,.72);
+}
+
+/* Stronger selected state with a colour-matched glow. */
+.choice-card.seat.gold:has(input:checked) {
+  border-color: #f0c95f;
+  background: linear-gradient(135deg, rgba(191,139,27,.62), rgba(78,60,25,.62));
+  box-shadow: 0 0 0 1px rgba(240,201,95,.22) inset, 0 0 22px rgba(232,196,106,.25);
+  transform: translateY(-1px);
+}
+.choice-card.seat.purple:has(input:checked) {
+  border-color: #c694e7;
+  background: linear-gradient(135deg, rgba(124,64,166,.64), rgba(65,39,84,.62));
+  box-shadow: 0 0 0 1px rgba(198,148,231,.22) inset, 0 0 22px rgba(187,145,216,.24);
+  transform: translateY(-1px);
+}
+.choice-card.seat.blue:has(input:checked) {
+  border-color: #65b9f1;
+  background: linear-gradient(135deg, rgba(43,125,185,.66), rgba(30,69,98,.62));
+  box-shadow: 0 0 0 1px rgba(101,185,241,.22) inset, 0 0 22px rgba(98,174,232,.25);
+  transform: translateY(-1px);
+}
+.choice-card.seat.white:has(input:checked) {
+  border-color: #ffffff;
+  background: linear-gradient(135deg, rgba(229,236,241,.34), rgba(103,118,127,.55));
+  box-shadow: 0 0 0 1px rgba(255,255,255,.20) inset, 0 0 22px rgba(233,238,242,.19);
+  transform: translateY(-1px);
+}
+
+/* Colour the selected radio dot to match the seat instead of the global pink. */
+.choice-card.seat.gold:has(input:checked) .choice-dot {
+  border-color: #f5d778;
+  background: #e8c46a;
+}
+.choice-card.seat.purple:has(input:checked) .choice-dot {
+  border-color: #d5b1ef;
+  background: #bb91d8;
+}
+.choice-card.seat.blue:has(input:checked) .choice-dot {
+  border-color: #9dd3fa;
+  background: #62aee8;
+}
+.choice-card.seat.white:has(input:checked) .choice-dot {
+  border-color: #ffffff;
+  background: #e9eef2;
+}
 
 .group-builder { margin-top: 26px; padding-top: 8px; }
 .subsection-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }

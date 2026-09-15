@@ -198,3 +198,10 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Made Player 1 / Player 2 / Player 3 labels visually distinct from the rest of the form.
 - Player labels now use a pink/red pill badge with bright white text and stronger weight.
 - Added a subtle pink/red accent strip to each known-player card.
+
+
+## v26
+- Increased visual differentiation of the optional confirmed seat-colour choices.
+- Gold, Purple, Blue, and White now have colour-tinted borders/backgrounds even before selection.
+- Selected seats use a stronger colour-matched fill, glow, and radio indicator.
+- “Not confirmed yet” remains neutral so the actual seat colours are easier to scan.
