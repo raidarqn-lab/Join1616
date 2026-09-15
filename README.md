@@ -234,3 +234,8 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 ## v30
 - Updated the welcome guide sentence to: “We are here to support the transfer application process for the server.”
 - Updated the same message across all supported interface languages.
+
+
+## v31
+- Reduced the welcome-screen group photo to roughly 25% of its previous desktop size.
+- Kept the three guide username/alliance labels at a readable width below the smaller centered image.

@@ -1479,13 +1479,14 @@ html[dir="rtl"] .review-item, html[dir="rtl"] .field-block { text-align: right; 
 
 .guide-group-photo-section {
   position: relative;
-  width: min(700px, 100%);
-  margin: 30px auto 0;
+  width: 100%;
+  margin: 26px auto 0;
 }
 .guide-group-photo-frame {
   position: relative;
-  width: 100%;
+  width: min(175px, 42vw);
   aspect-ratio: 1;
+  margin: 0 auto;
   overflow: hidden;
   border: 1px solid rgba(242,115,139,.68);
   border-radius: 20px;
@@ -1518,7 +1519,8 @@ html[dir="rtl"] .review-item, html[dir="rtl"] .field-block { text-align: right; 
   display: grid;
   grid-template-columns: repeat(3, minmax(0,1fr));
   gap: 10px;
-  margin-top: 14px;
+  width: min(560px, 100%);
+  margin: 14px auto 0;
 }
 .guide-name-chip {
   min-width: 0;
@@ -1548,9 +1550,10 @@ html[dir="rtl"] .review-item, html[dir="rtl"] .field-block { text-align: right; 
 @media (max-width: 620px) {
   .guide-group-photo-section {
     width: 100%;
-    margin-top: 24px;
+    margin-top: 22px;
   }
   .guide-group-photo-frame {
+    width: min(155px, 48vw);
     border-radius: 16px;
     padding: 4px;
   }
