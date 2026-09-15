@@ -101,3 +101,12 @@ It introduces the 1616 transfer guides with circular profile images:
 - RaidARQN [NvSP]
 
 The three guide images are embedded directly into `index.html`, so GitHub Pages does not need separate avatar image files at runtime.
+
+
+## v15
+- Welcome begins with language selection, then shows the transfer guides in the chosen language.
+- Middle guide corrected to Dolphy RN BE [NvEM].
+- Portrait frames use a pulsing red glow.
+- Begin Application is localized and pink/red.
+- Progress numbers have no surrounding circles.
+- Completed steps receive a fast red samurai-sword slash with a brief spark/streak at the cut tip.
