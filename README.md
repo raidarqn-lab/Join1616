@@ -248,3 +248,9 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
   - Dolphy RN → “Mr. Personality”
   - RaidARQN → “Pew Pew queen of 1616”
 - Hover bubbles pop in like comic speech captions with playful scaling/rotation.
+
+
+## v33
+- Added the Google Font “Bungee Tint”.
+- Applied Bungee Tint to the main page title at the top of each of the five application steps.
+- Welcome-screen and other headings remain unchanged.
