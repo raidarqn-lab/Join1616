@@ -86,12 +86,8 @@ with a ±10M borderline zone. It also displays an experimental transfer-score ba
 the game does not publish a universal formula and thresholds vary by transfer group.
 
 
-## v11: Where to find power values
-Step 3 now includes an expandable in-game navigation guide.
-Most component values are collected from:
-Profile → Total Power → Power Details
+## v12 fix
+v11 contained a JavaScript syntax error in the multilingual translation object, which prevented the Continue button from running.
+v12 rebuilds the help guide from the working v10 base and syntax-checks the script before release.
 
-The form explains separately where to check:
-- T11 status: Armament Institute
-- Transfer Score: Transfer Surge / migration screen
-- Unit Power: use the displayed Unit Power as an estimate because transfer scoring may use only the strongest deployed squads.
+Step 3 also now includes an expandable “Where do I find these power numbers?” guide plus short in-game navigation breadcrumbs.
