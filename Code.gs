@@ -20,7 +20,9 @@ const SHEETS = {
 
 const APPLICATION_HEADERS = [
   'Timestamp', 'Application ID', 'Language', 'Current Server', 'Applicant Username', 'Applicant Alliance',
-  'Profession Level', 'Kill Count', 'Hero Power', 'Seat Colour', 'Transfer With Group', 'Group ID',
+  'Profession Level', 'Kill Count', 'Hero Power', 'Building Power', 'Technology Power', 'Drone Power',
+  'Unit Power (Top 3)', 'Overlord Power', 'T11 Unlocked', 'Reported Transfer Score', 'Estimated Transfer Score Band',
+  'Estimated Seat Colour', 'Seat Colour', 'Transfer With Group', 'Group ID',
   'Expected Additional Players', 'Known Players Listed', 'Expected Total Group Size', 'Unnamed / TBD Players',
   'Group Contact', 'Linked Player Names', 'Comments', 'Status'
 ];
@@ -86,6 +88,15 @@ function doPost(e) {
       digits_(payload.professionLevel),
       digits_(payload.killCount),
       digits_(payload.heroPower),
+      digits_(payload.buildingPower),
+      digits_(payload.technologyPower),
+      digits_(payload.dronePower),
+      digits_(payload.unitPower),
+      digits_(payload.overlordPower),
+      clean_(payload.t11Unlocked),
+      digits_(payload.reportedTransferScore),
+      clean_(payload.estimatedTransferScoreBand),
+      clean_(payload.estimatedSeatColour),
       clean_(payload.seatColour),
       clean_(payload.transferWithGroup),
       clean_(payload.groupId),
@@ -190,6 +201,11 @@ function validatePayload_(p) {
   const required = ['applicationId','language','currentServer','username','alliance','professionLevel','killCount','heroPower','seatColour','transferWithGroup'];
   required.forEach(k => { if (p[k] === undefined || p[k] === null || String(p[k]).trim() === '') throw new Error(`Missing required field: ${k}`); });
   ['currentServer','professionLevel','killCount','heroPower'].forEach(k => { if (!/^\d+$/.test(String(p[k]))) throw new Error(`${k} must contain digits only.`); });
+  ['buildingPower','technologyPower','dronePower','unitPower','overlordPower','reportedTransferScore'].forEach(k => {
+    if (p[k] !== undefined && p[k] !== null && String(p[k]).trim() !== '' && !/^\d+$/.test(String(p[k]))) {
+      throw new Error(`${k} must contain digits only.`);
+    }
+  });
   if (!['gold','purple','blue','white'].includes(String(p.seatColour))) throw new Error('Invalid seat colour.');
   if (!['yes','no','unsure'].includes(String(p.transferWithGroup))) throw new Error('Invalid transfer group answer.');
   if (p.transferWithGroup === 'yes') {

@@ -69,3 +69,29 @@ You no longer need separate image files for the website to display correctly on 
 
 The previous build also had the background scene behind the body's opaque background because of a negative z-index.
 This version fixes the stacking order, which also makes the floating sakura petals visible.
+
+
+## v10: S4 transfer estimate fields
+Step 3 now collects optional transfer-score inputs:
+- Building Power
+- Technology Power
+- Drone Power
+- Unit Power for the top 3 fully deployed squads
+- Overlord Power
+- T11 status
+- Known in-game Transfer Score, if already visible
+
+The page estimates an end-of-S4 seat colour using rough historical THP reference thresholds (110M / 165M / 220M)
+with a ±10M borderline zone. It also displays an experimental transfer-score band. These are planning estimates only;
+the game does not publish a universal formula and thresholds vary by transfer group.
+
+
+## v11: Where to find power values
+Step 3 now includes an expandable in-game navigation guide.
+Most component values are collected from:
+Profile → Total Power → Power Details
+
+The form explains separately where to check:
+- T11 status: Armament Institute
+- Transfer Score: Transfer Surge / migration screen
+- Unit Power: use the displayed Unit Power as an estimate because transfer scoring may use only the strongest deployed squads.
