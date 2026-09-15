@@ -22,19 +22,19 @@ const APPLICATION_HEADERS = [
   'Timestamp', 'Application ID', 'Language', 'Current Server', 'Applicant Username', 'Applicant Alliance',
   'Profession Level', 'Kill Count', 'Hero Power', 'Building Power', 'Technology Power', 'Drone Power',
   'Unit Power (Top 3)', 'Overlord Power', 'Decoration Power', 'T11 Unlocked', 'Reported Transfer Score', 'Estimated Transfer Score Band',
-  'Estimated Seat Colour', 'Seat Colour', 'Transfer With Group', 'Group Transfer Lead Username',
+  'Estimated Seat Colour', 'Seat Colour', 'Transfer With Group', 'Transfer Group Name',
   'Expected Additional Players', 'Known Players Listed', 'Expected Total Group Size', 'Unnamed / TBD Players',
-  'Group Lead / Contact', 'Linked Player Names', 'Preferred 1616 Alliance', 'Referrer Username', 'Referrer Alliance', 'Comments', 'Status', 'Confirmation Code'
+  'Group Transfer Lead Username', 'Linked Player Names', 'Preferred 1616 Alliance', 'Referrer Username', 'Referrer Alliance', 'Comments', 'Status', 'Confirmation Code'
 ];
 
 const GROUP_HEADERS = [
-  'Timestamp', 'Group Transfer Lead Username', 'Submitted By', 'Submitter Server', 'Submitter Alliance', 'Expected Additional Players',
-  'Known Players Listed', 'Expected Total Group Size', 'Unnamed / TBD Players', 'Group Lead / Contact',
+  'Timestamp', 'Transfer Group Name', 'Submitted By', 'Submitter Server', 'Submitter Alliance', 'Expected Additional Players',
+  'Known Players Listed', 'Expected Total Group Size', 'Unnamed / TBD Players', 'Group Transfer Lead Username',
   'Applications Matched', 'Applications Outstanding', 'Status'
 ];
 
 const MEMBER_HEADERS = [
-  'Timestamp', 'Group Transfer Lead Username', 'Submitted By', 'Submitter Server', 'Submitter Alliance', 'Role',
+  'Timestamp', 'Transfer Group Name', 'Submitted By', 'Submitter Server', 'Submitter Alliance', 'Role',
   'Player Name', 'Player Server', 'Player Alliance', 'Player Seat Colour', 'Matched Application ID', 'Match Status'
 ];
 
@@ -72,12 +72,13 @@ function doPost(e) {
     const now = new Date();
     const groupMembers = Array.isArray(payload.groupMembers) ? payload.groupMembers : [];
     const groupLeadUsername = payload.transferWithGroup === 'yes' ? upperClean_(payload.groupLeadUsername) : '';
+    const transferGroupName = payload.transferWithGroup === 'yes' ? clean_(payload.transferGroupName) : '';
     const knownPlayers = payload.transferWithGroup === 'yes' ? groupMembers.length : 0;
     const expectedRaw = digits_(payload.expectedAdditionalPlayers);
     const expectedAdditionalPlayers = payload.transferWithGroup === 'yes' && expectedRaw !== '' ? Number(expectedRaw) : '';
     const expectedTotalGroupSize = expectedAdditionalPlayers === '' ? '' : expectedAdditionalPlayers + 1;
     const unnamedPlayers = expectedAdditionalPlayers === '' ? '' : Math.max(expectedAdditionalPlayers - knownPlayers, 0);
-    const linkedNames = groupMembers.map(m => `${clean_(m.name)} [${clean_(m.alliance)}] · ${digits_(m.server)}${clean_(m.seatColour) ? ` · ${clean_(m.seatColour)}` : ''}`).join(' | ');
+    const linkedNames = groupMembers.map(m => `${clean_(m.name)} [${clean_(m.alliance)}] · ${digits_(m.server)}`).join(' | ');
 
     applications.appendRow([
       now,
@@ -101,7 +102,7 @@ function doPost(e) {
       clean_(payload.estimatedSeatColour),
       clean_(payload.seatColour),
       clean_(payload.transferWithGroup),
-      groupLeadUsername,
+      transferGroupName,
       expectedAdditionalPlayers,
       knownPlayers,
       expectedTotalGroupSize,
@@ -120,11 +121,11 @@ function doPost(e) {
     matchApplicantToExistingGroups_(members, payload);
 
     if (payload.transferWithGroup === 'yes') {
-      const groupRowNumber = findRowByValue_(groups, 2, groupLeadUsername);
+      const groupRowNumber = findRowByValue_(groups, 2, transferGroupName);
       if (!groupRowNumber) {
         groups.appendRow([
           now,
-          groupLeadUsername,
+          transferGroupName,
           clean_(payload.username),
           digits_(payload.currentServer),
           clean_(payload.alliance),
@@ -156,7 +157,7 @@ function doPost(e) {
       if (!memberApplicationExists_(members, clean_(payload.applicationId))) {
         members.appendRow([
           now,
-          groupLeadUsername,
+          transferGroupName,
           clean_(payload.username),
           digits_(payload.currentServer),
           clean_(payload.alliance),
@@ -164,7 +165,7 @@ function doPost(e) {
           clean_(payload.username),
           digits_(payload.currentServer),
           clean_(payload.alliance),
-          clean_(payload.seatColour),
+          '',
           clean_(payload.applicationId),
           'Matched'
         ]);
@@ -172,11 +173,11 @@ function doPost(e) {
 
       groupMembers.forEach(member => {
         if (!member.name || !member.server || !member.alliance) return;
-        if (memberPersonExistsInGroup_(members, groupLeadUsername, member.name, member.server)) return;
+        if (memberPersonExistsInGroup_(members, transferGroupName, member.name, member.server)) return;
         const existingApplication = findApplicationMatch_(applications, member.name, member.server);
         members.appendRow([
           now,
-          groupLeadUsername,
+          transferGroupName,
           clean_(payload.username),
           digits_(payload.currentServer),
           clean_(payload.alliance),
@@ -184,7 +185,7 @@ function doPost(e) {
           clean_(member.name),
           digits_(member.server),
           clean_(member.alliance),
-          clean_(member.seatColour),
+          '',
           existingApplication || '',
           existingApplication ? 'Matched' : 'Waiting for application'
         ]);
@@ -194,7 +195,7 @@ function doPost(e) {
     recalculateAllGroupProgress_(groups, members);
     formatSheets_(ss);
 
-    return json_({ ok: true, applicationId: payload.applicationId, groupLeadUsername: groupLeadUsername || '' });
+    return json_({ ok: true, applicationId: payload.applicationId, transferGroupName: transferGroupName || '', groupLeadUsername: groupLeadUsername || '' });
   } catch (err) {
     console.error(err);
     return json_({ ok: false, error: String(err && err.message ? err.message : err) });
@@ -216,12 +217,13 @@ function validatePayload_(p) {
   if (!['yes','no','unsure'].includes(String(p.transferWithGroup))) throw new Error('Invalid transfer group answer.');
   if (p.transferWithGroup === 'yes') {
     if (!p.groupLeadUsername || !String(p.groupLeadUsername).trim()) throw new Error('Missing group transfer lead username.');
+    if (!p.transferGroupName || !String(p.transferGroupName).trim()) throw new Error('Missing transfer group name.');
     if (p.expectedAdditionalPlayers !== undefined && p.expectedAdditionalPlayers !== null && String(p.expectedAdditionalPlayers).trim() !== '' && !/^\d+$/.test(String(p.expectedAdditionalPlayers))) {
       throw new Error('expectedAdditionalPlayers must contain digits only.');
     }
     if (!Array.isArray(p.groupMembers)) p.groupMembers = [];
     p.groupMembers.forEach((m, i) => {
-      if (!m.name || !m.server || !m.alliance || !m.seatColour) throw new Error(`Incomplete group member ${i + 1}.`);
+      if (!m.name || !m.server || !m.alliance) throw new Error(`Incomplete group member ${i + 1}.`);
       if (!/^\d+$/.test(String(m.server))) throw new Error(`Invalid server for group member ${i + 1}.`);
     });
   }
@@ -247,7 +249,8 @@ function idExists_(sheet, id) {
 function findRowByValue_(sheet, columnIndex, value) {
   if (!value || sheet.getLastRow() < 2) return 0;
   const values = sheet.getRange(2, columnIndex, sheet.getLastRow() - 1, 1).getDisplayValues().flat();
-  const idx = values.findIndex(v => String(v).trim() === String(value).trim());
+  const target = normalize_(value);
+  const idx = values.findIndex(v => normalize_(v) === target);
   return idx === -1 ? 0 : idx + 2;
 }
 function memberApplicationExists_(members, applicationId) {
@@ -258,10 +261,10 @@ function memberApplicationExists_(members, applicationId) {
 function memberPersonExistsInGroup_(members, groupLeadUsername, playerName, server) {
   if (!groupLeadUsername || !playerName || !server || members.getLastRow() < 2) return false;
   const values = members.getRange(2, 1, members.getLastRow() - 1, MEMBER_HEADERS.length).getDisplayValues();
-  const targetGid = String(groupLeadUsername).trim();
+  const targetGid = normalize_(groupLeadUsername);
   const targetName = normalize_(playerName);
   const targetServer = digits_(server);
-  return values.some(row => String(row[1] || '').trim() === targetGid && normalize_(row[6]) === targetName && digits_(row[7]) === targetServer);
+  return values.some(row => normalize_(row[1]) === targetGid && normalize_(row[6]) === targetName && digits_(row[7]) === targetServer);
 }
 
 function findApplicationMatch_(applications, playerName, server) {
@@ -303,7 +306,7 @@ function recalculateAllGroupProgress_(groups, members) {
   const memberRows = members.getLastRow() >= 2 ? members.getRange(2, 1, members.getLastRow() - 1, MEMBER_HEADERS.length).getValues() : [];
   const counts = {};
   memberRows.forEach(row => {
-    const gid = String(row[1] || '').trim();
+    const gid = normalize_(row[1]);
     if (!gid) return;
     const personKey = `${normalize_(row[6])}|${digits_(row[7])}`;
     if (!counts[gid]) counts[gid] = {};
@@ -311,7 +314,7 @@ function recalculateAllGroupProgress_(groups, members) {
     if (String(row[10] || '').trim()) counts[gid][personKey].matched = true;
   });
   groupRows.forEach((row, i) => {
-    const gid = String(row[1] || '').trim();
+    const gid = normalize_(row[1]);
     const people = counts[gid] || {};
     const uniquePeople = Object.keys(people).length;
     const matched = Object.values(people).filter(p => p.matched).length;

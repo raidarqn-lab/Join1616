@@ -174,3 +174,14 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Group applications are now linked in Google Sheets using the normalized Group Transfer Lead username.
 - Removed the separate Group Contact selector; the Group Transfer Lead is now the group identifier/contact reference.
 - Confirmation and review screens now show the Group Transfer Lead instead of a Transfer Group ID.
+
+
+## v23
+- “Add a player you know” now asks only for username, alliance name, and server number.
+- Removed seat colour from known-player cards and group-member review display.
+- Added a required, user-created Transfer Group Name for anyone transferring as a group.
+- Transfer leads are prominently told to create one memorable, unique group name, not use their alliance name, and share the exact name with everyone in the group.
+- Non-leads enter the exact Transfer Group Name shared by their lead.
+- The form rejects a Transfer Group Name that exactly matches the applicant's alliance name.
+- Transfer Group Name appears in the review and confirmation page.
+- Google Sheets now groups group applications by Transfer Group Name, while separately storing the Group Transfer Lead username.
