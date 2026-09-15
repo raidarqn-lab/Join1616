@@ -53,3 +53,11 @@ When an applicant selects **Yes** for transferring with a group, the form now ge
 - The first applicant can share that ID with friends.
 - Later applicants can paste the same ID into the form.
 - The backend groups those applications together in the `TransferGroups` and `GroupMembers` sheets.
+
+
+## Assets required on GitHub
+Make sure these files are uploaded at the same level as `index.html`:
+- `blood_moon_samurai_valley.png`
+- `wordmark-1616.png`
+
+The page now also includes a visible sakura petal animation layer and seat colour for each linked transfer-group member.

@@ -33,7 +33,7 @@ const GROUP_HEADERS = [
 
 const MEMBER_HEADERS = [
   'Timestamp', 'Group ID', 'Submitted By', 'Submitter Server', 'Submitter Alliance', 'Role',
-  'Player Name', 'Player Server', 'Player Alliance', 'Matched Application ID', 'Match Status'
+  'Player Name', 'Player Server', 'Player Alliance', 'Player Seat Colour', 'Matched Application ID', 'Match Status'
 ];
 
 function setupSheets() {
@@ -74,7 +74,7 @@ function doPost(e) {
     const expectedAdditionalPlayers = payload.transferWithGroup === 'yes' && expectedRaw !== '' ? Number(expectedRaw) : '';
     const expectedTotalGroupSize = expectedAdditionalPlayers === '' ? '' : expectedAdditionalPlayers + 1;
     const unnamedPlayers = expectedAdditionalPlayers === '' ? '' : Math.max(expectedAdditionalPlayers - knownPlayers, 0);
-    const linkedNames = groupMembers.map(m => `${clean_(m.name)} [${clean_(m.alliance)}] · ${digits_(m.server)}`).join(' | ');
+    const linkedNames = groupMembers.map(m => `${clean_(m.name)} [${clean_(m.alliance)}] · ${digits_(m.server)}${clean_(m.seatColour) ? ` · ${clean_(m.seatColour)}` : ''}`).join(' | ');
 
     applications.appendRow([
       now,
@@ -147,6 +147,7 @@ function doPost(e) {
           clean_(payload.username),
           digits_(payload.currentServer),
           clean_(payload.alliance),
+          clean_(payload.seatColour),
           clean_(payload.applicationId),
           'Matched'
         ]);
@@ -166,6 +167,7 @@ function doPost(e) {
           clean_(member.name),
           digits_(member.server),
           clean_(member.alliance),
+          clean_(member.seatColour),
           existingApplication || '',
           existingApplication ? 'Matched' : 'Waiting for application'
         ]);
@@ -197,7 +199,7 @@ function validatePayload_(p) {
     }
     if (!Array.isArray(p.groupMembers)) p.groupMembers = [];
     p.groupMembers.forEach((m, i) => {
-      if (!m.name || !m.server || !m.alliance) throw new Error(`Incomplete group member ${i + 1}.`);
+      if (!m.name || !m.server || !m.alliance || !m.seatColour) throw new Error(`Incomplete group member ${i + 1}.`);
       if (!/^\d+$/.test(String(m.server))) throw new Error(`Invalid server for group member ${i + 1}.`);
     });
   }
@@ -228,7 +230,7 @@ function findRowByValue_(sheet, columnIndex, value) {
 }
 function memberApplicationExists_(members, applicationId) {
   if (!applicationId || members.getLastRow() < 2) return false;
-  const values = members.getRange(2, 10, members.getLastRow() - 1, 1).getDisplayValues().flat();
+  const values = members.getRange(2, 11, members.getLastRow() - 1, 1).getDisplayValues().flat();
   return values.includes(String(applicationId));
 }
 function memberPersonExistsInGroup_(members, groupId, playerName, server) {
@@ -262,14 +264,14 @@ function matchApplicantToExistingGroups_(members, payload) {
     const role = String(row[5]);
     const playerName = normalize_(row[6]);
     const playerServer = digits_(row[7]);
-    const matchedId = String(row[9] || '').trim();
+    const matchedId = String(row[10] || '').trim();
     if (role === 'Additional Player' && !matchedId && playerName === targetName && playerServer === targetServer) {
       updates.push(idx + 2);
     }
   });
   updates.forEach(rowNumber => {
-    members.getRange(rowNumber, 10).setValue(clean_(payload.applicationId));
-    members.getRange(rowNumber, 11).setValue('Matched');
+    members.getRange(rowNumber, 11).setValue(clean_(payload.applicationId));
+    members.getRange(rowNumber, 12).setValue('Matched');
   });
 }
 
@@ -284,7 +286,7 @@ function recalculateAllGroupProgress_(groups, members) {
     const personKey = `${normalize_(row[6])}|${digits_(row[7])}`;
     if (!counts[gid]) counts[gid] = {};
     if (!counts[gid][personKey]) counts[gid][personKey] = { matched: false };
-    if (String(row[9] || '').trim()) counts[gid][personKey].matched = true;
+    if (String(row[10] || '').trim()) counts[gid][personKey].matched = true;
   });
   groupRows.forEach((row, i) => {
     const gid = String(row[1] || '').trim();

@@ -62,7 +62,7 @@ button { color: inherit; }
   background:
     linear-gradient(90deg, rgba(3,10,16,.67) 0%, rgba(3,10,16,.28) 22%, rgba(3,10,16,.17) 50%, rgba(3,10,16,.26) 78%, rgba(3,10,16,.52) 100%),
     linear-gradient(180deg, rgba(3,10,16,.22) 0%, rgba(3,10,16,.10) 24%, rgba(3,10,16,.16) 58%, rgba(3,10,16,.46) 100%),
-    url('background-scene.png') center center / cover no-repeat;
+    url('blood_moon_samurai_valley.png') center center / cover no-repeat;
 }
 .scene::after {
   content: "";
@@ -71,14 +71,15 @@ button { color: inherit; }
   background:
     radial-gradient(circle at 78% 18%, rgba(232,69,92,.25) 0, rgba(232,69,92,.12) 12%, rgba(232,69,92,0) 24%);
 }
-.petals { position: absolute; inset: 0; overflow: hidden; }
+.petals { position: absolute; inset: 0; overflow: hidden; z-index: 2; pointer-events: none; }
 .petals span {
   position: absolute;
-  width: 10px;
-  height: 6px;
+  width: 12px;
+  height: 8px;
   border-radius: 72% 28% 70% 30%;
-  background: rgba(242,171,189,.78);
-  box-shadow: 0 0 8px rgba(240,167,182,.20);
+  background: linear-gradient(180deg, rgba(255,209,222,.92), rgba(237,126,166,.84));
+  box-shadow: 0 0 10px rgba(240,167,182,.28);
+  opacity: .9;
   transform: rotate(18deg);
   animation: drift linear infinite;
 }
@@ -747,7 +748,7 @@ html[dir="rtl"] .review-item, html[dir="rtl"] .field-block { text-align: right; 
         <strong class="member-title">Player</strong>
         <button type="button" class="remove-member" aria-label="Remove player">×</button>
       </div>
-      <div class="field-grid three-col">
+      <div class="field-grid two-col">
         <div class="field-block">
           <label><span data-i18n-dynamic="playerName">Player Name</span></label>
           <input type="text" class="member-name" maxlength="80" />
@@ -761,6 +762,17 @@ html[dir="rtl"] .review-item, html[dir="rtl"] .field-block { text-align: right; 
         <div class="field-block">
           <label><span data-i18n-dynamic="memberAlliance">Alliance Name / Tag</span></label>
           <input type="text" class="member-alliance" maxlength="80" />
+          <p class="field-error"></p>
+        </div>
+        <div class="field-block">
+          <label><span data-i18n-dynamic="memberSeatColour">Seat Colour</span></label>
+          <select class="member-seat-colour">
+            <option value="" data-i18n-dynamic="selectSeatColour">Select seat colour</option>
+            <option value="gold" data-i18n-dynamic="gold">Gold</option>
+            <option value="purple" data-i18n-dynamic="purple">Purple</option>
+            <option value="blue" data-i18n-dynamic="blue">Blue</option>
+            <option value="white" data-i18n-dynamic="white">White</option>
+          </select>
           <p class="field-error"></p>
         </div>
       </div>
@@ -786,11 +798,11 @@ const I18N = {
     welcomeTitle: '1616 Server Transfer Application', welcomeBody1: 'Thank you for your interest in transferring to 1616. Please take a few minutes to complete this application so we can evaluate applicants.', waitlistLead: 'Important:', welcomeBody2: 'Submitting this application places you on a waitlist and does not guarantee a spot on Server 1616.', welcomeBody3: 'Questions about this form or transfers can be directed to RaidARQN [NvSP].',
     yourInformation: 'Your Information', yourInfoIntro: 'Tell us who you are and where you are currently playing.', currentServer: 'What server are you currently on?', username: 'What is your full in-game username?', allianceTag: 'What is your current alliance name / tag?',
     gameDetails: 'Game Details', gameDetailsIntro: 'Enter the current values shown in your game profile.', professionLevel: 'What is your profession level?', killCount: 'What is your current kill count?', fullNumberHelp: 'Enter the full number. Do not use M, K, or abbreviations.', heroPower: 'What is your total HERO power?', howToFind: 'How to find this', heroPowerHelp: 'Enter HERO Power only, not Total Power.', heroHelp1: 'Open your profile.', heroHelp2: 'Tap your Total Power badge.', heroHelp3: 'Open Power Details and find Hero Power.', heroHelp4: 'Report the full Hero Power number only.', seatColour: 'What seat colour are you?', gold: 'Gold', purple: 'Purple', blue: 'Blue', white: 'White', howToFindSeat: 'How to find your seat colour', seatHelp1: 'Tap the map icon on the right side of your game screen.', seatHelp2: 'Open Transfer Surge and check “Your Status”.', seatHelp3: 'Your seat colour is shown at the bottom of that screen.',
-    transferGroup: 'Transfer Group', transferGroupIntro: 'Let us know if you are transferring with other players. If so, add each player so we can keep your group connected during review.', transferWithGroup: 'Are you hoping to transfer with a group of people from your server?', yes: 'Yes', no: 'No', unsure: 'Unsure', yesGroupSub: 'I am bringing other player(s)', noGroupSub: 'I am transferring on my own', unsureGroupSub: 'I am not sure yet', yourTransferGroup: 'Your Transfer Group', groupBuilderIntro: "You do not need to know every player yet. Add any players you know now, or leave the player list blank and continue.", addAnotherPlayer: "Add a player you know", groupContact: 'Group Contact', groupContactIntro: "Who should we contact if we need to reach your group? If you do not choose someone else, we will use you as the group contact.", selectGroupContact: 'Select a group contact', totalPlayersInGroup: "Expected group size", additionalPlayers: 'Additional players', includingYou: 'Including you', playerName: 'Player Name', memberServer: 'Current Server', memberAlliance: 'Alliance Name / Tag', knownPlayersListed: "Known players listed", estimatedGroupSize: "Estimated Group Size", estimatedGroupSizeIntro: "If you know roughly how many additional players may come with you, enter that number. An estimate is fine.", expectedAdditionalPlayers: "Expected additional players", expectedAdditionalHelp: "Leave this blank if you do not know yet.", optional: "Optional", transferGroupIdTitle: "Transfer Group ID", transferGroupIdIntro: "If you are transferring as a group, share this ID with anyone applying with you. They can enter the same ID so your applications stay grouped together.", activeTransferGroupId: "Active Transfer Group ID", groupIdAuto: "Generated for your group", groupIdUsingExisting: "Using an existing shared Transfer Group ID", copyGroupId: "Copy ID", copiedGroupId: "Copied!", existingGroupId: "Already have a Transfer Group ID?", existingGroupIdHelp: "If a friend already generated a Transfer Group ID, enter it here to join that same group. If you leave this blank, we will keep the generated ID shown above.", reviewTransferGroupId: "Transfer Group ID",
+    transferGroup: 'Transfer Group', transferGroupIntro: 'Let us know if you are transferring with other players. If so, add each player so we can keep your group connected during review.', transferWithGroup: 'Are you hoping to transfer with a group of people from your server?', yes: 'Yes', no: 'No', unsure: 'Unsure', yesGroupSub: 'I am bringing other player(s)', noGroupSub: 'I am transferring on my own', unsureGroupSub: 'I am not sure yet', yourTransferGroup: 'Your Transfer Group', groupBuilderIntro: "You do not need to know every player yet. Add any players you know now, or leave the player list blank and continue.", addAnotherPlayer: "Add a player you know", groupContact: 'Group Contact', groupContactIntro: "Who should we contact if we need to reach your group? If you do not choose someone else, we will use you as the group contact.", selectGroupContact: 'Select a group contact', totalPlayersInGroup: "Expected group size", additionalPlayers: 'Additional players', includingYou: 'Including you', playerName: 'Player Name', memberServer: 'Current Server', memberAlliance: 'Alliance Name / Tag', memberSeatColour: 'Seat Colour', selectSeatColour: 'Select seat colour', knownPlayersListed: "Known players listed", estimatedGroupSize: "Estimated Group Size", estimatedGroupSizeIntro: "If you know roughly how many additional players may come with you, enter that number. An estimate is fine.", expectedAdditionalPlayers: "Expected additional players", expectedAdditionalHelp: "Leave this blank if you do not know yet.", optional: "Optional", transferGroupIdTitle: "Transfer Group ID", transferGroupIdIntro: "If you are transferring as a group, share this ID with anyone applying with you. They can enter the same ID so your applications stay grouped together.", activeTransferGroupId: "Active Transfer Group ID", groupIdAuto: "Generated for your group", groupIdUsingExisting: "Using an existing shared Transfer Group ID", copyGroupId: "Copy ID", copiedGroupId: "Copied!", existingGroupId: "Already have a Transfer Group ID?", existingGroupIdHelp: "If a friend already generated a Transfer Group ID, enter it here to join that same group. If you leave this blank, we will keep the generated ID shown above.", reviewTransferGroupId: "Transfer Group ID",
     additionalInfo: 'Additional Information', additionalInfoIntro: 'Add anything else that would help the 1616 team review your transfer request.', additionalComments: 'Do you have any additional comments or questions?', beforeContinue: 'Before you continue', waitlistReminder: 'Remember: this application adds you to the Server 1616 waitlist. It does not guarantee a transfer spot.',
     reviewSubmit: 'Review & Submit', reviewIntro: 'Review your information before submitting. You can go back to any section to make changes.', submitNote: 'Your application will be sent to the 1616 review spreadsheet. Your language choice is stored with your submission.', edit: 'Edit',
     back: 'Back', continue: 'Continue', submitApplication: 'Submit Application',
-    requiredError: 'This field is required.', numberError: 'Please enter numbers only.', fullNumberError: 'Enter the full number using digits only (for example 26000000).', chooseError: 'Please select an option.', groupMemberError: 'Please complete all three fields for this player.', groupContactError: 'Please choose a group contact.', backendMissing: 'The form is ready, but the Google Apps Script URL has not been added yet. Paste your Web App /exec URL into app.js.', submitting: 'Submitting your application…', submitted: 'Application submitted. Your reference is', submitFailed: 'We could not send your application. Please check your connection and try again.',
+    requiredError: 'This field is required.', numberError: 'Please enter numbers only.', fullNumberError: 'Enter the full number using digits only (for example 26000000).', chooseError: 'Please select an option.', groupMemberError: 'Please complete all three fields for this player.', groupContactError: 'Please choose a group contact.', backendMissing: 'The form is ready, but the Google Apps Script URL has not been added yet. Paste your Web App /exec URL into the HTML CONFIG block.', submitting: 'Submitting your application…', submitted: 'Application submitted. Your reference is', submitFailed: 'We could not send your application. Please check your connection and try again.',
     reviewApplicant: 'Applicant', reviewGame: 'Game Details', reviewGroup: 'Transfer Group', reviewAdditional: 'Additional Information', transferAnswer: 'Transferring with group', groupMembers: 'Linked players', comments: 'Comments', none: 'None', notProvided: 'Not provided', groupLead: 'Group contact', totalGroup: 'Total group size',
     player: 'Player', removePlayer: 'Remove player', stepOf: 'Step {step} of 6'
   },
@@ -1104,7 +1116,7 @@ function validateCurrentStep() {
     if (!groupAnswer) { groupErr.textContent = t('chooseError'); ok = false; } else groupErr.textContent = '';
     if (groupAnswer && groupAnswer.value === 'yes') {
       document.querySelectorAll('.group-member-card').forEach(card => {
-        const inputs = [...card.querySelectorAll('input')];
+        const inputs = [...card.querySelectorAll('input, select')];
         const anyStarted = inputs.some(inp => inp.value.trim());
         const valid = !anyStarted || inputs.every(inp => inp.value.trim() && (inp.classList.contains('member-server') ? /^\d+$/.test(digitsOnly(inp.value)) : true));
         inputs.forEach(inp => inp.classList.toggle('invalid', anyStarted && !inp.value.trim()));
@@ -1119,7 +1131,7 @@ function validateCurrentStep() {
 function addGroupMember(data = {}) {
   if (state.groupMembers.length >= CONFIG.maxGroupMembers) return;
   const id = data.id || crypto.randomUUID();
-  state.groupMembers.push({ id, name: data.name || '', server: data.server || '', alliance: data.alliance || '' });
+  state.groupMembers.push({ id, name: data.name || '', server: data.server || '', alliance: data.alliance || '', seatColour: data.seatColour || '' });
   renderGroupMembers();
   updateGroupContactOptions();
   updateGroupSummary();
@@ -1143,11 +1155,13 @@ function renderGroupMembers() {
     const name = node.querySelector('.member-name');
     const server = node.querySelector('.member-server');
     const alliance = node.querySelector('.member-alliance');
-    name.value = member.name; server.value = member.server; alliance.value = member.alliance;
+    const seat = node.querySelector('.member-seat-colour');
+    name.value = member.name; server.value = member.server; alliance.value = member.alliance; seat.value = member.seatColour || '';
     node.querySelectorAll('[data-i18n-dynamic]').forEach(el => el.textContent = t(el.dataset.i18nDynamic));
     name.addEventListener('input', () => { member.name = name.value; updateGroupContactOptions(); updateGroupSummary(); saveDraft(); });
     server.addEventListener('input', () => { server.value = digitsOnly(server.value); member.server = server.value; saveDraft(); });
     alliance.addEventListener('input', () => { member.alliance = alliance.value; updateGroupContactOptions(); saveDraft(); });
+    seat.addEventListener('change', () => { member.seatColour = seat.value; saveDraft(); });
     groupMembersEl.appendChild(node);
   });
 }
@@ -1213,7 +1227,7 @@ function collectPayload() {
     groupContactKey: contactSelect?.value || '',
     groupContact: selectedContactText,
     expectedAdditionalPlayers: groupAnswer === 'yes' ? digitsOnly(document.getElementById('expected-additional-players')?.value || '') : '',
-    groupMembers: groupAnswer === 'yes' ? state.groupMembers.map(m => ({ name: m.name.trim(), server: digitsOnly(m.server), alliance: m.alliance.trim() })) : [],
+    groupMembers: groupAnswer === 'yes' ? state.groupMembers.map(m => ({ name: m.name.trim(), server: digitsOnly(m.server), alliance: m.alliance.trim(), seatColour: m.seatColour || '' })) : [],
     comments: document.getElementById('comments').value.trim(),
     website: document.getElementById('website').value,
     clientTimestamp: new Date().toISOString()
@@ -1231,7 +1245,7 @@ function renderReview() {
   const p = collectPayload();
   const seatLabel = p.seatColour ? t(p.seatColour) : t('notProvided');
   const transferLabel = p.transferWithGroup ? t(p.transferWithGroup) : t('notProvided');
-  const members = p.groupMembers.length ? `<div class="review-members"><div class="review-label">${escapeHtml(t('groupMembers'))}</div>${p.groupMembers.map(m => `<div class="review-member"><span>${escapeHtml(m.name)}</span><span>${escapeHtml(m.server)}</span><span>${escapeHtml(m.alliance)}</span></div>`).join('')}</div>` : '';
+  const members = p.groupMembers.length ? `<div class="review-members"><div class="review-label">${escapeHtml(t('groupMembers'))}</div>${p.groupMembers.map(m => `<div class="review-member"><span>${escapeHtml(m.name)}</span><span>${escapeHtml(m.server)}</span><span>${escapeHtml(m.alliance)}</span><span>${escapeHtml(m.seatColour ? t(m.seatColour) : t('notProvided'))}</span></div>`).join('')}</div>` : '';
   reviewContainer.innerHTML = [
     reviewSection(t('reviewApplicant'), 2, `<div class="review-grid">${reviewItem(t('currentServer'), p.currentServer)}${reviewItem(t('username'), p.username)}${reviewItem(t('allianceTag'), p.alliance)}</div>`),
     reviewSection(t('reviewGame'), 3, `<div class="review-grid">${reviewItem(t('professionLevel'), p.professionLevel)}${reviewItem(t('killCount'), formatNumber(p.killCount))}${reviewItem(t('heroPower'), formatNumber(p.heroPower))}${reviewItem(t('seatColour'), seatLabel)}</div>`),
@@ -1319,11 +1333,16 @@ function showSubmission(message, isError) {
 
 function initPetals() {
   const box = document.getElementById('petals');
-  for (let i = 0; i < 18; i++) {
+  if (!box) return;
+  box.innerHTML = '';
+  for (let i = 0; i < 34; i++) {
     const p = document.createElement('span');
-    p.style.left = `${Math.random()*100}%`; p.style.top = `${-10 - Math.random()*50}%`;
-    p.style.animationDuration = `${14 + Math.random()*16}s`; p.style.animationDelay = `${-Math.random()*20}s`;
-    p.style.opacity = `${.25 + Math.random()*.55}`; p.style.transform = `rotate(${Math.random()*180}deg)`;
+    p.style.left = `${Math.random()*100}%`;
+    p.style.top = `${-10 - Math.random()*90}%`;
+    p.style.animationDuration = `${12 + Math.random()*18}s`;
+    p.style.animationDelay = `${-Math.random()*26}s`;
+    p.style.opacity = `${.40 + Math.random()*.45}`;
+    p.style.transform = `rotate(${Math.random()*180}deg) scale(${0.7 + Math.random()*1.5})`;
     box.appendChild(p);
   }
 }
