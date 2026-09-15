@@ -150,3 +150,12 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - The summary explicitly states that applicants may skip the entire section and continue.
 - The optional section expands/collapses on demand to keep Game Details shorter and less cumbersome.
 - Removed repetitive “Optional” labels from each field inside that section because the whole section is already clearly optional.
+
+
+## v20
+- Reworked Transfer Group ID into two clearly separated choices:
+  1. Start a new transfer group and share the newly generated ID.
+  2. Join an existing transfer group by pasting a shared ID received from another player.
+- Added an explicit “OR” divider and separate teal/pink visual treatments.
+- Added a live status row showing exactly which Group ID the application will use and whether it is NEW or SHARED.
+- The generated new ID stays visible even when a shared ID is entered, but is clearly marked as not being used.
