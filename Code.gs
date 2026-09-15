@@ -21,7 +21,7 @@ const SHEETS = {
 const APPLICATION_HEADERS = [
   'Timestamp', 'Application ID', 'Language', 'Current Server', 'Applicant Username', 'Applicant Alliance',
   'Profession Level', 'Kill Count', 'Hero Power', 'Building Power', 'Technology Power', 'Drone Power',
-  'Unit Power (Top 3)', 'Overlord Power', 'T11 Unlocked', 'Reported Transfer Score', 'Estimated Transfer Score Band',
+  'Unit Power (Top 3)', 'Overlord Power', 'Decoration Power', 'T11 Unlocked', 'Reported Transfer Score', 'Estimated Transfer Score Band',
   'Estimated Seat Colour', 'Seat Colour', 'Transfer With Group', 'Group ID',
   'Expected Additional Players', 'Known Players Listed', 'Expected Total Group Size', 'Unnamed / TBD Players',
   'Group Contact', 'Linked Player Names', 'Preferred 1616 Alliance', 'Referrer Username', 'Referrer Alliance', 'Comments', 'Status', 'Confirmation Code'
@@ -93,6 +93,7 @@ function doPost(e) {
       digits_(payload.dronePower),
       digits_(payload.unitPower),
       digits_(payload.overlordPower),
+      digits_(payload.decorationPower),
       clean_(payload.t11Unlocked),
       digits_(payload.reportedTransferScore),
       clean_(payload.estimatedTransferScoreBand),
@@ -205,7 +206,7 @@ function validatePayload_(p) {
   const required = ['applicationId','confirmationCode','language','currentServer','username','alliance','professionLevel','killCount','heroPower','transferWithGroup'];
   required.forEach(k => { if (p[k] === undefined || p[k] === null || String(p[k]).trim() === '') throw new Error(`Missing required field: ${k}`); });
   ['currentServer','professionLevel','killCount','heroPower'].forEach(k => { if (!/^\d+$/.test(String(p[k]))) throw new Error(`${k} must contain digits only.`); });
-  ['buildingPower','technologyPower','dronePower','unitPower','overlordPower','reportedTransferScore'].forEach(k => {
+  ['buildingPower','technologyPower','dronePower','unitPower','overlordPower','decorationPower','reportedTransferScore'].forEach(k => {
     if (p[k] !== undefined && p[k] !== null && String(p[k]).trim() !== '' && !/^\d+$/.test(String(p[k]))) {
       throw new Error(`${k} must contain digits only.`);
     }

@@ -131,3 +131,22 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Added optional 1616 alliance placement preference with a clear no-guarantee placement notice.
 - Added optional referral fields for referrer username and alliance/tag.
 - Preferred alliance and referral data are included in the review screen and Google Sheet.
+
+
+## v18
+- Fixed a v17 step-numbering regression that caused all five form screens to display as Step 1 at the same time.
+- Restored the intended five-screen flow:
+  1. Your Information
+  2. Game Details
+  3. Transfer Group
+  4. Additional Information
+  5. Review & Submit
+- Added Decoration Power to Transfer Planning Information.
+- Decoration Power is submitted to the Google Sheet as its own column.
+
+
+## v19
+- Transfer Planning Information is now a collapsed optional section by default.
+- The summary explicitly states that applicants may skip the entire section and continue.
+- The optional section expands/collapses on demand to keep Game Details shorter and less cumbersome.
+- Removed repetitive “Optional” labels from each field inside that section because the whole section is already clearly optional.

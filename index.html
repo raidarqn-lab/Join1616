@@ -520,14 +520,108 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--danger); b
 
 .transfer-estimator-card {
   margin-top: 20px;
-  border: 1px solid rgba(94, 225, 222, .34);
+  border: 1px solid rgba(94,225,222,.30);
   border-radius: 14px;
   overflow: hidden;
   background:
-    radial-gradient(circle at 90% 0%, rgba(232,69,92,.10), transparent 32%),
-    linear-gradient(180deg, rgba(9,29,43,.86), rgba(7,22,34,.76));
-  box-shadow: 0 0 28px rgba(53,199,232,.08);
+    radial-gradient(circle at 90% 0%, rgba(232,69,92,.08), transparent 32%),
+    linear-gradient(180deg, rgba(9,29,43,.82), rgba(7,22,34,.74));
+  box-shadow: 0 0 24px rgba(53,199,232,.06);
 }
+.transfer-planning-collapsible > summary {
+  list-style: none;
+}
+.transfer-planning-collapsible > summary::-webkit-details-marker {
+  display: none;
+}
+.transfer-planning-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px;
+  cursor: pointer;
+  user-select: none;
+  transition: background .18s ease, border-color .18s ease;
+}
+.transfer-planning-summary:hover {
+  background: rgba(38,67,82,.20);
+}
+.transfer-planning-summary-copy {
+  min-width: 0;
+  flex: 1;
+}
+.transfer-planning-summary-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.transfer-planning-summary h2 {
+  margin: 0;
+  color: #eef5f7;
+  font-size: .9rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.transfer-planning-summary p {
+  margin: 7px 0 0;
+  max-width: 700px;
+  color: #9eb2bc;
+  font-size: .76rem;
+  line-height: 1.5;
+}
+.transfer-planning-optional-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 23px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(240,105,130,.56);
+  background: rgba(117,33,53,.34);
+  color: #f3a1b1;
+  font-size: .62rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+.transfer-planning-chevron {
+  position: relative;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+}
+.transfer-planning-chevron::before,
+.transfer-planning-chevron::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  width: 10px;
+  height: 2px;
+  border-radius: 999px;
+  background: #d56a80;
+  transition: transform .18s ease;
+}
+.transfer-planning-chevron::before {
+  left: 0;
+  transform: rotate(45deg);
+}
+.transfer-planning-chevron::after {
+  right: 0;
+  transform: rotate(-45deg);
+}
+.transfer-planning-collapsible[open] .transfer-planning-chevron::before {
+  transform: rotate(-45deg);
+}
+.transfer-planning-collapsible[open] .transfer-planning-chevron::after {
+  transform: rotate(45deg);
+}
+.transfer-planning-collapsible[open] .transfer-planning-summary {
+  border-bottom: 1px solid rgba(49,84,106,.58);
+}
+.transfer-planning-content {
+  padding: 16px 0 0;
+}
+
 .transfer-estimator-head {
   padding: 17px 18px 14px;
   border-bottom: 1px solid rgba(49,84,106,.62);
@@ -653,6 +747,9 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--danger); b
 }
 @media (max-width: 760px) {
   .transfer-location-grid { grid-template-columns: 1fr; }
+  .transfer-planning-summary { padding: 15px; gap: 12px; }
+  .transfer-planning-summary-title-row { align-items: flex-start; }
+  .transfer-planning-summary p { font-size: .73rem; }
 }
 
 .transfer-input-grid {
@@ -1460,8 +1557,8 @@ body.welcome-open { overflow: hidden; }
           </div>
         </section>
 
-        <!-- STEP 1 -->
-        <section class="form-step" data-step="1">
+        <!-- STEP 2 -->
+        <section class="form-step" data-step="2">
           <div class="step-kicker" data-step-kicker></div>
           <h1 data-i18n="gameDetails">Game Details</h1>
           <p class="step-intro" data-i18n="gameDetailsIntro">Enter the current values shown in your game profile.</p>
@@ -1497,13 +1594,20 @@ body.welcome-open { overflow: hidden; }
               </div>
             </div>
           </div>
-          <section class="transfer-estimator-card" aria-labelledby="transfer-estimator-heading">
-            <div class="transfer-estimator-head">
-              <h2 id="transfer-estimator-heading" data-i18n="transferPlanningTitle">Transfer Planning Information</h2>
-              <p data-i18n="transferPlanningIntro">Please provide the account-development information below when available.</p>
-            </div>
+          <details class="transfer-estimator-card transfer-planning-collapsible" aria-labelledby="transfer-estimator-heading">
+            <summary class="transfer-planning-summary">
+              <div class="transfer-planning-summary-copy">
+                <div class="transfer-planning-summary-title-row">
+                  <h2 id="transfer-estimator-heading" data-i18n="transferPlanningTitle">Transfer Planning Information</h2>
+                  <span class="transfer-planning-optional-badge" data-i18n="optional">OPTIONAL</span>
+                </div>
+                <p data-i18n="transferPlanningOptionalNote">Optional — you can skip this entire section and continue. Open it only if you want to provide these additional details.</p>
+              </div>
+              <span class="transfer-planning-chevron" aria-hidden="true"></span>
+            </summary>
 
-            <div class="transfer-planning-reason">
+            <div class="transfer-planning-content">
+<div class="transfer-planning-reason">
               <strong data-i18n="transferPlanningWhyTitle">Why are we asking for this?</strong>
               <p data-i18n="transferPlanningWhy">At the time you apply, your confirmed seat colour or Transfer Score may not yet be available. Collecting these account-development values gives the 1616 transfer team the information we need to estimate your likely transfer classification later, once the transfer window and thresholds are clearer. This application will not calculate or display an estimated score or colour.</p>
             </div>
@@ -1540,7 +1644,7 @@ body.welcome-open { overflow: hidden; }
 
             <div class="transfer-input-grid">
               <div class="field-block">
-                <label for="building-power"><span data-i18n="buildingPower">Building Power</span> <span class="optional-label" data-i18n="optional">Optional</span></label>
+                <label for="building-power"><span data-i18n="buildingPower">Building Power</span></label>
                 <input id="building-power" name="buildingPower" type="text" inputmode="numeric" data-numeric="full" placeholder="42000000" />
                 <p class="field-help" data-i18n="highestKnownHelp">Enter the full highest known number, without M or K.</p>
                 <p class="field-location" data-i18n="powerDetailsPath">Profile → Total Power → Power Details</p>
@@ -1548,7 +1652,7 @@ body.welcome-open { overflow: hidden; }
               </div>
 
               <div class="field-block">
-                <label for="technology-power"><span data-i18n="technologyPower">Technology Power</span> <span class="optional-label" data-i18n="optional">Optional</span></label>
+                <label for="technology-power"><span data-i18n="technologyPower">Technology Power</span></label>
                 <input id="technology-power" name="technologyPower" type="text" inputmode="numeric" data-numeric="full" placeholder="35000000" />
                 <p class="field-help" data-i18n="highestKnownHelp">Enter the full highest known number, without M or K.</p>
                 <p class="field-location" data-i18n="powerDetailsPath">Profile → Total Power → Power Details</p>
@@ -1556,7 +1660,7 @@ body.welcome-open { overflow: hidden; }
               </div>
 
               <div class="field-block">
-                <label for="drone-power"><span data-i18n="dronePower">Drone Power</span> <span class="optional-label" data-i18n="optional">Optional</span></label>
+                <label for="drone-power"><span data-i18n="dronePower">Drone Power</span></label>
                 <input id="drone-power" name="dronePower" type="text" inputmode="numeric" data-numeric="full" placeholder="18000000" />
                 <p class="field-help" data-i18n="highestKnownHelp">Enter the full highest known number, without M or K.</p>
                 <p class="field-location" data-i18n="powerDetailsPath">Profile → Total Power → Power Details</p>
@@ -1564,7 +1668,7 @@ body.welcome-open { overflow: hidden; }
               </div>
 
               <div class="field-block">
-                <label for="unit-power"><span data-i18n="unitPowerTop3">Unit Power</span> <span class="optional-label" data-i18n="optional">Optional</span></label>
+                <label for="unit-power"><span data-i18n="unitPowerTop3">Unit Power</span></label>
                 <input id="unit-power" name="unitPower" type="text" inputmode="numeric" data-numeric="full" placeholder="28000000" />
                 <p class="field-help" data-i18n="highestKnownHelp">Enter the full highest known number, without M or K.</p>
                 <p class="field-location" data-i18n="powerDetailsPath">Profile → Total Power → Power Details</p>
@@ -1572,7 +1676,7 @@ body.welcome-open { overflow: hidden; }
               </div>
 
               <div class="field-block">
-                <label for="overlord-power"><span data-i18n="overlordPower">Overlord Power</span> <span class="optional-label" data-i18n="optional">Optional</span></label>
+                <label for="overlord-power"><span data-i18n="overlordPower">Overlord Power</span></label>
                 <input id="overlord-power" name="overlordPower" type="text" inputmode="numeric" data-numeric="full" placeholder="12000000" />
                 <p class="field-help" data-i18n="highestKnownHelp">Enter the full highest known number, without M or K.</p>
                 <p class="field-location" data-i18n="powerDetailsPath">Profile → Total Power → Power Details</p>
@@ -1580,7 +1684,15 @@ body.welcome-open { overflow: hidden; }
               </div>
 
               <div class="field-block">
-                <label><span data-i18n="t11Unlocked">T11 unlocked?</span> <span class="optional-label" data-i18n="optional">Optional</span></label>
+                <label for="decoration-power"><span data-i18n="decorationPower">Decoration Power</span></label>
+                <input id="decoration-power" name="decorationPower" type="text" inputmode="numeric" data-numeric="full" placeholder="8000000" />
+                <p class="field-help" data-i18n="highestKnownHelp">Enter the full highest known number, without M or K.</p>
+                <p class="field-location" data-i18n="powerDetailsPath">Profile → Total Power → Power Details</p>
+                <p class="field-error" data-error-for="decoration-power"></p>
+              </div>
+
+              <div class="field-block">
+                <label><span data-i18n="t11Unlocked">T11 unlocked?</span></label>
                 <div class="inline-choice-row">
                   <label><input type="radio" name="t11Unlocked" value="yes" /> <span data-i18n="yes">Yes</span></label>
                   <label><input type="radio" name="t11Unlocked" value="no" /> <span data-i18n="no">No</span></label>
@@ -1590,15 +1702,15 @@ body.welcome-open { overflow: hidden; }
               </div>
 
               <div class="field-block">
-                <label for="reported-transfer-score"><span data-i18n="reportedTransferScore">Known in-game Transfer Score</span> <span class="optional-label" data-i18n="optional">Optional</span></label>
+                <label for="reported-transfer-score"><span data-i18n="reportedTransferScore">Known in-game Transfer Score</span></label>
                 <input id="reported-transfer-score" name="reportedTransferScore" type="text" inputmode="numeric" data-numeric="full" placeholder="2700000" />
                 <p class="field-help" data-i18n="reportedTransferScoreHelp">Only enter this if your transfer screen already shows a score.</p>
                 <p class="field-location" data-i18n="transferScreenPath">Transfer Surge → Transfer screen</p>
                 <p class="field-error" data-error-for="reported-transfer-score"></p>
               </div>
             </div>
-          </section>
-
+            </div>
+          </details>
 
 
           <fieldset class="choice-fieldset seat-fieldset">
@@ -1622,8 +1734,8 @@ body.welcome-open { overflow: hidden; }
           </fieldset>
         </section>
 
-        <!-- STEP 1 -->
-        <section class="form-step" data-step="1">
+        <!-- STEP 3 -->
+        <section class="form-step" data-step="3">
           <div class="step-kicker" data-step-kicker></div>
           <h1 data-i18n="transferGroup">Transfer Group</h1>
           <p class="step-intro" data-i18n="transferGroupIntro">Let us know if you are transferring with other players. If so, add each player so we can keep your group connected during review.</p>
@@ -1712,8 +1824,8 @@ body.welcome-open { overflow: hidden; }
           </div>
         </section>
 
-        <!-- STEP 1 -->
-        <section class="form-step" data-step="1">
+        <!-- STEP 4 -->
+        <section class="form-step" data-step="4">
           <div class="step-kicker" data-step-kicker></div>
           <h1 data-i18n="additionalInfo">Additional Information</h1>
           <p class="step-intro" data-i18n="additionalInfoIntro">Add anything else that would help the 1616 team review your transfer request.</p>
@@ -1757,8 +1869,8 @@ body.welcome-open { overflow: hidden; }
           </div>
         </section>
 
-        <!-- STEP 1 -->
-        <section class="form-step" data-step="1">
+        <!-- STEP 5 -->
+        <section class="form-step" data-step="5">
           <div class="step-kicker" data-step-kicker></div>
           <h1 data-i18n="reviewSubmit">Review & Submit</h1>
           <p class="step-intro" data-i18n="reviewIntro">Review your information before submitting. You can go back to any section to make changes.</p>
@@ -1897,7 +2009,7 @@ const I18N = {
     powerFindStep3: "Open Power Details.",
     powerFindStep4: "Copy the full values shown there. Do not shorten them to M or K.",
     powerDetailsFieldsTitle: "Power Details",
-    powerDetailsFieldsText: "Hero Power, Building Power, Tech Power, Drone Power, Unit Power, and Overlord Power are shown here when available.",
+    powerDetailsFieldsText: "Hero Power, Building Power, Tech Power, Drone Power, Unit Power, Overlord Power, and Decoration Power are shown here when available.",
     t11FindTitle: "T11 status",
     t11FindText: "Open the Armament Institute. If you can train T11 troops, select Yes.",
     transferScoreFindTitle: "Transfer Score",
@@ -1943,6 +2055,8 @@ const I18N = {
     referralQuestion: "Did someone refer you to 1616? If so, who?",
     referrerUsername: "Referrer's in-game username",
     referrerAlliance: "Referrer's alliance / tag",
+    decorationPower: "Decoration Power",
+    transferPlanningOptionalNote: "Optional — you can skip this entire section and continue. Open it only if you want to provide these additional details.",
   },
   es: {
     serverTransferApplication: 'SOLICITUD DE TRANSFERENCIA', strongerTogether: 'UN MAÑANA MÁS FUERTE',
@@ -1993,6 +2107,8 @@ const I18N = {
     referralQuestion: "¿Alguien te recomendó 1616? Si es así, ¿quién?",
     referrerUsername: "Usuario en el juego de quien te recomendó",
     referrerAlliance: "Alianza / tag de quien te recomendó",
+    decorationPower: "Poder de decoraciones",
+    transferPlanningOptionalNote: "Opcional: puedes omitir toda esta sección y continuar. Ábrela solo si deseas proporcionar estos datos adicionales.",
   },
   pt: {
     serverTransferApplication: 'INSCRIÇÃO DE TRANSFERÊNCIA', strongerTogether: 'UM AMANHÃ MAIS FORTE',
@@ -2043,6 +2159,8 @@ const I18N = {
     referralQuestion: "Alguém indicou você para o 1616? Se sim, quem?",
     referrerUsername: "Nome de usuário de quem indicou",
     referrerAlliance: "Aliança / tag de quem indicou",
+    decorationPower: "Poder de Decorações",
+    transferPlanningOptionalNote: "Opcional — você pode pular toda esta seção e continuar. Abra apenas se quiser fornecer estes detalhes adicionais.",
   },
   fr: {
     serverTransferApplication: 'DEMANDE DE TRANSFERT', strongerTogether: 'UN AVENIR PLUS FORT',
@@ -2093,6 +2211,8 @@ const I18N = {
     referralQuestion: "Quelqu’un vous a-t-il recommandé 1616 ? Si oui, qui ?",
     referrerUsername: "Nom d’utilisateur du parrain",
     referrerAlliance: "Alliance / tag du parrain",
+    decorationPower: "Puissance des décorations",
+    transferPlanningOptionalNote: "Facultatif — vous pouvez ignorer toute cette section et continuer. Ouvrez-la uniquement si vous souhaitez fournir ces renseignements supplémentaires.",
   },
   ar: {
     serverTransferApplication: 'طلب الانتقال إلى السيرفر', strongerTogether: 'غدٌ أقوى معًا',
@@ -2143,6 +2263,8 @@ const I18N = {
     referralQuestion: "هل قام شخص ما بإحالتك إلى 1616؟ إذا نعم، من؟",
     referrerUsername: "اسم المستخدم داخل اللعبة للشخص الذي أحالك",
     referrerAlliance: "تحالف / وسم الشخص الذي أحالك",
+    decorationPower: "قوة الزينة",
+    transferPlanningOptionalNote: "اختياري — يمكنك تخطي هذا القسم بالكامل والمتابعة. افتحه فقط إذا كنت ترغب في تقديم هذه التفاصيل الإضافية.",
   },
   vi: {
     serverTransferApplication: 'ĐƠN CHUYỂN SERVER', strongerTogether: 'MỘT NGÀY MAI MẠNH MẼ HƠN',
@@ -2193,6 +2315,8 @@ const I18N = {
     referralQuestion: "Có ai giới thiệu bạn đến 1616 không? Nếu có, là ai?",
     referrerUsername: "Tên trong game của người giới thiệu",
     referrerAlliance: "Liên minh / tag của người giới thiệu",
+    decorationPower: "Sức mạnh Trang trí",
+    transferPlanningOptionalNote: "Không bắt buộc — bạn có thể bỏ qua toàn bộ phần này và tiếp tục. Chỉ mở nếu bạn muốn cung cấp thêm các thông tin này.",
   },
   ko: {
     serverTransferApplication: '서버 이전 신청서', strongerTogether: '더 강한 내일',
@@ -2243,6 +2367,8 @@ const I18N = {
     referralQuestion: "누군가가 당신을 1616에 추천했나요? 그렇다면 누구인가요?",
     referrerUsername: "추천인의 게임 내 사용자명",
     referrerAlliance: "추천인의 연맹 / 태그",
+    decorationPower: "장식 전투력",
+    transferPlanningOptionalNote: "선택 사항 — 이 섹션 전체를 건너뛰고 계속할 수 있습니다. 추가 정보를 제공하고 싶을 때만 열어 주세요.",
   },
   de: {
     serverTransferApplication: 'SERVER-TRANSFER-BEWERBUNG', strongerTogether: 'EINE STÄRKERE ZUKUNFT',
@@ -2293,6 +2419,8 @@ const I18N = {
     referralQuestion: "Hat dich jemand an 1616 verwiesen? Wenn ja, wer?",
     referrerUsername: "Ingame-Name der empfehlenden Person",
     referrerAlliance: "Allianz / Tag der empfehlenden Person",
+    decorationPower: "Dekorationsstärke",
+    transferPlanningOptionalNote: "Optional — du kannst diesen gesamten Abschnitt überspringen und fortfahren. Öffne ihn nur, wenn du diese zusätzlichen Angaben machen möchtest.",
   }
 };
 
@@ -2643,6 +2771,7 @@ function collectPayload() {
     dronePower: digitsOnly(document.getElementById('drone-power')?.value || ''),
     unitPower: digitsOnly(document.getElementById('unit-power')?.value || ''),
     overlordPower: digitsOnly(document.getElementById('overlord-power')?.value || ''),
+    decorationPower: digitsOnly(document.getElementById('decoration-power')?.value || ''),
     t11Unlocked: form.querySelector('input[name="t11Unlocked"]:checked')?.value || '',
     reportedTransferScore: digitsOnly(document.getElementById('reported-transfer-score')?.value || ''),
     estimatedSeatColour: '',
