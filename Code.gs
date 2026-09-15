@@ -22,19 +22,19 @@ const APPLICATION_HEADERS = [
   'Timestamp', 'Application ID', 'Language', 'Current Server', 'Applicant Username', 'Applicant Alliance',
   'Profession Level', 'Kill Count', 'Hero Power', 'Building Power', 'Technology Power', 'Drone Power',
   'Unit Power (Top 3)', 'Overlord Power', 'Decoration Power', 'T11 Unlocked', 'Reported Transfer Score', 'Estimated Transfer Score Band',
-  'Estimated Seat Colour', 'Seat Colour', 'Transfer With Group', 'Group ID',
+  'Estimated Seat Colour', 'Seat Colour', 'Transfer With Group', 'Group Transfer Lead Username',
   'Expected Additional Players', 'Known Players Listed', 'Expected Total Group Size', 'Unnamed / TBD Players',
-  'Group Contact', 'Linked Player Names', 'Preferred 1616 Alliance', 'Referrer Username', 'Referrer Alliance', 'Comments', 'Status', 'Confirmation Code'
+  'Group Lead / Contact', 'Linked Player Names', 'Preferred 1616 Alliance', 'Referrer Username', 'Referrer Alliance', 'Comments', 'Status', 'Confirmation Code'
 ];
 
 const GROUP_HEADERS = [
-  'Timestamp', 'Group ID', 'Submitted By', 'Submitter Server', 'Submitter Alliance', 'Expected Additional Players',
-  'Known Players Listed', 'Expected Total Group Size', 'Unnamed / TBD Players', 'Group Contact',
+  'Timestamp', 'Group Transfer Lead Username', 'Submitted By', 'Submitter Server', 'Submitter Alliance', 'Expected Additional Players',
+  'Known Players Listed', 'Expected Total Group Size', 'Unnamed / TBD Players', 'Group Lead / Contact',
   'Applications Matched', 'Applications Outstanding', 'Status'
 ];
 
 const MEMBER_HEADERS = [
-  'Timestamp', 'Group ID', 'Submitted By', 'Submitter Server', 'Submitter Alliance', 'Role',
+  'Timestamp', 'Group Transfer Lead Username', 'Submitted By', 'Submitter Server', 'Submitter Alliance', 'Role',
   'Player Name', 'Player Server', 'Player Alliance', 'Player Seat Colour', 'Matched Application ID', 'Match Status'
 ];
 
@@ -71,6 +71,7 @@ function doPost(e) {
 
     const now = new Date();
     const groupMembers = Array.isArray(payload.groupMembers) ? payload.groupMembers : [];
+    const groupLeadUsername = payload.transferWithGroup === 'yes' ? upperClean_(payload.groupLeadUsername) : '';
     const knownPlayers = payload.transferWithGroup === 'yes' ? groupMembers.length : 0;
     const expectedRaw = digits_(payload.expectedAdditionalPlayers);
     const expectedAdditionalPlayers = payload.transferWithGroup === 'yes' && expectedRaw !== '' ? Number(expectedRaw) : '';
@@ -100,12 +101,12 @@ function doPost(e) {
       clean_(payload.estimatedSeatColour),
       clean_(payload.seatColour),
       clean_(payload.transferWithGroup),
-      clean_(payload.groupId),
+      groupLeadUsername,
       expectedAdditionalPlayers,
       knownPlayers,
       expectedTotalGroupSize,
       unnamedPlayers,
-      clean_(payload.groupContact),
+      groupLeadUsername,
       linkedNames,
       clean_(payload.preferred1616Alliance),
       clean_(payload.referrerUsername),
@@ -119,11 +120,11 @@ function doPost(e) {
     matchApplicantToExistingGroups_(members, payload);
 
     if (payload.transferWithGroup === 'yes') {
-      const groupRowNumber = findRowByValue_(groups, 2, clean_(payload.groupId));
+      const groupRowNumber = findRowByValue_(groups, 2, groupLeadUsername);
       if (!groupRowNumber) {
         groups.appendRow([
           now,
-          clean_(payload.groupId),
+          groupLeadUsername,
           clean_(payload.username),
           digits_(payload.currentServer),
           clean_(payload.alliance),
@@ -131,7 +132,7 @@ function doPost(e) {
           knownPlayers,
           expectedTotalGroupSize,
           unnamedPlayers,
-          clean_(payload.groupContact),
+          clean_(payload.groupLeadUsername),
           1,
           expectedTotalGroupSize === '' ? '' : Math.max(expectedTotalGroupSize - 1, 0),
           expectedTotalGroupSize === '' ? 'Group size not finalized' : (expectedTotalGroupSize > 1 ? 'Waiting for linked applications' : 'Complete')
@@ -147,15 +148,15 @@ function doPost(e) {
         if (unnamedPlayers !== '' && (!currentUnnamed || Number(currentUnnamed) < Number(unnamedPlayers))) {
           groups.getRange(groupRowNumber, 9).setValue(unnamedPlayers);
         }
-        if (!currentContact && payload.groupContact) {
-          groups.getRange(groupRowNumber, 10).setValue(clean_(payload.groupContact));
+        if (!currentContact && payload.groupLeadUsername) {
+          groups.getRange(groupRowNumber, 10).setValue(clean_(payload.groupLeadUsername));
         }
       }
 
       if (!memberApplicationExists_(members, clean_(payload.applicationId))) {
         members.appendRow([
           now,
-          clean_(payload.groupId),
+          groupLeadUsername,
           clean_(payload.username),
           digits_(payload.currentServer),
           clean_(payload.alliance),
@@ -171,11 +172,11 @@ function doPost(e) {
 
       groupMembers.forEach(member => {
         if (!member.name || !member.server || !member.alliance) return;
-        if (memberPersonExistsInGroup_(members, clean_(payload.groupId), member.name, member.server)) return;
+        if (memberPersonExistsInGroup_(members, groupLeadUsername, member.name, member.server)) return;
         const existingApplication = findApplicationMatch_(applications, member.name, member.server);
         members.appendRow([
           now,
-          clean_(payload.groupId),
+          groupLeadUsername,
           clean_(payload.username),
           digits_(payload.currentServer),
           clean_(payload.alliance),
@@ -193,7 +194,7 @@ function doPost(e) {
     recalculateAllGroupProgress_(groups, members);
     formatSheets_(ss);
 
-    return json_({ ok: true, applicationId: payload.applicationId, groupId: payload.groupId || '' });
+    return json_({ ok: true, applicationId: payload.applicationId, groupLeadUsername: groupLeadUsername || '' });
   } catch (err) {
     console.error(err);
     return json_({ ok: false, error: String(err && err.message ? err.message : err) });
@@ -214,7 +215,7 @@ function validatePayload_(p) {
   if (String(p.seatColour || '') && !['gold','purple','blue','white','unknownSeat'].includes(String(p.seatColour))) throw new Error('Invalid seat colour.');
   if (!['yes','no','unsure'].includes(String(p.transferWithGroup))) throw new Error('Invalid transfer group answer.');
   if (p.transferWithGroup === 'yes') {
-    if (!p.groupId) throw new Error('Missing group ID.');
+    if (!p.groupLeadUsername || !String(p.groupLeadUsername).trim()) throw new Error('Missing group transfer lead username.');
     if (p.expectedAdditionalPlayers !== undefined && p.expectedAdditionalPlayers !== null && String(p.expectedAdditionalPlayers).trim() !== '' && !/^\d+$/.test(String(p.expectedAdditionalPlayers))) {
       throw new Error('expectedAdditionalPlayers must contain digits only.');
     }
@@ -254,10 +255,10 @@ function memberApplicationExists_(members, applicationId) {
   const values = members.getRange(2, 11, members.getLastRow() - 1, 1).getDisplayValues().flat();
   return values.includes(String(applicationId));
 }
-function memberPersonExistsInGroup_(members, groupId, playerName, server) {
-  if (!groupId || !playerName || !server || members.getLastRow() < 2) return false;
+function memberPersonExistsInGroup_(members, groupLeadUsername, playerName, server) {
+  if (!groupLeadUsername || !playerName || !server || members.getLastRow() < 2) return false;
   const values = members.getRange(2, 1, members.getLastRow() - 1, MEMBER_HEADERS.length).getDisplayValues();
-  const targetGid = String(groupId).trim();
+  const targetGid = String(groupLeadUsername).trim();
   const targetName = normalize_(playerName);
   const targetServer = digits_(server);
   return values.some(row => String(row[1] || '').trim() === targetGid && normalize_(row[6]) === targetName && digits_(row[7]) === targetServer);
@@ -344,5 +345,6 @@ function clean_(value) {
   return /^[=+\-@]/.test(s) ? `'${s}` : s;
 }
 function digits_(value) { return String(value == null ? '' : value).replace(/\D/g, ''); }
+function upperClean_(value) { return clean_(String(value == null ? '' : value).toLocaleUpperCase()); }
 function normalize_(value) { return String(value == null ? '' : value).trim().toLocaleLowerCase(); }
 function json_(obj) { return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON); }

@@ -159,3 +159,18 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Added an explicit “OR” divider and separate teal/pink visual treatments.
 - Added a live status row showing exactly which Group ID the application will use and whether it is NEW or SHARED.
 - The generated new ID stays visible even when a shared ID is entered, but is clearly marked as not being used.
+
+
+## v21
+- Replaced the upper-right helper next to the language dropdown with “Choose a language”.
+- That helper now changes dynamically with the selected language.
+
+
+## v22
+- Removed the custom/generated Transfer Group ID system.
+- Applicants transferring with a group now enter their Group Transfer Lead's in-game username.
+- The Group Transfer Lead field automatically converts entries to ALL CAPS.
+- The form explicitly tells applicants that everyone in the same group should enter the same lead username.
+- Group applications are now linked in Google Sheets using the normalized Group Transfer Lead username.
+- Removed the separate Group Contact selector; the Group Transfer Lead is now the group identifier/contact reference.
+- Confirmation and review screens now show the Group Transfer Lead instead of a Transfer Group ID.

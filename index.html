@@ -335,7 +335,58 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--danger); b
 .remove-member { width: 30px; height: 30px; border-radius: 8px; border: 1px solid rgba(255,132,141,.38); background: transparent; color: var(--danger); cursor: pointer; }
 .add-player-button { width: 100%; border: 1px dashed rgba(240,167,182,.65); border-radius: 10px; background: transparent; color: var(--pink-soft); padding: 13px; cursor: pointer; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
 .add-player-button:hover { background: rgba(89,54,66,.25); }
-.group-contact-card, .group-summary-card { margin-top: 15px; padding: 18px; border: 1px solid #31556c; border-radius: 10px; background: rgba(10,29,43,.58); }
+.group-contact-card, 
+.group-lead-card {
+  margin-top: 16px;
+  padding: 18px;
+  border-radius: 13px;
+  border: 1px solid rgba(240,105,130,.46);
+  background:
+    radial-gradient(circle at 92% 5%, rgba(210,49,80,.10), transparent 34%),
+    linear-gradient(180deg, rgba(73,29,44,.30), rgba(8,27,39,.68));
+  box-shadow: 0 0 26px rgba(214,50,82,.08);
+}
+.group-lead-field {
+  margin-top: 16px;
+}
+#group-transfer-lead {
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: 800;
+}
+.group-lead-alert {
+  display: grid;
+  grid-template-columns: 34px minmax(0,1fr);
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 10px;
+  padding: 12px 13px;
+  border-radius: 10px;
+  border: 1px solid rgba(240,105,130,.45);
+  background: rgba(91,31,49,.30);
+}
+.group-lead-alert-icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(180deg,#f093a6,#c73a59);
+  color: #1a0d12;
+  font-size: .72rem;
+  font-weight: 950;
+}
+.group-lead-alert p {
+  margin: 0;
+  color: #d8c8cd;
+  font-size: .75rem;
+  line-height: 1.55;
+}
+.group-lead-alert strong {
+  color: #f1a1b1;
+}
+
+.group-summary-card { margin-top: 15px; padding: 18px; border: 1px solid #31556c; border-radius: 10px; background: rgba(10,29,43,.58); }
 
 .group-contact-card select { margin-top: 12px; }
 .transfer-id-callout {
@@ -1621,7 +1672,7 @@ body.welcome-open { overflow: hidden; }
           <option value="de">DE · Deutsch</option>
         </select>
       </label>
-      <div class="tagline" data-i18n="strongerTogether">A STRONGER TOMORROW</div>
+      <div class="tagline" data-i18n="headerChooseLanguage">Choose a language</div>
     </div>
   </header>
 
@@ -1894,66 +1945,25 @@ body.welcome-open { overflow: hidden; }
               </div>
             </div>
 
-            <div class="transfer-id-callout" id="group-id-callout">
+            <div class="group-lead-card">
               <div class="subsection-heading" style="margin-bottom:0">
                 <div>
                   <span class="subsection-icon">◎</span>
                   <div>
-                    <h2 data-i18n="transferGroupLinkTitle">Link Your Transfer Group</h2>
-                    <p data-i18n="transferGroupLinkIntro">Your group should use one shared Transfer Group ID. Choose one of the two options below: start a new group and share the new ID, or join a group using an ID someone already gave you.</p>
+                    <h2 data-i18n="groupTransferLeadTitle">Group Transfer Lead</h2>
+                    <p data-i18n="groupTransferLeadIntro">Tell us the in-game username of the person leading your transfer group. We will use this username to connect applications from the same group.</p>
                   </div>
                 </div>
               </div>
 
-              <div class="transfer-id-option transfer-id-new-option">
-                <div class="transfer-option-heading">
-                  <span class="transfer-option-number">1</span>
-                  <div>
-                    <span class="transfer-option-eyebrow" data-i18n="newGroupOptionEyebrow">START A NEW TRANSFER GROUP</span>
-                    <h3 data-i18n="newGroupOptionTitle">Use the new ID generated for you</h3>
-                    <p data-i18n="newGroupOptionHelp">Choose this if you are the first person in your group applying. Copy this ID and share it with the other players in your group.</p>
-                  </div>
+              <div class="field-block group-lead-field">
+                <label for="group-transfer-lead"><span data-i18n="groupTransferLeadQuestion">What is your group transfer lead's in-game username?</span> <em>*</em></label>
+                <input id="group-transfer-lead" name="groupTransferLeadUsername" type="text" maxlength="80" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="USERNAME" />
+                <div class="group-lead-alert" role="note">
+                  <span class="group-lead-alert-icon" aria-hidden="true">A</span>
+                  <p><strong data-i18n="groupTransferLeadCaps">This field automatically converts the username to ALL CAPS.</strong> <span data-i18n="groupTransferLeadHelp">Enter the lead's exact in-game username. Everyone applying with the same transfer group should enter the same lead username so we can connect your applications.</span></p>
                 </div>
-
-                <div class="transfer-id-box">
-                  <div class="transfer-id-meta">
-                    <span class="transfer-id-label" data-i18n="newTransferGroupIdLabel">Your New Transfer Group ID</span>
-                    <strong class="transfer-id-value" id="generated-group-id">—</strong>
-                    <small class="transfer-id-note" id="group-id-mode" data-i18n="groupIdAuto">Using NEW group ID</small>
-                  </div>
-                  <button type="button" class="transfer-id-copy" id="copy-group-id" data-i18n="copyGroupId">Copy ID</button>
-                </div>
-              </div>
-
-              <div class="transfer-id-or" aria-hidden="true"><span data-i18n="orLabel">OR</span></div>
-
-              <div class="transfer-id-option transfer-id-existing-option">
-                <div class="transfer-option-heading">
-                  <span class="transfer-option-number">2</span>
-                  <div>
-                    <span class="transfer-option-eyebrow" data-i18n="existingGroupOptionEyebrow">JOIN AN EXISTING TRANSFER GROUP</span>
-                    <h3><span data-i18n="existingGroupOptionTitle">Already have a shared Transfer Group ID?</span> <span class="optional-label" data-i18n="optional">Optional</span></h3>
-                    <p data-i18n="existingGroupOptionHelp">Choose this only if another player in your group has already sent you a Transfer Group ID.</p>
-                  </div>
-                </div>
-
-                <div class="transfer-id-fields">
-                  <div class="field-block">
-                    <label for="existing-group-id" data-i18n="pasteSharedGroupId">Paste the shared Transfer Group ID here</label>
-                    <input id="existing-group-id" name="existingGroupId" type="text" placeholder="1616-TG-AB12-CD34" autocapitalize="characters" class="existing-group-id-input" />
-                    <div class="existing-group-id-highlight" role="note">
-                      <span class="existing-group-id-highlight-icon" aria-hidden="true">!</span>
-                      <p data-i18n="existingGroupIdHelp">If someone in your group already created an ID, paste that shared ID here. Entering a shared ID will use that ID for your application instead of the new ID shown above. If you leave this blank, your application will use the new ID generated above.</p>
-                    </div>
-                    <p class="field-error" data-error-for="existing-group-id"></p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="active-group-id-status">
-                <span data-i18n="activeGroupIdForApplication">Group ID this application will use:</span>
-                <strong id="active-group-id-status">—</strong>
-                <em id="active-group-id-type" data-i18n="newIdBadge">NEW ID</em>
+                <p class="field-error" data-error-for="group-transfer-lead"></p>
               </div>
             </div>
 
@@ -1971,20 +1981,10 @@ body.welcome-open { overflow: hidden; }
             <div id="group-members"></div>
             <button type="button" class="add-player-button" id="add-player"><span>＋</span> <span data-i18n="addAnotherPlayer">Add a player you know</span></button>
 
-            <div class="group-contact-card">
-              <h2 data-i18n="groupContact">Group Contact</h2>
-              <p data-i18n="groupContactIntro">Who should we contact if we need to reach your group? If you do not choose someone else, we will use you as the group contact.</p>
-              <label for="group-contact" class="sr-only" data-i18n="selectGroupContact">Select a group contact</label>
-              <select id="group-contact" name="groupContact">
-                <option value="" data-i18n="selectGroupContact">Select a group contact</option>
-              </select>
-              <p class="field-error" data-error-for="group-contact"></p>
-            </div>
-
             <div class="group-summary-card">
               <div><span data-i18n="totalPlayersInGroup">Expected group size</span><strong id="total-group-size">—</strong><small data-i18n="includingYou">Including you</small></div>
               <div><span data-i18n="knownPlayersListed">Known players listed</span><strong id="additional-player-count">0</strong></div>
-              <div><span data-i18n="groupContact">Group Contact</span><strong id="group-contact-summary">—</strong></div>
+              <div><span data-i18n="groupTransferLeadShort">Group Transfer Lead</span><strong id="group-lead-summary">—</strong></div>
             </div>
           </div>
         </section>
@@ -2126,7 +2126,7 @@ body.welcome-open { overflow: hidden; }
       <div class="confirmation-details">
         <div><span data-i18n="usernameShort">Player</span><strong id="confirmation-player">—</strong></div>
         <div><span data-i18n="serverShort">Server</span><strong id="confirmation-server">—</strong></div>
-        <div id="confirmation-group-row" hidden><span data-i18n="reviewTransferGroupId">Transfer Group ID</span><strong id="confirmation-group-id">—</strong></div>
+        <div id="confirmation-group-row" hidden><span data-i18n="groupTransferLeadShort">Group Transfer Lead</span><strong id="confirmation-group-lead">—</strong></div>
       </div>
 
       <div class="confirmation-actions">
@@ -2237,6 +2237,14 @@ const I18N = {
     newIdBadge: "NEW ID",
     sharedIdBadge: "SHARED ID",
     orLabel: "OR",
+    headerChooseLanguage: "Choose a language",
+    groupTransferLeadTitle: "Group Transfer Lead",
+    groupTransferLeadIntro: "Tell us the in-game username of the person leading your transfer group. We will use this username to connect applications from the same group.",
+    groupTransferLeadQuestion: "What is your group transfer lead's in-game username?",
+    groupTransferLeadCaps: "This field automatically converts the username to ALL CAPS.",
+    groupTransferLeadHelp: "Enter the lead's exact in-game username. Everyone applying with the same transfer group should enter the same lead username so we can connect your applications.",
+    groupTransferLeadShort: "Group Transfer Lead",
+    groupTransferLeadRequired: "Please enter your group transfer lead's username.",
   },
   es: {
     serverTransferApplication: 'SOLICITUD DE TRANSFERENCIA', strongerTogether: 'UN MAÑANA MÁS FUERTE',
@@ -2304,6 +2312,14 @@ const I18N = {
     newIdBadge: "ID NUEVO",
     sharedIdBadge: "ID COMPARTIDO",
     orLabel: "O",
+    headerChooseLanguage: "Elige un idioma",
+    groupTransferLeadTitle: "Líder del grupo de transferencia",
+    groupTransferLeadIntro: "Indica el nombre de usuario en el juego de la persona que lidera tu grupo. Usaremos este nombre para vincular las solicitudes del mismo grupo.",
+    groupTransferLeadQuestion: "¿Cuál es el nombre de usuario en el juego del líder de tu grupo?",
+    groupTransferLeadCaps: "Este campo convierte automáticamente el nombre de usuario a MAYÚSCULAS.",
+    groupTransferLeadHelp: "Introduce el nombre exacto del líder. Todos los integrantes del mismo grupo deben indicar el mismo nombre para que podamos vincular sus solicitudes.",
+    groupTransferLeadShort: "Líder del grupo",
+    groupTransferLeadRequired: "Introduce el nombre de usuario del líder del grupo.",
   },
   pt: {
     serverTransferApplication: 'INSCRIÇÃO DE TRANSFERÊNCIA', strongerTogether: 'UM AMANHÃ MAIS FORTE',
@@ -2371,6 +2387,14 @@ const I18N = {
     newIdBadge: "ID NOVO",
     sharedIdBadge: "ID COMPARTILHADO",
     orLabel: "OU",
+    headerChooseLanguage: "Escolha um idioma",
+    groupTransferLeadTitle: "Líder do grupo de transferência",
+    groupTransferLeadIntro: "Informe o nome de usuário no jogo da pessoa que lidera seu grupo. Usaremos esse nome para conectar as inscrições do mesmo grupo.",
+    groupTransferLeadQuestion: "Qual é o nome de usuário no jogo do líder do seu grupo?",
+    groupTransferLeadCaps: "Este campo converte automaticamente o nome de usuário para LETRAS MAIÚSCULAS.",
+    groupTransferLeadHelp: "Digite o nome exato do líder. Todos que estiverem no mesmo grupo devem informar o mesmo nome para conectarmos as inscrições.",
+    groupTransferLeadShort: "Líder do grupo",
+    groupTransferLeadRequired: "Informe o nome de usuário do líder do grupo.",
   },
   fr: {
     serverTransferApplication: 'DEMANDE DE TRANSFERT', strongerTogether: 'UN AVENIR PLUS FORT',
@@ -2438,6 +2462,14 @@ const I18N = {
     newIdBadge: "NOUVEL ID",
     sharedIdBadge: "ID PARTAGÉ",
     orLabel: "OU",
+    headerChooseLanguage: "Choisissez une langue",
+    groupTransferLeadTitle: "Responsable du groupe de transfert",
+    groupTransferLeadIntro: "Indiquez le nom d’utilisateur en jeu de la personne qui dirige votre groupe. Nous utiliserons ce nom pour relier les demandes du même groupe.",
+    groupTransferLeadQuestion: "Quel est le nom d’utilisateur en jeu du responsable de votre groupe ?",
+    groupTransferLeadCaps: "Ce champ convertit automatiquement le nom d’utilisateur en MAJUSCULES.",
+    groupTransferLeadHelp: "Saisissez le nom exact du responsable. Tous les membres du même groupe doivent saisir le même nom afin que nous puissions relier leurs demandes.",
+    groupTransferLeadShort: "Responsable du groupe",
+    groupTransferLeadRequired: "Veuillez saisir le nom d’utilisateur du responsable du groupe.",
   },
   ar: {
     serverTransferApplication: 'طلب الانتقال إلى السيرفر', strongerTogether: 'غدٌ أقوى معًا',
@@ -2505,6 +2537,14 @@ const I18N = {
     newIdBadge: "معرّف جديد",
     sharedIdBadge: "معرّف مشترك",
     orLabel: "أو",
+    headerChooseLanguage: "اختر لغة",
+    groupTransferLeadTitle: "قائد مجموعة الانتقال",
+    groupTransferLeadIntro: "أدخل اسم المستخدم داخل اللعبة للشخص الذي يقود مجموعة الانتقال. سنستخدم هذا الاسم لربط طلبات المجموعة نفسها.",
+    groupTransferLeadQuestion: "ما اسم المستخدم داخل اللعبة لقائد مجموعة الانتقال؟",
+    groupTransferLeadCaps: "يحوّل هذا الحقل اسم المستخدم تلقائيًا إلى أحرف كبيرة حيثما ينطبق.",
+    groupTransferLeadHelp: "أدخل اسم المستخدم الدقيق للقائد. يجب على جميع أفراد المجموعة نفسها إدخال اسم القائد نفسه حتى نتمكن من ربط الطلبات.",
+    groupTransferLeadShort: "قائد مجموعة الانتقال",
+    groupTransferLeadRequired: "يرجى إدخال اسم مستخدم قائد مجموعة الانتقال.",
   },
   vi: {
     serverTransferApplication: 'ĐƠN CHUYỂN SERVER', strongerTogether: 'MỘT NGÀY MAI MẠNH MẼ HƠN',
@@ -2572,6 +2612,14 @@ const I18N = {
     newIdBadge: "MÃ MỚI",
     sharedIdBadge: "MÃ ĐƯỢC CHIA SẺ",
     orLabel: "HOẶC",
+    headerChooseLanguage: "Chọn ngôn ngữ",
+    groupTransferLeadTitle: "Trưởng nhóm chuyển server",
+    groupTransferLeadIntro: "Nhập tên trong game của người dẫn đầu nhóm chuyển server. Chúng tôi sẽ dùng tên này để liên kết các đơn thuộc cùng một nhóm.",
+    groupTransferLeadQuestion: "Tên trong game của trưởng nhóm chuyển server là gì?",
+    groupTransferLeadCaps: "Trường này tự động chuyển tên người dùng thành CHỮ IN HOA.",
+    groupTransferLeadHelp: "Nhập chính xác tên của trưởng nhóm. Mọi người trong cùng nhóm nên nhập cùng một tên trưởng nhóm để chúng tôi có thể liên kết các đơn.",
+    groupTransferLeadShort: "Trưởng nhóm chuyển server",
+    groupTransferLeadRequired: "Vui lòng nhập tên người dùng của trưởng nhóm chuyển server.",
   },
   ko: {
     serverTransferApplication: '서버 이전 신청서', strongerTogether: '더 강한 내일',
@@ -2639,6 +2687,14 @@ const I18N = {
     newIdBadge: "새 ID",
     sharedIdBadge: "공유 ID",
     orLabel: "또는",
+    headerChooseLanguage: "언어 선택",
+    groupTransferLeadTitle: "이동 그룹 리더",
+    groupTransferLeadIntro: "이동 그룹을 이끄는 사람의 게임 내 사용자명을 입력하세요. 같은 그룹의 신청서를 연결하는 데 이 이름을 사용합니다.",
+    groupTransferLeadQuestion: "이동 그룹 리더의 게임 내 사용자명은 무엇인가요?",
+    groupTransferLeadCaps: "이 필드는 사용자명을 자동으로 대문자로 변환합니다.",
+    groupTransferLeadHelp: "리더의 정확한 게임 내 이름을 입력하세요. 같은 그룹의 모든 신청자는 동일한 리더 사용자명을 입력해야 신청서를 연결할 수 있습니다.",
+    groupTransferLeadShort: "이동 그룹 리더",
+    groupTransferLeadRequired: "이동 그룹 리더의 사용자명을 입력하세요.",
   },
   de: {
     serverTransferApplication: 'SERVER-TRANSFER-BEWERBUNG', strongerTogether: 'EINE STÄRKERE ZUKUNFT',
@@ -2706,10 +2762,18 @@ const I18N = {
     newIdBadge: "NEUE ID",
     sharedIdBadge: "GEMEINSAME ID",
     orLabel: "ODER",
+    headerChooseLanguage: "Sprache wählen",
+    groupTransferLeadTitle: "Leitung der Transfergruppe",
+    groupTransferLeadIntro: "Gib den Ingame-Benutzernamen der Person ein, die eure Transfergruppe leitet. Wir verwenden diesen Namen, um Bewerbungen derselben Gruppe zu verbinden.",
+    groupTransferLeadQuestion: "Wie lautet der Ingame-Benutzername eurer Transfergruppenleitung?",
+    groupTransferLeadCaps: "Dieses Feld wandelt den Benutzernamen automatisch in GROSSBUCHSTABEN um.",
+    groupTransferLeadHelp: "Gib den exakten Ingame-Namen der Gruppenleitung ein. Alle Personen derselben Gruppe sollten denselben Namen eingeben, damit wir eure Bewerbungen verbinden können.",
+    groupTransferLeadShort: "Transfergruppenleitung",
+    groupTransferLeadRequired: "Bitte gib den Benutzernamen der Transfergruppenleitung ein.",
   }
 };
 
-const state = { step: 1, language: 'en', groupMembers: [], applicationId: '', generatedGroupId: '', confirmationCode: '' };
+const state = { step: 1, language: 'en', groupMembers: [], applicationId: '', confirmationCode: '' };
 const form = document.getElementById('application-form');
 const steps = [...document.querySelectorAll('.form-step')];
 const stepLinks = [...document.querySelectorAll('.step-link')];
@@ -2746,68 +2810,16 @@ function randomGroupChunk(length = 6) {
   for (let i = 0; i < length; i++) out += chars[Math.floor(Math.random() * chars.length)];
   return out;
 }
-function generateTransferGroupId() {
-  return `1616-TG-${randomGroupChunk(4)}-${randomGroupChunk(4)}`;
+function normalizeGroupLeadUsername(value) {
+  return String(value || '').trim().toLocaleUpperCase();
 }
-function sanitizeGroupId(value) {
-  return String(value || '')
-    .toUpperCase()
-    .replace(/[^A-Z0-9-]/g, '')
-    .replace(/-{2,}/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .slice(0, 28);
-}
-function currentTransferGroupId() {
-  const manual = sanitizeGroupId(document.getElementById('existing-group-id')?.value || '');
-  if (manual) return manual;
-  if (!state.generatedGroupId) state.generatedGroupId = generateTransferGroupId();
-  return state.generatedGroupId;
-}
-function updateGroupIdCallout() {
-  const callout = document.getElementById('group-id-callout');
-  if (!callout) return;
-  const show = currentGroupAnswer() === 'yes';
-  callout.hidden = !show;
-  if (!show) return;
-
-  if (!state.generatedGroupId) state.generatedGroupId = generateTransferGroupId();
-
-  const manualInput = document.getElementById('existing-group-id');
-  if (manualInput) {
-    const sanitized = sanitizeGroupId(manualInput.value);
-    if (manualInput.value !== sanitized) manualInput.value = sanitized;
-  }
-
-  const sharedId = sanitizeGroupId(manualInput?.value || '');
-  const usingExisting = !!sharedId;
-  const activeId = usingExisting ? sharedId : state.generatedGroupId;
-
-  // Keep the generated ID visible at all times so the difference is obvious.
-  document.getElementById('generated-group-id').textContent = state.generatedGroupId || '—';
-  document.getElementById('group-id-mode').textContent = usingExisting ? t('groupIdNewUnused') : t('groupIdAuto');
-
-  const activeStatus = document.getElementById('active-group-id-status');
-  const activeType = document.getElementById('active-group-id-type');
-  if (activeStatus) activeStatus.textContent = activeId || '—';
-  if (activeType) {
-    activeType.textContent = usingExisting ? t('sharedIdBadge') : t('newIdBadge');
-    activeType.classList.toggle('shared', usingExisting);
-  }
-}
-async function copyTransferGroupId() {
-  const groupId = currentTransferGroupId();
-  if (!groupId) return;
-  try {
-    await navigator.clipboard.writeText(groupId);
-    const btn = document.getElementById('copy-group-id');
-    const previous = btn.textContent;
-    btn.textContent = t('copiedGroupId');
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = t('copyGroupId');
-      btn.classList.remove('copied');
-    }, 1800);
-  } catch (_) {}
+function updateGroupLeadField() {
+  const input = document.getElementById('group-transfer-lead');
+  if (!input) return;
+  const upper = normalizeGroupLeadUsername(input.value);
+  if (input.value !== upper) input.value = upper;
+  const summary = document.getElementById('group-lead-summary');
+  if (summary) summary.textContent = upper || '—';
 }
 
 
@@ -2823,7 +2835,7 @@ function setLanguage(lang) {
   refreshGroupMemberLabels();
   updateGroupContactOptions();
   updateProgress();
-  updateGroupIdCallout();
+  updateGroupLeadField();
   updateTransferEstimate();
   if (state.step === 5) renderReview();
   saveDraft();
@@ -2954,6 +2966,16 @@ function validateCurrentStep() {
     const groupErr = document.querySelector('[data-error-for="transfer-with-group"]');
     if (!groupAnswer) { groupErr.textContent = t('chooseError'); ok = false; } else groupErr.textContent = '';
     if (groupAnswer && groupAnswer.value === 'yes') {
+      const leadInput = document.getElementById('group-transfer-lead');
+      const leadValue = normalizeGroupLeadUsername(leadInput?.value || '');
+      if (leadInput) leadInput.value = leadValue;
+      if (!leadValue) {
+        setFieldError(leadInput, t('groupTransferLeadRequired'));
+        ok = false;
+      } else {
+        clearFieldError(leadInput);
+      }
+
       document.querySelectorAll('.group-member-card').forEach(card => {
         const inputs = [...card.querySelectorAll('input, select')];
         const anyStarted = inputs.some(inp => inp.value.trim());
@@ -3034,10 +3056,10 @@ function updateGroupSummary() {
   const expected = expectedRaw ? Number(expectedRaw) : null;
   document.getElementById('additional-player-count').textContent = count;
   document.getElementById('total-group-size').textContent = expected !== null ? String(expected + 1) : (count ? `≥ ${count + 1}` : '—');
-  const select = document.getElementById('group-contact');
-  const text = select && select.value ? select.options[select.selectedIndex].textContent : '—';
-  document.getElementById('group-contact-summary').textContent = text;
-  updateGroupIdCallout();
+  const lead = normalizeGroupLeadUsername(document.getElementById('group-transfer-lead')?.value || '');
+  const leadSummary = document.getElementById('group-lead-summary');
+  if (leadSummary) leadSummary.textContent = lead || '—';
+  updateGroupLeadField();
 }
 
 
@@ -3046,18 +3068,13 @@ function updateTransferEstimate() {}
 function currentGroupAnswer() { return form.querySelector('input[name="transferWithGroup"]:checked')?.value || ''; }
 
 function collectPayload() {
-  const contactSelect = document.getElementById('group-contact');
-  const primaryName = document.getElementById('username').value.trim();
-  const primaryAlliance = document.getElementById('alliance').value.trim();
-  const defaultContact = primaryName ? `${primaryName}${primaryAlliance ? ` [${primaryAlliance.replace(/^\[|\]$/g,'')}]` : ''}` : '';
-  const selectedContactText = contactSelect?.value ? contactSelect.options[contactSelect.selectedIndex].textContent : defaultContact;
   const groupAnswer = currentGroupAnswer();
   const applicationId = getApplicationId();
-  const groupId = groupAnswer === 'yes' ? currentTransferGroupId() : '';
+  const groupLeadUsername = groupAnswer === 'yes' ? normalizeGroupLeadUsername(document.getElementById('group-transfer-lead')?.value || '') : '';
   return {
     applicationId,
     confirmationCode: getConfirmationCode(),
-    groupId,
+    groupLeadUsername,
     language: state.language,
     currentServer: digitsOnly(document.getElementById('current-server').value),
     username: document.getElementById('username').value.trim(),
@@ -3077,8 +3094,6 @@ function collectPayload() {
     estimatedTransferScoreBand: '',
     seatColour: form.querySelector('input[name="seatColour"]:checked')?.value || '',
     transferWithGroup: groupAnswer,
-    groupContactKey: contactSelect?.value || '',
-    groupContact: selectedContactText,
     expectedAdditionalPlayers: groupAnswer === 'yes' ? digitsOnly(document.getElementById('expected-additional-players')?.value || '') : '',
     groupMembers: groupAnswer === 'yes' ? state.groupMembers.map(m => ({ name: m.name.trim(), server: digitsOnly(m.server), alliance: m.alliance.trim(), seatColour: m.seatColour || '' })) : [],
     preferred1616Alliance: document.getElementById('preferred-1616-alliance')?.value.trim() || '',
@@ -3105,7 +3120,7 @@ function renderReview() {
   reviewContainer.innerHTML = [
     reviewSection(t('reviewApplicant'), 1, `<div class="review-grid">${reviewItem(t('currentServer'), p.currentServer)}${reviewItem(t('username'), p.username)}${reviewItem(t('allianceTag'), p.alliance)}</div>`),
     reviewSection(t('reviewGame'), 2, `<div class="review-grid">${reviewItem(t('professionLevel'), p.professionLevel)}${reviewItem(t('killCount'), formatNumber(p.killCount))}${reviewItem(t('heroPower'), formatNumber(p.heroPower))}${reviewItem(t('seatColour'), seatLabel)}${p.reportedTransferScore ? reviewItem(t('reportedTransferScore'), formatNumber(p.reportedTransferScore)) : ''}</div>`),
-    reviewSection(t('reviewGroup'), 3, `<div class="review-grid">${reviewItem(t('transferAnswer'), transferLabel)}${reviewItem(t('reviewTransferGroupId'), p.groupId || t('notProvided'))}${reviewItem(t('totalGroup'), p.transferWithGroup === 'yes' ? (p.expectedAdditionalPlayers ? String(Number(p.expectedAdditionalPlayers) + 1) : (p.groupMembers.length ? `≥ ${p.groupMembers.length + 1}` : t('notProvided'))) : '1')}${reviewItem(t('groupLead'), p.groupContact || t('notProvided'))}${reviewItem(t('additionalPlayers'), String(p.groupMembers.length))}${members}</div>`),
+    reviewSection(t('reviewGroup'), 3, `<div class="review-grid">${reviewItem(t('transferAnswer'), transferLabel)}${reviewItem(t('groupTransferLeadShort'), p.groupLeadUsername || t('notProvided'))}${reviewItem(t('totalGroup'), p.transferWithGroup === 'yes' ? (p.expectedAdditionalPlayers ? String(Number(p.expectedAdditionalPlayers) + 1) : (p.groupMembers.length ? `≥ ${p.groupMembers.length + 1}` : t('notProvided'))) : '1')}${reviewItem(t('additionalPlayers'), String(p.groupMembers.length))}${members}</div>`),
     reviewSection(t('reviewAdditional'), 4, `<div class="review-grid">${reviewItem(t('alliancePreferenceReview'), p.preferred1616Alliance || t('notProvided'))}${reviewItem(t('referrerUsername'), p.referrerUsername || t('notProvided'))}${reviewItem(t('referrerAlliance'), p.referrerAlliance || t('notProvided'))}${reviewItem(t('comments'), p.comments || t('none'))}</div>`)
   ].join('');
   reviewContainer.querySelectorAll('[data-edit-step]').forEach(btn => btn.addEventListener('click', () => goToStep(Number(btn.dataset.editStep))));
@@ -3120,7 +3135,6 @@ function saveDraft() {
     step: state.step,
     groupMembers: state.groupMembers,
     applicationId: state.applicationId,
-    generatedGroupId: state.generatedGroupId,
     confirmationCode: state.confirmationCode,
     values: Object.fromEntries([...new FormData(form).entries()].filter(([k]) => k !== 'website'))
   };
@@ -3135,7 +3149,6 @@ function restoreDraft() {
     if (data.language) state.language = data.language;
     if (Array.isArray(data.groupMembers)) state.groupMembers = data.groupMembers;
     if (data.applicationId) state.applicationId = data.applicationId;
-    if (data.generatedGroupId) state.generatedGroupId = data.generatedGroupId;
     if (data.confirmationCode) state.confirmationCode = data.confirmationCode;
     const v = data.values || {};
     Object.entries(v).forEach(([name, value]) => {
@@ -3200,7 +3213,6 @@ function clearEntireForm() {
   state.step = 1;
   state.groupMembers = [];
   state.applicationId = '';
-  state.generatedGroupId = '';
   state.confirmationCode = '';
   state.language = preservedLanguage;
 
@@ -3213,7 +3225,7 @@ function clearEntireForm() {
   groupBuilder.hidden = true;
   updateGroupContactOptions();
   updateGroupSummary();
-  updateGroupIdCallout();
+  updateGroupLeadField();
 
   const comments = document.getElementById('comments');
   const commentsCount = document.getElementById('comments-count');
@@ -3248,9 +3260,9 @@ function showConfirmation(payload) {
   document.getElementById('confirmation-server').textContent = payload.currentServer || '—';
 
   const groupRow = document.getElementById('confirmation-group-row');
-  if (payload.groupId) {
+  if (payload.groupLeadUsername) {
     groupRow.hidden = false;
-    document.getElementById('confirmation-group-id').textContent = payload.groupId;
+    document.getElementById('confirmation-group-lead').textContent = payload.groupLeadUsername;
   } else {
     groupRow.hidden = true;
   }
@@ -3276,7 +3288,7 @@ function saveConfirmationPng() {
   const player = document.getElementById('confirmation-player')?.textContent || '';
   const server = document.getElementById('confirmation-server')?.textContent || '';
   const groupRow = document.getElementById('confirmation-group-row');
-  const groupId = groupRow && !groupRow.hidden ? document.getElementById('confirmation-group-id')?.textContent || '' : '';
+  const groupLead = groupRow && !groupRow.hidden ? document.getElementById('confirmation-group-lead')?.textContent || '' : '';
 
   const canvas = document.createElement('canvas');
   canvas.width = 1400;
@@ -3315,7 +3327,7 @@ function saveConfirmationPng() {
   ctx.font = '28px Arial, sans-serif';
   ctx.fillText(`${t('usernameShort')}: ${player}`, 105, 390);
   ctx.fillText(`${t('serverShort')}: ${server}`, 105, 438);
-  if (groupId) ctx.fillText(`${t('reviewTransferGroupId')}: ${groupId}`, 105, 486);
+  if (groupLead) ctx.fillText(`${t('groupTransferLeadShort')}: ${groupLead}`, 105, 486);
 
   ctx.fillStyle = 'rgba(94,28,48,.74)';
   ctx.fillRect(105, 555, 1190, 150);
@@ -3404,14 +3416,18 @@ stepLinks.forEach(btn => btn.addEventListener('click', () => {
   if (target <= state.step) goToStep(target);
 }));
 document.getElementById('add-player').addEventListener('click', () => addGroupMember());
-document.getElementById('copy-group-id').addEventListener('click', copyTransferGroupId);
-document.getElementById('existing-group-id').addEventListener('input', () => { updateGroupIdCallout(); saveDraft(); });
 document.querySelectorAll('input[name="transferWithGroup"]').forEach(r => r.addEventListener('change', () => {
   const yes = r.checked && r.value === 'yes';
-  if (yes && !state.generatedGroupId) state.generatedGroupId = generateTransferGroupId();
   groupBuilder.hidden = !yes;
-  updateGroupContactOptions(); updateGroupSummary(); updateGroupIdCallout(); saveDraft();
+  updateGroupContactOptions(); updateGroupSummary(); updateGroupLeadField(); saveDraft();
 }));
+document.getElementById('group-transfer-lead').addEventListener('input', e => {
+  const upper = normalizeGroupLeadUsername(e.target.value);
+  if (e.target.value !== upper) e.target.value = upper;
+  updateGroupSummary();
+  clearFieldError(e.target);
+  saveDraft();
+});
 document.getElementById('username').addEventListener('input', () => { updateGroupContactOptions(); updateGroupSummary(); saveDraft(); });
 document.getElementById('alliance').addEventListener('input', () => { updateGroupContactOptions(); saveDraft(); });
 document.getElementById('expected-additional-players').addEventListener('input', () => { updateGroupSummary(); saveDraft(); });
@@ -3435,8 +3451,7 @@ setupNumericInputs();
 setLanguage(state.language);
 const groupAnswer = currentGroupAnswer();
 groupBuilder.hidden = groupAnswer !== 'yes';
-if (groupAnswer === 'yes' && !state.generatedGroupId) state.generatedGroupId = generateTransferGroupId();
-updateGroupContactOptions(); updateGroupSummary(); updateGroupIdCallout(); updateTransferEstimate(); updateProgress();
+updateGroupContactOptions(); updateGroupSummary(); updateGroupLeadField(); updateTransferEstimate(); updateProgress();
 document.getElementById('comments-count').textContent = document.getElementById('comments').value.length;
 initPetals();
 initWelcomeScreen();
