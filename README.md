@@ -185,3 +185,16 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - The form rejects a Transfer Group Name that exactly matches the applicant's alliance name.
 - Transfer Group Name appears in the review and confirmation page.
 - Google Sheets now groups group applications by Transfer Group Name, while separately storing the Group Transfer Lead username.
+
+
+## v24
+- Removed the Group Transfer Lead username question.
+- Removed the ALL CAPS conversion notice and lead-username instructions.
+- Transfer Group Name is now the only shared identifier used to link applications from the same group.
+- Review, confirmation, and backend submission no longer require a transfer lead username.
+
+
+## v25
+- Made Player 1 / Player 2 / Player 3 labels visually distinct from the rest of the form.
+- Player labels now use a pink/red pill badge with bright white text and stronger weight.
+- Added a subtle pink/red accent strip to each known-player card.

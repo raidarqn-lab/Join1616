@@ -24,12 +24,12 @@ const APPLICATION_HEADERS = [
   'Unit Power (Top 3)', 'Overlord Power', 'Decoration Power', 'T11 Unlocked', 'Reported Transfer Score', 'Estimated Transfer Score Band',
   'Estimated Seat Colour', 'Seat Colour', 'Transfer With Group', 'Transfer Group Name',
   'Expected Additional Players', 'Known Players Listed', 'Expected Total Group Size', 'Unnamed / TBD Players',
-  'Group Transfer Lead Username', 'Linked Player Names', 'Preferred 1616 Alliance', 'Referrer Username', 'Referrer Alliance', 'Comments', 'Status', 'Confirmation Code'
+  'Group Notes', 'Linked Player Names', 'Preferred 1616 Alliance', 'Referrer Username', 'Referrer Alliance', 'Comments', 'Status', 'Confirmation Code'
 ];
 
 const GROUP_HEADERS = [
   'Timestamp', 'Transfer Group Name', 'Submitted By', 'Submitter Server', 'Submitter Alliance', 'Expected Additional Players',
-  'Known Players Listed', 'Expected Total Group Size', 'Unnamed / TBD Players', 'Group Transfer Lead Username',
+  'Known Players Listed', 'Expected Total Group Size', 'Unnamed / TBD Players', 'Group Notes',
   'Applications Matched', 'Applications Outstanding', 'Status'
 ];
 
@@ -71,7 +71,6 @@ function doPost(e) {
 
     const now = new Date();
     const groupMembers = Array.isArray(payload.groupMembers) ? payload.groupMembers : [];
-    const groupLeadUsername = payload.transferWithGroup === 'yes' ? upperClean_(payload.groupLeadUsername) : '';
     const transferGroupName = payload.transferWithGroup === 'yes' ? clean_(payload.transferGroupName) : '';
     const knownPlayers = payload.transferWithGroup === 'yes' ? groupMembers.length : 0;
     const expectedRaw = digits_(payload.expectedAdditionalPlayers);
@@ -107,7 +106,7 @@ function doPost(e) {
       knownPlayers,
       expectedTotalGroupSize,
       unnamedPlayers,
-      groupLeadUsername,
+      '',
       linkedNames,
       clean_(payload.preferred1616Alliance),
       clean_(payload.referrerUsername),
@@ -195,7 +194,7 @@ function doPost(e) {
     recalculateAllGroupProgress_(groups, members);
     formatSheets_(ss);
 
-    return json_({ ok: true, applicationId: payload.applicationId, transferGroupName: transferGroupName || '', groupLeadUsername: groupLeadUsername || '' });
+    return json_({ ok: true, applicationId: payload.applicationId, transferGroupName: transferGroupName || '' });
   } catch (err) {
     console.error(err);
     return json_({ ok: false, error: String(err && err.message ? err.message : err) });
@@ -216,7 +215,6 @@ function validatePayload_(p) {
   if (String(p.seatColour || '') && !['gold','purple','blue','white','unknownSeat'].includes(String(p.seatColour))) throw new Error('Invalid seat colour.');
   if (!['yes','no','unsure'].includes(String(p.transferWithGroup))) throw new Error('Invalid transfer group answer.');
   if (p.transferWithGroup === 'yes') {
-    if (!p.groupLeadUsername || !String(p.groupLeadUsername).trim()) throw new Error('Missing group transfer lead username.');
     if (!p.transferGroupName || !String(p.transferGroupName).trim()) throw new Error('Missing transfer group name.');
     if (p.expectedAdditionalPlayers !== undefined && p.expectedAdditionalPlayers !== null && String(p.expectedAdditionalPlayers).trim() !== '' && !/^\d+$/.test(String(p.expectedAdditionalPlayers))) {
       throw new Error('expectedAdditionalPlayers must contain digits only.');
@@ -348,6 +346,5 @@ function clean_(value) {
   return /^[=+\-@]/.test(s) ? `'${s}` : s;
 }
 function digits_(value) { return String(value == null ? '' : value).replace(/\D/g, ''); }
-function upperClean_(value) { return clean_(String(value == null ? '' : value).toLocaleUpperCase()); }
 function normalize_(value) { return String(value == null ? '' : value).trim().toLocaleLowerCase(); }
 function json_(obj) { return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON); }
