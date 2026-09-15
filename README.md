@@ -61,3 +61,11 @@ Make sure these files are uploaded at the same level as `index.html`:
 - `wordmark-1616.png`
 
 The page now also includes a visible sakura petal animation layer and seat colour for each linked transfer-group member.
+
+
+## v9 GitHub deployment fix
+The background image and 1616 wordmark are embedded directly inside `index.html` as data URIs.
+You no longer need separate image files for the website to display correctly on GitHub Pages.
+
+The previous build also had the background scene behind the body's opaque background because of a negative z-index.
+This version fixes the stacking order, which also makes the floating sakura petals visible.
