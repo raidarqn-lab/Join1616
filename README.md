@@ -220,3 +220,17 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Backend validation rejects servers outside 1573–1636.
 - Referrer Alliance is now a dropdown containing the supplied Server 1616 alliance list.
 - Added “Other / not listed” as a fallback because one alliance rank in the source list was obscured and no name was supplied.
+
+
+## v29
+- Replaced the three separate transfer-guide portraits on the welcome screen with the supplied group image.
+- Kept the three guide usernames visible in a dedicated name strip below the photo:
+  - Yabadabadoo [WaE]
+  - Dolphy RN [NvEM]
+  - RaidARQN [NvSP]
+- Added a coordinated pink/red + teal frame so the image fits the existing 1616 welcome design.
+
+
+## v30
+- Updated the welcome guide sentence to: “We are here to support the transfer application process for the server.”
+- Updated the same message across all supported interface languages.
