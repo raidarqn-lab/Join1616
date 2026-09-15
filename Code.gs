@@ -24,7 +24,7 @@ const APPLICATION_HEADERS = [
   'Unit Power (Top 3)', 'Overlord Power', 'T11 Unlocked', 'Reported Transfer Score', 'Estimated Transfer Score Band',
   'Estimated Seat Colour', 'Seat Colour', 'Transfer With Group', 'Group ID',
   'Expected Additional Players', 'Known Players Listed', 'Expected Total Group Size', 'Unnamed / TBD Players',
-  'Group Contact', 'Linked Player Names', 'Comments', 'Status'
+  'Group Contact', 'Linked Player Names', 'Comments', 'Status', 'Confirmation Code'
 ];
 
 const GROUP_HEADERS = [
@@ -107,7 +107,8 @@ function doPost(e) {
       clean_(payload.groupContact),
       linkedNames,
       clean_(payload.comments),
-      'New'
+      'New',
+      clean_(payload.confirmationCode)
     ]);
 
     // If this applicant was previously listed by someone else, link this new application automatically.
@@ -198,7 +199,7 @@ function doPost(e) {
 }
 
 function validatePayload_(p) {
-  const required = ['applicationId','language','currentServer','username','alliance','professionLevel','killCount','heroPower','seatColour','transferWithGroup'];
+  const required = ['applicationId','confirmationCode','language','currentServer','username','alliance','professionLevel','killCount','heroPower','transferWithGroup'];
   required.forEach(k => { if (p[k] === undefined || p[k] === null || String(p[k]).trim() === '') throw new Error(`Missing required field: ${k}`); });
   ['currentServer','professionLevel','killCount','heroPower'].forEach(k => { if (!/^\d+$/.test(String(p[k]))) throw new Error(`${k} must contain digits only.`); });
   ['buildingPower','technologyPower','dronePower','unitPower','overlordPower','reportedTransferScore'].forEach(k => {
@@ -206,7 +207,7 @@ function validatePayload_(p) {
       throw new Error(`${k} must contain digits only.`);
     }
   });
-  if (!['gold','purple','blue','white'].includes(String(p.seatColour))) throw new Error('Invalid seat colour.');
+  if (String(p.seatColour || '') && !['gold','purple','blue','white','unknownSeat'].includes(String(p.seatColour))) throw new Error('Invalid seat colour.');
   if (!['yes','no','unsure'].includes(String(p.transferWithGroup))) throw new Error('Invalid transfer group answer.');
   if (p.transferWithGroup === 'yes') {
     if (!p.groupId) throw new Error('Missing group ID.');

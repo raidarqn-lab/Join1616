@@ -110,3 +110,14 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Begin Application is localized and pink/red.
 - Progress numbers have no surrounding circles.
 - Completed steps receive a fast red samurai-sword slash with a brief spark/streak at the cut tip.
+
+
+## v16
+- Corrected Dolphy RN [NvEM].
+- Removed “SERVER TRANSFER APPLICATION” from the 1616 image asset; the subtitle is now text-only and therefore translates with the interface.
+- Step 3 no longer calculates or displays a transfer score or seat-colour estimate.
+- Added an explanation that the raw account-development data is collected because confirmed Transfer Score / seat colour may not yet be available at application time.
+- Applicant seat colour can be left unconfirmed.
+- Added a final confirmation screen with a unique user-facing confirmation code.
+- Confirmation code is submitted to the Google Sheet.
+- Confirmation page supports Copy Code and Save Confirmation PNG.
