@@ -239,3 +239,12 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 ## v31
 - Reduced the welcome-screen group photo to roughly 25% of its previous desktop size.
 - Kept the three guide username/alliance labels at a readable width below the smaller centered image.
+
+
+## v32
+- Welcome-screen guide names no longer look like clickable buttons.
+- Added comic-book hover animations to each guide label:
+  - Yabadabadoo → “Calm, Cool, Collected”
+  - Dolphy RN → “Mr. Personality”
+  - RaidARQN → “Pew Pew queen of 1616”
+- Hover bubbles pop in like comic speech captions with playful scaling/rotation.

@@ -1523,14 +1523,18 @@ html[dir="rtl"] .review-item, html[dir="rtl"] .field-block { text-align: right; 
   margin: 14px auto 0;
 }
 .guide-name-chip {
+  position: relative;
   min-width: 0;
-  padding: 10px 12px;
-  border: 1px solid rgba(94,225,222,.24);
-  border-radius: 11px;
-  background:
-    linear-gradient(180deg, rgba(11,37,50,.80), rgba(8,26,38,.76));
+  padding: 8px 10px 7px;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(8,27,39,.42);
   text-align: center;
-  box-shadow: 0 8px 18px rgba(0,0,0,.10);
+  cursor: default;
+  box-shadow: none;
+  transition: transform .18s ease, background .18s ease;
+  overflow: visible;
+  z-index: 1;
 }
 .guide-name-chip strong {
   display: block;
@@ -1546,6 +1550,102 @@ html[dir="rtl"] .review-item, html[dir="rtl"] .field-block { text-align: right; 
   font-size: .64rem;
   font-weight: 900;
   letter-spacing: .12em;
+}
+.guide-name-chip::before,
+.guide-name-chip::after {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+.guide-name-chip::after {
+  content: attr(data-comic);
+  left: 50%;
+  bottom: calc(100% + 13px);
+  width: max-content;
+  max-width: 215px;
+  padding: 9px 12px 8px;
+  border: 2px solid #081722;
+  border-radius: 10px;
+  background: #fff4c8;
+  color: #17131a;
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: clamp(.68rem, 1.5vw, .82rem);
+  font-weight: 900;
+  letter-spacing: .045em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 rgba(255,255,255,.65);
+  box-shadow:
+    3px 3px 0 #081722,
+    0 0 0 2px rgba(255,255,255,.14);
+  transform: translateX(-50%) scale(.55) rotate(-5deg);
+  transform-origin: 50% 100%;
+  z-index: 8;
+}
+.guide-name-chip::before {
+  content: "";
+  left: 50%;
+  bottom: calc(100% + 4px);
+  width: 14px;
+  height: 14px;
+  background: #fff4c8;
+  border-right: 2px solid #081722;
+  border-bottom: 2px solid #081722;
+  transform: translateX(-50%) rotate(45deg) scale(.5);
+  z-index: 7;
+}
+.guide-name-chip:hover {
+  background: rgba(17,45,57,.62);
+  transform: translateY(-2px) rotate(-.4deg);
+  z-index: 9;
+}
+.guide-name-chip:hover::after {
+  opacity: 1;
+  animation: comicPop .38s cubic-bezier(.18,.9,.24,1.35) both;
+}
+.guide-name-chip:hover::before {
+  opacity: 1;
+  animation: comicTailPop .32s cubic-bezier(.18,.9,.24,1.25) both;
+}
+.guide-name-dolphy:hover::after {
+  background: #bff7f0;
+  transform-origin: 50% 100%;
+}
+.guide-name-dolphy:hover::before { background: #bff7f0; }
+.guide-name-raid:hover::after {
+  background: #ffb8c7;
+}
+.guide-name-raid:hover::before { background: #ffb8c7; }
+@keyframes comicPop {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(.35) rotate(-8deg);
+  }
+  58% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.14) rotate(3deg);
+  }
+  78% {
+    transform: translateX(-50%) scale(.95) rotate(-2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1) rotate(-2deg);
+  }
+}
+@keyframes comicTailPop {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) rotate(45deg) scale(.15);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(-50%) rotate(45deg) scale(1.18);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) rotate(45deg) scale(1);
+  }
 }
 @media (max-width: 620px) {
   .guide-group-photo-section {
@@ -1572,6 +1672,11 @@ html[dir="rtl"] .review-item, html[dir="rtl"] .field-block { text-align: right; 
   }
   .guide-name-chip span {
     font-size: .58rem;
+  }
+  .guide-name-chip::after {
+    max-width: 150px;
+    white-space: normal;
+    font-size: .62rem;
   }
 }
 
@@ -1949,15 +2054,15 @@ body.welcome-open { overflow: hidden; }
           </div>
 
           <div class="guide-name-strip" aria-label="Transfer guide usernames">
-            <div class="guide-name-chip">
+            <div class="guide-name-chip guide-name-yaba" data-comic="Calm, Cool, Collected">
               <strong>Yabadabadoo</strong>
               <span>[WaE]</span>
             </div>
-            <div class="guide-name-chip">
+            <div class="guide-name-chip guide-name-dolphy" data-comic="Mr. Personality">
               <strong>Dolphy RN</strong>
               <span>[NvEM]</span>
             </div>
-            <div class="guide-name-chip">
+            <div class="guide-name-chip guide-name-raid" data-comic="Pew Pew queen of 1616">
               <strong>RaidARQN</strong>
               <span>[NvSP]</span>
             </div>
