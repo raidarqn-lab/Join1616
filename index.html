@@ -466,6 +466,58 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--danger); b
 
 .char-count { text-align: right; color: #708b9d; font-size: .72rem; margin-top: 6px; }
 
+.preference-card,
+.referral-card {
+  margin-bottom: 18px;
+  padding: 18px;
+  border: 1px solid rgba(49,84,106,.72);
+  border-radius: 12px;
+  background: rgba(8,25,38,.62);
+}
+.preference-card h2,
+.referral-card h2 {
+  margin: 0 0 8px;
+  color: #eef4f6;
+  font-size: .88rem;
+  text-transform: uppercase;
+  letter-spacing: .11em;
+}
+.referral-card > p {
+  margin: 0 0 14px;
+  color: #9cb1bc;
+  font-size: .8rem;
+  line-height: 1.55;
+}
+.placement-alert {
+  display: grid;
+  grid-template-columns: 34px minmax(0,1fr);
+  gap: 11px;
+  align-items: flex-start;
+  margin-top: 12px;
+  padding: 13px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(240,105,130,.48);
+  background: linear-gradient(90deg, rgba(77,29,45,.42), rgba(8,27,40,.62));
+  box-shadow: 0 0 20px rgba(214,50,82,.08);
+}
+.placement-alert-icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(180deg,#ef8ba0,#c83b5a);
+  color: #160d11;
+  font-weight: 900;
+}
+.placement-alert p {
+  margin: 0;
+  color: #ead7dc;
+  font-size: .76rem;
+  line-height: 1.55;
+}
+
+
 .transfer-estimator-card {
   margin-top: 20px;
   border: 1px solid rgba(94, 225, 222, .34);
@@ -1002,6 +1054,77 @@ html[dir="rtl"] .review-item, html[dir="rtl"] .field-block { text-align: right; 
 }
 
 
+
+.clear-form-button {
+  border: 1px solid rgba(230,85,111,.48);
+  background: rgba(77,27,43,.28);
+  color: #efa3b2;
+}
+.clear-form-button:hover {
+  background: rgba(108,31,52,.44);
+  border-color: rgba(239,105,130,.72);
+}
+.clear-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 85;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(3,10,16,.82);
+  backdrop-filter: blur(9px);
+}
+.clear-modal[hidden] { display: none !important; }
+.clear-modal-card {
+  width: min(520px,100%);
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid rgba(237,91,117,.54);
+  background: linear-gradient(180deg,rgba(12,31,43,.99),rgba(7,20,30,.99));
+  box-shadow: 0 24px 70px rgba(0,0,0,.5), 0 0 30px rgba(209,48,79,.12);
+  text-align: center;
+}
+.clear-modal-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: linear-gradient(180deg,#ef8ba0,#c83b5a);
+  color: #160d11;
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+.clear-modal-card h2 {
+  margin: 0 0 10px;
+  color: #f4f7f8;
+}
+.clear-modal-card p {
+  margin: 0 auto;
+  max-width: 420px;
+  color: #a9bbc4;
+  font-size: .84rem;
+  line-height: 1.6;
+}
+.clear-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+.clear-confirm-button {
+  border: 1px solid rgba(255,166,182,.34);
+  background: linear-gradient(90deg,#b82d4c,#df5872);
+  color: #fff7f9;
+}
+@media (max-width: 640px) {
+  .form-actions { flex-wrap: wrap; }
+  .clear-form-button { order: 4; width: 100%; }
+  .clear-modal-actions .button { width: 100%; }
+}
+
 .confirmation-screen {
   position: fixed;
   inset: 0;
@@ -1278,26 +1401,22 @@ body.welcome-open { overflow: hidden; }
       <nav>
         <button class="step-link active" type="button" data-step-target="1">
           <span class="step-dot">1</span>
-          <span data-i18n="stepLanguage">Language</span>
+          <span data-i18n="stepYourInfo">Your Information</span>
         </button>
         <button class="step-link" type="button" data-step-target="2">
           <span class="step-dot">2</span>
-          <span data-i18n="stepYourInfo">Your Information</span>
+          <span data-i18n="stepGameDetails">Game Details</span>
         </button>
         <button class="step-link" type="button" data-step-target="3">
           <span class="step-dot">3</span>
-          <span data-i18n="stepGameDetails">Game Details</span>
+          <span data-i18n="stepTransferGroup">Transfer Group</span>
         </button>
         <button class="step-link" type="button" data-step-target="4">
           <span class="step-dot">4</span>
-          <span data-i18n="stepTransferGroup">Transfer Group</span>
+          <span data-i18n="stepAdditional">Additional Information</span>
         </button>
         <button class="step-link" type="button" data-step-target="5">
           <span class="step-dot">5</span>
-          <span data-i18n="stepAdditional">Additional Information</span>
-        </button>
-        <button class="step-link" type="button" data-step-target="6">
-          <span class="step-dot">6</span>
           <span data-i18n="stepReview">Review & Submit</span>
         </button>
       </nav>
@@ -1309,7 +1428,7 @@ body.welcome-open { overflow: hidden; }
 
     <section class="form-panel">
       <div class="mobile-progress" aria-hidden="true">
-        <span id="mobile-progress-label">Step 1 of 6</span>
+        <span id="mobile-progress-label">Step 1 of 5</span>
         <div class="mobile-progress-track"><span id="mobile-progress-fill"></span></div>
       </div>
 
@@ -1318,37 +1437,7 @@ body.welcome-open { overflow: hidden; }
 
         <!-- STEP 1 -->
         <section class="form-step active" data-step="1">
-          <div class="step-kicker" data-i18n="step1Kicker">STEP 1 OF 6</div>
-          <div class="step-heading-row">
-            <div>
-              <h1 data-i18n="chooseLanguage">Choose your language</h1>
-              <p class="step-intro" data-i18n="languageIntro">Choose the language you would like to use. You can change it at any time.</p>
-            </div>
-            <span class="seal" aria-hidden="true">絆</span>
-          </div>
-
-          <div class="notice-card">
-            <h2 data-i18n="welcomeTitle">1616 Server Transfer Application</h2>
-            <p data-i18n="welcomeBody1">Thank you for your interest in transferring to 1616. Please take a few minutes to complete this application so we can evaluate applicants.</p>
-            <p><strong data-i18n="waitlistLead">Important:</strong> <span data-i18n="welcomeBody2">Submitting this application places you on a waitlist and does not guarantee a spot on Server 1616.</span></p>
-            <p data-i18n="welcomeBody3">Questions about this form or transfers can be directed to RaidARQN [NvSP].</p>
-          </div>
-
-          <div class="language-grid" role="radiogroup" aria-label="Language">
-            <button type="button" class="language-card selected" data-language="en"><span>EN</span><strong>English</strong></button>
-            <button type="button" class="language-card" data-language="es"><span>ES</span><strong>Español</strong></button>
-            <button type="button" class="language-card" data-language="pt"><span>PT</span><strong>Português</strong></button>
-            <button type="button" class="language-card" data-language="fr"><span>FR</span><strong>Français</strong></button>
-            <button type="button" class="language-card" data-language="ar"><span>AR</span><strong>العربية</strong></button>
-            <button type="button" class="language-card" data-language="vi"><span>VI</span><strong>Tiếng Việt</strong></button>
-            <button type="button" class="language-card" data-language="ko"><span>KO</span><strong>한국어</strong></button>
-            <button type="button" class="language-card" data-language="de"><span>DE</span><strong>Deutsch</strong></button>
-          </div>
-        </section>
-
-        <!-- STEP 2 -->
-        <section class="form-step" data-step="2">
-          <div class="step-kicker" data-i18n="step2Kicker">STEP 2 OF 6</div>
+          <div class="step-kicker" data-step-kicker></div>
           <h1 data-i18n="yourInformation">Your Information</h1>
           <p class="step-intro" data-i18n="yourInfoIntro">Tell us who you are and where you are currently playing.</p>
 
@@ -1371,9 +1460,9 @@ body.welcome-open { overflow: hidden; }
           </div>
         </section>
 
-        <!-- STEP 3 -->
-        <section class="form-step" data-step="3">
-          <div class="step-kicker" data-i18n="step3Kicker">STEP 3 OF 6</div>
+        <!-- STEP 1 -->
+        <section class="form-step" data-step="1">
+          <div class="step-kicker" data-step-kicker></div>
           <h1 data-i18n="gameDetails">Game Details</h1>
           <p class="step-intro" data-i18n="gameDetailsIntro">Enter the current values shown in your game profile.</p>
 
@@ -1533,9 +1622,9 @@ body.welcome-open { overflow: hidden; }
           </fieldset>
         </section>
 
-        <!-- STEP 4 -->
-        <section class="form-step" data-step="4">
-          <div class="step-kicker" data-i18n="step4Kicker">STEP 4 OF 6</div>
+        <!-- STEP 1 -->
+        <section class="form-step" data-step="1">
+          <div class="step-kicker" data-step-kicker></div>
           <h1 data-i18n="transferGroup">Transfer Group</h1>
           <p class="step-intro" data-i18n="transferGroupIntro">Let us know if you are transferring with other players. If so, add each player so we can keep your group connected during review.</p>
 
@@ -1623,11 +1712,38 @@ body.welcome-open { overflow: hidden; }
           </div>
         </section>
 
-        <!-- STEP 5 -->
-        <section class="form-step" data-step="5">
-          <div class="step-kicker" data-i18n="step5Kicker">STEP 5 OF 6</div>
+        <!-- STEP 1 -->
+        <section class="form-step" data-step="1">
+          <div class="step-kicker" data-step-kicker></div>
           <h1 data-i18n="additionalInfo">Additional Information</h1>
           <p class="step-intro" data-i18n="additionalInfoIntro">Add anything else that would help the 1616 team review your transfer request.</p>
+
+          <div class="preference-card">
+            <h2 data-i18n="alliancePreferenceTitle">1616 Alliance Preference</h2>
+            <div class="field-block">
+              <label for="preferred-1616-alliance"><span data-i18n="alliancePreferenceQuestion">Do you have a preference for which alliance in 1616 you may want to join?</span> <span class="optional-label" data-i18n="optional">Optional</span></label>
+              <input id="preferred-1616-alliance" name="preferred1616Alliance" type="text" maxlength="80" placeholder="[Alliance tag / name] or No preference" />
+            </div>
+            <div class="placement-alert" role="note">
+              <span class="placement-alert-icon" aria-hidden="true">!</span>
+              <p data-i18n="alliancePreferenceDisclaimer">This is a preference only. It is not a confirmation or promise that you will be placed in that alliance. Final placement will depend on available space and the needs of Server 1616.</p>
+            </div>
+          </div>
+
+          <div class="referral-card">
+            <h2 data-i18n="referralTitle">Referral</h2>
+            <p data-i18n="referralQuestion">Did someone refer you to 1616? If so, who?</p>
+            <div class="field-grid two-col">
+              <div class="field-block">
+                <label for="referrer-username"><span data-i18n="referrerUsername">Referrer's in-game username</span> <span class="optional-label" data-i18n="optional">Optional</span></label>
+                <input id="referrer-username" name="referrerUsername" type="text" maxlength="80" />
+              </div>
+              <div class="field-block">
+                <label for="referrer-alliance"><span data-i18n="referrerAlliance">Referrer's alliance / tag</span> <span class="optional-label" data-i18n="optional">Optional</span></label>
+                <input id="referrer-alliance" name="referrerAlliance" type="text" maxlength="80" placeholder="[Alliance]" />
+              </div>
+            </div>
+          </div>
 
           <div class="field-block">
             <label for="comments" data-i18n="additionalComments">Do you have any additional comments or questions?</label>
@@ -1641,9 +1757,9 @@ body.welcome-open { overflow: hidden; }
           </div>
         </section>
 
-        <!-- STEP 6 -->
-        <section class="form-step" data-step="6">
-          <div class="step-kicker" data-i18n="step6Kicker">STEP 6 OF 6</div>
+        <!-- STEP 1 -->
+        <section class="form-step" data-step="1">
+          <div class="step-kicker" data-step-kicker></div>
           <h1 data-i18n="reviewSubmit">Review & Submit</h1>
           <p class="step-intro" data-i18n="reviewIntro">Review your information before submitting. You can go back to any section to make changes.</p>
 
@@ -1658,6 +1774,7 @@ body.welcome-open { overflow: hidden; }
         </section>
 
         <div class="form-actions">
+          <button type="button" class="button clear-form-button" id="clear-form-button"><span data-i18n="clearForm">Clear Form</span></button>
           <button type="button" class="button secondary" id="back-button" hidden>← <span data-i18n="back">Back</span></button>
           <div class="action-spacer"></div>
           <button type="button" class="button primary" id="next-button"><span data-i18n="continue">Continue</span> →</button>
@@ -1705,6 +1822,18 @@ body.welcome-open { overflow: hidden; }
     </article>
   </template>
 
+  <section class="clear-modal" id="clear-modal" hidden role="dialog" aria-modal="true" aria-labelledby="clear-modal-title">
+    <div class="clear-modal-card">
+      <div class="clear-modal-icon" aria-hidden="true">!</div>
+      <h2 id="clear-modal-title" data-i18n="clearFormConfirmTitle">Clear this application?</h2>
+      <p data-i18n="clearFormConfirmText">Confirming will clear all form data entered in this application. This cannot be undone.</p>
+      <div class="clear-modal-actions">
+        <button type="button" class="button secondary" id="clear-form-cancel" data-i18n="cancel">Cancel</button>
+        <button type="button" class="button clear-confirm-button" id="clear-form-confirm" data-i18n="clearFormConfirmButton">Clear all form data</button>
+      </div>
+    </div>
+  </section>
+
   <section class="confirmation-screen" id="confirmation-screen" hidden aria-labelledby="confirmation-title">
     <div class="confirmation-card" id="confirmation-card">
       <div class="confirmation-mark">1616</div>
@@ -1739,7 +1868,7 @@ const CONFIG = {
   // After deploying Code.gs as a Google Apps Script Web App, paste the /exec URL here.
   appsScriptUrl: 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE',
   maxGroupMembers: 40,
-  draftKey: 'server1616-transfer-application-draft-v1'};
+  draftKey: 'server1616-transfer-application-draft-v17'};
 
 const I18N = {
   en: {
@@ -1800,6 +1929,20 @@ const I18N = {
     confirmationScreenshot: "You can also screenshot this page.",
     usernameShort: "Player",
     serverShort: "Server",
+    stepOfFive: "Step {step} of 5",
+    clearForm: "Clear Form",
+    clearFormConfirmTitle: "Clear this application?",
+    clearFormConfirmText: "Confirming will clear all form data entered in this application. This cannot be undone.",
+    clearFormConfirmButton: "Clear all form data",
+    cancel: "Cancel",
+    alliancePreferenceTitle: "1616 Alliance Preference",
+    alliancePreferenceQuestion: "Do you have a preference for which alliance in 1616 you may want to join?",
+    alliancePreferenceDisclaimer: "This is a preference only. It is not a confirmation or promise that you will be placed in that alliance. Final placement will depend on available space and the needs of Server 1616.",
+    alliancePreferenceReview: "Preferred 1616 alliance",
+    referralTitle: "Referral",
+    referralQuestion: "Did someone refer you to 1616? If so, who?",
+    referrerUsername: "Referrer's in-game username",
+    referrerAlliance: "Referrer's alliance / tag",
   },
   es: {
     serverTransferApplication: 'SOLICITUD DE TRANSFERENCIA', strongerTogether: 'UN MAÑANA MÁS FUERTE',
@@ -1836,6 +1979,20 @@ const I18N = {
     confirmationScreenshot: "También puedes hacer una captura de esta página.",
     usernameShort: "Jugador",
     serverShort: "Servidor",
+    stepOfFive: "Paso {step} de 5",
+    clearForm: "Borrar formulario",
+    clearFormConfirmTitle: "¿Borrar esta solicitud?",
+    clearFormConfirmText: "Al confirmar se borrarán todos los datos introducidos en esta solicitud. Esta acción no se puede deshacer.",
+    clearFormConfirmButton: "Borrar todos los datos",
+    cancel: "Cancelar",
+    alliancePreferenceTitle: "Preferencia de alianza en 1616",
+    alliancePreferenceQuestion: "¿Tienes preferencia por alguna alianza de 1616?",
+    alliancePreferenceDisclaimer: "Esto es solo una preferencia. No confirma ni garantiza que serás asignado a esa alianza. La ubicación final dependerá del espacio disponible y de las necesidades del Servidor 1616.",
+    alliancePreferenceReview: "Alianza 1616 preferida",
+    referralTitle: "Referencia",
+    referralQuestion: "¿Alguien te recomendó 1616? Si es así, ¿quién?",
+    referrerUsername: "Usuario en el juego de quien te recomendó",
+    referrerAlliance: "Alianza / tag de quien te recomendó",
   },
   pt: {
     serverTransferApplication: 'INSCRIÇÃO DE TRANSFERÊNCIA', strongerTogether: 'UM AMANHÃ MAIS FORTE',
@@ -1872,6 +2029,20 @@ const I18N = {
     confirmationScreenshot: "Você também pode tirar uma captura desta página.",
     usernameShort: "Jogador",
     serverShort: "Servidor",
+    stepOfFive: "Etapa {step} de 5",
+    clearForm: "Limpar formulário",
+    clearFormConfirmTitle: "Limpar esta inscrição?",
+    clearFormConfirmText: "Ao confirmar, todos os dados inseridos nesta inscrição serão apagados. Isso não pode ser desfeito.",
+    clearFormConfirmButton: "Limpar todos os dados",
+    cancel: "Cancelar",
+    alliancePreferenceTitle: "Preferência de aliança em 1616",
+    alliancePreferenceQuestion: "Você tem preferência por alguma aliança em 1616?",
+    alliancePreferenceDisclaimer: "Esta é apenas uma preferência. Não é uma confirmação nem uma promessa de que você será colocado nessa aliança. A colocação final dependerá do espaço disponível e das necessidades do Servidor 1616.",
+    alliancePreferenceReview: "Aliança 1616 preferida",
+    referralTitle: "Indicação",
+    referralQuestion: "Alguém indicou você para o 1616? Se sim, quem?",
+    referrerUsername: "Nome de usuário de quem indicou",
+    referrerAlliance: "Aliança / tag de quem indicou",
   },
   fr: {
     serverTransferApplication: 'DEMANDE DE TRANSFERT', strongerTogether: 'UN AVENIR PLUS FORT',
@@ -1908,6 +2079,20 @@ const I18N = {
     confirmationScreenshot: "Vous pouvez également faire une capture d'écran de cette page.",
     usernameShort: "Joueur",
     serverShort: "Serveur",
+    stepOfFive: "Étape {step} sur 5",
+    clearForm: "Effacer le formulaire",
+    clearFormConfirmTitle: "Effacer cette demande ?",
+    clearFormConfirmText: "La confirmation effacera toutes les données saisies dans cette demande. Cette action est irréversible.",
+    clearFormConfirmButton: "Effacer toutes les données",
+    cancel: "Annuler",
+    alliancePreferenceTitle: "Préférence d’alliance sur 1616",
+    alliancePreferenceQuestion: "Avez-vous une préférence pour l’alliance que vous souhaiteriez rejoindre sur 1616 ?",
+    alliancePreferenceDisclaimer: "Il s’agit uniquement d’une préférence. Cela ne confirme ni ne garantit votre placement dans cette alliance. Le placement final dépendra des places disponibles et des besoins du serveur 1616.",
+    alliancePreferenceReview: "Alliance 1616 préférée",
+    referralTitle: "Parrainage",
+    referralQuestion: "Quelqu’un vous a-t-il recommandé 1616 ? Si oui, qui ?",
+    referrerUsername: "Nom d’utilisateur du parrain",
+    referrerAlliance: "Alliance / tag du parrain",
   },
   ar: {
     serverTransferApplication: 'طلب الانتقال إلى السيرفر', strongerTogether: 'غدٌ أقوى معًا',
@@ -1944,6 +2129,20 @@ const I18N = {
     confirmationScreenshot: "يمكنك أيضًا التقاط صورة لهذه الصفحة.",
     usernameShort: "اللاعب",
     serverShort: "السيرفر",
+    stepOfFive: "الخطوة {step} من 5",
+    clearForm: "مسح النموذج",
+    clearFormConfirmTitle: "مسح هذا الطلب؟",
+    clearFormConfirmText: "سيؤدي التأكيد إلى مسح جميع البيانات المدخلة في هذا الطلب. لا يمكن التراجع عن ذلك.",
+    clearFormConfirmButton: "مسح جميع بيانات النموذج",
+    cancel: "إلغاء",
+    alliancePreferenceTitle: "تفضيل التحالف في 1616",
+    alliancePreferenceQuestion: "هل لديك تفضيل لتحالف معين في 1616؟",
+    alliancePreferenceDisclaimer: "هذا مجرد تفضيل وليس تأكيدًا أو وعدًا بوضعك في هذا التحالف. يعتمد التوزيع النهائي على المساحة المتاحة واحتياجات سيرفر 1616.",
+    alliancePreferenceReview: "تحالف 1616 المفضل",
+    referralTitle: "الإحالة",
+    referralQuestion: "هل قام شخص ما بإحالتك إلى 1616؟ إذا نعم، من؟",
+    referrerUsername: "اسم المستخدم داخل اللعبة للشخص الذي أحالك",
+    referrerAlliance: "تحالف / وسم الشخص الذي أحالك",
   },
   vi: {
     serverTransferApplication: 'ĐƠN CHUYỂN SERVER', strongerTogether: 'MỘT NGÀY MAI MẠNH MẼ HƠN',
@@ -1980,6 +2179,20 @@ const I18N = {
     confirmationScreenshot: "Bạn cũng có thể chụp màn hình trang này.",
     usernameShort: "Người chơi",
     serverShort: "Server",
+    stepOfFive: "Bước {step} / 5",
+    clearForm: "Xóa biểu mẫu",
+    clearFormConfirmTitle: "Xóa đơn này?",
+    clearFormConfirmText: "Xác nhận sẽ xóa toàn bộ dữ liệu đã nhập trong đơn này. Không thể hoàn tác.",
+    clearFormConfirmButton: "Xóa toàn bộ dữ liệu",
+    cancel: "Hủy",
+    alliancePreferenceTitle: "Ưu tiên liên minh tại 1616",
+    alliancePreferenceQuestion: "Bạn có ưu tiên liên minh nào tại 1616 mà bạn muốn tham gia không?",
+    alliancePreferenceDisclaimer: "Đây chỉ là nguyện vọng. Không phải xác nhận hay cam kết rằng bạn sẽ được xếp vào liên minh đó. Việc xếp chỗ cuối cùng phụ thuộc vào chỗ trống và nhu cầu của Server 1616.",
+    alliancePreferenceReview: "Liên minh 1616 ưu tiên",
+    referralTitle: "Giới thiệu",
+    referralQuestion: "Có ai giới thiệu bạn đến 1616 không? Nếu có, là ai?",
+    referrerUsername: "Tên trong game của người giới thiệu",
+    referrerAlliance: "Liên minh / tag của người giới thiệu",
   },
   ko: {
     serverTransferApplication: '서버 이전 신청서', strongerTogether: '더 강한 내일',
@@ -2016,6 +2229,20 @@ const I18N = {
     confirmationScreenshot: "이 페이지를 스크린샷으로 저장할 수도 있습니다.",
     usernameShort: "플레이어",
     serverShort: "서버",
+    stepOfFive: "5단계 중 {step}단계",
+    clearForm: "양식 지우기",
+    clearFormConfirmTitle: "이 신청서를 지울까요?",
+    clearFormConfirmText: "확인하면 이 신청서에 입력한 모든 데이터가 삭제됩니다. 이 작업은 되돌릴 수 없습니다.",
+    clearFormConfirmButton: "모든 양식 데이터 삭제",
+    cancel: "취소",
+    alliancePreferenceTitle: "1616 연맹 선호",
+    alliancePreferenceQuestion: "1616에서 배정받고 싶은 연맹에 선호가 있나요?",
+    alliancePreferenceDisclaimer: "이는 선호 사항일 뿐이며 해당 연맹 배정을 확인하거나 보장하는 것이 아닙니다. 최종 배정은 자리와 Server 1616의 필요에 따라 결정됩니다.",
+    alliancePreferenceReview: "선호 1616 연맹",
+    referralTitle: "추천",
+    referralQuestion: "누군가가 당신을 1616에 추천했나요? 그렇다면 누구인가요?",
+    referrerUsername: "추천인의 게임 내 사용자명",
+    referrerAlliance: "추천인의 연맹 / 태그",
   },
   de: {
     serverTransferApplication: 'SERVER-TRANSFER-BEWERBUNG', strongerTogether: 'EINE STÄRKERE ZUKUNFT',
@@ -2052,6 +2279,20 @@ const I18N = {
     confirmationScreenshot: "Du kannst diese Seite auch als Screenshot speichern.",
     usernameShort: "Spieler",
     serverShort: "Server",
+    stepOfFive: "Schritt {step} von 5",
+    clearForm: "Formular löschen",
+    clearFormConfirmTitle: "Diese Bewerbung löschen?",
+    clearFormConfirmText: "Mit der Bestätigung werden alle in dieser Bewerbung eingegebenen Daten gelöscht. Dies kann nicht rückgängig gemacht werden.",
+    clearFormConfirmButton: "Alle Formulardaten löschen",
+    cancel: "Abbrechen",
+    alliancePreferenceTitle: "Allianzpräferenz auf 1616",
+    alliancePreferenceQuestion: "Hast du eine Präferenz, welcher Allianz auf 1616 du gerne beitreten würdest?",
+    alliancePreferenceDisclaimer: "Dies ist nur eine Präferenz. Es ist keine Bestätigung oder Zusage, dass du dieser Allianz zugeteilt wirst. Die endgültige Platzierung hängt von verfügbaren Plätzen und den Bedürfnissen von Server 1616 ab.",
+    alliancePreferenceReview: "Bevorzugte 1616-Allianz",
+    referralTitle: "Empfehlung",
+    referralQuestion: "Hat dich jemand an 1616 verwiesen? Wenn ja, wer?",
+    referrerUsername: "Ingame-Name der empfehlenden Person",
+    referrerAlliance: "Allianz / Tag der empfehlenden Person",
   }
 };
 
@@ -2157,7 +2398,7 @@ function setLanguage(lang) {
   updateProgress();
   updateGroupIdCallout();
   updateTransferEstimate();
-  if (state.step === 6) renderReview();
+  if (state.step === 5) renderReview();
   saveDraft();
 }
 
@@ -2185,17 +2426,21 @@ function updateProgress() {
     }
   });
   backButton.hidden = state.step === 1;
-  nextButton.hidden = state.step === 6;
-  submitButton.hidden = state.step !== 6;
-  const label = t('stepOf').replace('{step}', state.step);
+  nextButton.hidden = state.step === 5;
+  submitButton.hidden = state.step !== 5;
+  const label = t('stepOfFive').replace('{step}', state.step);
   document.getElementById('mobile-progress-label').textContent = label;
-  document.getElementById('mobile-progress-fill').style.width = `${state.step / 6 * 100}%`;
-  if (state.step === 6) renderReview();
+  document.getElementById('mobile-progress-fill').style.width = `${state.step / 5 * 100}%`;
+  document.querySelectorAll('[data-step-kicker]').forEach(kicker => {
+    const step = Number(kicker.closest('.form-step')?.dataset.step || state.step);
+    kicker.textContent = t('stepOfFive').replace('{step}', step).toUpperCase();
+  });
+  if (state.step === 5) renderReview();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function goToStep(step) {
-  if (step < 1 || step > 6) return;
+  if (step < 1 || step > 5) return;
   state.step = step;
   updateProgress();
   saveDraft();
@@ -2277,7 +2522,7 @@ function validateCurrentStep() {
   });
 
 
-  if (state.step === 4) {
+  if (state.step === 3) {
     const groupAnswer = form.querySelector('input[name="transferWithGroup"]:checked');
     const groupErr = document.querySelector('[data-error-for="transfer-with-group"]');
     if (!groupAnswer) { groupErr.textContent = t('chooseError'); ok = false; } else groupErr.textContent = '';
@@ -2408,6 +2653,9 @@ function collectPayload() {
     groupContact: selectedContactText,
     expectedAdditionalPlayers: groupAnswer === 'yes' ? digitsOnly(document.getElementById('expected-additional-players')?.value || '') : '',
     groupMembers: groupAnswer === 'yes' ? state.groupMembers.map(m => ({ name: m.name.trim(), server: digitsOnly(m.server), alliance: m.alliance.trim(), seatColour: m.seatColour || '' })) : [],
+    preferred1616Alliance: document.getElementById('preferred-1616-alliance')?.value.trim() || '',
+    referrerUsername: document.getElementById('referrer-username')?.value.trim() || '',
+    referrerAlliance: document.getElementById('referrer-alliance')?.value.trim() || '',
     comments: document.getElementById('comments').value.trim(),
     website: document.getElementById('website').value,
     clientTimestamp: new Date().toISOString()
@@ -2427,10 +2675,10 @@ function renderReview() {
   const transferLabel = p.transferWithGroup ? t(p.transferWithGroup) : t('notProvided');
   const members = p.groupMembers.length ? `<div class="review-members"><div class="review-label">${escapeHtml(t('groupMembers'))}</div>${p.groupMembers.map(m => `<div class="review-member"><span>${escapeHtml(m.name)}</span><span>${escapeHtml(m.server)}</span><span>${escapeHtml(m.alliance)}</span><span>${escapeHtml(m.seatColour ? t(m.seatColour) : t('notProvided'))}</span></div>`).join('')}</div>` : '';
   reviewContainer.innerHTML = [
-    reviewSection(t('reviewApplicant'), 2, `<div class="review-grid">${reviewItem(t('currentServer'), p.currentServer)}${reviewItem(t('username'), p.username)}${reviewItem(t('allianceTag'), p.alliance)}</div>`),
-    reviewSection(t('reviewGame'), 3, `<div class="review-grid">${reviewItem(t('professionLevel'), p.professionLevel)}${reviewItem(t('killCount'), formatNumber(p.killCount))}${reviewItem(t('heroPower'), formatNumber(p.heroPower))}${reviewItem(t('seatColour'), seatLabel)}${p.reportedTransferScore ? reviewItem(t('reportedTransferScore'), formatNumber(p.reportedTransferScore)) : ''}</div>`),
-    reviewSection(t('reviewGroup'), 4, `<div class="review-grid">${reviewItem(t('transferAnswer'), transferLabel)}${reviewItem(t('reviewTransferGroupId'), p.groupId || t('notProvided'))}${reviewItem(t('totalGroup'), p.transferWithGroup === 'yes' ? (p.expectedAdditionalPlayers ? String(Number(p.expectedAdditionalPlayers) + 1) : (p.groupMembers.length ? `≥ ${p.groupMembers.length + 1}` : t('notProvided'))) : '1')}${reviewItem(t('groupLead'), p.groupContact || t('notProvided'))}${reviewItem(t('additionalPlayers'), String(p.groupMembers.length))}${members}</div>`),
-    reviewSection(t('reviewAdditional'), 5, `<div class="review-grid">${reviewItem(t('comments'), p.comments || t('none'))}</div>`)
+    reviewSection(t('reviewApplicant'), 1, `<div class="review-grid">${reviewItem(t('currentServer'), p.currentServer)}${reviewItem(t('username'), p.username)}${reviewItem(t('allianceTag'), p.alliance)}</div>`),
+    reviewSection(t('reviewGame'), 2, `<div class="review-grid">${reviewItem(t('professionLevel'), p.professionLevel)}${reviewItem(t('killCount'), formatNumber(p.killCount))}${reviewItem(t('heroPower'), formatNumber(p.heroPower))}${reviewItem(t('seatColour'), seatLabel)}${p.reportedTransferScore ? reviewItem(t('reportedTransferScore'), formatNumber(p.reportedTransferScore)) : ''}</div>`),
+    reviewSection(t('reviewGroup'), 3, `<div class="review-grid">${reviewItem(t('transferAnswer'), transferLabel)}${reviewItem(t('reviewTransferGroupId'), p.groupId || t('notProvided'))}${reviewItem(t('totalGroup'), p.transferWithGroup === 'yes' ? (p.expectedAdditionalPlayers ? String(Number(p.expectedAdditionalPlayers) + 1) : (p.groupMembers.length ? `≥ ${p.groupMembers.length + 1}` : t('notProvided'))) : '1')}${reviewItem(t('groupLead'), p.groupContact || t('notProvided'))}${reviewItem(t('additionalPlayers'), String(p.groupMembers.length))}${members}</div>`),
+    reviewSection(t('reviewAdditional'), 4, `<div class="review-grid">${reviewItem(t('alliancePreferenceReview'), p.preferred1616Alliance || t('notProvided'))}${reviewItem(t('referrerUsername'), p.referrerUsername || t('notProvided'))}${reviewItem(t('referrerAlliance'), p.referrerAlliance || t('notProvided'))}${reviewItem(t('comments'), p.comments || t('none'))}</div>`)
   ].join('');
   reviewContainer.querySelectorAll('[data-edit-step]').forEach(btn => btn.addEventListener('click', () => goToStep(Number(btn.dataset.editStep))));
 }
@@ -2469,7 +2717,7 @@ function restoreDraft() {
         else el.value = value;
       });
     });
-    state.step = Math.max(1, Math.min(6, Number(data.step) || 1));
+    state.step = Math.max(1, Math.min(5, Number(data.step) || 1));
   } catch (_) {}
 }
 
@@ -2477,12 +2725,12 @@ function clearDraft() { try { localStorage.removeItem(CONFIG.draftKey); } catch 
 
 async function submitApplication(event) {
   event.preventDefault();
-  for (let s = 2; s <= 4; s++) {
+  for (let s = 1; s <= 3; s++) {
     const previous = state.step; state.step = s;
     if (!validateCurrentStep()) { state.step = previous; goToStep(s); return; }
     state.step = previous;
   }
-  goToStep(6);
+  goToStep(5);
 
   if (!CONFIG.appsScriptUrl || CONFIG.appsScriptUrl.includes('PASTE_YOUR')) {
     showSubmission(t('backendMissing'), true); return;
@@ -2506,6 +2754,55 @@ async function submitApplication(event) {
     showSubmission(t('submitFailed'), true);
     submitButton.disabled = false;
   }
+}
+
+
+function openClearFormModal() {
+  const modal = document.getElementById('clear-modal');
+  if (modal) modal.hidden = false;
+}
+function closeClearFormModal() {
+  const modal = document.getElementById('clear-modal');
+  if (modal) modal.hidden = true;
+}
+function clearEntireForm() {
+  const preservedLanguage = state.language;
+
+  form.reset();
+  state.step = 1;
+  state.groupMembers = [];
+  state.applicationId = '';
+  state.generatedGroupId = '';
+  state.confirmationCode = '';
+  state.language = preservedLanguage;
+
+  clearDraft();
+
+  document.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+  document.querySelectorAll('.field-error').forEach(el => { el.textContent = ''; });
+
+  renderGroupMembers();
+  groupBuilder.hidden = true;
+  updateGroupContactOptions();
+  updateGroupSummary();
+  updateGroupIdCallout();
+
+  const comments = document.getElementById('comments');
+  const commentsCount = document.getElementById('comments-count');
+  if (comments) comments.value = '';
+  if (commentsCount) commentsCount.textContent = '0';
+
+  if (submissionStatus) {
+    submissionStatus.hidden = true;
+    submissionStatus.textContent = '';
+    submissionStatus.classList.remove('error');
+  }
+  submitButton.disabled = false;
+
+  setLanguage(preservedLanguage);
+  updateProgress();
+  closeClearFormModal();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function showSubmission(message, isError) {
@@ -2691,6 +2988,10 @@ document.getElementById('username').addEventListener('input', () => { updateGrou
 document.getElementById('alliance').addEventListener('input', () => { updateGroupContactOptions(); saveDraft(); });
 document.getElementById('expected-additional-players').addEventListener('input', () => { updateGroupSummary(); saveDraft(); });
 
+document.getElementById('clear-form-button').addEventListener('click', openClearFormModal);
+document.getElementById('clear-form-cancel').addEventListener('click', closeClearFormModal);
+document.getElementById('clear-form-confirm').addEventListener('click', clearEntireForm);
+document.getElementById('clear-modal').addEventListener('click', e => { if (e.target.id === 'clear-modal') closeClearFormModal(); });
 document.getElementById('copy-confirmation-code').addEventListener('click', copyConfirmationCode);
 document.getElementById('save-confirmation-png').addEventListener('click', saveConfirmationPng);
 document.getElementById('comments').addEventListener('input', e => { document.getElementById('comments-count').textContent = e.target.value.length; saveDraft(); });

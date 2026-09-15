@@ -24,7 +24,7 @@ const APPLICATION_HEADERS = [
   'Unit Power (Top 3)', 'Overlord Power', 'T11 Unlocked', 'Reported Transfer Score', 'Estimated Transfer Score Band',
   'Estimated Seat Colour', 'Seat Colour', 'Transfer With Group', 'Group ID',
   'Expected Additional Players', 'Known Players Listed', 'Expected Total Group Size', 'Unnamed / TBD Players',
-  'Group Contact', 'Linked Player Names', 'Comments', 'Status', 'Confirmation Code'
+  'Group Contact', 'Linked Player Names', 'Preferred 1616 Alliance', 'Referrer Username', 'Referrer Alliance', 'Comments', 'Status', 'Confirmation Code'
 ];
 
 const GROUP_HEADERS = [
@@ -106,6 +106,9 @@ function doPost(e) {
       unnamedPlayers,
       clean_(payload.groupContact),
       linkedNames,
+      clean_(payload.preferred1616Alliance),
+      clean_(payload.referrerUsername),
+      clean_(payload.referrerAlliance),
       clean_(payload.comments),
       'New',
       clean_(payload.confirmationCode)

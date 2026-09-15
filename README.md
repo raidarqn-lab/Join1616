@@ -121,3 +121,13 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Added a final confirmation screen with a unique user-facing confirmation code.
 - Confirmation code is submitted to the Google Sheet.
 - Confirmation page supports Copy Code and Save Confirmation PNG.
+
+
+## v17
+- Removed the repeated Language step from the form. Language is selected in the opening overlay only; the header language control remains available if the user wants to change it.
+- Application is now 5 steps: Your Information, Game Details, Transfer Group, Additional Information, Review & Submit.
+- Added a Clear Form control that is visible on every application step.
+- Clear Form opens a confirmation dialog warning that all entered form data will be cleared.
+- Added optional 1616 alliance placement preference with a clear no-guarantee placement notice.
+- Added optional referral fields for referrer username and alliance/tag.
+- Preferred alliance and referral data are included in the review screen and Google Sheet.
