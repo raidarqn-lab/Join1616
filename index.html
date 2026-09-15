@@ -1,0 +1,1372 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1522" />
+  <meta name="description" content="Server 1616 transfer application" />
+  <title>1616 Server Transfer Application</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #07121d;
+  --bg-deep: #050d16;
+  --panel: rgba(10, 27, 41, .92);
+  --panel-soft: rgba(16, 37, 55, .86);
+  --raised: #132a3d;
+  --field: #0b1b2a;
+  --border: #29465d;
+  --border-strong: #406a83;
+  --text: #e8f2f7;
+  --muted: #91aabd;
+  --accent: #58dbca;
+  --accent-2: #8df1e4;
+  --pink: #f0a7b6;
+  --pink-soft: #f8c3cd;
+  --gold: #e8c46a;
+  --danger: #ff848d;
+  --success: #84e6b2;
+  --shadow: 0 30px 90px rgba(0,0,0,.38);
+  --radius: 14px;
+  --font: Inter, "Noto Sans KR", "Noto Sans Arabic", system-ui, sans-serif;
+  --brush: "Noto Serif CJK JP", "Noto Serif", Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--bg-deep); }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: var(--font);
+  background:
+    linear-gradient(180deg, rgba(5,13,22,.76), rgba(6,19,30,.92)),
+    radial-gradient(circle at 75% 10%, rgba(109,21,39,.18), transparent 34%),
+    #07121d;
+  overflow-x: hidden;
+}
+button, input, select, textarea { font: inherit; }
+button { color: inherit; }
+
+
+
+
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(3,10,16,.67) 0%, rgba(3,10,16,.28) 22%, rgba(3,10,16,.17) 50%, rgba(3,10,16,.26) 78%, rgba(3,10,16,.52) 100%),
+    linear-gradient(180deg, rgba(3,10,16,.22) 0%, rgba(3,10,16,.10) 24%, rgba(3,10,16,.16) 58%, rgba(3,10,16,.46) 100%),
+    url('background-scene.png') center center / cover no-repeat;
+}
+.scene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(232,69,92,.25) 0, rgba(232,69,92,.12) 12%, rgba(232,69,92,0) 24%);
+}
+.petals { position: absolute; inset: 0; overflow: hidden; }
+.petals span {
+  position: absolute;
+  width: 10px;
+  height: 6px;
+  border-radius: 72% 28% 70% 30%;
+  background: rgba(242,171,189,.78);
+  box-shadow: 0 0 8px rgba(240,167,182,.20);
+  transform: rotate(18deg);
+  animation: drift linear infinite;
+}
+@keyframes drift {
+  from { transform: translate3d(0,-10vh,0) rotate(0deg); }
+  to { transform: translate3d(14vw,110vh,0) rotate(410deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .petals span { animation: none; }
+  * { scroll-behavior: auto !important; transition: none !important; }
+}
+.svg-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+
+.site-header {
+  min-height: 112px; padding: 18px clamp(20px, 5vw, 76px); display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  border-bottom: 1px solid rgba(65,107,131,.34); background: linear-gradient(90deg, rgba(4,13,21,.76), rgba(4,13,21,.45)); backdrop-filter: blur(12px);
+}
+.brand-wrap { display: flex; flex-direction: column; align-items: flex-start; position: relative; }
+.brand-wrap::after { content:""; width: 72px; height: 2px; margin-top: 7px; background: linear-gradient(90deg, var(--pink), var(--gold)); opacity: .8; }
+
+.brand-number { display: flex; align-items: center; min-width: 0; }
+.wordmark-image {
+  display: block;
+  height: auto;
+  image-rendering: auto;
+  filter: drop-shadow(0 5px 16px rgba(0,0,0,.28));
+}
+.wordmark-header {
+  width: clamp(170px, 16vw, 250px);
+}
+.wordmark-sidebar {
+  width: 132px;
+  max-width: 100%;
+  margin-bottom: 18px;
+}
+.progress-title { margin-bottom: 8px; }
+@media (max-width: 760px) {
+  .wordmark-header { width: 155px; }
+  .wordmark-sidebar { width: 118px; }
+}
+
+.brand-subtitle { margin-top: 8px; font-size: .7rem; letter-spacing: .32em; color: var(--accent-2); font-weight: 700; }
+.header-actions { display: flex; align-items: center; gap: 18px; }
+.language-compact { display: flex; align-items: center; gap: 8px; border: 1px solid var(--border-strong); border-radius: 9px; padding: 0 10px; background: rgba(5,20,31,.78); }
+.language-compact select { width: 190px; color: var(--text); background: transparent; border: 0; padding: 11px 6px; outline: 0; }
+.globe { color: var(--accent); font-size: 1.1rem; }
+.tagline { font-size: .72rem; letter-spacing: .24em; color: var(--muted); text-transform: uppercase; max-width: 190px; line-height: 1.6; }
+
+.app-shell { width: min(1380px, calc(100% - 40px)); margin: 28px auto 70px; display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 22px; }
+.progress-panel {
+  min-height: 720px; padding: 28px 22px; border: 1px solid rgba(66,101,123,.46); border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(7,22,34,.80), rgba(7,18,29,.68)); box-shadow: var(--shadow); backdrop-filter: blur(18px);
+  display: flex; flex-direction: column;
+}
+.progress-title { margin-bottom: 8px; }
+.progress-panel nav { display: grid; gap: 7px; }
+.step-link { display: flex; gap: 12px; align-items: center; width: 100%; border: 0; background: transparent; color: var(--muted); text-align: left; padding: 10px 8px; border-radius: 9px; cursor: pointer; }
+.step-link:hover { background: rgba(30,58,76,.34); color: var(--text); }
+.step-link.active { color: var(--text); background: rgba(33,63,79,.42); }
+.step-link.complete { color: #c9d8df; }
+.step-dot { width: 31px; height: 31px; border-radius: 50%; border: 1px solid var(--border-strong); display: grid; place-items: center; flex: 0 0 31px; font-size: .82rem; }
+.step-link.active .step-dot { background: var(--pink-soft); border-color: var(--pink-soft); color: #3c1f28; font-weight: 800; }
+.step-link.complete .step-dot { background: rgba(88,219,202,.18); border-color: rgba(88,219,202,.55); color: var(--accent-2); }
+.progress-quote { margin-top: auto; padding: 20px 8px 0; color: #819bac; text-transform: uppercase; letter-spacing: .24em; font-size: .66rem; line-height: 1.8; }
+.brush-rule { display: block; width: 32px; height: 2px; background: var(--gold); margin-bottom: 14px; }
+
+.form-panel { border: 1px solid rgba(68,105,128,.62); border-radius: var(--radius); background: linear-gradient(180deg, rgba(8,25,38,.88), rgba(7,19,30,.90)); box-shadow: var(--shadow); backdrop-filter: blur(18px); overflow: hidden; }
+form { min-height: 720px; display: flex; flex-direction: column; }
+.form-step { display: none; padding: clamp(26px, 4vw, 48px); flex: 1; }
+.form-step.active { display: block; animation: fadeIn .18s ease-out; }
+@keyframes fadeIn { from { opacity: .45; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+.step-kicker { font-size: .68rem; letter-spacing: .28em; color: #81a6ba; font-weight: 700; margin-bottom: 10px; }
+.step-heading-row { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; }
+h1 { margin: 0; font-size: clamp(1.8rem, 3vw, 2.65rem); font-weight: 650; letter-spacing: -.03em; }
+h2 { margin: 0; font-size: 1rem; }
+.step-intro { max-width: 760px; margin: 10px 0 28px; color: #afc3cf; line-height: 1.65; }
+.seal { width: 44px; height: 54px; display: grid; place-items: center; border: 2px solid rgba(211,72,85,.74); color: #e46b79; font-family: serif; font-size: 1.25rem; border-radius: 3px; transform: rotate(1deg); flex-shrink: 0; }
+
+.notice-card { margin: 24px 0; padding: 22px; border: 1px solid #315a70; border-radius: 10px; background: linear-gradient(135deg, rgba(20,55,69,.55), rgba(11,31,44,.45)); }
+.notice-card.compact { margin-top: 28px; }
+.notice-card h2 { color: #d9f6ef; margin-bottom: 9px; }
+.notice-card p { margin: 7px 0; color: #b7cbd6; line-height: 1.6; }
+.notice-card strong { color: var(--pink-soft); }
+
+.language-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 25px; }
+.language-card { min-height: 84px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 5px; padding: 15px; border: 1px solid var(--border); border-radius: 10px; background: rgba(11,29,43,.65); cursor: pointer; }
+.language-card:hover { border-color: #53778f; background: rgba(20,47,65,.74); }
+.language-card.selected { border-color: var(--pink); box-shadow: inset 0 0 0 1px rgba(240,167,182,.35); background: rgba(82,52,65,.32); }
+.language-card span { font-size: .68rem; letter-spacing: .14em; color: var(--accent); }
+.language-card strong { font-size: .92rem; }
+
+.field-grid { display: grid; gap: 18px; }
+.field-grid.two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.field-grid.three-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.full-span { grid-column: 1 / -1; }
+.field-block label, .choice-fieldset legend { display: block; font-size: .84rem; color: #dfe9ef; font-weight: 600; margin-bottom: 8px; }
+em { color: var(--danger); font-style: normal; }
+input, select, textarea {
+  width: 100%; min-width: 0; color: var(--text); background: rgba(7,24,36,.9); border: 1px solid #33556c; border-radius: 8px; padding: 12px 13px; outline: none;
+  transition: border-color .14s, box-shadow .14s, background .14s;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(88,219,202,.10); background: #0b2232; }
+textarea { resize: vertical; min-height: 160px; line-height: 1.65; }
+input.invalid, select.invalid, textarea.invalid { border-color: var(--danger); box-shadow: 0 0 0 3px rgba(255,132,141,.08); }
+.field-help { color: #819cac; font-size: .74rem; margin: 7px 0 0; line-height: 1.5; }
+.field-error { min-height: 1.1em; margin: 6px 0 0; color: var(--danger); font-size: .74rem; }
+.label-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.help-toggle { border: 0; background: transparent; color: var(--accent); font-size: .74rem; cursor: pointer; padding: 2px 0; }
+.help-toggle:hover { color: var(--accent-2); }
+.help-toggle.standalone { margin-top: 10px; }
+.inline-help { margin-top: 12px; padding: 14px 16px; border-left: 2px solid var(--accent); background: rgba(32,75,83,.22); color: #b7cdd7; font-size: .82rem; line-height: 1.6; }
+.inline-help ol { margin: 0; padding-left: 19px; }
+
+.choice-fieldset { border: 0; padding: 0; margin: 28px 0 0; }
+.choice-grid { display: grid; gap: 12px; }
+.choice-grid.three-col { grid-template-columns: repeat(3, 1fr); }
+.choice-grid.four-col { grid-template-columns: repeat(4, 1fr); }
+.choice-card { position: relative; min-height: 94px; padding: 17px; display: flex; gap: 13px; align-items: center; border: 1px solid #2d4d62; border-radius: 10px; background: rgba(10,28,41,.68); cursor: pointer; }
+.choice-card input { position: absolute; opacity: 0; pointer-events: none; }
+.choice-card:has(input:checked) { border-color: var(--pink); background: linear-gradient(135deg, rgba(86,52,64,.58), rgba(24,48,61,.44)); }
+.choice-dot { width: 21px; height: 21px; border: 1px solid #53778f; border-radius: 50%; flex: 0 0 21px; box-shadow: inset 0 0 0 4px transparent; }
+.choice-card:has(input:checked) .choice-dot { border-color: var(--pink-soft); box-shadow: inset 0 0 0 5px rgba(7,18,29,.95); background: var(--pink-soft); }
+.choice-card strong { display: block; font-size: .9rem; }
+.choice-card small { display: block; color: #8fa7b6; margin-top: 4px; line-height: 1.45; }
+.seat-fieldset { margin-top: 28px; }
+.choice-card.seat { min-height: 72px; }
+.choice-card.gold:has(input:checked) { border-color: #e8c46a; }
+.choice-card.purple:has(input:checked) { border-color: #bb91d8; }
+.choice-card.blue:has(input:checked) { border-color: #62aee8; }
+.choice-card.white:has(input:checked) { border-color: #e9eef2; }
+
+.group-builder { margin-top: 26px; padding-top: 8px; }
+.subsection-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.subsection-heading > div { display: flex; gap: 12px; align-items: flex-start; }
+.subsection-heading h2 { letter-spacing: .14em; text-transform: uppercase; font-size: .82rem; }
+.subsection-heading p, .group-contact-card p { margin: 6px 0 0; color: #9fb5c2; font-size: .8rem; line-height: 1.5; }
+.subsection-icon { color: var(--pink); font-size: 1.4rem; }
+.group-member-card { padding: 16px; border: 1px solid #31556c; border-radius: 10px; background: rgba(10,29,43,.72); margin-bottom: 12px; }
+.member-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.member-heading strong { font-size: .83rem; }
+.remove-member { width: 30px; height: 30px; border-radius: 8px; border: 1px solid rgba(255,132,141,.38); background: transparent; color: var(--danger); cursor: pointer; }
+.add-player-button { width: 100%; border: 1px dashed rgba(240,167,182,.65); border-radius: 10px; background: transparent; color: var(--pink-soft); padding: 13px; cursor: pointer; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
+.add-player-button:hover { background: rgba(89,54,66,.25); }
+.group-contact-card, .group-summary-card { margin-top: 15px; padding: 18px; border: 1px solid #31556c; border-radius: 10px; background: rgba(10,29,43,.58); }
+
+.group-contact-card select { margin-top: 12px; }
+.transfer-id-callout {
+  margin-top: 16px;
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(94, 225, 222, .45);
+  background:
+    radial-gradient(circle at right top, rgba(232, 69, 92, .13), transparent 34%),
+    linear-gradient(180deg, rgba(13,34,49,.86), rgba(8,24,38,.78));
+  box-shadow:
+    0 0 0 1px rgba(94, 225, 222, .08) inset,
+    0 0 28px rgba(53, 199, 232, .16),
+    0 0 42px rgba(232, 69, 92, .08);
+}
+.transfer-id-box {
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(94, 225, 222, .32);
+  background: linear-gradient(90deg, rgba(9,28,41,.88), rgba(13,34,49,.76));
+}
+.transfer-id-meta { min-width: 0; }
+.transfer-id-label {
+  display: block;
+  color: #9cc8d1;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .68rem;
+  margin-bottom: 6px;
+}
+.transfer-id-value {
+  display: block;
+  font-size: clamp(1.05rem, 2vw, 1.42rem);
+  line-height: 1.15;
+  color: #f8fbfd;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-shadow: 0 0 18px rgba(94, 225, 222, .18);
+  overflow-wrap: anywhere;
+}
+.transfer-id-note {
+  display: block;
+  margin-top: 8px;
+  color: #8ab7c2;
+  font-size: .77rem;
+}
+.transfer-id-copy {
+  flex: 0 0 auto;
+  padding: 11px 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(94, 225, 222, .42);
+  background: rgba(7, 24, 35, .72);
+  color: #dff9f7;
+  font-size: .76rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.transfer-id-copy:hover { background: rgba(12, 40, 57, .86); }
+.transfer-id-copy.copied {
+  border-color: rgba(168, 238, 131, .55);
+  color: #dcf7cf;
+}
+.transfer-id-fields { margin-top: 14px; }
+.transfer-id-fields .field-help { margin-top: 7px; }
+@media (max-width: 760px) {
+  .transfer-id-box { flex-direction: column; align-items: flex-start; }
+  .transfer-id-copy { width: 100%; }
+}
+
+.group-summary-card { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.group-summary-card div { min-width: 0; }
+.group-summary-card span { display: block; color: #8da7b6; font-size: .72rem; margin-bottom: 5px; }
+.group-summary-card strong { display: block; font-size: 1.45rem; color: #f3f7f9; overflow-wrap: anywhere; }
+.group-summary-card small { color: #7993a3; font-size: .68rem; }
+
+.char-count { text-align: right; color: #708b9d; font-size: .72rem; margin-top: 6px; }
+.review-container { display: grid; gap: 14px; margin-top: 24px; }
+.review-section { border: 1px solid #31546a; border-radius: 10px; background: rgba(10,29,43,.65); overflow: hidden; }
+.review-section-head { padding: 14px 17px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid rgba(49,84,106,.72); }
+.review-section-head h2 { font-size: .86rem; letter-spacing: .12em; text-transform: uppercase; }
+.review-edit { border: 0; background: transparent; color: var(--accent); cursor: pointer; font-size: .75rem; }
+.review-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
+.review-item { padding: 14px 17px; border-bottom: 1px solid rgba(42,72,91,.5); }
+.review-item:nth-last-child(-n+2) { border-bottom: 0; }
+.review-label { color: #7e9baa; font-size: .7rem; margin-bottom: 4px; }
+.review-value { color: #e7f0f4; font-size: .88rem; overflow-wrap: anywhere; }
+.review-members { grid-column: 1 / -1; padding: 8px 17px 15px; }
+.review-member { display: grid; grid-template-columns: 1.4fr .7fr .9fr; gap: 10px; padding: 9px 0; border-bottom: 1px solid rgba(42,72,91,.45); font-size: .82rem; color: #bfd0d8; }
+.review-member:last-child { border-bottom: 0; }
+.submit-note { display: flex; gap: 12px; align-items: center; margin-top: 18px; padding: 15px 17px; border-radius: 9px; background: rgba(19,53,65,.34); color: #9bb6c4; font-size: .8rem; }
+.lock-icon { color: var(--accent); font-size: 1.25rem; }
+.submission-status { margin-top: 14px; padding: 14px 16px; border-radius: 9px; background: rgba(72,146,107,.18); border: 1px solid rgba(132,230,178,.45); color: #c9f4dc; line-height: 1.5; }
+.submission-status.error { background: rgba(137,55,66,.18); border-color: rgba(255,132,141,.48); color: #ffd7da; }
+
+.form-actions { padding: 20px clamp(26px,4vw,48px); border-top: 1px solid rgba(62,96,117,.62); display: flex; align-items: center; gap: 12px; background: rgba(4,16,25,.64); }
+.action-spacer { flex: 1; }
+.button { min-width: 150px; border-radius: 9px; padding: 12px 17px; border: 1px solid #3a6079; cursor: pointer; font-weight: 700; }
+.button.secondary { background: transparent; color: #c8d7df; }
+.button.primary, .button.submit { background: linear-gradient(90deg, var(--pink-soft), #f0a7b6); color: #2a1720; border-color: var(--pink-soft); }
+.button.submit { min-width: 220px; }
+.button:disabled { opacity: .45; cursor: not-allowed; }
+.hp-field { position: absolute !important; left: -9999px !important; width: 1px !important; height: 1px !important; opacity: 0 !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.mobile-progress { display: none; }
+
+html[dir="rtl"] body { font-family: "Noto Sans Arabic", Inter, sans-serif; }
+html[dir="rtl"] .step-link { text-align: right; }
+html[dir="rtl"] .brand-subtitle, html[dir="rtl"] .step-kicker { letter-spacing: .16em; }
+html[dir="rtl"] .review-item, html[dir="rtl"] .field-block { text-align: right; }
+
+@media (max-width: 1020px) {
+  .app-shell { grid-template-columns: 210px minmax(0, 1fr); width: min(1180px, calc(100% - 28px)); }
+  .language-grid { grid-template-columns: repeat(2, 1fr); }
+  .choice-grid.four-col { grid-template-columns: repeat(2, 1fr); }
+  .field-grid.three-col { grid-template-columns: 1fr; }
+  .group-summary-card { grid-template-columns: 1fr 1fr; }
+}
+
+
+@media (max-width: 760px) {
+  }
+
+@media (max-width: 760px) {
+  .site-header { min-height: 92px; padding: 14px 16px; }
+  .brand-subtitle { font-size: .58rem; }
+  .tagline { display: none; }
+  .language-compact select { width: 145px; }
+  .app-shell { width: min(100% - 20px, 760px); margin-top: 12px; display: block; }
+  .progress-panel { display: none; }
+  .mobile-progress { display: block; padding: 14px 18px; border-bottom: 1px solid rgba(65,101,123,.5); color: #93aebe; font-size: .72rem; }
+  .mobile-progress-track { height: 3px; background: rgba(80,113,134,.3); margin-top: 8px; border-radius: 999px; overflow: hidden; }
+  .mobile-progress-track span { display: block; height: 100%; width: 16.66%; background: var(--pink); transition: width .18s ease; }
+  .form-step { padding: 25px 18px; }
+  .field-grid.two-col { grid-template-columns: 1fr; }
+  .choice-grid.three-col { grid-template-columns: 1fr; }
+  .review-grid { grid-template-columns: 1fr; }
+  .review-item:nth-last-child(-n+2) { border-bottom: 1px solid rgba(42,72,91,.5); }
+  .review-item:last-child { border-bottom: 0; }
+  .review-member { grid-template-columns: 1fr; gap: 3px; }
+  .group-summary-card { grid-template-columns: 1fr; }
+  .form-actions { padding: 16px 18px; }
+  .button { min-width: 0; }
+  .button.primary, .button.submit { flex: 1; }
+}
+
+@media (max-width: 500px) {
+  .site-header { align-items: flex-start; }
+  .header-actions { align-items: stretch; }
+  .language-compact select { width: 118px; font-size: .78rem; }
+  .language-grid { grid-template-columns: 1fr 1fr; }
+  .step-heading-row { display: block; }
+  .seal { margin-top: 14px; }
+  .choice-grid.four-col { grid-template-columns: 1fr 1fr; }
+  .label-row { align-items: flex-start; flex-direction: column; gap: 4px; }
+}
+
+  </style>
+</head>
+<body>
+
+  <svg class="svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="ink-rough" x="-15%" y="-15%" width="130%" height="130%">
+        <feTurbulence type="fractalNoise" baseFrequency=".025 .11" numOctaves="2" seed="16" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.6" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+      <symbol id="brand-1616" viewBox="0 0 340 112">
+        <g fill="none" stroke="#f2eee5" stroke-linecap="round" stroke-linejoin="round" filter="url(#ink-rough)">
+          <!-- 1 -->
+          <path d="M18 27 C28 23 39 16 50 8" stroke-width="11"/>
+          <path d="M46 11 C43 37 42 67 39 98" stroke-width="13"/>
+          <path d="M25 99 C38 96 51 96 61 94" stroke-width="8"/>
+          <!-- 6 -->
+          <path d="M119 17 C103 11 88 20 80 35 C70 54 72 82 89 94 C106 105 127 96 131 76 C135 57 122 44 106 45 C91 46 79 56 78 69" stroke-width="12"/>
+          <path d="M103 47 C118 48 127 57 126 72 C125 86 115 94 103 92 C89 90 82 81 83 69 C84 57 92 49 103 47" stroke-width="7"/>
+          <!-- 1 -->
+          <path d="M171 27 C181 23 192 16 203 8" stroke-width="11"/>
+          <path d="M199 11 C196 37 195 67 192 98" stroke-width="13"/>
+          <path d="M178 99 C191 96 204 96 214 94" stroke-width="8"/>
+          <!-- 6 -->
+          <path d="M272 17 C256 11 241 20 233 35 C223 54 225 82 242 94 C259 105 280 96 284 76 C288 57 275 44 259 45 C244 46 232 56 231 69" stroke-width="12"/>
+          <path d="M256 47 C271 48 280 57 279 72 C278 86 268 94 256 92 C242 90 235 81 236 69 C237 57 245 49 256 47" stroke-width="7"/>
+        </g>
+        <g opacity=".72" fill="#f2eee5">
+          <ellipse cx="47" cy="10" rx="6" ry="2.1" transform="rotate(-20 47 10)"/>
+          <ellipse cx="119" cy="18" rx="5" ry="1.8" transform="rotate(12 119 18)"/>
+          <ellipse cx="200" cy="10" rx="6" ry="2.1" transform="rotate(-20 200 10)"/>
+          <ellipse cx="272" cy="18" rx="5" ry="1.8" transform="rotate(12 272 18)"/>
+        </g>
+        <g transform="translate(307 61) rotate(3)">
+          <rect x="0" y="0" width="25" height="29" rx="1.5" fill="none" stroke="#cf4656" stroke-width="2.4" opacity=".9"/>
+          <path d="M5 7h15M7 12h11M6 18h14M10 5v18M17 5v18" stroke="#cf4656" stroke-width="1.5" opacity=".84"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="scene" aria-hidden="true"><div class="petals" id="petals"></div></div>
+
+
+  <header class="site-header">
+    <div class="brand-wrap">
+      <div class="brand-number" aria-label="1616"><img src="wordmark-1616.png" alt="1616" class="wordmark-image wordmark-header" /></div>
+      <div class="brand-subtitle" data-i18n="serverTransferApplication">SERVER TRANSFER APPLICATION</div>
+    </div>
+
+    <div class="header-actions">
+      <label class="language-compact" for="header-language">
+        <span class="globe" aria-hidden="true">◎</span>
+        <select id="header-language" aria-label="Language">
+          <option value="en">EN · English</option>
+          <option value="es">ES · Español</option>
+          <option value="pt">PT · Português</option>
+          <option value="fr">FR · Français</option>
+          <option value="ar">AR · العربية</option>
+          <option value="vi">VI · Tiếng Việt</option>
+          <option value="ko">KO · 한국어</option>
+          <option value="de">DE · Deutsch</option>
+        </select>
+      </label>
+      <div class="tagline" data-i18n="strongerTogether">A STRONGER TOMORROW</div>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="progress-panel" aria-label="Application progress">
+      <div class="progress-title"><img src="wordmark-1616.png" alt="1616" class="wordmark-image wordmark-sidebar" /></div>
+      <nav>
+        <button class="step-link active" type="button" data-step-target="1">
+          <span class="step-dot">1</span>
+          <span data-i18n="stepLanguage">Language</span>
+        </button>
+        <button class="step-link" type="button" data-step-target="2">
+          <span class="step-dot">2</span>
+          <span data-i18n="stepYourInfo">Your Information</span>
+        </button>
+        <button class="step-link" type="button" data-step-target="3">
+          <span class="step-dot">3</span>
+          <span data-i18n="stepGameDetails">Game Details</span>
+        </button>
+        <button class="step-link" type="button" data-step-target="4">
+          <span class="step-dot">4</span>
+          <span data-i18n="stepTransferGroup">Transfer Group</span>
+        </button>
+        <button class="step-link" type="button" data-step-target="5">
+          <span class="step-dot">5</span>
+          <span data-i18n="stepAdditional">Additional Information</span>
+        </button>
+        <button class="step-link" type="button" data-step-target="6">
+          <span class="step-dot">6</span>
+          <span data-i18n="stepReview">Review & Submit</span>
+        </button>
+      </nav>
+      <div class="progress-quote" style="display:none">
+        <span class="brush-rule"></span>
+        
+      </div>
+    </aside>
+
+    <section class="form-panel">
+      <div class="mobile-progress" aria-hidden="true">
+        <span id="mobile-progress-label">Step 1 of 6</span>
+        <div class="mobile-progress-track"><span id="mobile-progress-fill"></span></div>
+      </div>
+
+      <form id="application-form" novalidate>
+        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" class="hp-field" aria-hidden="true" />
+
+        <!-- STEP 1 -->
+        <section class="form-step active" data-step="1">
+          <div class="step-kicker" data-i18n="step1Kicker">STEP 1 OF 6</div>
+          <div class="step-heading-row">
+            <div>
+              <h1 data-i18n="chooseLanguage">Choose your language</h1>
+              <p class="step-intro" data-i18n="languageIntro">Choose the language you would like to use. You can change it at any time.</p>
+            </div>
+            <span class="seal" aria-hidden="true">絆</span>
+          </div>
+
+          <div class="notice-card">
+            <h2 data-i18n="welcomeTitle">1616 Server Transfer Application</h2>
+            <p data-i18n="welcomeBody1">Thank you for your interest in transferring to 1616. Please take a few minutes to complete this application so we can evaluate applicants.</p>
+            <p><strong data-i18n="waitlistLead">Important:</strong> <span data-i18n="welcomeBody2">Submitting this application places you on a waitlist and does not guarantee a spot on Server 1616.</span></p>
+            <p data-i18n="welcomeBody3">Questions about this form or transfers can be directed to RaidARQN [NvSP].</p>
+          </div>
+
+          <div class="language-grid" role="radiogroup" aria-label="Language">
+            <button type="button" class="language-card selected" data-language="en"><span>EN</span><strong>English</strong></button>
+            <button type="button" class="language-card" data-language="es"><span>ES</span><strong>Español</strong></button>
+            <button type="button" class="language-card" data-language="pt"><span>PT</span><strong>Português</strong></button>
+            <button type="button" class="language-card" data-language="fr"><span>FR</span><strong>Français</strong></button>
+            <button type="button" class="language-card" data-language="ar"><span>AR</span><strong>العربية</strong></button>
+            <button type="button" class="language-card" data-language="vi"><span>VI</span><strong>Tiếng Việt</strong></button>
+            <button type="button" class="language-card" data-language="ko"><span>KO</span><strong>한국어</strong></button>
+            <button type="button" class="language-card" data-language="de"><span>DE</span><strong>Deutsch</strong></button>
+          </div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="form-step" data-step="2">
+          <div class="step-kicker" data-i18n="step2Kicker">STEP 2 OF 6</div>
+          <h1 data-i18n="yourInformation">Your Information</h1>
+          <p class="step-intro" data-i18n="yourInfoIntro">Tell us who you are and where you are currently playing.</p>
+
+          <div class="field-grid two-col">
+            <div class="field-block">
+              <label for="current-server"><span data-i18n="currentServer">What server are you currently on?</span> <em>*</em></label>
+              <input id="current-server" name="currentServer" type="text" inputmode="numeric" autocomplete="off" data-numeric="integer" data-required="true" placeholder="1625" />
+              <p class="field-error" data-error-for="current-server"></p>
+            </div>
+            <div class="field-block">
+              <label for="username"><span data-i18n="username">What is your full in-game username?</span> <em>*</em></label>
+              <input id="username" name="username" type="text" maxlength="80" autocomplete="off" data-required="true" />
+              <p class="field-error" data-error-for="username"></p>
+            </div>
+            <div class="field-block full-span">
+              <label for="alliance"><span data-i18n="allianceTag">What is your current alliance name / tag?</span> <em>*</em></label>
+              <input id="alliance" name="alliance" type="text" maxlength="80" autocomplete="off" data-required="true" placeholder="[NvSP]" />
+              <p class="field-error" data-error-for="alliance"></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="form-step" data-step="3">
+          <div class="step-kicker" data-i18n="step3Kicker">STEP 3 OF 6</div>
+          <h1 data-i18n="gameDetails">Game Details</h1>
+          <p class="step-intro" data-i18n="gameDetailsIntro">Enter the current values shown in your game profile.</p>
+
+          <div class="field-grid two-col">
+            <div class="field-block">
+              <label for="profession-level"><span data-i18n="professionLevel">What is your profession level?</span> <em>*</em></label>
+              <input id="profession-level" name="professionLevel" type="text" inputmode="numeric" data-numeric="integer" data-required="true" placeholder="93" />
+              <p class="field-error" data-error-for="profession-level"></p>
+            </div>
+            <div class="field-block">
+              <label for="kill-count"><span data-i18n="killCount">What is your current kill count?</span> <em>*</em></label>
+              <input id="kill-count" name="killCount" type="text" inputmode="numeric" data-numeric="full" data-required="true" placeholder="26,000,000" />
+              <p class="field-help" data-i18n="fullNumberHelp">Enter the full number. Do not use M, K, or abbreviations.</p>
+              <p class="field-error" data-error-for="kill-count"></p>
+            </div>
+            <div class="field-block full-span">
+              <div class="label-row">
+                <label for="hero-power"><span data-i18n="heroPower">What is your total HERO power?</span> <em>*</em></label>
+                <button class="help-toggle" type="button" data-help-toggle="hero-help" data-i18n="howToFind">How to find this</button>
+              </div>
+              <input id="hero-power" name="heroPower" type="text" inputmode="numeric" data-numeric="full" data-required="true" placeholder="113,246,715" />
+              <p class="field-help" data-i18n="heroPowerHelp">Enter HERO Power only, not Total Power.</p>
+              <p class="field-error" data-error-for="hero-power"></p>
+              <div class="inline-help" id="hero-help" hidden>
+                <ol>
+                  <li data-i18n="heroHelp1">Open your profile.</li>
+                  <li data-i18n="heroHelp2">Tap your Total Power badge.</li>
+                  <li data-i18n="heroHelp3">Open Power Details and find Hero Power.</li>
+                  <li data-i18n="heroHelp4">Report the full Hero Power number only.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="choice-fieldset seat-fieldset">
+            <legend><span data-i18n="seatColour">What seat colour are you?</span> <em>*</em></legend>
+            <div class="choice-grid four-col" id="seat-colour-options">
+              <label class="choice-card seat gold"><input type="radio" name="seatColour" value="gold" /><span class="choice-dot"></span><strong data-i18n="gold">Gold</strong></label>
+              <label class="choice-card seat purple"><input type="radio" name="seatColour" value="purple" /><span class="choice-dot"></span><strong data-i18n="purple">Purple</strong></label>
+              <label class="choice-card seat blue"><input type="radio" name="seatColour" value="blue" /><span class="choice-dot"></span><strong data-i18n="blue">Blue</strong></label>
+              <label class="choice-card seat white"><input type="radio" name="seatColour" value="white" /><span class="choice-dot"></span><strong data-i18n="white">White</strong></label>
+            </div>
+            <p class="field-error" data-error-for="seat-colour"></p>
+            <button class="help-toggle standalone" type="button" data-help-toggle="seat-help" data-i18n="howToFindSeat">How to find your seat colour</button>
+            <div class="inline-help" id="seat-help" hidden>
+              <ol>
+                <li data-i18n="seatHelp1">Tap the map icon on the right side of your game screen.</li>
+                <li data-i18n="seatHelp2">Open Transfer Surge and check “Your Status”.</li>
+                <li data-i18n="seatHelp3">Your seat colour is shown at the bottom of that screen.</li>
+              </ol>
+            </div>
+          </fieldset>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="form-step" data-step="4">
+          <div class="step-kicker" data-i18n="step4Kicker">STEP 4 OF 6</div>
+          <h1 data-i18n="transferGroup">Transfer Group</h1>
+          <p class="step-intro" data-i18n="transferGroupIntro">Let us know if you are transferring with other players. If so, add each player so we can keep your group connected during review.</p>
+
+          <fieldset class="choice-fieldset">
+            <legend><span data-i18n="transferWithGroup">Are you hoping to transfer with a group of people from your server?</span> <em>*</em></legend>
+            <div class="choice-grid three-col">
+              <label class="choice-card"><input type="radio" name="transferWithGroup" value="yes" /><span class="choice-dot"></span><div><strong data-i18n="yes">Yes</strong><small data-i18n="yesGroupSub">I am bringing other player(s)</small></div></label>
+              <label class="choice-card"><input type="radio" name="transferWithGroup" value="no" /><span class="choice-dot"></span><div><strong data-i18n="no">No</strong><small data-i18n="noGroupSub">I am transferring on my own</small></div></label>
+              <label class="choice-card"><input type="radio" name="transferWithGroup" value="unsure" /><span class="choice-dot"></span><div><strong data-i18n="unsure">Unsure</strong><small data-i18n="unsureGroupSub">I am not sure yet</small></div></label>
+            </div>
+            <p class="field-error" data-error-for="transfer-with-group"></p>
+          </fieldset>
+
+          <div id="group-builder" class="group-builder" hidden>
+            <div class="subsection-heading">
+              <div>
+                <span class="subsection-icon">✦</span>
+                <div>
+                  <h2 data-i18n="yourTransferGroup">Your Transfer Group</h2>
+                  <p data-i18n="groupBuilderIntro">You do not need to know every player yet. Add any players you know now, or leave the player list blank and continue.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="transfer-id-callout" id="group-id-callout">
+              <div class="subsection-heading" style="margin-bottom:0">
+                <div>
+                  <span class="subsection-icon">◎</span>
+                  <div>
+                    <h2 data-i18n="transferGroupIdTitle">Transfer Group ID</h2>
+                    <p data-i18n="transferGroupIdIntro">If you are transferring as a group, share this ID with anyone applying with you. They can enter the same ID so your applications stay grouped together.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="transfer-id-box">
+                <div class="transfer-id-meta">
+                  <span class="transfer-id-label" data-i18n="activeTransferGroupId">Active Transfer Group ID</span>
+                  <strong class="transfer-id-value" id="generated-group-id">—</strong>
+                  <small class="transfer-id-note" id="group-id-mode" data-i18n="groupIdAuto">Generated for your group</small>
+                </div>
+                <button type="button" class="transfer-id-copy" id="copy-group-id" data-i18n="copyGroupId">Copy ID</button>
+              </div>
+              <div class="transfer-id-fields">
+                <div class="field-block">
+                  <label for="existing-group-id"><span data-i18n="existingGroupId">Already have a Transfer Group ID?</span> <span class="optional-label" data-i18n="optional">Optional</span></label>
+                  <input id="existing-group-id" name="existingGroupId" type="text" placeholder="1616-TG-AB12CD" autocapitalize="characters" />
+                  <p class="field-help" data-i18n="existingGroupIdHelp">If a friend already generated a Transfer Group ID, enter it here to join that same group. If you leave this blank, we will keep the generated ID shown above.</p>
+                  <p class="field-error" data-error-for="existing-group-id"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="group-contact-card" style="margin-top:16px">
+              <h2 data-i18n="estimatedGroupSize">Estimated Group Size</h2>
+              <p data-i18n="estimatedGroupSizeIntro">If you know roughly how many additional players may come with you, enter that number. An estimate is fine.</p>
+              <div class="field-block" style="margin-top:14px">
+                <label for="expected-additional-players"><span data-i18n="expectedAdditionalPlayers">Expected additional players</span> <span class="optional-label" data-i18n="optional">Optional</span></label>
+                <input id="expected-additional-players" name="expectedAdditionalPlayers" type="text" inputmode="numeric" data-numeric="integer" placeholder="3" />
+                <p class="field-help" data-i18n="expectedAdditionalHelp">Leave this blank if you do not know yet.</p>
+                <p class="field-error" data-error-for="expected-additional-players"></p>
+              </div>
+            </div>
+
+            <div id="group-members"></div>
+            <button type="button" class="add-player-button" id="add-player"><span>＋</span> <span data-i18n="addAnotherPlayer">Add a player you know</span></button>
+
+            <div class="group-contact-card">
+              <h2 data-i18n="groupContact">Group Contact</h2>
+              <p data-i18n="groupContactIntro">Who should we contact if we need to reach your group? If you do not choose someone else, we will use you as the group contact.</p>
+              <label for="group-contact" class="sr-only" data-i18n="selectGroupContact">Select a group contact</label>
+              <select id="group-contact" name="groupContact">
+                <option value="" data-i18n="selectGroupContact">Select a group contact</option>
+              </select>
+              <p class="field-error" data-error-for="group-contact"></p>
+            </div>
+
+            <div class="group-summary-card">
+              <div><span data-i18n="totalPlayersInGroup">Expected group size</span><strong id="total-group-size">—</strong><small data-i18n="includingYou">Including you</small></div>
+              <div><span data-i18n="knownPlayersListed">Known players listed</span><strong id="additional-player-count">0</strong></div>
+              <div><span data-i18n="groupContact">Group Contact</span><strong id="group-contact-summary">—</strong></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- STEP 5 -->
+        <section class="form-step" data-step="5">
+          <div class="step-kicker" data-i18n="step5Kicker">STEP 5 OF 6</div>
+          <h1 data-i18n="additionalInfo">Additional Information</h1>
+          <p class="step-intro" data-i18n="additionalInfoIntro">Add anything else that would help the 1616 team review your transfer request.</p>
+
+          <div class="field-block">
+            <label for="comments" data-i18n="additionalComments">Do you have any additional comments or questions?</label>
+            <textarea id="comments" name="comments" rows="8" maxlength="1500"></textarea>
+            <div class="char-count"><span id="comments-count">0</span> / 1500</div>
+          </div>
+
+          <div class="notice-card compact">
+            <h2 data-i18n="beforeContinue">Before you continue</h2>
+            <p data-i18n="waitlistReminder">Remember: this application adds you to the Server 1616 waitlist. It does not guarantee a transfer spot.</p>
+          </div>
+        </section>
+
+        <!-- STEP 6 -->
+        <section class="form-step" data-step="6">
+          <div class="step-kicker" data-i18n="step6Kicker">STEP 6 OF 6</div>
+          <h1 data-i18n="reviewSubmit">Review & Submit</h1>
+          <p class="step-intro" data-i18n="reviewIntro">Review your information before submitting. You can go back to any section to make changes.</p>
+
+          <div id="review-container" class="review-container"></div>
+
+          <div class="submit-note">
+            <span class="lock-icon">⌁</span>
+            <p data-i18n="submitNote">Your application will be sent to the 1616 review spreadsheet. Your language choice is stored with your submission.</p>
+          </div>
+
+          <div id="submission-status" class="submission-status" role="status" aria-live="polite" hidden></div>
+        </section>
+
+        <div class="form-actions">
+          <button type="button" class="button secondary" id="back-button" hidden>← <span data-i18n="back">Back</span></button>
+          <div class="action-spacer"></div>
+          <button type="button" class="button primary" id="next-button"><span data-i18n="continue">Continue</span> →</button>
+          <button type="submit" class="button submit" id="submit-button" hidden><span data-i18n="submitApplication">Submit Application</span> →</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <template id="group-member-template">
+    <article class="group-member-card">
+      <div class="member-heading">
+        <strong class="member-title">Player</strong>
+        <button type="button" class="remove-member" aria-label="Remove player">×</button>
+      </div>
+      <div class="field-grid three-col">
+        <div class="field-block">
+          <label><span data-i18n-dynamic="playerName">Player Name</span></label>
+          <input type="text" class="member-name" maxlength="80" />
+          <p class="field-error"></p>
+        </div>
+        <div class="field-block">
+          <label><span data-i18n-dynamic="memberServer">Current Server</span></label>
+          <input type="text" class="member-server" inputmode="numeric" />
+          <p class="field-error"></p>
+        </div>
+        <div class="field-block">
+          <label><span data-i18n-dynamic="memberAlliance">Alliance Name / Tag</span></label>
+          <input type="text" class="member-alliance" maxlength="80" />
+          <p class="field-error"></p>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script>
+'use strict';
+
+const CONFIG = {
+  // After deploying Code.gs as a Google Apps Script Web App, paste the /exec URL here.
+  appsScriptUrl: 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE',
+  maxGroupMembers: 40,
+  draftKey: 'server1616-transfer-application-draft-v1'
+};
+
+const I18N = {
+  en: {
+    serverTransferApplication: 'SERVER TRANSFER APPLICATION', strongerTogether: 'A STRONGER TOMORROW',
+    stepLanguage: 'Language', stepYourInfo: 'Your Information', stepGameDetails: 'Game Details', stepTransferGroup: 'Transfer Group', stepAdditional: 'Additional Information', stepReview: 'Review & Submit',
+    step1Kicker: 'STEP 1 OF 6', step2Kicker: 'STEP 2 OF 6', step3Kicker: 'STEP 3 OF 6', step4Kicker: 'STEP 4 OF 6', step5Kicker: 'STEP 5 OF 6', step6Kicker: 'STEP 6 OF 6',
+    chooseLanguage: 'Choose your language', languageIntro: 'Choose the language you would like to use. You can change it at any time.',
+    welcomeTitle: '1616 Server Transfer Application', welcomeBody1: 'Thank you for your interest in transferring to 1616. Please take a few minutes to complete this application so we can evaluate applicants.', waitlistLead: 'Important:', welcomeBody2: 'Submitting this application places you on a waitlist and does not guarantee a spot on Server 1616.', welcomeBody3: 'Questions about this form or transfers can be directed to RaidARQN [NvSP].',
+    yourInformation: 'Your Information', yourInfoIntro: 'Tell us who you are and where you are currently playing.', currentServer: 'What server are you currently on?', username: 'What is your full in-game username?', allianceTag: 'What is your current alliance name / tag?',
+    gameDetails: 'Game Details', gameDetailsIntro: 'Enter the current values shown in your game profile.', professionLevel: 'What is your profession level?', killCount: 'What is your current kill count?', fullNumberHelp: 'Enter the full number. Do not use M, K, or abbreviations.', heroPower: 'What is your total HERO power?', howToFind: 'How to find this', heroPowerHelp: 'Enter HERO Power only, not Total Power.', heroHelp1: 'Open your profile.', heroHelp2: 'Tap your Total Power badge.', heroHelp3: 'Open Power Details and find Hero Power.', heroHelp4: 'Report the full Hero Power number only.', seatColour: 'What seat colour are you?', gold: 'Gold', purple: 'Purple', blue: 'Blue', white: 'White', howToFindSeat: 'How to find your seat colour', seatHelp1: 'Tap the map icon on the right side of your game screen.', seatHelp2: 'Open Transfer Surge and check “Your Status”.', seatHelp3: 'Your seat colour is shown at the bottom of that screen.',
+    transferGroup: 'Transfer Group', transferGroupIntro: 'Let us know if you are transferring with other players. If so, add each player so we can keep your group connected during review.', transferWithGroup: 'Are you hoping to transfer with a group of people from your server?', yes: 'Yes', no: 'No', unsure: 'Unsure', yesGroupSub: 'I am bringing other player(s)', noGroupSub: 'I am transferring on my own', unsureGroupSub: 'I am not sure yet', yourTransferGroup: 'Your Transfer Group', groupBuilderIntro: "You do not need to know every player yet. Add any players you know now, or leave the player list blank and continue.", addAnotherPlayer: "Add a player you know", groupContact: 'Group Contact', groupContactIntro: "Who should we contact if we need to reach your group? If you do not choose someone else, we will use you as the group contact.", selectGroupContact: 'Select a group contact', totalPlayersInGroup: "Expected group size", additionalPlayers: 'Additional players', includingYou: 'Including you', playerName: 'Player Name', memberServer: 'Current Server', memberAlliance: 'Alliance Name / Tag', knownPlayersListed: "Known players listed", estimatedGroupSize: "Estimated Group Size", estimatedGroupSizeIntro: "If you know roughly how many additional players may come with you, enter that number. An estimate is fine.", expectedAdditionalPlayers: "Expected additional players", expectedAdditionalHelp: "Leave this blank if you do not know yet.", optional: "Optional", transferGroupIdTitle: "Transfer Group ID", transferGroupIdIntro: "If you are transferring as a group, share this ID with anyone applying with you. They can enter the same ID so your applications stay grouped together.", activeTransferGroupId: "Active Transfer Group ID", groupIdAuto: "Generated for your group", groupIdUsingExisting: "Using an existing shared Transfer Group ID", copyGroupId: "Copy ID", copiedGroupId: "Copied!", existingGroupId: "Already have a Transfer Group ID?", existingGroupIdHelp: "If a friend already generated a Transfer Group ID, enter it here to join that same group. If you leave this blank, we will keep the generated ID shown above.", reviewTransferGroupId: "Transfer Group ID",
+    additionalInfo: 'Additional Information', additionalInfoIntro: 'Add anything else that would help the 1616 team review your transfer request.', additionalComments: 'Do you have any additional comments or questions?', beforeContinue: 'Before you continue', waitlistReminder: 'Remember: this application adds you to the Server 1616 waitlist. It does not guarantee a transfer spot.',
+    reviewSubmit: 'Review & Submit', reviewIntro: 'Review your information before submitting. You can go back to any section to make changes.', submitNote: 'Your application will be sent to the 1616 review spreadsheet. Your language choice is stored with your submission.', edit: 'Edit',
+    back: 'Back', continue: 'Continue', submitApplication: 'Submit Application',
+    requiredError: 'This field is required.', numberError: 'Please enter numbers only.', fullNumberError: 'Enter the full number using digits only (for example 26000000).', chooseError: 'Please select an option.', groupMemberError: 'Please complete all three fields for this player.', groupContactError: 'Please choose a group contact.', backendMissing: 'The form is ready, but the Google Apps Script URL has not been added yet. Paste your Web App /exec URL into app.js.', submitting: 'Submitting your application…', submitted: 'Application submitted. Your reference is', submitFailed: 'We could not send your application. Please check your connection and try again.',
+    reviewApplicant: 'Applicant', reviewGame: 'Game Details', reviewGroup: 'Transfer Group', reviewAdditional: 'Additional Information', transferAnswer: 'Transferring with group', groupMembers: 'Linked players', comments: 'Comments', none: 'None', notProvided: 'Not provided', groupLead: 'Group contact', totalGroup: 'Total group size',
+    player: 'Player', removePlayer: 'Remove player', stepOf: 'Step {step} of 6'
+  },
+  es: {
+    serverTransferApplication: 'SOLICITUD DE TRANSFERENCIA', strongerTogether: 'UN MAÑANA MÁS FUERTE',
+    stepLanguage: 'Idioma', stepYourInfo: 'Tu información', stepGameDetails: 'Datos del juego', stepTransferGroup: 'Grupo de transferencia', stepAdditional: 'Información adicional', stepReview: 'Revisar y enviar',
+    step1Kicker: 'PASO 1 DE 6', step2Kicker: 'PASO 2 DE 6', step3Kicker: 'PASO 3 DE 6', step4Kicker: 'PASO 4 DE 6', step5Kicker: 'PASO 5 DE 6', step6Kicker: 'PASO 6 DE 6',
+    chooseLanguage: 'Elige tu idioma', languageIntro: 'Elige el idioma que quieres usar. Puedes cambiarlo en cualquier momento.',
+    welcomeTitle: 'Solicitud de transferencia al Servidor 1616', welcomeBody1: 'Gracias por tu interés en transferirte a 1616. Tómate unos minutos para completar esta solicitud para que podamos evaluar a los solicitantes.', waitlistLead: 'Importante:', welcomeBody2: 'Enviar esta solicitud te coloca en una lista de espera y no garantiza un lugar en el Servidor 1616.', welcomeBody3: 'Las preguntas sobre este formulario o las transferencias pueden dirigirse a RaidARQN [NvSP].',
+    yourInformation: 'Tu información', yourInfoIntro: 'Cuéntanos quién eres y dónde juegas actualmente.', currentServer: '¿En qué servidor estás actualmente?', username: '¿Cuál es tu nombre de usuario completo en el juego?', allianceTag: '¿Cuál es el nombre o etiqueta de tu alianza actual?',
+    gameDetails: 'Datos del juego', gameDetailsIntro: 'Introduce los valores actuales que aparecen en tu perfil del juego.', professionLevel: '¿Cuál es tu nivel de profesión?', killCount: '¿Cuál es tu número actual de bajas?', fullNumberHelp: 'Introduce el número completo. No uses M, K ni abreviaturas.', heroPower: '¿Cuál es tu poder total de HÉROES?', howToFind: 'Cómo encontrarlo', heroPowerHelp: 'Introduce solo el Poder de Héroes, no el Poder Total.', heroHelp1: 'Abre tu perfil.', heroHelp2: 'Toca la insignia de Poder Total.', heroHelp3: 'Abre Detalles de Poder y busca Poder de Héroes.', heroHelp4: 'Introduce solo el número completo de Poder de Héroes.', seatColour: '¿Cuál es el color de tu asiento?', gold: 'Dorado', purple: 'Morado', blue: 'Azul', white: 'Blanco', howToFindSeat: 'Cómo encontrar el color del asiento', seatHelp1: 'Toca el icono del mapa en el lado derecho de la pantalla.', seatHelp2: 'Abre Transfer Surge y revisa “Your Status”.', seatHelp3: 'El color de tu asiento aparece en la parte inferior.',
+    transferGroup: 'Grupo de transferencia', transferGroupIntro: 'Dinos si te transfieres con otras personas. Si es así, añade a cada jugador para mantener el grupo conectado durante la revisión.', transferWithGroup: '¿Esperas transferirte con un grupo de personas de tu servidor?', yes: 'Sí', no: 'No', unsure: 'No estoy seguro/a', yesGroupSub: 'Voy con otros jugadores', noGroupSub: 'Voy por mi cuenta', unsureGroupSub: 'Todavía no lo sé', yourTransferGroup: 'Tu grupo de transferencia', groupBuilderIntro: "No necesitas conocer todavía a todos los jugadores. Añade a los que conozcas o deja la lista vacía y continúa.", addAnotherPlayer: "Añadir un jugador conocido", groupContact: 'Contacto del grupo', groupContactIntro: "¿A quién debemos contactar si necesitamos hablar con tu grupo? Si no eliges a otra persona, te usaremos a ti como contacto.", selectGroupContact: 'Selecciona un contacto', totalPlayersInGroup: "Tamaño estimado del grupo", additionalPlayers: 'Jugadores adicionales', includingYou: 'Incluyéndote', playerName: 'Nombre del jugador', memberServer: 'Servidor actual', memberAlliance: 'Nombre / etiqueta de alianza', knownPlayersListed: "Jugadores conocidos añadidos", estimatedGroupSize: "Tamaño estimado del grupo", estimatedGroupSizeIntro: "Si sabes aproximadamente cuántos jugadores adicionales podrían venir contigo, introduce el número. Una estimación está bien.", expectedAdditionalPlayers: "Jugadores adicionales esperados", expectedAdditionalHelp: "Déjalo en blanco si todavía no lo sabes.", optional: "Opcional", transferGroupIdTitle: "ID del grupo de traslado", transferGroupIdIntro: "Si se transfieren como grupo, comparte este ID con cualquier persona que vaya a solicitar contigo. Pueden introducir el mismo ID para que sus solicitudes queden agrupadas.", activeTransferGroupId: "ID activo del grupo de traslado", groupIdAuto: "Generado para tu grupo", groupIdUsingExisting: "Usando un ID de grupo de traslado compartido", copyGroupId: "Copiar ID", copiedGroupId: "¡Copiado!", existingGroupId: "¿Ya tienes un ID de grupo de traslado?", existingGroupIdHelp: "Si un amigo ya generó un ID de grupo de traslado, introdúcelo aquí para unirte a ese mismo grupo. Si lo dejas en blanco, conservaremos el ID generado mostrado arriba.", reviewTransferGroupId: "ID del grupo de traslado",
+    additionalInfo: 'Información adicional', additionalInfoIntro: 'Añade cualquier dato que pueda ayudar al equipo de 1616 a revisar tu solicitud.', additionalComments: '¿Tienes algún comentario o pregunta adicional?', beforeContinue: 'Antes de continuar', waitlistReminder: 'Recuerda: esta solicitud te añade a la lista de espera de 1616. No garantiza un lugar de transferencia.',
+    reviewSubmit: 'Revisar y enviar', reviewIntro: 'Revisa tu información antes de enviarla. Puedes volver a cualquier sección para hacer cambios.', submitNote: 'Tu solicitud se enviará a la hoja de revisión de 1616. Guardaremos también el idioma elegido.', edit: 'Editar', back: 'Atrás', continue: 'Continuar', submitApplication: 'Enviar solicitud',
+    requiredError: 'Este campo es obligatorio.', numberError: 'Introduce solo números.', fullNumberError: 'Introduce el número completo usando solo dígitos (por ejemplo, 26000000).', chooseError: 'Selecciona una opción.', groupMemberError: 'Completa los tres campos de este jugador.', groupContactError: 'Selecciona un contacto del grupo.', backendMissing: 'El formulario está listo, pero falta la URL de Google Apps Script. Pega la URL /exec de tu aplicación web en app.js.', submitting: 'Enviando tu solicitud…', submitted: 'Solicitud enviada. Tu referencia es', submitFailed: 'No pudimos enviar la solicitud. Revisa tu conexión e inténtalo de nuevo.',
+    reviewApplicant: 'Solicitante', reviewGame: 'Datos del juego', reviewGroup: 'Grupo de transferencia', reviewAdditional: 'Información adicional', transferAnswer: 'Se transfiere con grupo', groupMembers: 'Jugadores vinculados', comments: 'Comentarios', none: 'Ninguno', notProvided: 'No proporcionado', groupLead: 'Contacto del grupo', totalGroup: 'Tamaño total del grupo', player: 'Jugador', removePlayer: 'Eliminar jugador', stepOf: 'Paso {step} de 6'
+  },
+  pt: {
+    serverTransferApplication: 'INSCRIÇÃO DE TRANSFERÊNCIA', strongerTogether: 'UM AMANHÃ MAIS FORTE',
+    stepLanguage: 'Idioma', stepYourInfo: 'Suas informações', stepGameDetails: 'Dados do jogo', stepTransferGroup: 'Grupo de transferência', stepAdditional: 'Informações adicionais', stepReview: 'Revisar e enviar',
+    step1Kicker: 'ETAPA 1 DE 6', step2Kicker: 'ETAPA 2 DE 6', step3Kicker: 'ETAPA 3 DE 6', step4Kicker: 'ETAPA 4 DE 6', step5Kicker: 'ETAPA 5 DE 6', step6Kicker: 'ETAPA 6 DE 6',
+    chooseLanguage: 'Escolha seu idioma', languageIntro: 'Escolha o idioma que deseja usar. Você pode alterá-lo a qualquer momento.',
+    welcomeTitle: 'Inscrição de transferência para o Servidor 1616', welcomeBody1: 'Obrigado pelo interesse em se transferir para 1616. Reserve alguns minutos para preencher esta inscrição para que possamos avaliar os candidatos.', waitlistLead: 'Importante:', welcomeBody2: 'Enviar esta inscrição coloca você em uma lista de espera e não garante uma vaga no Servidor 1616.', welcomeBody3: 'Dúvidas sobre este formulário ou transferências podem ser direcionadas para RaidARQN [NvSP].',
+    yourInformation: 'Suas informações', yourInfoIntro: 'Conte quem você é e onde joga atualmente.', currentServer: 'Em qual servidor você está atualmente?', username: 'Qual é o seu nome de usuário completo no jogo?', allianceTag: 'Qual é o nome ou a tag da sua aliança atual?',
+    gameDetails: 'Dados do jogo', gameDetailsIntro: 'Insira os valores atuais mostrados no seu perfil do jogo.', professionLevel: 'Qual é o seu nível de profissão?', killCount: 'Qual é o seu número atual de eliminações?', fullNumberHelp: 'Digite o número completo. Não use M, K ou abreviações.', heroPower: 'Qual é o seu poder total de HERÓIS?', howToFind: 'Como encontrar', heroPowerHelp: 'Digite apenas o Poder de Heróis, não o Poder Total.', heroHelp1: 'Abra seu perfil.', heroHelp2: 'Toque no selo de Poder Total.', heroHelp3: 'Abra Detalhes de Poder e encontre Poder de Heróis.', heroHelp4: 'Informe somente o número completo do Poder de Heróis.', seatColour: 'Qual é a cor do seu assento?', gold: 'Dourado', purple: 'Roxo', blue: 'Azul', white: 'Branco', howToFindSeat: 'Como encontrar a cor do assento', seatHelp1: 'Toque no ícone do mapa no lado direito da tela do jogo.', seatHelp2: 'Abra Transfer Surge e verifique “Your Status”.', seatHelp3: 'A cor do seu assento aparece na parte inferior.',
+    transferGroup: 'Grupo de transferência', transferGroupIntro: 'Informe se você está se transferindo com outros jogadores. Se sim, adicione cada pessoa para mantermos o grupo conectado durante a análise.', transferWithGroup: 'Você espera se transferir com um grupo de pessoas do seu servidor?', yes: 'Sim', no: 'Não', unsure: 'Não tenho certeza', yesGroupSub: 'Estou levando outros jogadores', noGroupSub: 'Estou indo sozinho(a)', unsureGroupSub: 'Ainda não tenho certeza', yourTransferGroup: 'Seu grupo de transferência', groupBuilderIntro: "Você não precisa saber ainda todos os jogadores. Adicione os que você conhece ou deixe a lista vazia e continue.", addAnotherPlayer: "Adicionar jogador conhecido", groupContact: 'Contato do grupo', groupContactIntro: "Quem devemos contatar se precisarmos falar com seu grupo? Se você não escolher outra pessoa, usaremos você como contato.", selectGroupContact: 'Selecione um contato', totalPlayersInGroup: "Tamanho estimado do grupo", additionalPlayers: 'Jogadores adicionais', includingYou: 'Incluindo você', playerName: 'Nome do jogador', memberServer: 'Servidor atual', memberAlliance: 'Nome / tag da aliança', knownPlayersListed: "Jogadores conhecidos adicionados", estimatedGroupSize: "Tamanho estimado do grupo", estimatedGroupSizeIntro: "Se você souber aproximadamente quantos jogadores adicionais podem vir com você, informe o número. Uma estimativa está bem.", expectedAdditionalPlayers: "Jogadores adicionais esperados", expectedAdditionalHelp: "Deixe em branco se ainda não souber.", optional: "Opcional", transferGroupIdTitle: "ID do grupo de transferência", transferGroupIdIntro: "Se vocês estão se transferindo em grupo, compartilhe este ID com qualquer pessoa que vai se inscrever com você. Eles podem inserir o mesmo ID para que as inscrições fiquem agrupadas.", activeTransferGroupId: "ID ativo do grupo de transferência", groupIdAuto: "Gerado para o seu grupo", groupIdUsingExisting: "Usando um ID de grupo de transferência compartilhado", copyGroupId: "Copiar ID", copiedGroupId: "Copiado!", existingGroupId: "Já tem um ID de grupo de transferência?", existingGroupIdHelp: "Se um amigo já gerou um ID de grupo de transferência, insira-o aqui para entrar no mesmo grupo. Se deixar em branco, manteremos o ID gerado mostrado acima.", reviewTransferGroupId: "ID do grupo de transferência",
+    additionalInfo: 'Informações adicionais', additionalInfoIntro: 'Adicione qualquer informação que possa ajudar a equipe 1616 a avaliar sua solicitação.', additionalComments: 'Você tem algum comentário ou pergunta adicional?', beforeContinue: 'Antes de continuar', waitlistReminder: 'Lembre-se: esta inscrição coloca você na lista de espera do Servidor 1616. Ela não garante uma vaga.',
+    reviewSubmit: 'Revisar e enviar', reviewIntro: 'Revise suas informações antes de enviar. Você pode voltar a qualquer seção para fazer alterações.', submitNote: 'Sua inscrição será enviada para a planilha de análise de 1616. O idioma escolhido também será salvo.', edit: 'Editar', back: 'Voltar', continue: 'Continuar', submitApplication: 'Enviar inscrição',
+    requiredError: 'Este campo é obrigatório.', numberError: 'Digite apenas números.', fullNumberError: 'Digite o número completo usando apenas dígitos (por exemplo, 26000000).', chooseError: 'Selecione uma opção.', groupMemberError: 'Preencha os três campos deste jogador.', groupContactError: 'Selecione um contato do grupo.', backendMissing: 'O formulário está pronto, mas a URL do Google Apps Script ainda não foi adicionada. Cole a URL /exec em app.js.', submitting: 'Enviando sua inscrição…', submitted: 'Inscrição enviada. Sua referência é', submitFailed: 'Não foi possível enviar a inscrição. Verifique sua conexão e tente novamente.',
+    reviewApplicant: 'Candidato', reviewGame: 'Dados do jogo', reviewGroup: 'Grupo de transferência', reviewAdditional: 'Informações adicionais', transferAnswer: 'Transferindo com grupo', groupMembers: 'Jogadores vinculados', comments: 'Comentários', none: 'Nenhum', notProvided: 'Não informado', groupLead: 'Contato do grupo', totalGroup: 'Tamanho total do grupo', player: 'Jogador', removePlayer: 'Remover jogador', stepOf: 'Etapa {step} de 6'
+  },
+  fr: {
+    serverTransferApplication: 'DEMANDE DE TRANSFERT', strongerTogether: 'UN AVENIR PLUS FORT',
+    stepLanguage: 'Langue', stepYourInfo: 'Vos informations', stepGameDetails: 'Données du jeu', stepTransferGroup: 'Groupe de transfert', stepAdditional: 'Informations supplémentaires', stepReview: 'Vérifier et envoyer',
+    step1Kicker: 'ÉTAPE 1 SUR 6', step2Kicker: 'ÉTAPE 2 SUR 6', step3Kicker: 'ÉTAPE 3 SUR 6', step4Kicker: 'ÉTAPE 4 SUR 6', step5Kicker: 'ÉTAPE 5 SUR 6', step6Kicker: 'ÉTAPE 6 SUR 6',
+    chooseLanguage: 'Choisissez votre langue', languageIntro: 'Choisissez la langue que vous souhaitez utiliser. Vous pourrez la modifier à tout moment.',
+    welcomeTitle: 'Demande de transfert vers le serveur 1616', welcomeBody1: 'Merci de votre intérêt pour un transfert vers 1616. Prenez quelques minutes pour remplir cette demande afin que nous puissions évaluer les candidatures.', waitlistLead: 'Important :', welcomeBody2: 'L’envoi de cette demande vous place sur une liste d’attente et ne garantit pas une place sur le serveur 1616.', welcomeBody3: 'Les questions concernant ce formulaire ou les transferts peuvent être adressées à RaidARQN [NvSP].',
+    yourInformation: 'Vos informations', yourInfoIntro: 'Indiquez-nous qui vous êtes et où vous jouez actuellement.', currentServer: 'Sur quel serveur êtes-vous actuellement ?', username: 'Quel est votre nom d’utilisateur complet dans le jeu ?', allianceTag: 'Quel est le nom ou le tag de votre alliance actuelle ?',
+    gameDetails: 'Données du jeu', gameDetailsIntro: 'Saisissez les valeurs actuelles affichées dans votre profil de jeu.', professionLevel: 'Quel est votre niveau de profession ?', killCount: 'Quel est votre nombre actuel d’éliminations ?', fullNumberHelp: 'Saisissez le nombre complet. N’utilisez pas M, K ni d’abréviations.', heroPower: 'Quelle est votre puissance totale de HÉROS ?', howToFind: 'Comment la trouver', heroPowerHelp: 'Saisissez uniquement la puissance des HÉROS, pas la puissance totale.', heroHelp1: 'Ouvrez votre profil.', heroHelp2: 'Touchez votre badge de puissance totale.', heroHelp3: 'Ouvrez les détails de puissance et trouvez la puissance des héros.', heroHelp4: 'Indiquez uniquement le nombre complet de puissance des héros.', seatColour: 'Quelle est la couleur de votre siège ?', gold: 'Or', purple: 'Violet', blue: 'Bleu', white: 'Blanc', howToFindSeat: 'Comment trouver la couleur du siège', seatHelp1: 'Touchez l’icône de carte à droite de l’écran.', seatHelp2: 'Ouvrez Transfer Surge et consultez “Your Status”.', seatHelp3: 'La couleur de votre siège apparaît en bas de cet écran.',
+    transferGroup: 'Groupe de transfert', transferGroupIntro: 'Indiquez si vous vous transférez avec d’autres joueurs. Si oui, ajoutez chaque joueur afin que nous puissions garder le groupe lié pendant l’examen.', transferWithGroup: 'Souhaitez-vous vous transférer avec un groupe de joueurs de votre serveur ?', yes: 'Oui', no: 'Non', unsure: 'Incertain', yesGroupSub: 'Je viens avec d’autres joueurs', noGroupSub: 'Je viens seul(e)', unsureGroupSub: 'Je ne sais pas encore', yourTransferGroup: 'Votre groupe de transfert', groupBuilderIntro: "Vous n’avez pas besoin de connaître tous les joueurs pour le moment. Ajoutez ceux que vous connaissez ou laissez la liste vide et continuez.", addAnotherPlayer: "Ajouter un joueur connu", groupContact: 'Contact du groupe', groupContactIntro: "Qui devons-nous contacter si nous devons joindre votre groupe ? Si vous ne choisissez personne d’autre, nous vous utiliserons comme contact.", selectGroupContact: 'Sélectionnez un contact', totalPlayersInGroup: "Taille estimée du groupe", additionalPlayers: 'Joueurs supplémentaires', includingYou: 'Vous compris(e)', playerName: 'Nom du joueur', memberServer: 'Serveur actuel', memberAlliance: 'Nom / tag de l’alliance', knownPlayersListed: "Joueurs connus ajoutés", estimatedGroupSize: "Taille estimée du groupe", estimatedGroupSizeIntro: "Si vous savez approximativement combien de joueurs supplémentaires pourraient venir avec vous, indiquez ce nombre. Une estimation suffit.", expectedAdditionalPlayers: "Joueurs supplémentaires prévus", expectedAdditionalHelp: "Laissez vide si vous ne le savez pas encore.", optional: "Facultatif", transferGroupIdTitle: "ID du groupe de transfert", transferGroupIdIntro: "Si vous transférez en groupe, partagez cet identifiant avec toute personne qui postule avec vous. Elle pourra saisir le même identifiant afin que vos candidatures restent regroupées.", activeTransferGroupId: "ID actif du groupe de transfert", groupIdAuto: "Généré pour votre groupe", groupIdUsingExisting: "Utilisation d’un ID de groupe de transfert partagé", copyGroupId: "Copier l’ID", copiedGroupId: "Copié !", existingGroupId: "Vous avez déjà un ID de groupe de transfert ?", existingGroupIdHelp: "Si un ami a déjà généré un ID de groupe de transfert, saisissez-le ici pour rejoindre le même groupe. Si vous laissez ce champ vide, nous conserverons l’ID généré affiché ci-dessus.", reviewTransferGroupId: "ID du groupe de transfert",
+    additionalInfo: 'Informations supplémentaires', additionalInfoIntro: 'Ajoutez tout renseignement pouvant aider l’équipe 1616 à examiner votre demande.', additionalComments: 'Avez-vous des commentaires ou des questions supplémentaires ?', beforeContinue: 'Avant de continuer', waitlistReminder: 'Rappel : cette demande vous ajoute à la liste d’attente du serveur 1616. Elle ne garantit pas une place.',
+    reviewSubmit: 'Vérifier et envoyer', reviewIntro: 'Vérifiez vos informations avant l’envoi. Vous pouvez revenir à n’importe quelle section pour les modifier.', submitNote: 'Votre demande sera envoyée dans la feuille de suivi 1616. La langue choisie sera également enregistrée.', edit: 'Modifier', back: 'Retour', continue: 'Continuer', submitApplication: 'Envoyer la demande',
+    requiredError: 'Ce champ est obligatoire.', numberError: 'Saisissez uniquement des chiffres.', fullNumberError: 'Saisissez le nombre complet uniquement avec des chiffres (ex. 26000000).', chooseError: 'Sélectionnez une option.', groupMemberError: 'Complétez les trois champs de ce joueur.', groupContactError: 'Sélectionnez un contact du groupe.', backendMissing: 'Le formulaire est prêt, mais l’URL Google Apps Script n’a pas encore été ajoutée. Collez l’URL /exec dans app.js.', submitting: 'Envoi de votre demande…', submitted: 'Demande envoyée. Votre référence est', submitFailed: 'Impossible d’envoyer la demande. Vérifiez votre connexion et réessayez.',
+    reviewApplicant: 'Candidat', reviewGame: 'Données du jeu', reviewGroup: 'Groupe de transfert', reviewAdditional: 'Informations supplémentaires', transferAnswer: 'Transfert avec un groupe', groupMembers: 'Joueurs liés', comments: 'Commentaires', none: 'Aucun', notProvided: 'Non renseigné', groupLead: 'Contact du groupe', totalGroup: 'Taille totale du groupe', player: 'Joueur', removePlayer: 'Supprimer le joueur', stepOf: 'Étape {step} sur 6'
+  },
+  ar: {
+    serverTransferApplication: 'طلب الانتقال إلى السيرفر', strongerTogether: 'غدٌ أقوى معًا',
+    stepLanguage: 'اللغة', stepYourInfo: 'معلوماتك', stepGameDetails: 'تفاصيل اللعبة', stepTransferGroup: 'مجموعة الانتقال', stepAdditional: 'معلومات إضافية', stepReview: 'المراجعة والإرسال',
+    step1Kicker: 'الخطوة 1 من 6', step2Kicker: 'الخطوة 2 من 6', step3Kicker: 'الخطوة 3 من 6', step4Kicker: 'الخطوة 4 من 6', step5Kicker: 'الخطوة 5 من 6', step6Kicker: 'الخطوة 6 من 6',
+    chooseLanguage: 'اختر لغتك', languageIntro: 'اختر اللغة التي تريد استخدامها. يمكنك تغييرها في أي وقت.',
+    welcomeTitle: 'طلب الانتقال إلى السيرفر 1616', welcomeBody1: 'شكرًا لاهتمامك بالانتقال إلى 1616. يرجى تخصيص بضع دقائق لإكمال هذا الطلب حتى نتمكن من تقييم المتقدمين.', waitlistLead: 'مهم:', welcomeBody2: 'إرسال هذا الطلب يضعك على قائمة انتظار ولا يضمن لك مكانًا في السيرفر 1616.', welcomeBody3: 'يمكن توجيه الأسئلة حول هذا النموذج أو عمليات الانتقال إلى RaidARQN [NvSP].',
+    yourInformation: 'معلوماتك', yourInfoIntro: 'أخبرنا من أنت وأين تلعب حاليًا.', currentServer: 'ما هو السيرفر الذي تتواجد عليه حاليًا؟', username: 'ما هو اسم المستخدم الكامل داخل اللعبة؟', allianceTag: 'ما اسم أو وسم التحالف الحالي؟',
+    gameDetails: 'تفاصيل اللعبة', gameDetailsIntro: 'أدخل القيم الحالية الظاهرة في ملفك داخل اللعبة.', professionLevel: 'ما هو مستوى مهنتك؟', killCount: 'ما هو عدد القتلى الحالي لديك؟', fullNumberHelp: 'أدخل الرقم كاملًا. لا تستخدم M أو K أو الاختصارات.', heroPower: 'ما هو إجمالي قوة الأبطال لديك؟', howToFind: 'كيفية العثور عليه', heroPowerHelp: 'أدخل قوة الأبطال فقط، وليس القوة الإجمالية.', heroHelp1: 'افتح ملفك الشخصي.', heroHelp2: 'اضغط على شارة القوة الإجمالية.', heroHelp3: 'افتح تفاصيل القوة وابحث عن قوة الأبطال.', heroHelp4: 'أدخل رقم قوة الأبطال كاملًا فقط.', seatColour: 'ما لون مقعدك؟', gold: 'ذهبي', purple: 'بنفسجي', blue: 'أزرق', white: 'أبيض', howToFindSeat: 'كيفية معرفة لون المقعد', seatHelp1: 'اضغط على أيقونة الخريطة في الجانب الأيمن من شاشة اللعبة.', seatHelp2: 'افتح Transfer Surge وتحقق من “Your Status”.', seatHelp3: 'يظهر لون مقعدك في أسفل الشاشة.',
+    transferGroup: 'مجموعة الانتقال', transferGroupIntro: 'أخبرنا إذا كنت ستنتقل مع لاعبين آخرين. إذا نعم، أضف كل لاعب حتى نبقي مجموعتك مرتبطة أثناء المراجعة.', transferWithGroup: 'هل تأمل في الانتقال مع مجموعة من الأشخاص من سيرفرك؟', yes: 'نعم', no: 'لا', unsure: 'غير متأكد', yesGroupSub: 'سأنتقل مع لاعبين آخرين', noGroupSub: 'سأنتقل بمفردي', unsureGroupSub: 'لست متأكدًا بعد', yourTransferGroup: 'مجموعة انتقالك', groupBuilderIntro: "لا تحتاج إلى معرفة جميع اللاعبين الآن. أضف أي لاعبين تعرفهم، أو اترك القائمة فارغة وتابع.", addAnotherPlayer: "إضافة لاعب تعرفه", groupContact: 'جهة اتصال المجموعة', groupContactIntro: "بمن نتواصل إذا احتجنا إلى الوصول إلى مجموعتك؟ إذا لم تختر شخصًا آخر، فسنعتبرك جهة اتصال المجموعة.", selectGroupContact: 'اختر جهة اتصال', totalPlayersInGroup: "الحجم المتوقع للمجموعة", additionalPlayers: 'اللاعبون الإضافيون', includingYou: 'بما فيهم أنت', playerName: 'اسم اللاعب', memberServer: 'السيرفر الحالي', memberAlliance: 'اسم / وسم التحالف', knownPlayersListed: "اللاعبون المعروفون المدرجون", estimatedGroupSize: "الحجم المتوقع للمجموعة", estimatedGroupSizeIntro: "إذا كنت تعرف تقريبًا عدد اللاعبين الإضافيين الذين قد ينتقلون معك، فأدخل العدد. التقدير مقبول.", expectedAdditionalPlayers: "عدد اللاعبين الإضافيين المتوقع", expectedAdditionalHelp: "اتركه فارغًا إذا كنت لا تعرف بعد.", optional: "اختياري", transferGroupIdTitle: "معرّف مجموعة الانتقال", transferGroupIdIntro: "إذا كنتم تنتقلون كمجموعة، شارك هذا المعرّف مع أي شخص سيتقدّم معك. يمكنهم إدخال نفس المعرّف حتى تبقى الطلبات مجمّعة معًا.", activeTransferGroupId: "معرّف مجموعة الانتقال النشط", groupIdAuto: "تم إنشاؤه لمجموعتك", groupIdUsingExisting: "يتم استخدام معرّف مجموعة انتقال مشترك", copyGroupId: "نسخ المعرّف", copiedGroupId: "تم النسخ!", existingGroupId: "هل لديك بالفعل معرّف مجموعة انتقال؟", existingGroupIdHelp: "إذا كان أحد أصدقائك قد أنشأ معرّف مجموعة انتقال بالفعل، فأدخله هنا للانضمام إلى نفس المجموعة. إذا تركت هذا الحقل فارغًا، فسنحتفظ بالمعرّف الذي تم إنشاؤه والمُوضح أعلاه.", reviewTransferGroupId: "معرّف مجموعة الانتقال",
+    additionalInfo: 'معلومات إضافية', additionalInfoIntro: 'أضف أي معلومات أخرى قد تساعد فريق 1616 في مراجعة طلبك.', additionalComments: 'هل لديك أي تعليقات أو أسئلة إضافية؟', beforeContinue: 'قبل المتابعة', waitlistReminder: 'تذكير: هذا الطلب يضيفك إلى قائمة انتظار السيرفر 1616 ولا يضمن مكانًا للانتقال.',
+    reviewSubmit: 'المراجعة والإرسال', reviewIntro: 'راجع معلوماتك قبل الإرسال. يمكنك العودة إلى أي قسم لإجراء تغييرات.', submitNote: 'سيتم إرسال طلبك إلى جدول مراجعة 1616، وسيتم حفظ اللغة التي اخترتها مع الطلب.', edit: 'تعديل', back: 'رجوع', continue: 'متابعة', submitApplication: 'إرسال الطلب',
+    requiredError: 'هذا الحقل مطلوب.', numberError: 'يرجى إدخال أرقام فقط.', fullNumberError: 'أدخل الرقم كاملًا باستخدام الأرقام فقط (مثال: 26000000).', chooseError: 'يرجى اختيار خيار.', groupMemberError: 'يرجى إكمال الحقول الثلاثة لهذا اللاعب.', groupContactError: 'يرجى اختيار جهة اتصال للمجموعة.', backendMissing: 'النموذج جاهز، لكن لم تتم إضافة رابط Google Apps Script بعد. ألصق رابط /exec في app.js.', submitting: 'جارٍ إرسال طلبك…', submitted: 'تم إرسال الطلب. رقمك المرجعي هو', submitFailed: 'تعذر إرسال الطلب. تحقق من اتصالك وحاول مرة أخرى.',
+    reviewApplicant: 'المتقدم', reviewGame: 'تفاصيل اللعبة', reviewGroup: 'مجموعة الانتقال', reviewAdditional: 'معلومات إضافية', transferAnswer: 'الانتقال مع مجموعة', groupMembers: 'اللاعبون المرتبطون', comments: 'التعليقات', none: 'لا يوجد', notProvided: 'غير متوفر', groupLead: 'جهة اتصال المجموعة', totalGroup: 'إجمالي حجم المجموعة', player: 'لاعب', removePlayer: 'إزالة اللاعب', stepOf: 'الخطوة {step} من 6'
+  },
+  vi: {
+    serverTransferApplication: 'ĐƠN CHUYỂN SERVER', strongerTogether: 'MỘT NGÀY MAI MẠNH MẼ HƠN',
+    stepLanguage: 'Ngôn ngữ', stepYourInfo: 'Thông tin của bạn', stepGameDetails: 'Thông tin game', stepTransferGroup: 'Nhóm chuyển server', stepAdditional: 'Thông tin bổ sung', stepReview: 'Kiểm tra & gửi',
+    step1Kicker: 'BƯỚC 1/6', step2Kicker: 'BƯỚC 2/6', step3Kicker: 'BƯỚC 3/6', step4Kicker: 'BƯỚC 4/6', step5Kicker: 'BƯỚC 5/6', step6Kicker: 'BƯỚC 6/6',
+    chooseLanguage: 'Chọn ngôn ngữ', languageIntro: 'Chọn ngôn ngữ bạn muốn sử dụng. Bạn có thể thay đổi bất cứ lúc nào.',
+    welcomeTitle: 'Đơn chuyển đến Server 1616', welcomeBody1: 'Cảm ơn bạn đã quan tâm đến việc chuyển sang 1616. Vui lòng dành vài phút để hoàn thành đơn này để chúng tôi có thể đánh giá ứng viên.', waitlistLead: 'Quan trọng:', welcomeBody2: 'Gửi đơn này sẽ đưa bạn vào danh sách chờ và không đảm bảo bạn sẽ có một suất ở Server 1616.', welcomeBody3: 'Các câu hỏi về biểu mẫu hoặc việc chuyển server có thể được gửi đến RaidARQN [NvSP].',
+    yourInformation: 'Thông tin của bạn', yourInfoIntro: 'Hãy cho chúng tôi biết bạn là ai và hiện đang chơi ở đâu.', currentServer: 'Bạn hiện đang ở server nào?', username: 'Tên người dùng đầy đủ trong game của bạn là gì?', allianceTag: 'Tên hoặc tag liên minh hiện tại của bạn là gì?',
+    gameDetails: 'Thông tin game', gameDetailsIntro: 'Nhập các giá trị hiện tại hiển thị trong hồ sơ game của bạn.', professionLevel: 'Cấp độ nghề nghiệp của bạn là bao nhiêu?', killCount: 'Số lượng tiêu diệt hiện tại của bạn là bao nhiêu?', fullNumberHelp: 'Nhập đầy đủ con số. Không dùng M, K hoặc viết tắt.', heroPower: 'Tổng sức mạnh ANH HÙNG của bạn là bao nhiêu?', howToFind: 'Cách tìm', heroPowerHelp: 'Chỉ nhập Hero Power, không phải Total Power.', heroHelp1: 'Mở hồ sơ của bạn.', heroHelp2: 'Nhấn vào huy hiệu Total Power.', heroHelp3: 'Mở Power Details và tìm Hero Power.', heroHelp4: 'Chỉ báo cáo đầy đủ số Hero Power.', seatColour: 'Màu ghế của bạn là gì?', gold: 'Vàng', purple: 'Tím', blue: 'Xanh dương', white: 'Trắng', howToFindSeat: 'Cách tìm màu ghế', seatHelp1: 'Nhấn biểu tượng bản đồ ở bên phải màn hình game.', seatHelp2: 'Mở Transfer Surge và xem “Your Status”.', seatHelp3: 'Màu ghế của bạn hiển thị ở phía dưới màn hình đó.',
+    transferGroup: 'Nhóm chuyển server', transferGroupIntro: 'Cho chúng tôi biết bạn có chuyển cùng người chơi khác không. Nếu có, hãy thêm từng người để chúng tôi có thể giữ nhóm của bạn được liên kết khi xét duyệt.', transferWithGroup: 'Bạn có muốn chuyển cùng một nhóm người từ server của bạn không?', yes: 'Có', no: 'Không', unsure: 'Không chắc', yesGroupSub: 'Tôi đi cùng người chơi khác', noGroupSub: 'Tôi chuyển một mình', unsureGroupSub: 'Tôi chưa chắc', yourTransferGroup: 'Nhóm chuyển của bạn', groupBuilderIntro: "Bạn chưa cần biết tất cả người chơi. Hãy thêm những người bạn biết, hoặc để trống danh sách và tiếp tục.", addAnotherPlayer: "Thêm người chơi đã biết", groupContact: 'Người liên hệ của nhóm', groupContactIntro: "Chúng tôi nên liên hệ ai nếu cần trao đổi với nhóm của bạn? Nếu bạn không chọn người khác, chúng tôi sẽ dùng bạn làm người liên hệ.", selectGroupContact: 'Chọn người liên hệ', totalPlayersInGroup: "Quy mô nhóm dự kiến", additionalPlayers: 'Người chơi bổ sung', includingYou: 'Bao gồm bạn', playerName: 'Tên người chơi', memberServer: 'Server hiện tại', memberAlliance: 'Tên / tag liên minh', knownPlayersListed: "Người chơi đã biết được thêm", estimatedGroupSize: "Quy mô nhóm dự kiến", estimatedGroupSizeIntro: "Nếu bạn biết khoảng bao nhiêu người chơi bổ sung có thể đi cùng, hãy nhập con số. Ước tính là được.", expectedAdditionalPlayers: "Số người chơi bổ sung dự kiến", expectedAdditionalHelp: "Để trống nếu bạn chưa biết.", optional: "Không bắt buộc", transferGroupIdTitle: "Mã nhóm chuyển server", transferGroupIdIntro: "Nếu bạn chuyển cùng một nhóm, hãy chia sẻ mã này với bất kỳ ai nộp đơn cùng bạn. Họ có thể nhập cùng một mã để các đơn được nhóm lại với nhau.", activeTransferGroupId: "Mã nhóm chuyển server đang dùng", groupIdAuto: "Được tạo cho nhóm của bạn", groupIdUsingExisting: "Đang dùng mã nhóm chuyển server đã được chia sẻ", copyGroupId: "Sao chép mã", copiedGroupId: "Đã sao chép!", existingGroupId: "Bạn đã có mã nhóm chuyển server chưa?", existingGroupIdHelp: "Nếu một người bạn đã tạo sẵn mã nhóm chuyển server, hãy nhập mã đó vào đây để tham gia cùng nhóm. Nếu để trống, chúng tôi sẽ giữ mã đã tạo hiển thị ở trên.", reviewTransferGroupId: "Mã nhóm chuyển server",
+    additionalInfo: 'Thông tin bổ sung', additionalInfoIntro: 'Thêm bất kỳ thông tin nào có thể giúp đội 1616 xem xét yêu cầu chuyển của bạn.', additionalComments: 'Bạn có thêm nhận xét hoặc câu hỏi nào không?', beforeContinue: 'Trước khi tiếp tục', waitlistReminder: 'Hãy nhớ: đơn này đưa bạn vào danh sách chờ của Server 1616 và không đảm bảo một suất chuyển.',
+    reviewSubmit: 'Kiểm tra & gửi', reviewIntro: 'Kiểm tra thông tin trước khi gửi. Bạn có thể quay lại bất kỳ phần nào để chỉnh sửa.', submitNote: 'Đơn của bạn sẽ được gửi vào bảng tính xét duyệt 1616. Ngôn ngữ bạn chọn cũng sẽ được lưu.', edit: 'Sửa', back: 'Quay lại', continue: 'Tiếp tục', submitApplication: 'Gửi đơn',
+    requiredError: 'Trường này là bắt buộc.', numberError: 'Vui lòng chỉ nhập số.', fullNumberError: 'Nhập đầy đủ con số chỉ bằng chữ số (ví dụ 26000000).', chooseError: 'Vui lòng chọn một tùy chọn.', groupMemberError: 'Vui lòng điền đủ ba trường cho người chơi này.', groupContactError: 'Vui lòng chọn người liên hệ của nhóm.', backendMissing: 'Biểu mẫu đã sẵn sàng nhưng chưa có URL Google Apps Script. Hãy dán URL /exec vào app.js.', submitting: 'Đang gửi đơn…', submitted: 'Đã gửi đơn. Mã tham chiếu của bạn là', submitFailed: 'Không thể gửi đơn. Vui lòng kiểm tra kết nối và thử lại.',
+    reviewApplicant: 'Người nộp đơn', reviewGame: 'Thông tin game', reviewGroup: 'Nhóm chuyển server', reviewAdditional: 'Thông tin bổ sung', transferAnswer: 'Chuyển cùng nhóm', groupMembers: 'Người chơi liên kết', comments: 'Nhận xét', none: 'Không có', notProvided: 'Không cung cấp', groupLead: 'Người liên hệ nhóm', totalGroup: 'Tổng số người trong nhóm', player: 'Người chơi', removePlayer: 'Xóa người chơi', stepOf: 'Bước {step}/6'
+  },
+  ko: {
+    serverTransferApplication: '서버 이전 신청서', strongerTogether: '더 강한 내일',
+    stepLanguage: '언어', stepYourInfo: '내 정보', stepGameDetails: '게임 정보', stepTransferGroup: '이전 그룹', stepAdditional: '추가 정보', stepReview: '검토 및 제출',
+    step1Kicker: '1 / 6단계', step2Kicker: '2 / 6단계', step3Kicker: '3 / 6단계', step4Kicker: '4 / 6단계', step5Kicker: '5 / 6단계', step6Kicker: '6 / 6단계',
+    chooseLanguage: '언어 선택', languageIntro: '사용할 언어를 선택하세요. 언제든지 변경할 수 있습니다.',
+    welcomeTitle: '1616 서버 이전 신청서', welcomeBody1: '1616으로 이동에 관심을 가져주셔서 감사합니다. 지원자를 평가할 수 있도록 몇 분 동안 이 신청서를 작성해 주세요.', waitlistLead: '중요:', welcomeBody2: '이 신청서를 제출하면 대기자 명단에 올라가며 1616의 자리가 보장되는 것은 아닙니다.', welcomeBody3: '이 양식이나 이동에 대한 질문은 RaidARQN [NvSP]에게 문의해 주세요.',
+    yourInformation: '내 정보', yourInfoIntro: '현재 누구이며 어디에서 플레이하고 있는지 알려주세요.', currentServer: '현재 어느 서버에 계신가요?', username: '게임 내 전체 사용자 이름은 무엇인가요?', allianceTag: '현재 연합 이름 / 태그는 무엇인가요?',
+    gameDetails: '게임 정보', gameDetailsIntro: '게임 프로필에 표시된 현재 수치를 입력하세요.', professionLevel: '직업 레벨은 얼마인가요?', killCount: '현재 처치 수는 얼마인가요?', fullNumberHelp: '전체 숫자를 입력하세요. M, K 또는 약어를 사용하지 마세요.', heroPower: '총 영웅 전투력은 얼마인가요?', howToFind: '확인 방법', heroPowerHelp: 'Total Power가 아니라 HERO Power만 입력하세요.', heroHelp1: '프로필을 엽니다.', heroHelp2: 'Total Power 배지를 누릅니다.', heroHelp3: 'Power Details를 열고 Hero Power를 찾습니다.', heroHelp4: 'Hero Power 전체 숫자만 입력합니다.', seatColour: '좌석 색상은 무엇인가요?', gold: '골드', purple: '보라색', blue: '파란색', white: '흰색', howToFindSeat: '좌석 색상 확인 방법', seatHelp1: '게임 화면 오른쪽의 지도 아이콘을 누릅니다.', seatHelp2: 'Transfer Surge를 열고 “Your Status”를 확인합니다.', seatHelp3: '화면 하단에 좌석 색상이 표시됩니다.',
+    transferGroup: '이전 그룹', transferGroupIntro: '다른 플레이어와 함께 이동하는지 알려주세요. 함께 이동한다면 각 플레이어를 추가하여 검토 중에도 그룹을 연결해 두겠습니다.', transferWithGroup: '서버의 다른 사람들과 함께 이동하시기를 원하시나요?', yes: '예', no: '아니요', unsure: '불확실', yesGroupSub: '다른 플레이어와 함께 이동합니다', noGroupSub: '혼자 이동합니다', unsureGroupSub: '아직 확실하지 않습니다', yourTransferGroup: '이전 그룹', groupBuilderIntro: "아직 모든 플레이어를 알 필요는 없습니다. 알고 있는 플레이어만 추가하거나 목록을 비워 둔 채 계속할 수 있습니다.", addAnotherPlayer: "아는 플레이어 추가", groupContact: '그룹 연락 담당자', groupContactIntro: "그룹에 연락해야 할 경우 누구에게 연락하면 되나요? 다른 사람을 선택하지 않으면 신청자를 그룹 연락 담당자로 사용합니다.", selectGroupContact: '연락 담당자 선택', totalPlayersInGroup: "예상 그룹 규모", additionalPlayers: '추가 플레이어', includingYou: '본인 포함', playerName: '플레이어 이름', memberServer: '현재 서버', memberAlliance: '연합 이름 / 태그', knownPlayersListed: "등록된 알려진 플레이어", estimatedGroupSize: "예상 그룹 규모", estimatedGroupSizeIntro: "함께 올 추가 플레이어 수를 대략 알고 있다면 입력해 주세요. 예상치여도 괜찮습니다.", expectedAdditionalPlayers: "예상 추가 플레이어 수", expectedAdditionalHelp: "아직 모르면 비워 두세요.", optional: "선택 사항", transferGroupIdTitle: "이동 그룹 ID", transferGroupIdIntro: "여러 명이 함께 이동한다면 이 ID를 함께 신청하는 사람들에게 공유하세요. 같은 ID를 입력하면 신청서가 하나의 그룹으로 묶입니다.", activeTransferGroupId: "현재 이동 그룹 ID", groupIdAuto: "그룹용으로 생성됨", groupIdUsingExisting: "공유된 기존 이동 그룹 ID 사용 중", copyGroupId: "ID 복사", copiedGroupId: "복사됨!", existingGroupId: "이미 이동 그룹 ID가 있나요?", existingGroupIdHelp: "친구가 이미 이동 그룹 ID를 만들었다면 여기에 입력해 같은 그룹에 참여하세요. 비워 두면 위에 표시된 생성된 ID를 그대로 사용합니다.", reviewTransferGroupId: "이동 그룹 ID",
+    additionalInfo: '추가 정보', additionalInfoIntro: '1616 팀이 이전 요청을 검토하는 데 도움이 될 정보를 추가해 주세요.', additionalComments: '추가로 남기고 싶은 의견이나 질문이 있나요?', beforeContinue: '계속하기 전에', waitlistReminder: '이 신청서는 1616 대기자 명단에 추가하는 것이며 이전 자리를 보장하지 않습니다.',
+    reviewSubmit: '검토 및 제출', reviewIntro: '제출 전에 정보를 확인하세요. 변경하려면 어느 섹션으로든 돌아갈 수 있습니다.', submitNote: '신청서는 1616 검토 스프레드시트로 전송되며 선택한 언어도 함께 저장됩니다.', edit: '수정', back: '뒤로', continue: '계속', submitApplication: '신청서 제출',
+    requiredError: '필수 입력 항목입니다.', numberError: '숫자만 입력해 주세요.', fullNumberError: '전체 숫자를 숫자로만 입력하세요 (예: 26000000).', chooseError: '옵션을 선택해 주세요.', groupMemberError: '이 플레이어의 세 항목을 모두 입력해 주세요.', groupContactError: '그룹 연락 담당자를 선택해 주세요.', backendMissing: '폼은 준비되었지만 Google Apps Script URL이 아직 없습니다. app.js에 /exec URL을 붙여 넣으세요.', submitting: '신청서를 제출하는 중…', submitted: '신청서가 제출되었습니다. 참조 번호:', submitFailed: '신청서를 보낼 수 없습니다. 연결 상태를 확인하고 다시 시도해 주세요.',
+    reviewApplicant: '신청자', reviewGame: '게임 정보', reviewGroup: '이전 그룹', reviewAdditional: '추가 정보', transferAnswer: '그룹과 함께 이전', groupMembers: '연결된 플레이어', comments: '의견', none: '없음', notProvided: '미입력', groupLead: '그룹 연락 담당자', totalGroup: '총 그룹 인원', player: '플레이어', removePlayer: '플레이어 삭제', stepOf: '{step} / 6단계'
+  },
+  de: {
+    serverTransferApplication: 'SERVER-TRANSFER-BEWERBUNG', strongerTogether: 'EINE STÄRKERE ZUKUNFT',
+    stepLanguage: 'Sprache', stepYourInfo: 'Deine Informationen', stepGameDetails: 'Spieldaten', stepTransferGroup: 'Transfergruppe', stepAdditional: 'Zusätzliche Informationen', stepReview: 'Prüfen & senden',
+    step1Kicker: 'SCHRITT 1 VON 6', step2Kicker: 'SCHRITT 2 VON 6', step3Kicker: 'SCHRITT 3 VON 6', step4Kicker: 'SCHRITT 4 VON 6', step5Kicker: 'SCHRITT 5 VON 6', step6Kicker: 'SCHRITT 6 VON 6',
+    chooseLanguage: 'Wähle deine Sprache', languageIntro: 'Wähle die Sprache, die du verwenden möchtest. Du kannst sie jederzeit ändern.',
+    welcomeTitle: '1616 Server-Transfer-Bewerbung', welcomeBody1: 'Vielen Dank für dein Interesse an einem Transfer zu 1616. Bitte nimm dir ein paar Minuten Zeit, um diese Bewerbung auszufüllen, damit wir die Bewerber bewerten können.', waitlistLead: 'Wichtig:', welcomeBody2: 'Mit dem Absenden dieser Bewerbung kommst du auf eine Warteliste. Dies garantiert dir keinen Platz auf Server 1616.', welcomeBody3: 'Fragen zu diesem Formular oder zu Transfers können an RaidARQN [NvSP] gerichtet werden.',
+    yourInformation: 'Deine Informationen', yourInfoIntro: 'Sag uns, wer du bist und wo du aktuell spielst.', currentServer: 'Auf welchem Server bist du derzeit?', username: 'Wie lautet dein vollständiger In-Game-Benutzername?', allianceTag: 'Wie lautet dein aktueller Allianzname / Tag?',
+    gameDetails: 'Spieldaten', gameDetailsIntro: 'Trage die aktuellen Werte aus deinem Spielprofil ein.', professionLevel: 'Was ist dein Berufslevel?', killCount: 'Wie hoch ist deine aktuelle Abschusszahl?', fullNumberHelp: 'Gib die vollständige Zahl ein. Verwende kein M, K oder Abkürzungen.', heroPower: 'Wie hoch ist deine gesamte HELDENSTÄRKE?', howToFind: 'So findest du es', heroPowerHelp: 'Gib nur die HELDENSTÄRKE ein, nicht die Gesamtstärke.', heroHelp1: 'Öffne dein Profil.', heroHelp2: 'Tippe auf dein Gesamtstärke-Abzeichen.', heroHelp3: 'Öffne Power Details und suche Hero Power.', heroHelp4: 'Gib nur die vollständige Zahl der Heldenstärke ein.', seatColour: 'Welche Sitzfarbe hast du?', gold: 'Gold', purple: 'Lila', blue: 'Blau', white: 'Weiß', howToFindSeat: 'So findest du deine Sitzfarbe', seatHelp1: 'Tippe rechts im Spiel auf das Kartensymbol.', seatHelp2: 'Öffne Transfer Surge und prüfe „Your Status“.', seatHelp3: 'Deine Sitzfarbe wird unten auf dem Bildschirm angezeigt.',
+    transferGroup: 'Transfergruppe', transferGroupIntro: 'Sag uns, ob du mit anderen Spielern wechselst. Wenn ja, füge jeden Spieler hinzu, damit wir eure Gruppe bei der Prüfung zusammenhalten können.', transferWithGroup: 'Möchtest du dich mit einer Gruppe von Personen von deinem Server transferieren?', yes: 'Ja', no: 'Nein', unsure: 'Unsicher', yesGroupSub: 'Ich bringe andere Spieler mit', noGroupSub: 'Ich transferiere allein', unsureGroupSub: 'Ich bin noch nicht sicher', yourTransferGroup: 'Deine Transfergruppe', groupBuilderIntro: "Du musst noch nicht alle Spielernamen kennen. Füge bekannte Spieler hinzu oder lasse die Liste leer und fahre fort.", addAnotherPlayer: "Bekannten Spieler hinzufügen", groupContact: 'Gruppenkontakt', groupContactIntro: "Wen sollen wir kontaktieren, wenn wir eure Gruppe erreichen müssen? Wenn du niemand anderen auswählst, verwenden wir dich als Gruppenkontakt.", selectGroupContact: 'Gruppenkontakt auswählen', totalPlayersInGroup: "Geschätzte Gruppengröße", additionalPlayers: 'Zusätzliche Spieler', includingYou: 'Einschließlich dir', playerName: 'Spielername', memberServer: 'Aktueller Server', memberAlliance: 'Allianzname / Tag', knownPlayersListed: "Bekannte Spieler eingetragen", estimatedGroupSize: "Geschätzte Gruppengröße", estimatedGroupSizeIntro: "Wenn du ungefähr weißt, wie viele zusätzliche Spieler mitkommen könnten, gib die Zahl ein. Eine Schätzung reicht.", expectedAdditionalPlayers: "Erwartete zusätzliche Spieler", expectedAdditionalHelp: "Lass das Feld leer, wenn du es noch nicht weißt.", optional: "Optional", transferGroupIdTitle: "Transfergruppen-ID", transferGroupIdIntro: "Wenn ihr als Gruppe wechselt, teile diese ID mit allen, die sich zusammen mit dir bewerben. Sie können dieselbe ID eingeben, damit eure Bewerbungen zusammengefasst werden.", activeTransferGroupId: "Aktive Transfergruppen-ID", groupIdAuto: "Für eure Gruppe generiert", groupIdUsingExisting: "Es wird eine vorhandene gemeinsame Transfergruppen-ID verwendet", copyGroupId: "ID kopieren", copiedGroupId: "Kopiert!", existingGroupId: "Hast du bereits eine Transfergruppen-ID?", existingGroupIdHelp: "Wenn ein Freund bereits eine Transfergruppen-ID erstellt hat, gib sie hier ein, um derselben Gruppe beizutreten. Wenn du das Feld leer lässt, behalten wir die oben angezeigte generierte ID bei.", reviewTransferGroupId: "Transfergruppen-ID",
+    additionalInfo: 'Zusätzliche Informationen', additionalInfoIntro: 'Füge alles hinzu, was dem 1616-Team bei der Prüfung deiner Transferanfrage helfen könnte.', additionalComments: 'Hast du noch weitere Kommentare oder Fragen?', beforeContinue: 'Bevor du fortfährst', waitlistReminder: 'Denke daran: Diese Bewerbung setzt dich auf die Warteliste von Server 1616. Sie garantiert keinen Transferplatz.',
+    reviewSubmit: 'Prüfen & senden', reviewIntro: 'Prüfe deine Angaben vor dem Absenden. Du kannst jederzeit zu einem Abschnitt zurückkehren und Änderungen vornehmen.', submitNote: 'Deine Bewerbung wird an die 1616-Prüftabelle gesendet. Deine gewählte Sprache wird mitgespeichert.', edit: 'Bearbeiten', back: 'Zurück', continue: 'Weiter', submitApplication: 'Bewerbung absenden',
+    requiredError: 'Dieses Feld ist erforderlich.', numberError: 'Bitte nur Zahlen eingeben.', fullNumberError: 'Gib die vollständige Zahl nur mit Ziffern ein (z. B. 26000000).', chooseError: 'Bitte wähle eine Option.', groupMemberError: 'Bitte fülle alle drei Felder für diesen Spieler aus.', groupContactError: 'Bitte wähle einen Gruppenkontakt.', backendMissing: 'Das Formular ist bereit, aber die Google-Apps-Script-URL fehlt noch. Füge die /exec-URL in app.js ein.', submitting: 'Bewerbung wird gesendet…', submitted: 'Bewerbung gesendet. Deine Referenz lautet', submitFailed: 'Die Bewerbung konnte nicht gesendet werden. Prüfe deine Verbindung und versuche es erneut.',
+    reviewApplicant: 'Bewerber', reviewGame: 'Spieldaten', reviewGroup: 'Transfergruppe', reviewAdditional: 'Zusätzliche Informationen', transferAnswer: 'Transfer mit Gruppe', groupMembers: 'Verknüpfte Spieler', comments: 'Kommentare', none: 'Keine', notProvided: 'Nicht angegeben', groupLead: 'Gruppenkontakt', totalGroup: 'Gesamtgröße der Gruppe', player: 'Spieler', removePlayer: 'Spieler entfernen', stepOf: 'Schritt {step} von 6'
+  }
+};
+
+const state = { step: 1, language: 'en', groupMembers: [], applicationId: '', generatedGroupId: '' };
+const form = document.getElementById('application-form');
+const steps = [...document.querySelectorAll('.form-step')];
+const stepLinks = [...document.querySelectorAll('.step-link')];
+const nextButton = document.getElementById('next-button');
+const backButton = document.getElementById('back-button');
+const submitButton = document.getElementById('submit-button');
+const groupBuilder = document.getElementById('group-builder');
+const groupMembersEl = document.getElementById('group-members');
+const memberTemplate = document.getElementById('group-member-template');
+const headerLanguage = document.getElementById('header-language');
+const reviewContainer = document.getElementById('review-container');
+const submissionStatus = document.getElementById('submission-status');
+
+
+function t(key) { return (I18N[state.language] && I18N[state.language][key]) || I18N.en[key] || key; }
+
+function generateApplicationId() {
+  return `APP-${new Date().toISOString().slice(0,10).replace(/-/g,'')}-${crypto.randomUUID().slice(0,8).toUpperCase()}`;
+}
+function getApplicationId() {
+  if (!state.applicationId) state.applicationId = generateApplicationId();
+  return state.applicationId;
+}
+function randomGroupChunk(length = 6) {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let out = '';
+  for (let i = 0; i < length; i++) out += chars[Math.floor(Math.random() * chars.length)];
+  return out;
+}
+function generateTransferGroupId() {
+  return `1616-TG-${randomGroupChunk(4)}-${randomGroupChunk(4)}`;
+}
+function sanitizeGroupId(value) {
+  return String(value || '')
+    .toUpperCase()
+    .replace(/[^A-Z0-9-]/g, '')
+    .replace(/-{2,}/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 28);
+}
+function currentTransferGroupId() {
+  const manual = sanitizeGroupId(document.getElementById('existing-group-id')?.value || '');
+  if (manual) return manual;
+  if (!state.generatedGroupId) state.generatedGroupId = generateTransferGroupId();
+  return state.generatedGroupId;
+}
+function updateGroupIdCallout() {
+  const callout = document.getElementById('group-id-callout');
+  if (!callout) return;
+  const show = currentGroupAnswer() === 'yes';
+  callout.hidden = !show;
+  if (!show) return;
+  if (!state.generatedGroupId) state.generatedGroupId = generateTransferGroupId();
+  const manualInput = document.getElementById('existing-group-id');
+  if (manualInput) {
+    const sanitized = sanitizeGroupId(manualInput.value);
+    if (manualInput.value !== sanitized) manualInput.value = sanitized;
+  }
+  const usingExisting = !!sanitizeGroupId(manualInput?.value || '');
+  const activeId = currentTransferGroupId();
+  document.getElementById('generated-group-id').textContent = activeId || '—';
+  document.getElementById('group-id-mode').textContent = usingExisting ? t('groupIdUsingExisting') : t('groupIdAuto');
+}
+async function copyTransferGroupId() {
+  const groupId = currentTransferGroupId();
+  if (!groupId) return;
+  try {
+    await navigator.clipboard.writeText(groupId);
+    const btn = document.getElementById('copy-group-id');
+    const previous = btn.textContent;
+    btn.textContent = t('copiedGroupId');
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = t('copyGroupId');
+      btn.classList.remove('copied');
+    }, 1800);
+  } catch (_) {}
+}
+
+
+function setLanguage(lang) {
+  if (!I18N[lang]) lang = 'en';
+  state.language = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  headerLanguage.value = lang;
+  document.querySelectorAll('.language-card').forEach(btn => btn.classList.toggle('selected', btn.dataset.language === lang));
+  document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; if (I18N[lang][k]) el.textContent = I18N[lang][k]; });
+  document.querySelectorAll('[data-i18n-dynamic]').forEach(el => { const k = el.dataset.i18nDynamic; el.textContent = t(k); });
+  refreshGroupMemberLabels();
+  updateGroupContactOptions();
+  updateProgress();
+  updateGroupIdCallout();
+  if (state.step === 6) renderReview();
+  saveDraft();
+}
+
+function updateProgress() {
+  steps.forEach(step => step.classList.toggle('active', Number(step.dataset.step) === state.step));
+  stepLinks.forEach((link, index) => {
+    const n = index + 1;
+    link.classList.toggle('active', n === state.step);
+    link.classList.toggle('complete', n < state.step);
+    link.querySelector('.step-dot').textContent = n < state.step ? '✓' : String(n);
+  });
+  backButton.hidden = state.step === 1;
+  nextButton.hidden = state.step === 6;
+  submitButton.hidden = state.step !== 6;
+  const label = t('stepOf').replace('{step}', state.step);
+  document.getElementById('mobile-progress-label').textContent = label;
+  document.getElementById('mobile-progress-fill').style.width = `${state.step / 6 * 100}%`;
+  if (state.step === 6) renderReview();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goToStep(step) {
+  if (step < 1 || step > 6) return;
+  state.step = step;
+  updateProgress();
+  saveDraft();
+}
+
+function digitsOnly(value) { return String(value || '').replace(/[^0-9]/g, ''); }
+function formatNumber(value) {
+  const digits = digitsOnly(value);
+  if (!digits) return '';
+  return Number(digits).toLocaleString('en-US');
+}
+
+function setupNumericInputs(root = document) {
+  root.querySelectorAll('[data-numeric]').forEach(input => {
+    if (input.dataset.numericBound) return;
+    input.dataset.numericBound = '1';
+    input.addEventListener('input', () => {
+      const mode = input.dataset.numeric;
+      if (mode === 'integer') {
+        input.value = digitsOnly(input.value);
+        clearFieldError(input);
+      } else {
+        // Full-number fields may contain visual thousands separators, but never M/K/text.
+        const validCharacters = /^[0-9,]*$/.test(input.value);
+        input.dataset.numericInvalid = validCharacters ? '' : '1';
+        if (!validCharacters) setFieldError(input, t('fullNumberError'));
+        else clearFieldError(input);
+      }
+      saveDraft();
+    });
+    input.addEventListener('focus', () => {
+      if (input.dataset.numeric === 'full' && !input.dataset.numericInvalid) input.value = digitsOnly(input.value);
+    });
+    input.addEventListener('blur', () => {
+      if (input.dataset.numeric === 'full') {
+        if (/^[0-9,]+$/.test(input.value)) {
+          input.dataset.numericInvalid = '';
+          input.value = formatNumber(input.value);
+          clearFieldError(input);
+        } else if (input.value) {
+          input.dataset.numericInvalid = '1';
+          setFieldError(input, t('fullNumberError'));
+        }
+      } else {
+        input.value = digitsOnly(input.value);
+      }
+      saveDraft();
+    });
+  });
+}
+
+function setFieldError(input, message) {
+  input.classList.add('invalid');
+  const id = input.id;
+  if (id) {
+    const err = document.querySelector(`[data-error-for="${id}"]`);
+    if (err) err.textContent = message;
+  }
+}
+function clearFieldError(input) {
+  input.classList.remove('invalid');
+  const id = input.id;
+  if (id) {
+    const err = document.querySelector(`[data-error-for="${id}"]`);
+    if (err) err.textContent = '';
+  }
+}
+
+function validateCurrentStep() {
+  let ok = true;
+  const current = steps.find(s => Number(s.dataset.step) === state.step);
+  if (!current) return true;
+  current.querySelectorAll('[data-required="true"]').forEach(input => {
+    clearFieldError(input);
+    const raw = input.dataset.numeric ? digitsOnly(input.value) : input.value.trim();
+    if (!raw) { setFieldError(input, t('requiredError')); ok = false; }
+    else if (input.dataset.numeric === 'full' && (input.dataset.numericInvalid || !/^[0-9,]+$/.test(input.value))) { setFieldError(input, t('fullNumberError')); ok = false; }
+    else if (input.dataset.numeric && !/^\d+$/.test(raw)) { setFieldError(input, t('numberError')); ok = false; }
+  });
+
+  if (state.step === 3) {
+    const seat = form.querySelector('input[name="seatColour"]:checked');
+    const err = document.querySelector('[data-error-for="seat-colour"]');
+    if (!seat) { err.textContent = t('chooseError'); ok = false; } else err.textContent = '';
+  }
+
+  if (state.step === 4) {
+    const groupAnswer = form.querySelector('input[name="transferWithGroup"]:checked');
+    const groupErr = document.querySelector('[data-error-for="transfer-with-group"]');
+    if (!groupAnswer) { groupErr.textContent = t('chooseError'); ok = false; } else groupErr.textContent = '';
+    if (groupAnswer && groupAnswer.value === 'yes') {
+      document.querySelectorAll('.group-member-card').forEach(card => {
+        const inputs = [...card.querySelectorAll('input')];
+        const anyStarted = inputs.some(inp => inp.value.trim());
+        const valid = !anyStarted || inputs.every(inp => inp.value.trim() && (inp.classList.contains('member-server') ? /^\d+$/.test(digitsOnly(inp.value)) : true));
+        inputs.forEach(inp => inp.classList.toggle('invalid', anyStarted && !inp.value.trim()));
+        const err = card.querySelector('.field-error');
+        if (!valid) { err.textContent = t('groupMemberError'); ok = false; } else err.textContent = '';
+      });
+    }
+  }
+  return ok;
+}
+
+function addGroupMember(data = {}) {
+  if (state.groupMembers.length >= CONFIG.maxGroupMembers) return;
+  const id = data.id || crypto.randomUUID();
+  state.groupMembers.push({ id, name: data.name || '', server: data.server || '', alliance: data.alliance || '' });
+  renderGroupMembers();
+  updateGroupContactOptions();
+  updateGroupSummary();
+  saveDraft();
+}
+
+function removeGroupMember(id) {
+  state.groupMembers = state.groupMembers.filter(m => m.id !== id);
+  renderGroupMembers(); updateGroupContactOptions(); updateGroupSummary(); saveDraft();
+}
+
+function renderGroupMembers() {
+  groupMembersEl.innerHTML = '';
+  state.groupMembers.forEach((member, idx) => {
+    const node = memberTemplate.content.firstElementChild.cloneNode(true);
+    node.dataset.memberId = member.id;
+    node.querySelector('.member-title').textContent = `${t('player')} ${idx + 1}`;
+    const removeBtn = node.querySelector('.remove-member');
+    removeBtn.setAttribute('aria-label', t('removePlayer'));
+    removeBtn.addEventListener('click', () => removeGroupMember(member.id));
+    const name = node.querySelector('.member-name');
+    const server = node.querySelector('.member-server');
+    const alliance = node.querySelector('.member-alliance');
+    name.value = member.name; server.value = member.server; alliance.value = member.alliance;
+    node.querySelectorAll('[data-i18n-dynamic]').forEach(el => el.textContent = t(el.dataset.i18nDynamic));
+    name.addEventListener('input', () => { member.name = name.value; updateGroupContactOptions(); updateGroupSummary(); saveDraft(); });
+    server.addEventListener('input', () => { server.value = digitsOnly(server.value); member.server = server.value; saveDraft(); });
+    alliance.addEventListener('input', () => { member.alliance = alliance.value; updateGroupContactOptions(); saveDraft(); });
+    groupMembersEl.appendChild(node);
+  });
+}
+
+function refreshGroupMemberLabels() { renderGroupMembers(); }
+
+function updateGroupContactOptions() {
+  const select = document.getElementById('group-contact');
+  if (!select) return;
+  const existing = select.value;
+  const username = document.getElementById('username').value.trim();
+  const alliance = document.getElementById('alliance').value.trim();
+  select.innerHTML = `<option value="">${escapeHtml(t('selectGroupContact'))}</option>`;
+  if (username) {
+    const label = `${username}${alliance ? ` [${alliance.replace(/^\[|\]$/g,'')}]` : ''} (${t('includingYou')})`;
+    select.insertAdjacentHTML('beforeend', `<option value="primary">${escapeHtml(label)}</option>`);
+  }
+  state.groupMembers.forEach(m => {
+    if (!m.name.trim()) return;
+    const label = `${m.name.trim()}${m.alliance.trim() ? ` [${m.alliance.trim().replace(/^\[|\]$/g,'')}]` : ''}`;
+    select.insertAdjacentHTML('beforeend', `<option value="member:${escapeAttr(m.id)}">${escapeHtml(label)}</option>`);
+  });
+  if ([...select.options].some(o => o.value === existing)) select.value = existing;
+  else if ([...select.options].some(o => o.value === 'primary')) select.value = 'primary';
+  select.onchange = () => { updateGroupSummary(); saveDraft(); };
+}
+
+function updateGroupSummary() {
+  const count = state.groupMembers.filter(m => m.name.trim() || m.server.trim() || m.alliance.trim()).length;
+  const expectedRaw = digitsOnly(document.getElementById('expected-additional-players')?.value || '');
+  const expected = expectedRaw ? Number(expectedRaw) : null;
+  document.getElementById('additional-player-count').textContent = count;
+  document.getElementById('total-group-size').textContent = expected !== null ? String(expected + 1) : (count ? `≥ ${count + 1}` : '—');
+  const select = document.getElementById('group-contact');
+  const text = select && select.value ? select.options[select.selectedIndex].textContent : '—';
+  document.getElementById('group-contact-summary').textContent = text;
+  updateGroupIdCallout();
+}
+
+function currentGroupAnswer() { return form.querySelector('input[name="transferWithGroup"]:checked')?.value || ''; }
+
+function collectPayload() {
+  const contactSelect = document.getElementById('group-contact');
+  const primaryName = document.getElementById('username').value.trim();
+  const primaryAlliance = document.getElementById('alliance').value.trim();
+  const defaultContact = primaryName ? `${primaryName}${primaryAlliance ? ` [${primaryAlliance.replace(/^\[|\]$/g,'')}]` : ''}` : '';
+  const selectedContactText = contactSelect?.value ? contactSelect.options[contactSelect.selectedIndex].textContent : defaultContact;
+  const groupAnswer = currentGroupAnswer();
+  const applicationId = getApplicationId();
+  const groupId = groupAnswer === 'yes' ? currentTransferGroupId() : '';
+  return {
+    applicationId,
+    groupId,
+    language: state.language,
+    currentServer: digitsOnly(document.getElementById('current-server').value),
+    username: document.getElementById('username').value.trim(),
+    alliance: document.getElementById('alliance').value.trim(),
+    professionLevel: digitsOnly(document.getElementById('profession-level').value),
+    killCount: digitsOnly(document.getElementById('kill-count').value),
+    heroPower: digitsOnly(document.getElementById('hero-power').value),
+    seatColour: form.querySelector('input[name="seatColour"]:checked')?.value || '',
+    transferWithGroup: groupAnswer,
+    groupContactKey: contactSelect?.value || '',
+    groupContact: selectedContactText,
+    expectedAdditionalPlayers: groupAnswer === 'yes' ? digitsOnly(document.getElementById('expected-additional-players')?.value || '') : '',
+    groupMembers: groupAnswer === 'yes' ? state.groupMembers.map(m => ({ name: m.name.trim(), server: digitsOnly(m.server), alliance: m.alliance.trim() })) : [],
+    comments: document.getElementById('comments').value.trim(),
+    website: document.getElementById('website').value,
+    clientTimestamp: new Date().toISOString()
+  };
+}
+
+function reviewItem(label, value) {
+  return `<div class="review-item"><div class="review-label">${escapeHtml(label)}</div><div class="review-value">${escapeHtml(value || t('notProvided'))}</div></div>`;
+}
+function reviewSection(title, step, body) {
+  return `<section class="review-section"><div class="review-section-head"><h2>${escapeHtml(title)}</h2><button class="review-edit" type="button" data-edit-step="${step}">${escapeHtml(t('edit'))}</button></div>${body}</section>`;
+}
+
+function renderReview() {
+  const p = collectPayload();
+  const seatLabel = p.seatColour ? t(p.seatColour) : t('notProvided');
+  const transferLabel = p.transferWithGroup ? t(p.transferWithGroup) : t('notProvided');
+  const members = p.groupMembers.length ? `<div class="review-members"><div class="review-label">${escapeHtml(t('groupMembers'))}</div>${p.groupMembers.map(m => `<div class="review-member"><span>${escapeHtml(m.name)}</span><span>${escapeHtml(m.server)}</span><span>${escapeHtml(m.alliance)}</span></div>`).join('')}</div>` : '';
+  reviewContainer.innerHTML = [
+    reviewSection(t('reviewApplicant'), 2, `<div class="review-grid">${reviewItem(t('currentServer'), p.currentServer)}${reviewItem(t('username'), p.username)}${reviewItem(t('allianceTag'), p.alliance)}</div>`),
+    reviewSection(t('reviewGame'), 3, `<div class="review-grid">${reviewItem(t('professionLevel'), p.professionLevel)}${reviewItem(t('killCount'), formatNumber(p.killCount))}${reviewItem(t('heroPower'), formatNumber(p.heroPower))}${reviewItem(t('seatColour'), seatLabel)}</div>`),
+    reviewSection(t('reviewGroup'), 4, `<div class="review-grid">${reviewItem(t('transferAnswer'), transferLabel)}${reviewItem(t('reviewTransferGroupId'), p.groupId || t('notProvided'))}${reviewItem(t('totalGroup'), p.transferWithGroup === 'yes' ? (p.expectedAdditionalPlayers ? String(Number(p.expectedAdditionalPlayers) + 1) : (p.groupMembers.length ? `≥ ${p.groupMembers.length + 1}` : t('notProvided'))) : '1')}${reviewItem(t('groupLead'), p.groupContact || t('notProvided'))}${reviewItem(t('additionalPlayers'), String(p.groupMembers.length))}${members}</div>`),
+    reviewSection(t('reviewAdditional'), 5, `<div class="review-grid">${reviewItem(t('comments'), p.comments || t('none'))}</div>`)
+  ].join('');
+  reviewContainer.querySelectorAll('[data-edit-step]').forEach(btn => btn.addEventListener('click', () => goToStep(Number(btn.dataset.editStep))));
+}
+
+function escapeHtml(value) { return String(value ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function escapeAttr(value) { return escapeHtml(value).replace(/'/g, '&#39;'); }
+
+function saveDraft() {
+  const data = {
+    language: state.language,
+    step: state.step,
+    groupMembers: state.groupMembers,
+    applicationId: state.applicationId,
+    generatedGroupId: state.generatedGroupId,
+    values: Object.fromEntries([...new FormData(form).entries()].filter(([k]) => k !== 'website'))
+  };
+  try { localStorage.setItem(CONFIG.draftKey, JSON.stringify(data)); } catch (_) {}
+}
+
+function restoreDraft() {
+  try {
+    const raw = localStorage.getItem(CONFIG.draftKey);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (data.language) state.language = data.language;
+    if (Array.isArray(data.groupMembers)) state.groupMembers = data.groupMembers;
+    if (data.applicationId) state.applicationId = data.applicationId;
+    if (data.generatedGroupId) state.generatedGroupId = data.generatedGroupId;
+    const v = data.values || {};
+    Object.entries(v).forEach(([name, value]) => {
+      const elements = form.querySelectorAll(`[name="${CSS.escape(name)}"]`);
+      elements.forEach(el => {
+        if (el.type === 'radio') el.checked = el.value === value;
+        else el.value = value;
+      });
+    });
+    state.step = Math.max(1, Math.min(6, Number(data.step) || 1));
+  } catch (_) {}
+}
+
+function clearDraft() { try { localStorage.removeItem(CONFIG.draftKey); } catch (_) {} }
+
+async function submitApplication(event) {
+  event.preventDefault();
+  for (let s = 2; s <= 4; s++) {
+    const previous = state.step; state.step = s;
+    if (!validateCurrentStep()) { state.step = previous; goToStep(s); return; }
+    state.step = previous;
+  }
+  goToStep(6);
+
+  if (!CONFIG.appsScriptUrl || CONFIG.appsScriptUrl.includes('PASTE_YOUR')) {
+    showSubmission(t('backendMissing'), true); return;
+  }
+  const payload = collectPayload();
+  showSubmission(t('submitting'), false);
+  submitButton.disabled = true;
+  try {
+    await fetch(CONFIG.appsScriptUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    showSubmission(`${t('submitted')} ${payload.applicationId}`, false);
+    clearDraft();
+    submitButton.disabled = true;
+  } catch (error) {
+    console.error(error);
+    showSubmission(t('submitFailed'), true);
+    submitButton.disabled = false;
+  }
+}
+
+function showSubmission(message, isError) {
+  submissionStatus.hidden = false;
+  submissionStatus.classList.toggle('error', !!isError);
+  submissionStatus.textContent = message;
+}
+
+function initPetals() {
+  const box = document.getElementById('petals');
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('span');
+    p.style.left = `${Math.random()*100}%`; p.style.top = `${-10 - Math.random()*50}%`;
+    p.style.animationDuration = `${14 + Math.random()*16}s`; p.style.animationDelay = `${-Math.random()*20}s`;
+    p.style.opacity = `${.25 + Math.random()*.55}`; p.style.transform = `rotate(${Math.random()*180}deg)`;
+    box.appendChild(p);
+  }
+}
+
+nextButton.addEventListener('click', () => { if (validateCurrentStep()) goToStep(state.step + 1); });
+backButton.addEventListener('click', () => goToStep(state.step - 1));
+form.addEventListener('submit', submitApplication);
+headerLanguage.addEventListener('change', () => setLanguage(headerLanguage.value));
+document.querySelectorAll('.language-card').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.language)));
+stepLinks.forEach(btn => btn.addEventListener('click', () => {
+  const target = Number(btn.dataset.stepTarget);
+  if (target <= state.step) goToStep(target);
+}));
+document.getElementById('add-player').addEventListener('click', () => addGroupMember());
+document.getElementById('copy-group-id').addEventListener('click', copyTransferGroupId);
+document.getElementById('existing-group-id').addEventListener('input', () => { updateGroupIdCallout(); saveDraft(); });
+document.querySelectorAll('input[name="transferWithGroup"]').forEach(r => r.addEventListener('change', () => {
+  const yes = r.checked && r.value === 'yes';
+  if (yes && !state.generatedGroupId) state.generatedGroupId = generateTransferGroupId();
+  groupBuilder.hidden = !yes;
+  updateGroupContactOptions(); updateGroupSummary(); updateGroupIdCallout(); saveDraft();
+}));
+document.getElementById('username').addEventListener('input', () => { updateGroupContactOptions(); updateGroupSummary(); saveDraft(); });
+document.getElementById('alliance').addEventListener('input', () => { updateGroupContactOptions(); saveDraft(); });
+document.getElementById('expected-additional-players').addEventListener('input', () => { updateGroupSummary(); saveDraft(); });
+document.getElementById('comments').addEventListener('input', e => { document.getElementById('comments-count').textContent = e.target.value.length; saveDraft(); });
+document.querySelectorAll('[data-help-toggle]').forEach(btn => btn.addEventListener('click', () => {
+  const el = document.getElementById(btn.dataset.helpToggle); el.hidden = !el.hidden;
+}));
+form.addEventListener('change', saveDraft);
+form.addEventListener('input', e => { if (!e.target.classList.contains('member-name') && !e.target.classList.contains('member-alliance')) saveDraft(); });
+
+restoreDraft();
+renderGroupMembers();
+setupNumericInputs();
+setLanguage(state.language);
+const groupAnswer = currentGroupAnswer();
+groupBuilder.hidden = groupAnswer !== 'yes';
+if (groupAnswer === 'yes' && !state.generatedGroupId) state.generatedGroupId = generateTransferGroupId();
+updateGroupContactOptions(); updateGroupSummary(); updateGroupIdCallout(); updateProgress();
+document.getElementById('comments-count').textContent = document.getElementById('comments').value.length;
+initPetals();
+
+  </script>
+</body>
+</html>
