@@ -91,3 +91,8 @@ v11 contained a JavaScript syntax error in the multilingual translation object, 
 v12 rebuilds the help guide from the working v10 base and syntax-checks the script before release.
 
 Step 3 also now includes an expandable “Where do I find these power numbers?” guide plus short in-game navigation breadcrumbs.
+
+## Latest visual update
+
+- The top-left header now shows the **1616 wordmark only**; the repeated “Server Transfer Application” label has been removed.
+- The decorative character beside each step heading has been replaced with a **sakura blossom icon** so the interface is visual rather than language-specific.
