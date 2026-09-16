@@ -284,3 +284,8 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Added restrained pink/red outer glows rather than heavy neon effects.
 - Preserved the existing Gold, Purple, Blue, and White seat-colour identities.
 - Blood Moon progress phases, Bungee Tint step titles, and existing typography remain unchanged.
+
+
+## v38
+- Changed the welcome-page “Thank you for your interest in joining 1616!” heading to use the same Bungee Tint font as the five step titles.
+- Other welcome-page typography remains unchanged.
