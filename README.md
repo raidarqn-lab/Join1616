@@ -396,3 +396,11 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
   - scrolls the first invalid area into view
   - closes when the applicant starts correcting the form
 - Added localized popup greetings for all eight supported languages.
+
+
+## v51
+- Restyled the main application area to feel more like a glowing lantern.
+- Added warm amber/red layered gradients to the form panel.
+- Added soft internal highlight washes, a subtle glowing inner frame, and a gentle halo behind each step heading.
+- Warmed the inner cards, input fields, and action bar so the whole form feels illuminated from within instead of flat.
+- Preserved the existing red / sakura / lantern-gold palette and Continue-button behavior from v50.

@@ -3779,6 +3779,157 @@ textarea:focus {
   }
 }
 
+
+/* ================================================================
+   v51 — LANTERN GLOW APPLICATION AREA
+   Main application area should feel like a softly glowing lantern.
+   ================================================================ */
+
+.form-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.form-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(226, 110, 92, .54);
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255, 215, 122, .18) 0%, rgba(255, 215, 122, .08) 18%, rgba(255, 215, 122, 0) 38%),
+    radial-gradient(circle at 50% 100%, rgba(235, 103, 77, .09) 0%, rgba(235, 103, 77, 0) 46%),
+    linear-gradient(180deg, rgba(48, 22, 22, .96), rgba(28, 13, 16, .95));
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, .42),
+    0 0 0 1px rgba(255, 228, 180, .04) inset,
+    0 0 36px rgba(255, 167, 88, .08),
+    0 0 80px rgba(219, 89, 60, .05);
+}
+
+.form-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 222, 149, .14) 0%, rgba(255, 222, 149, .05) 22%, rgba(255, 222, 149, 0) 40%),
+    linear-gradient(180deg, rgba(255, 240, 204, .05), rgba(255, 240, 204, 0) 28%, rgba(255, 209, 132, .03) 65%, rgba(255, 209, 132, 0) 100%);
+  mix-blend-mode: screen;
+  opacity: .95;
+}
+
+.form-panel::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 20px;
+  pointer-events: none;
+  border: 1px solid rgba(255, 208, 116, .12);
+  box-shadow:
+    0 0 0 1px rgba(255, 240, 199, .03) inset,
+    0 0 24px rgba(255, 193, 94, .05) inset,
+    0 0 24px rgba(255, 193, 94, .06);
+  opacity: .9;
+}
+
+.form-step {
+  position: relative;
+  z-index: 1;
+}
+
+.form-step::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 14px;
+  width: min(520px, 85%);
+  height: 180px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background:
+    radial-gradient(circle, rgba(255, 205, 116, .12) 0%, rgba(255, 205, 116, .05) 35%, rgba(255, 205, 116, 0) 70%);
+  filter: blur(18px);
+}
+
+.form-step > h1 {
+  color: #ffd98a;
+  text-shadow:
+    0 1px 0 rgba(0,0,0,.45),
+    0 0 12px rgba(255, 199, 92, .12),
+    0 0 28px rgba(255, 145, 81, .10);
+}
+
+.step-intro {
+  color: #e2b9ac;
+}
+
+.form-actions {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(35, 14, 17, .82), rgba(24, 10, 12, .88));
+  border-top: 1px solid rgba(204, 93, 85, .46);
+}
+
+.form-actions::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 212, 127, .08) 15%,
+      rgba(255, 148, 95, .22) 50%,
+      rgba(255, 212, 127, .08) 85%,
+      transparent 100%);
+}
+
+.review-section,
+.notice-card,
+.preference-card,
+.referral-card,
+.group-member-card,
+.group-summary-card,
+.transfer-estimator-card,
+.transfer-location-guide,
+.group-contact-card,
+.group-lead-card {
+  border-color: rgba(214, 108, 86, .32);
+  background:
+    linear-gradient(180deg, rgba(58, 26, 26, .48), rgba(34, 16, 18, .56));
+  box-shadow:
+    0 0 0 1px rgba(255, 222, 173, .02) inset,
+    0 0 20px rgba(255, 170, 88, .025);
+}
+
+input,
+textarea,
+select,
+.custom-select-trigger {
+  background:
+    linear-gradient(180deg, rgba(44, 21, 22, .96), rgba(30, 15, 17, .98));
+  border-color: rgba(177, 86, 78, .74);
+  box-shadow:
+    0 0 0 1px rgba(255, 227, 178, .015) inset;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.custom-select.open .custom-select-trigger,
+.custom-select-trigger:focus-visible {
+  border-color: rgba(255, 183, 92, .88);
+  box-shadow:
+    0 0 0 3px rgba(255, 183, 92, .10),
+    0 0 16px rgba(255, 151, 78, .12);
+}
+
+@media (max-width: 900px) {
+  .form-panel::after {
+    inset: 8px;
+  }
+}
+
 </style>
 </head>
 <body>
