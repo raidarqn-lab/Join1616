@@ -3930,6 +3930,95 @@ select:focus,
   }
 }
 
+
+/* ================================================================
+   v52 — TRANSFER GROUP REMINDER MODAL
+   ================================================================ */
+.transfer-group-reminder-modal[hidden] { display: none !important; }
+.transfer-group-reminder-modal { position: fixed; inset: 0; z-index: 1100; }
+.transfer-group-reminder-backdrop {
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 18%, rgba(203, 62, 83, .22), transparent 28%), rgba(7, 4, 6, .76);
+  backdrop-filter: blur(10px);
+}
+.transfer-group-reminder-dialog {
+  position: relative;
+  width: min(640px, calc(100% - 28px));
+  margin: min(11vh, 90px) auto 0;
+  padding: 24px 24px 22px;
+  border-radius: 22px;
+  border: 1px solid rgba(229, 109, 96, .48);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 220, 129, .16) 0%, rgba(255, 220, 129, .07) 22%, rgba(255, 220, 129, 0) 42%),
+    radial-gradient(circle at 100% 100%, rgba(205, 67, 75, .14), transparent 30%),
+    linear-gradient(180deg, rgba(42, 19, 22, .98), rgba(22, 11, 14, .98));
+  box-shadow: 0 34px 110px rgba(0,0,0,.52), 0 0 0 1px rgba(255,255,255,.03) inset, 0 0 34px rgba(255, 169, 83, .08), 0 0 54px rgba(210, 72, 86, .12);
+  text-align: center;
+  animation: transferGroupReminderIn .22s cubic-bezier(.2,.8,.2,1) both;
+}
+.transfer-group-reminder-dialog::before {
+  content: ""; position: absolute; inset: 10px; border-radius: 16px;
+  border: 1px solid rgba(255, 212, 130, .11);
+  box-shadow: 0 0 0 1px rgba(255, 240, 202, .03) inset, 0 0 24px rgba(255, 191, 91, .05) inset;
+  pointer-events: none;
+}
+.transfer-group-reminder-close {
+  position: absolute; top: 12px; right: 12px; width: 34px; height: 34px;
+  border: 0; border-radius: 50%; background: rgba(255,255,255,.03);
+  color: #e6bcc0; font-size: 1.3rem; cursor: pointer;
+}
+.transfer-group-reminder-close:hover,
+.transfer-group-reminder-close:focus-visible { outline: none; background: rgba(225, 79, 108, .18); color: #fff4f6; }
+.transfer-group-reminder-kicker {
+  display: inline-block; margin-bottom: 12px; padding: 7px 11px; border-radius: 999px;
+  background: rgba(127, 30, 45, .34); border: 1px solid rgba(230, 102, 120, .30);
+  color: #f3a8b7; font-size: .72rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase;
+}
+#transfer-group-reminder-title {
+  margin: 0 0 12px; color: #fff6f1; font-family: "Bungee", var(--font);
+  font-size: clamp(1.1rem, 2vw, 1.45rem); line-height: 1.4;
+  text-shadow: 0 1px 0 rgba(0,0,0,.48), 0 0 14px rgba(255, 175, 86, .06);
+}
+.transfer-group-reminder-copy { margin: 0 auto 18px; max-width: 530px; color: #e0b6ac; font-size: .92rem; line-height: 1.65; }
+.transfer-group-reminder-coupon {
+  position: relative; margin: 0 auto 18px; max-width: 470px; padding: 18px 18px 20px;
+  border: 2px dashed rgba(255, 183, 98, .40); border-radius: 18px;
+  background: linear-gradient(180deg, rgba(104, 35, 41, .30), rgba(37, 16, 20, .72));
+  box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 0 28px rgba(232, 98, 102, .08), 0 0 48px rgba(255, 191, 84, .05);
+}
+.transfer-group-reminder-coupon::before,
+.transfer-group-reminder-coupon::after {
+  content: ""; position: absolute; top: 50%; width: 24px; height: 24px; transform: translateY(-50%);
+  border-radius: 50%; background: rgba(18, 9, 12, 1); border: 1px solid rgba(216, 94, 83, .28);
+}
+.transfer-group-reminder-coupon::before { left: -13px; }
+.transfer-group-reminder-coupon::after { right: -13px; }
+.transfer-group-reminder-coupon-label {
+  display: block; margin-bottom: 10px; color: #ffd690; font-size: .76rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase;
+}
+#transfer-group-reminder-name {
+  display: block; color: #fff6ea; font-size: clamp(1.75rem, 4vw, 2.65rem); line-height: 1.1; letter-spacing: .08em; text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 154, 126, .24), 0 0 24px rgba(255, 203, 112, .10), 0 1px 0 rgba(0,0,0,.45);
+  overflow-wrap: anywhere;
+}
+.transfer-group-reminder-actions { display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; }
+#transfer-group-reminder-copy-button, #transfer-group-reminder-continue { min-width: 190px; }
+#transfer-group-reminder-continue[disabled] { opacity: .52; cursor: not-allowed; box-shadow: none; }
+.transfer-group-reminder-note { margin: 15px 0 0; color: #d9aea3; font-size: .8rem; line-height: 1.55; }
+body.transfer-group-reminder-open { overflow: hidden; }
+@keyframes transferGroupReminderIn {
+  from { opacity: 0; transform: translateY(10px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (max-width: 640px) {
+  .transfer-group-reminder-dialog { width: calc(100% - 16px); margin-top: 18px; padding: 20px 16px 18px; border-radius: 18px; }
+  .transfer-group-reminder-copy { font-size: .88rem; }
+  .transfer-group-reminder-coupon { padding: 16px 14px 18px; }
+  #transfer-group-reminder-name { font-size: clamp(1.45rem, 8vw, 2.15rem); }
+  .transfer-group-reminder-actions { flex-direction: column; }
+  #transfer-group-reminder-copy-button, #transfer-group-reminder-continue { width: 100%; }
+}
+
 </style>
 </head>
 <body>
@@ -4681,7 +4770,27 @@ select:focus,
     </div>
   </section>
 
-  <script>
+  
+  <div class="transfer-group-reminder-modal" id="transfer-group-reminder-modal" hidden>
+    <div class="transfer-group-reminder-backdrop" data-close-transfer-group-reminder></div>
+    <div class="transfer-group-reminder-dialog" role="dialog" aria-modal="true" aria-labelledby="transfer-group-reminder-title">
+      <button type="button" class="transfer-group-reminder-close" id="transfer-group-reminder-close" aria-label="Close">×</button>
+      <span class="transfer-group-reminder-kicker" data-i18n="transferGroupReminderKicker">Before you continue</span>
+      <h2 id="transfer-group-reminder-title"></h2>
+      <p class="transfer-group-reminder-copy" id="transfer-group-reminder-copy"></p>
+      <div class="transfer-group-reminder-coupon" aria-live="polite">
+        <span class="transfer-group-reminder-coupon-label" data-i18n="transferGroupReminderCouponLabel">Transfer Group Name</span>
+        <strong id="transfer-group-reminder-name">—</strong>
+      </div>
+      <div class="transfer-group-reminder-actions">
+        <button type="button" class="button submit" id="transfer-group-reminder-copy-button" data-i18n="copyTransferGroupName">Copy Group Name</button>
+        <button type="button" class="button secondary" id="transfer-group-reminder-continue" data-i18n="continueAfterCopy" disabled>Continue</button>
+      </div>
+      <p class="transfer-group-reminder-note" data-i18n="transferGroupReminderNote">Please hit copy to save it to your clipboard, then continue.</p>
+    </div>
+  </div>
+
+<script>
 'use strict';
 
 const CONFIG = {
@@ -4747,6 +4856,14 @@ const I18N = {
     copyConfirmationCode: "Copy Code",
     saveConfirmationPng: "Save Confirmation PNG",
     confirmationScreenshot: "You can also screenshot this page.",
+    transferGroupReminderKicker: "Before you continue",
+    transferGroupReminderTitle: "Hi {username}. We just want to make sure...",
+    transferGroupReminderBody: "Did you save your transfer group's name to share with your friends? Please hit copy to save it to your clipboard.",
+    transferGroupReminderCouponLabel: "Transfer Group Name",
+    copyTransferGroupName: "Copy Group Name",
+    continueAfterCopy: "Continue",
+    copiedTransferGroupName: "Copied!",
+    transferGroupReminderNote: "Please hit copy to save it to your clipboard, then continue.",
     usernameShort: "Player",
     serverShort: "Server",
     stepOfFive: "Step {step} of 5",
@@ -5396,7 +5513,7 @@ const I18N = {
   }
 };
 
-const state = { step: 1, language: 'en', groupMembers: [], applicationId: '', confirmationCode: '' };
+const state = { step: 1, language: 'en', groupMembers: [], applicationId: '', confirmationCode: '', pendingStepDestination: null, transferGroupReminderAcknowledgedFor: '', transferGroupReminderCopied: false };
 const form = document.getElementById('application-form');
 const steps = [...document.querySelectorAll('.form-step')];
 const stepLinks = [...document.querySelectorAll('.step-link')];
@@ -5621,6 +5738,7 @@ function setLanguage(lang) {
   updateTransferEstimate();
   if (state.step === 5) renderReview();
   initCustomSelects();
+  if (!document.getElementById('transfer-group-reminder-modal')?.hidden) renderTransferGroupReminderModal();
   document.querySelectorAll('select').forEach(syncCustomSelect);
   saveDraft();
 }
@@ -6013,6 +6131,89 @@ function updateGroupSummary() {
 
 function updateTransferEstimate() {}
 
+
+function getTransferGroupReminderElements() {
+  return {
+    modal: document.getElementById('transfer-group-reminder-modal'),
+    title: document.getElementById('transfer-group-reminder-title'),
+    copy: document.getElementById('transfer-group-reminder-copy'),
+    name: document.getElementById('transfer-group-reminder-name'),
+    copyButton: document.getElementById('transfer-group-reminder-copy-button'),
+    continueButton: document.getElementById('transfer-group-reminder-continue')
+  };
+}
+
+function getTransferGroupNameValue() {
+  return normalizeTransferGroupName(document.getElementById('transfer-group-name')?.value || '');
+}
+
+function renderTransferGroupReminderModal() {
+  const els = getTransferGroupReminderElements();
+  const username = document.getElementById('username')?.value.trim() || 'there';
+  const groupName = getTransferGroupNameValue() || '—';
+  if (els.title) els.title.textContent = t('transferGroupReminderTitle').replace('{username}', username);
+  if (els.copy) els.copy.textContent = t('transferGroupReminderBody');
+  if (els.name) els.name.textContent = groupName;
+  if (els.copyButton) els.copyButton.textContent = state.transferGroupReminderCopied ? t('copiedTransferGroupName') : t('copyTransferGroupName');
+  if (els.continueButton) els.continueButton.disabled = !state.transferGroupReminderCopied;
+}
+
+function openTransferGroupReminderModal(destinationStep = 4) {
+  state.pendingStepDestination = destinationStep;
+  state.transferGroupReminderCopied = false;
+  renderTransferGroupReminderModal();
+  const { modal, copyButton } = getTransferGroupReminderElements();
+  if (modal) modal.hidden = false;
+  document.body.classList.add('transfer-group-reminder-open');
+  setTimeout(() => copyButton?.focus(), 40);
+}
+
+function closeTransferGroupReminderModal() {
+  const { modal } = getTransferGroupReminderElements();
+  if (modal) modal.hidden = true;
+  document.body.classList.remove('transfer-group-reminder-open');
+  state.pendingStepDestination = null;
+}
+
+async function copyTransferGroupNameToClipboard() {
+  const groupName = getTransferGroupNameValue();
+  if (!groupName) return false;
+
+  try {
+    await navigator.clipboard.writeText(groupName);
+  } catch (_) {
+    const area = document.createElement('textarea');
+    area.value = groupName;
+    area.setAttribute('readonly', 'readonly');
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand('copy');
+    area.remove();
+  }
+
+  state.transferGroupReminderCopied = true;
+  renderTransferGroupReminderModal();
+  return true;
+}
+
+function shouldShowTransferGroupReminder(destinationStep) {
+  if (!(state.step === 3 && destinationStep === 4)) return false;
+  if (currentGroupAnswer() !== 'yes') return false;
+  const groupName = getTransferGroupNameValue();
+  if (!groupName) return false;
+  return state.transferGroupReminderAcknowledgedFor !== groupName;
+}
+
+function confirmTransferGroupReminderAndContinue() {
+  const groupName = getTransferGroupNameValue();
+  state.transferGroupReminderAcknowledgedFor = groupName;
+  const destination = state.pendingStepDestination || 4;
+  closeTransferGroupReminderModal();
+  goToStep(destination);
+}
+
 function currentGroupAnswer() { return form.querySelector('input[name="transferWithGroup"]:checked')?.value || ''; }
 
 function collectPayload() {
@@ -6366,6 +6567,12 @@ nextButton.addEventListener('click', () => {
   }
 
   const destination = state.step + 1;
+
+  if (shouldShowTransferGroupReminder(destination)) {
+    openTransferGroupReminderModal(destination);
+    return;
+  }
+
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   nextButton.classList.remove('blade-activate');
@@ -6384,6 +6591,14 @@ nextButton.addEventListener('click', () => {
   }, 190);
 });
 backButton.addEventListener('click', () => goToStep(state.step - 1));
+document.getElementById('transfer-group-reminder-close').addEventListener('click', closeTransferGroupReminderModal);
+document.querySelectorAll('[data-close-transfer-group-reminder]').forEach(el => el.addEventListener('click', closeTransferGroupReminderModal));
+document.getElementById('transfer-group-reminder-copy-button').addEventListener('click', copyTransferGroupNameToClipboard);
+document.getElementById('transfer-group-reminder-continue').addEventListener('click', confirmTransferGroupReminderAndContinue);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !document.getElementById('transfer-group-reminder-modal')?.hidden) closeTransferGroupReminderModal();
+});
+
 document.getElementById('validation-banner-close').addEventListener('click', hideValidationBanner);
 form.addEventListener('submit', submitApplication);
 form.addEventListener('input', hideValidationBanner);
@@ -6403,6 +6618,8 @@ document.querySelectorAll('input[name="transferWithGroup"]').forEach(r => r.addE
 document.getElementById('transfer-group-name').addEventListener('input', e => {
   const upper = String(e.target.value || '').toLocaleUpperCase();
   if (e.target.value !== upper) e.target.value = upper;
+  state.transferGroupReminderAcknowledgedFor = '';
+  state.transferGroupReminderCopied = false;
   updateGroupSummary();
   clearFieldError(e.target);
   saveDraft();

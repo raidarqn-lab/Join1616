@@ -404,3 +404,12 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Added soft internal highlight washes, a subtle glowing inner frame, and a gentle halo behind each step heading.
 - Warmed the inner cards, input fields, and action bar so the whole form feels illuminated from within instead of flat.
 - Preserved the existing red / sakura / lantern-gold palette and Continue-button behavior from v50.
+
+
+## v52
+- Added a Transfer Group reminder popup that appears before proceeding from Step 3 to Step 4 when the applicant is transferring with a group.
+- The popup greets the applicant by username and reminds them to save their Transfer Group Name to share with friends.
+- The Transfer Group Name is displayed very large in a central coupon-style dashed box with glowing text.
+- Added a Copy Group Name button that copies the Transfer Group Name to the clipboard.
+- The Continue button inside the popup stays disabled until the applicant presses Copy.
+- If the Transfer Group Name changes, the reminder will be shown again before proceeding.
