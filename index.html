@@ -4913,14 +4913,136 @@ body.transfer-group-reminder-open { overflow: hidden; }
 /* v68 — final visual guide polish */
 .stats-guide-image-frame { aspect-ratio: 2 / 1 !important; }
 .stats-guide-image { width: 100% !important; height: 100% !important; object-fit: contain !important; }
-#stats-guide-done.button.primary {
-  min-width: 150px;
-  background: linear-gradient(90deg, #ef8297, #ffd27a) !important;
-  color: #241116 !important;
-  border-color: rgba(255,226,181,.72) !important;
-  box-shadow: 0 0 18px rgba(239,130,151,.20), 0 8px 22px rgba(0,0,0,.24);
+
+/* v69 — accordion guide layout + labeled top-right close control */
+.stats-guide-actions { display: none !important; }
+.stats-guide-topbar {
+  padding: 12px 14px 2px !important;
+  display: flex;
+  justify-content: flex-end;
 }
-#stats-guide-done.button.primary:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.stats-guide-close {
+  width: auto !important;
+  height: 38px !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  padding: 0 11px 0 14px !important;
+  border-radius: 999px !important;
+  font-size: .8rem !important;
+  font-weight: 850;
+  letter-spacing: .02em;
+  background: rgba(255,255,255,.055) !important;
+  border-color: rgba(255, 223, 184, .22) !important;
+  color: #fff7ec !important;
+  transition: background .18s ease, border-color .18s ease, transform .18s ease;
+}
+.stats-guide-close:hover {
+  background: rgba(255,255,255,.095) !important;
+  border-color: rgba(255, 211, 170, .40) !important;
+  transform: translateY(-1px);
+}
+.stats-guide-close-label { line-height: 1; }
+.stats-guide-close-x {
+  font-size: 1.28rem;
+  font-weight: 500;
+  line-height: .8;
+  transform: translateY(-1px);
+}
+.stats-guide-instructions {
+  padding: 14px !important;
+}
+.stats-guide-instructions > h3 {
+  margin-bottom: 10px !important;
+}
+.stats-guide-accordion {
+  margin: 8px 0 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 13px;
+  background: rgba(7, 10, 18, .34);
+  transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+.stats-guide-accordion:first-of-type { margin-top: 0; }
+.stats-guide-accordion[open] {
+  background: rgba(20, 12, 17, .58);
+}
+.stats-guide-accordion.instruction-one[open] {
+  border-color: rgba(238, 89, 112, .44);
+  box-shadow: inset 3px 0 0 rgba(238, 89, 112, .75), 0 0 16px rgba(238,89,112,.06);
+}
+.stats-guide-accordion.instruction-two[open] {
+  border-color: rgba(78, 211, 116, .38);
+  box-shadow: inset 3px 0 0 rgba(78, 211, 116, .70), 0 0 16px rgba(78,211,116,.05);
+}
+.stats-guide-accordion.instruction-three[open] {
+  border-color: rgba(83, 169, 255, .42);
+  box-shadow: inset 3px 0 0 rgba(83, 169, 255, .72), 0 0 16px rgba(83,169,255,.05);
+}
+.stats-guide-accordion.instruction-four[open] {
+  border-color: rgba(255, 187, 72, .40);
+  box-shadow: inset 3px 0 0 rgba(255, 187, 72, .72), 0 0 16px rgba(255,187,72,.05);
+}
+.stats-guide-accordion summary {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 18px;
+  gap: 10px;
+  align-items: center;
+  min-height: 52px;
+  padding: 9px 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.stats-guide-accordion summary::-webkit-details-marker { display: none; }
+.stats-guide-accordion summary strong {
+  margin: 0 !important;
+  color: #fff7ec;
+  font-size: .91rem;
+  line-height: 1.25;
+}
+.stats-guide-chevron {
+  width: 9px;
+  height: 9px;
+  justify-self: center;
+  border-right: 2px solid rgba(255,239,224,.72);
+  border-bottom: 2px solid rgba(255,239,224,.72);
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform .18s ease;
+}
+.stats-guide-accordion[open] .stats-guide-chevron {
+  transform: rotate(225deg) translate(-1px, -1px);
+}
+.stats-guide-accordion-body {
+  padding: 0 12px 13px 52px;
+}
+.stats-guide-accordion-body p {
+  margin: 0;
+  color: rgba(255, 239, 224, .84);
+  font-size: .82rem;
+  line-height: 1.5;
+}
+/* Keep number colors aligned to the numbered image markers. */
+.stats-guide-accordion.instruction-one .stats-guide-instruction-num {
+  color: #ffadb9; border-color: rgba(238, 89, 112, .54); box-shadow: 0 0 14px rgba(238, 89, 112, .12);
+}
+.stats-guide-accordion.instruction-two .stats-guide-instruction-num {
+  color: #a9f2b8; border-color: rgba(78, 211, 116, .48); box-shadow: 0 0 14px rgba(78, 211, 116, .10);
+}
+.stats-guide-accordion.instruction-three .stats-guide-instruction-num {
+  color: #a9d7ff; border-color: rgba(83, 169, 255, .52); box-shadow: 0 0 14px rgba(83, 169, 255, .10);
+}
+.stats-guide-accordion.instruction-four .stats-guide-instruction-num {
+  color: #ffd88b; border-color: rgba(255, 187, 72, .52); box-shadow: 0 0 14px rgba(255, 187, 72, .10);
+}
+@media (max-width: 840px) {
+  .stats-guide-accordion-body { padding-left: 52px; }
+}
+@media (max-width: 520px) {
+  .stats-guide-close { height: 36px !important; padding: 0 10px 0 12px !important; }
+  .stats-guide-accordion summary { grid-template-columns: 30px minmax(0, 1fr) 16px; gap: 9px; }
+  .stats-guide-accordion-body { padding: 0 10px 12px 49px; }
+}
 
 </style>
 </head>
@@ -5723,7 +5845,10 @@ body.transfer-group-reminder-open { overflow: hidden; }
   <section class="stats-guide-modal" id="stats-guide-modal" hidden role="dialog" aria-modal="true" aria-labelledby="stats-guide-title">
     <div class="stats-guide-dialog">
       <div class="stats-guide-topbar">
-        <button class="stats-guide-close" id="stats-guide-close" type="button" aria-label="Close">×</button>
+        <button class="stats-guide-close" id="stats-guide-close" type="button" aria-label="Close">
+          <span class="stats-guide-close-label" data-i18n="closeGuide">Close</span>
+          <span class="stats-guide-close-x" aria-hidden="true">×</span>
+        </button>
       </div>
       <div class="stats-guide-header">
         <p class="stats-guide-eyebrow" data-i18n="statsGuideEyebrow">Sample visual guide</p>
@@ -5741,42 +5866,50 @@ body.transfer-group-reminder-open { overflow: hidden; }
         <aside class="stats-guide-instructions" aria-label="Guide instructions">
           <h3 data-i18n="statsGuideInstructionsTitle">What each number means</h3>
 
-          <div class="stats-guide-instruction-row instruction-one">
-            <span class="stats-guide-instruction-num">1</span>
-            <div>
+          <details class="stats-guide-accordion instruction-one" open>
+            <summary>
+              <span class="stats-guide-instruction-num">1</span>
               <strong data-i18n="statsGuideItem1Title">Total Power</strong>
+              <span class="stats-guide-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="stats-guide-accordion-body">
               <p data-i18n="statsGuideOverlayLine1">Tap the area labeled (1) to access your Power Details screen. Your Total Power includes troops in your base, so do not enter this number as Hero Power.</p>
             </div>
-          </div>
+          </details>
 
-          <div class="stats-guide-instruction-row instruction-two">
-            <span class="stats-guide-instruction-num">2</span>
-            <div>
+          <details class="stats-guide-accordion instruction-two">
+            <summary>
+              <span class="stats-guide-instruction-num">2</span>
               <strong data-i18n="statsGuideItem2Title">Profession Level</strong>
+              <span class="stats-guide-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="stats-guide-accordion-body">
               <p data-i18n="statsGuideOverlayLine2">The area labeled (2) shows your Profession Level. Enter the level shown beside the helmet icon. The maximum profession level is 100.</p>
             </div>
-          </div>
+          </details>
 
-          <div class="stats-guide-instruction-row instruction-three">
-            <span class="stats-guide-instruction-num">3</span>
-            <div>
+          <details class="stats-guide-accordion instruction-three">
+            <summary>
+              <span class="stats-guide-instruction-num">3</span>
               <strong data-i18n="statsGuideItem3Title">Kill Count</strong>
+              <span class="stats-guide-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="stats-guide-accordion-body">
               <p data-i18n="statsGuideOverlayLine3">The area labeled (3) shows your Kill Count. Enter the full number shown beside the crossed-weapons icon. Do not use M, K, or other abbreviations.</p>
             </div>
-          </div>
+          </details>
 
-          <div class="stats-guide-instruction-row instruction-four">
-            <span class="stats-guide-instruction-num">4</span>
-            <div>
+          <details class="stats-guide-accordion instruction-four">
+            <summary>
+              <span class="stats-guide-instruction-num">4</span>
               <strong data-i18n="statsGuideItem4Title">Power Details</strong>
+              <span class="stats-guide-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="stats-guide-accordion-body">
               <p data-i18n="statsGuideOverlayLine4">After tapping (1), the screen labeled (4) opens. Enter the separate values shown for Hero Power, Building Power, Technology Power, Drone Power, and Decoration Power.</p>
             </div>
-          </div>
+          </details>
         </aside>
-      </div>
-
-      <div class="stats-guide-actions">
-        <button class="button primary" id="stats-guide-done" type="button" data-i18n="closeGuide">Close</button>
       </div>
     </div>
   </section>
@@ -6911,6 +7044,7 @@ function setLanguage(lang) {
   headerLanguage.value = lang;
   document.querySelectorAll('.language-card').forEach(btn => btn.classList.toggle('selected', btn.dataset.language === lang));
   document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; el.textContent = t(k); });
+  document.getElementById('stats-guide-close')?.setAttribute('aria-label', t('closeGuide'));
   document.querySelectorAll('[data-i18n-dynamic]').forEach(el => { const k = el.dataset.i18nDynamic; el.textContent = t(k); });
   refreshGroupMemberLabels();
   updateGroupContactOptions();
@@ -7579,6 +7713,9 @@ function openStatsGuideModal() {
   if (modal) {
     modal.hidden = false;
     document.body.classList.add('stats-guide-open');
+    const accordions = [...modal.querySelectorAll('.stats-guide-accordion')];
+    if (accordions.length && !accordions.some(item => item.open)) accordions[0].open = true;
+    requestAnimationFrame(() => document.getElementById('stats-guide-close')?.focus());
   }
 }
 function closeStatsGuideModal() {
@@ -7889,7 +8026,14 @@ form.addEventListener('input', e => { if (!e.target.classList.contains('member-n
 
 document.querySelectorAll('[data-open-stats-guide]').forEach(btn => btn.addEventListener('click', openStatsGuideModal));
 document.getElementById('stats-guide-close').addEventListener('click', closeStatsGuideModal);
-document.getElementById('stats-guide-done').addEventListener('click', closeStatsGuideModal);
+document.querySelectorAll('.stats-guide-accordion').forEach(item => {
+  item.addEventListener('toggle', () => {
+    if (!item.open) return;
+    document.querySelectorAll('.stats-guide-accordion').forEach(other => {
+      if (other !== item) other.open = false;
+    });
+  });
+});
 document.getElementById('stats-guide-modal').addEventListener('click', e => { if (e.target.id === 'stats-guide-modal') closeStatsGuideModal(); });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && !document.getElementById('stats-guide-modal')?.hidden) closeStatsGuideModal();
