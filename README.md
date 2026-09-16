@@ -295,3 +295,9 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Changed the welcome heading to the regular Google Font “Bungee” for better readability.
 - Welcome heading is now solid white with a subtle pink/red glow.
 - Step titles remain in Bungee Tint.
+
+
+## v40
+- Reduced the Bungee welcome-heading size so “Thank you for your interest in joining 1616!” wraps more cleanly.
+- Increased line-height to prevent Bungee glyphs from visually colliding across lines.
+- Slightly widened the title area and enabled balanced wrapping.
