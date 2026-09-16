@@ -301,3 +301,21 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Reduced the Bungee welcome-heading size so “Thank you for your interest in joining 1616!” wraps more cleanly.
 - Increased line-height to prevent Bungee glyphs from visually colliding across lines.
 - Slightly widened the title area and enabled balanced wrapping.
+
+
+## v41
+- Redesigned the welcome guide screen to feel more samurai/clan-themed.
+- Added a Japanese-style title treatment:
+  - white Bungee headline
+  - subtle ink/katana underline slash
+  - small red hanko-style “1616” seal beside the heading
+- Restyled guide names into dark clan-style nameplates with a red vertical accent and alliance underneath.
+- Added a cinematic welcome-sequence animation on the guide screen:
+  - guide stage fades in
+  - Blood Moon glow brightens behind the title
+  - headline reveals
+  - katana underline flashes
+  - guide portrait rises/fades in
+  - nameplates appear one after another
+  - Begin Application appears last
+- The sequence is timed to complete in roughly 1.2–1.5 seconds and includes reduced-motion support.

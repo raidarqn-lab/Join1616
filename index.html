@@ -1677,6 +1677,351 @@ html[dir="rtl"] .review-item, html[dir="rtl"] .field-block { text-align: right; 
     0 0 10px rgba(240,105,130,.36),
     0 0 20px rgba(214,50,82,.20);
 }
+
+/* Welcome guide screen — more samurai/clan-poster treatment. */
+.welcome-guide-stage {
+  position: relative;
+  isolation: isolate;
+}
+.welcome-guide-stage::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: -12px;
+  width: min(380px, 72vw);
+  height: min(380px, 72vw);
+  border-radius: 50%;
+  transform: translateX(-50%) scale(.84);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(246,106,126,.30) 0 18%, rgba(199,41,70,.22) 28%, rgba(144,17,40,.13) 45%, rgba(0,0,0,0) 68%);
+  filter: blur(4px);
+  opacity: .34;
+}
+.welcome-title-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: end;
+  width: min(910px, 100%);
+  margin: 0 auto;
+}
+.welcome-title-hero .welcome-title {
+  margin: 0;
+}
+.welcome-hanko-seal {
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 8px;
+  border: 2px solid rgba(255,160,173,.44);
+  background:
+    linear-gradient(180deg, rgba(161,25,51,.94), rgba(105,8,27,.96));
+  box-shadow:
+    0 0 0 1px rgba(255,214,220,.07) inset,
+    0 0 13px rgba(216,56,85,.22);
+  transform: rotate(-5deg);
+}
+.welcome-hanko-seal span {
+  color: #ffe6ea;
+  font-family: "Bungee", var(--font);
+  font-size: .94rem;
+  letter-spacing: .09em;
+  text-shadow: 0 0 8px rgba(255,162,177,.18);
+}
+.welcome-title-slash {
+  position: relative;
+  width: min(540px, 78%);
+  height: 26px;
+  margin: 8px auto 10px;
+}
+.welcome-title-slash::before {
+  content: "";
+  position: absolute;
+  inset: 10px 0 auto;
+  height: 5px;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(240,184,192,.36) 10%,
+      rgba(248,112,135,.88) 46%,
+      rgba(178,24,52,.94) 70%,
+      transparent 100%);
+  transform: rotate(-1.8deg);
+  box-shadow:
+    0 0 7px rgba(238,110,130,.20),
+    0 0 20px rgba(182,31,56,.12);
+}
+.welcome-title-slash::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 18%;
+  top: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at center, rgba(255,255,255,.18) 0%, rgba(255,177,189,.12) 40%, rgba(255,177,189,0) 72%);
+  filter: blur(4px);
+  opacity: .55;
+}
+
+.welcome-guide-copy {
+  margin-top: 4px;
+}
+
+.guide-group-photo-section {
+  position: relative;
+  width: 100%;
+  margin: 24px auto 0;
+}
+.guide-group-photo-frame {
+  position: relative;
+  width: min(175px, 42vw);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border: 1px solid rgba(244,130,150,.86);
+  border-radius: 18px;
+  padding: 5px;
+  background:
+    linear-gradient(145deg, rgba(255,126,151,.92), rgba(162,29,58,.86) 38%, rgba(80,31,44,.88) 76%, rgba(236,116,141,.70) 100%);
+  box-shadow:
+    0 0 0 4px rgba(7,23,35,.84),
+    0 0 22px rgba(229,64,96,.24),
+    0 18px 55px rgba(0,0,0,.30);
+}
+.guide-group-photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: -6px -8px auto auto;
+  width: 78px;
+  height: 78px;
+  background:
+    radial-gradient(circle at 38% 34%, rgba(255,186,198,.84) 0 6%, transparent 7%),
+    radial-gradient(circle at 56% 50%, rgba(255,133,157,.84) 0 8%, transparent 9%),
+    radial-gradient(circle at 30% 66%, rgba(255,214,220,.68) 0 5%, transparent 6%);
+  opacity: .7;
+  pointer-events: none;
+}
+.guide-group-photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 13px;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.13),
+    inset 0 -70px 90px rgba(8,20,30,.12);
+}
+.guide-group-photo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 13px;
+}
+
+.guide-name-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: min(640px, 100%);
+  margin: 16px auto 0;
+}
+.guide-name-chip {
+  position: relative;
+  min-width: 0;
+  padding: 11px 12px 10px 18px;
+  border: 1px solid rgba(223,91,116,.50);
+  border-radius: 9px;
+  background:
+    linear-gradient(90deg, rgba(217,51,82,.92) 0 4px, rgba(11,27,37,.84) 4px, rgba(7,22,31,.74) 100%);
+  text-align: left;
+  cursor: default;
+  box-shadow:
+    0 0 0 1px rgba(255,161,180,.025) inset,
+    0 12px 24px rgba(0,0,0,.14);
+  transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+  overflow: visible;
+  z-index: 1;
+}
+.guide-name-chip strong {
+  display: block;
+  color: #f7f9fa;
+  font-size: clamp(.8rem, 1.58vw, .98rem);
+  font-weight: 850;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+.guide-name-chip span {
+  display: block;
+  margin-top: 6px;
+  color: #f4aabb;
+  font-size: .63rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+}
+.guide-name-chip:hover {
+  background:
+    linear-gradient(90deg, rgba(247,95,123,.96) 0 4px, rgba(14,35,47,.88) 4px, rgba(9,25,35,.84) 100%);
+  border-color: rgba(248,126,148,.82);
+  transform: translateY(-2px);
+  z-index: 9;
+  box-shadow:
+    0 0 0 1px rgba(255,176,192,.03) inset,
+    0 0 18px rgba(215,55,86,.12);
+}
+
+/* Welcome sequence animation */
+.welcome-guide-stage.stage-enter {
+  animation: welcomeGuideStageFade .24s ease-out both;
+}
+.welcome-guide-stage.stage-enter::before {
+  animation: welcomeMoonBloom .74s cubic-bezier(.18,.82,.2,1) .02s both;
+}
+.welcome-guide-stage.stage-enter .welcome-title {
+  animation: welcomeTitleReveal .42s cubic-bezier(.16,.82,.22,1) .16s both;
+}
+.welcome-guide-stage.stage-enter .welcome-hanko-seal {
+  animation: welcomeSealPop .34s cubic-bezier(.2,.9,.24,1.18) .34s both;
+}
+.welcome-guide-stage.stage-enter .welcome-title-slash::before {
+  animation: welcomeKatanaSlash .35s cubic-bezier(.18,.78,.18,1) .44s both;
+}
+.welcome-guide-stage.stage-enter .welcome-title-slash::after {
+  animation: welcomeKatanaSpark .36s cubic-bezier(.18,.78,.18,1) .52s both;
+}
+.welcome-guide-stage.stage-enter .guide-group-photo-section {
+  animation: welcomePhotoRise .46s cubic-bezier(.18,.84,.22,1) .62s both;
+}
+.welcome-guide-stage.stage-enter .guide-name-strip .guide-name-chip:nth-child(1) {
+  animation: welcomeNameFade .28s ease-out .88s both;
+}
+.welcome-guide-stage.stage-enter .guide-name-strip .guide-name-chip:nth-child(2) {
+  animation: welcomeNameFade .28s ease-out 1.00s both;
+}
+.welcome-guide-stage.stage-enter .guide-name-strip .guide-name-chip:nth-child(3) {
+  animation: welcomeNameFade .28s ease-out 1.12s both;
+}
+.welcome-guide-stage.stage-enter .welcome-action {
+  animation: welcomeActionAppear .30s ease-out 1.24s both;
+}
+
+@keyframes welcomeGuideStageFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes welcomeMoonBloom {
+  0% { opacity: 0; transform: translateX(-50%) scale(.6); filter: blur(9px); }
+  55% { opacity: .62; transform: translateX(-50%) scale(1.08); filter: blur(5px); }
+  100% { opacity: .34; transform: translateX(-50%) scale(1); filter: blur(4px); }
+}
+@keyframes welcomeTitleReveal {
+  0% { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateY(10px); filter: blur(2px); }
+  100% { opacity: 1; clip-path: inset(0 0 0 0); transform: translateY(0); filter: none; }
+}
+@keyframes welcomeSealPop {
+  0% { opacity: 0; transform: rotate(-10deg) scale(.72); }
+  70% { opacity: 1; transform: rotate(-4deg) scale(1.07); }
+  100% { opacity: 1; transform: rotate(-5deg) scale(1); }
+}
+@keyframes welcomeKatanaSlash {
+  0% { opacity: 0; transform: rotate(-1.8deg) scaleX(0); transform-origin: left center; }
+  18% { opacity: 1; }
+  72% { opacity: 1; transform: rotate(-1.8deg) scaleX(1); transform-origin: left center; }
+  100% { opacity: 1; transform: rotate(-1.8deg) scaleX(1); transform-origin: left center; }
+}
+@keyframes welcomeKatanaSpark {
+  0% { opacity: 0; transform: translateX(-16%) scale(.55); }
+  30% { opacity: .9; }
+  100% { opacity: .55; transform: translateX(26%) scale(1); }
+}
+@keyframes welcomePhotoRise {
+  0% { opacity: 0; transform: translateY(20px) scale(.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes welcomeNameFade {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes welcomeActionAppear {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-guide-stage.stage-enter,
+  .welcome-guide-stage.stage-enter::before,
+  .welcome-guide-stage.stage-enter .welcome-title,
+  .welcome-guide-stage.stage-enter .welcome-hanko-seal,
+  .welcome-guide-stage.stage-enter .welcome-title-slash::before,
+  .welcome-guide-stage.stage-enter .welcome-title-slash::after,
+  .welcome-guide-stage.stage-enter .guide-group-photo-section,
+  .welcome-guide-stage.stage-enter .guide-name-strip .guide-name-chip,
+  .welcome-guide-stage.stage-enter .welcome-action {
+    animation: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .welcome-title-hero {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .welcome-hanko-seal {
+    width: 50px;
+    height: 50px;
+    justify-self: center;
+  }
+  .welcome-hanko-seal span {
+    font-size: .82rem;
+  }
+  .welcome-title-slash {
+    width: min(320px, 90%);
+    margin-top: 4px;
+  }
+  .guide-group-photo-section {
+    margin-top: 20px;
+  }
+  .guide-name-strip {
+    width: min(520px, 100%);
+    gap: 8px;
+  }
+}
+@media (max-width: 620px) {
+  .guide-group-photo-frame {
+    width: min(150px, 46vw);
+    border-radius: 16px;
+    padding: 4px;
+  }
+  .guide-group-photo,
+  .guide-group-photo-frame::after {
+    border-radius: 12px;
+  }
+  .guide-name-strip {
+    grid-template-columns: 1fr;
+  }
+  .guide-name-chip {
+    padding: 10px 12px 9px 17px;
+  }
+  .guide-name-chip strong {
+    font-size: .76rem;
+  }
+  .guide-name-chip span {
+    font-size: .59rem;
+  }
+  .guide-name-chip::after {
+    max-width: 150px;
+    white-space: normal;
+    font-size: .62rem;
+  }
+}
+
 .welcome-subtitle {
   position: relative;
   max-width: 730px;
@@ -2330,7 +2675,11 @@ body.welcome-open { overflow: hidden; }
 
       <div class="welcome-stage welcome-guide-stage" id="welcome-guide-stage" hidden>
         <p class="welcome-kicker" data-i18n="serverTransferApplication">SERVER TRANSFER APPLICATION</p>
-        <h1 class="welcome-title" id="welcome-title" data-i18n="welcomeThanksTitle">Thank you for your interest in joining 1616!</h1>
+        <div class="welcome-title-hero">
+          <h1 class="welcome-title" id="welcome-title" data-i18n="welcomeThanksTitle">Thank you for your interest in joining 1616!</h1>
+          <span class="welcome-hanko-seal" aria-hidden="true"><span>1616</span></span>
+        </div>
+        <div class="welcome-title-slash" aria-hidden="true"></div>
 
         <p class="welcome-subtitle welcome-guide-copy">
           <span data-i18n="welcomeGuideLead">We are your transfer guides:</span>
@@ -4350,15 +4699,11 @@ function initWelcomeScreen() {
       setLanguage(btn.dataset.welcomeLanguage);
       languageStage.hidden = true;
       guideStage.hidden = false;
-      if (guideStage.animate) {
-        guideStage.animate(
-          [
-            { opacity: 0, transform: 'translateY(8px)' },
-            { opacity: 1, transform: 'translateY(0)' }
-          ],
-          { duration: 220, easing: 'ease-out' }
-        );
-      }
+      guideStage.classList.remove('stage-enter');
+      void guideStage.offsetWidth;
+      guideStage.classList.add('stage-enter');
+      clearTimeout(guideStage._stageEnterTimer);
+      guideStage._stageEnterTimer = setTimeout(() => guideStage.classList.remove('stage-enter'), 1700);
     });
   });
 
