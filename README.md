@@ -370,3 +370,9 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Added localized personalized versions for all eight supported languages.
 - The heading updates automatically if the username or language changes.
 - Reduced only this longer Step 2 title slightly so it wraps cleanly while keeping the existing Bungee Tint step-title styling and samurai animation.
+
+
+## v49
+- Replaced the top-right language selector’s old circle/globe symbol with a minimalist sakura icon.
+- The new icon is rendered as a small inline SVG in the existing pink Blood Moon palette.
+- Added a subtle hover/focus animation so the sakura feels integrated with the form styling without becoming distracting.

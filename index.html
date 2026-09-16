@@ -131,7 +131,24 @@ button { color: inherit; }
 .header-actions { display: flex; align-items: center; gap: 18px; }
 .language-compact { display: flex; align-items: center; gap: 8px; border: 1px solid var(--border-strong); border-radius: 9px; padding: 0 10px; background: rgba(5,20,31,.78); }
 .language-compact select { width: 190px; color: var(--text); background: transparent; border: 0; padding: 11px 6px; outline: 0; }
-.globe { color: var(--accent); font-size: 1.1rem; }
+.sakura-icon {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='%23f5a0b1'%3E%3Cellipse cx='32' cy='14.5' rx='9.8' ry='13.2'/%3E%3Cellipse cx='48.4' cy='25' rx='9.8' ry='13.2' transform='rotate(72 48.4 25)'/%3E%3Cellipse cx='42.1' cy='44.6' rx='9.8' ry='13.2' transform='rotate(144 42.1 44.6)'/%3E%3Cellipse cx='21.9' cy='44.6' rx='9.8' ry='13.2' transform='rotate(-144 21.9 44.6)'/%3E%3Cellipse cx='15.6' cy='25' rx='9.8' ry='13.2' transform='rotate(-72 15.6 25)'/%3E%3C/g%3E%3Ccircle cx='32' cy='32' r='6.8' fill='%23fff2f5'/%3E%3Ccircle cx='32' cy='32' r='2.2' fill='%23c93f5e'/%3E%3C/svg%3E");
+  filter: drop-shadow(0 0 6px rgba(237,120,144,.18));
+  transition: transform .18s ease, filter .18s ease, opacity .18s ease;
+  opacity: .96;
+}
+.language-compact:hover .sakura-icon,
+.language-compact:focus-within .sakura-icon {
+  transform: scale(1.06) rotate(-6deg);
+  filter: drop-shadow(0 0 9px rgba(237,120,144,.26));
+}
 .tagline { font-size: .72rem; letter-spacing: .24em; color: var(--muted); text-transform: uppercase; max-width: 190px; line-height: 1.6; }
 
 .app-shell { width: min(1380px, calc(100% - 40px)); margin: 28px auto 70px; display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 22px; }
@@ -3355,7 +3372,7 @@ body.welcome-open { overflow: hidden; }
 
     <div class="header-actions">
       <label class="language-compact" for="header-language">
-        <span class="globe" aria-hidden="true">◎</span>
+        <span class="sakura-icon" aria-hidden="true"></span>
         <select id="header-language" aria-label="Language">
           <option value="en">EN · English</option>
           <option value="es">ES · Español</option>
