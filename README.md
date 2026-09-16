@@ -582,3 +582,7 @@ If the webhook is not configured, questions are still saved to the **Questions**
 - Player 1 / Player 2 / Player 3 badges use glowing gold with dark text.
 - Transfer-lead information alert is now a high-contrast gold callout.
 - Step 3 validation highlights use amber/gold outlines and glow instead of flooding fields with red.
+
+
+## v75 support widget asset
+- `dolphy-support-agent.png` — transparent Dolphy support-agent badge used by the floating Questions widget and confirmation state.

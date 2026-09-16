@@ -5755,6 +5755,441 @@ body.welcome-open .question-fab { display: none !important; }
     padding: 5px 12px;
   }
 }
+
+
+/* ================================================================
+   v75 — DOLPHY SUPPORT DESK
+   Large glowing cherry-red question form inspired by the approved
+   mockup. Uses the site's Bungee/Inter typography and no image
+   background inside the form; the only artwork is Dolphy's agent badge.
+   ================================================================ */
+body.question-panel-open .question-fab {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px) scale(.96);
+}
+.question-fab {
+  z-index: 4100 !important;
+  min-height: 58px !important;
+  padding: 7px 18px 7px 7px !important;
+  gap: 11px !important;
+  border: 1px solid rgba(255, 96, 122, .82) !important;
+  background: linear-gradient(145deg, rgba(111, 25, 42, .985), rgba(48, 12, 25, .99)) !important;
+  box-shadow:
+    0 14px 38px rgba(0,0,0,.46),
+    0 0 0 1px rgba(255, 213, 150, .10) inset,
+    0 0 14px rgba(255, 77, 104, .32),
+    0 0 30px rgba(225, 52, 83, .22) !important;
+}
+.question-fab-avatar {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #2a0c18;
+  box-shadow: 0 0 0 1px rgba(255, 211, 144, .56), 0 0 12px rgba(255, 74, 104, .30);
+}
+.question-fab-avatar img { width: 100%; height: 100%; object-fit: contain; }
+.question-fab-copy strong { font-size: .92rem !important; }
+.question-fab-copy span { font-size: .68rem !important; }
+
+.question-panel.question-panel-v75 {
+  z-index: 4200 !important;
+  right: 20px !important;
+  bottom: 20px !important;
+  width: min(790px, calc(100vw - 40px)) !important;
+  max-height: calc(100dvh - 40px) !important;
+  padding: 22px !important;
+  border-radius: 24px !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid rgba(255, 103, 128, .78) !important;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(169, 49, 65, .20), transparent 34%),
+    radial-gradient(circle at 100% 100%, rgba(125, 23, 47, .20), transparent 38%),
+    linear-gradient(145deg, #40141f 0%, #2b0e18 52%, #220b14 100%) !important;
+  color: #fff8ef;
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.66),
+    0 0 0 1px rgba(255, 203, 133, .07) inset,
+    0 0 12px rgba(255, 87, 112, .40),
+    0 0 34px rgba(220, 42, 73, .31),
+    0 0 68px rgba(163, 25, 53, .18) !important;
+}
+.question-panel-v75::before,
+.question-panel-v75::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+  border-radius: 999px;
+  filter: blur(1px);
+}
+.question-panel-v75::before {
+  width: 180px;
+  height: 180px;
+  left: -80px;
+  bottom: -100px;
+  background: radial-gradient(circle, rgba(230, 48, 82, .16), transparent 66%);
+}
+.question-panel-v75::after {
+  width: 150px;
+  height: 150px;
+  right: -70px;
+  top: -70px;
+  background: radial-gradient(circle, rgba(255, 189, 106, .10), transparent 68%);
+}
+
+.question-panel-v75 .question-panel-header {
+  display: grid !important;
+  grid-template-columns: 148px minmax(0, 1fr) auto !important;
+  gap: 20px !important;
+  align-items: center !important;
+  margin-bottom: 18px !important;
+  position: relative;
+}
+.question-panel-v75 .question-agent-avatar {
+  width: 148px !important;
+  height: 148px !important;
+  overflow: visible !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.question-panel-v75 .question-agent-avatar img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: none !important;
+  clip-path: none !important;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.38)) drop-shadow(0 0 10px rgba(225, 53, 83, .28));
+}
+.question-panel-v75 .question-agent-identification {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-bottom: 8px;
+}
+.question-panel-v75 .question-agent-name {
+  margin: 0 !important;
+  color: #ffd279 !important;
+  font-size: .78rem !important;
+  font-weight: 900 !important;
+  letter-spacing: .22em !important;
+}
+.question-agent-role {
+  color: rgba(255, 224, 190, .72);
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.question-panel-v75 .question-panel-title h2 {
+  margin: 0 0 9px !important;
+  color: #fff2e8 !important;
+  font-family: "Bungee", var(--font) !important;
+  font-size: clamp(1.45rem, 3vw, 2.25rem) !important;
+  line-height: 1.08 !important;
+  letter-spacing: .01em;
+  text-shadow: 0 0 18px rgba(255, 91, 113, .16);
+}
+.question-panel-v75 .question-panel-title p {
+  max-width: 52ch;
+  color: rgba(255, 225, 214, .78) !important;
+  font-size: .80rem !important;
+  line-height: 1.5 !important;
+}
+.question-panel-v75 .question-panel-close {
+  position: absolute;
+  top: -5px;
+  right: 0;
+  padding: 6px 8px 6px 11px !important;
+  border: 1px solid rgba(255, 159, 115, .34) !important;
+  border-radius: 999px;
+  background: rgba(71, 19, 31, .72) !important;
+  color: rgba(255, 238, 226, .90) !important;
+  box-shadow: 0 0 12px rgba(230, 58, 87, .18);
+}
+.question-panel-v75 .question-panel-close .x {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  margin-left: 2px;
+  border: 1px solid rgba(255, 112, 132, .54);
+  color: #fff8ef;
+  font-size: 1.05rem !important;
+  box-shadow: 0 0 9px rgba(244, 67, 96, .18);
+}
+
+.question-panel-v75 .question-prefill-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  margin: 0 0 15px !important;
+}
+.question-panel-v75 .question-prefill-row {
+  display: grid !important;
+  grid-template-columns: 42px minmax(0, 1fr) !important;
+  gap: 10px !important;
+  align-items: center !important;
+  min-width: 0;
+  padding: 10px 11px;
+  border-radius: 13px;
+  border: 1px solid rgba(255, 104, 127, .28);
+  background: rgba(80, 25, 35, .40);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+}
+.question-prefill-icon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: #ffd486;
+  border: 1px solid rgba(255, 183, 105, .42);
+  background: rgba(255, 192, 115, .07);
+  font-size: .9rem;
+  font-weight: 950;
+  box-shadow: 0 0 10px rgba(255, 92, 110, .12);
+}
+.question-prefill-copy { min-width: 0; }
+.question-panel-v75 .question-prefill-row label {
+  display: block;
+  margin-bottom: 2px;
+  color: rgba(255, 215, 195, .72) !important;
+  font-size: .62rem !important;
+  font-weight: 700 !important;
+}
+.question-panel-v75 .question-prefill-value {
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #fff7ef !important;
+  font-size: .83rem !important;
+  font-weight: 700;
+}
+.question-panel-v75 .question-lock { font-size: .62rem; opacity: .62; }
+
+.question-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+.question-panel-v75 .question-field {
+  margin-top: 0 !important;
+  gap: 7px !important;
+}
+.question-panel-v75 .question-field > label,
+.question-panel-v75 .question-field-label-row label {
+  color: #ffd897 !important;
+  font-size: .72rem !important;
+  font-weight: 850 !important;
+}
+.question-panel-v75 .question-field em { color: #ff718d; }
+.question-panel-v75 select,
+.question-panel-v75 textarea,
+.question-panel-v75 input[type="email"] {
+  border: 1px solid rgba(255, 94, 122, .40) !important;
+  background: rgba(20, 10, 16, .56) !important;
+  color: #fff8f1 !important;
+  border-radius: 12px !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+}
+.question-panel-v75 select,
+.question-panel-v75 input[type="email"] {
+  min-height: 44px !important;
+  padding: 9px 11px !important;
+}
+.question-panel-v75 textarea {
+  min-height: 140px !important;
+  padding: 13px 14px 30px !important;
+  line-height: 1.5 !important;
+  resize: vertical;
+}
+.question-panel-v75 select:focus,
+.question-panel-v75 textarea:focus,
+.question-panel-v75 input[type="email"]:focus {
+  border-color: rgba(255, 172, 102, .70) !important;
+  box-shadow: 0 0 0 3px rgba(255, 121, 91, .10), 0 0 16px rgba(228, 58, 88, .10) !important;
+}
+.question-panel-v75 .question-field-help {
+  color: rgba(255, 218, 203, .58) !important;
+  font-size: .64rem !important;
+}
+.question-message-field { margin-top: 14px !important; }
+.question-field-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.question-char-count {
+  color: rgba(255, 221, 207, .52);
+  font-size: .62rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.question-footer-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  margin-top: 14px;
+}
+.question-panel-v75 .question-discord-note {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: rgba(255, 215, 204, .70) !important;
+  font-size: .69rem !important;
+  line-height: 1.45 !important;
+}
+.question-discord-icon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 104, 136, .44);
+  color: #ff91a8;
+  background: rgba(220, 47, 80, .10);
+}
+.question-panel-v75 .question-actions {
+  margin: 0 !important;
+  display: flex !important;
+  gap: 8px !important;
+  justify-content: flex-end !important;
+}
+.question-panel-v75 .question-actions button {
+  min-height: 44px;
+  border-radius: 12px !important;
+  padding: 10px 15px !important;
+}
+.question-panel-v75 .question-cancel {
+  border: 1px solid rgba(255, 225, 207, .16) !important;
+  background: rgba(255,255,255,.035) !important;
+  color: rgba(255, 241, 233, .82) !important;
+}
+.question-panel-v75 .question-submit {
+  min-width: 170px;
+  border: 1px solid rgba(255, 184, 94, .72) !important;
+  background: linear-gradient(180deg, #cf3452 0%, #a51e3e 100%) !important;
+  color: #fffaf1 !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 232, 173, .10) inset,
+    0 0 12px rgba(255, 102, 96, .24),
+    0 0 26px rgba(216, 45, 77, .18) !important;
+}
+.question-panel-v75 .question-submit:hover,
+.question-panel-v75 .question-submit:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px rgba(255, 232, 173, .14) inset, 0 0 16px rgba(255, 130, 91, .32), 0 0 34px rgba(216, 45, 77, .22) !important;
+}
+.question-send-icon { font-size: 1rem; margin-right: 7px; }
+.question-panel-v75 .question-error { margin: 10px 0 0 !important; }
+
+.question-panel-v75 .question-confirmation {
+  min-height: 430px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  padding: 24px 18px !important;
+}
+.question-confirmation[hidden] { display: none !important; }
+.question-confirmation-agent {
+  width: 120px;
+  height: 120px;
+  margin-bottom: -16px;
+}
+.question-confirmation-agent img { width: 100%; height: 100%; object-fit: contain; }
+.question-panel-v75 .question-confirmation-check {
+  width: 58px !important;
+  height: 58px !important;
+  margin: 0 auto 14px !important;
+  border-color: rgba(255, 174, 92, .84) !important;
+  color: #ffd17b !important;
+  box-shadow: 0 0 22px rgba(228, 64, 87, .22) !important;
+}
+.question-panel-v75 .question-confirmation h3 {
+  font-family: "Bungee", var(--font);
+  font-size: 1.25rem !important;
+}
+.question-panel-v75 .question-confirmation p { color: rgba(255, 225, 214, .76) !important; }
+.question-confirmation-discord {
+  margin-top: 9px !important;
+  color: rgba(255, 201, 185, .58) !important;
+  font-size: .68rem !important;
+}
+.question-panel-v75 .question-confirmation .question-submit { margin-top: 16px !important; }
+
+html[dir="rtl"] .question-panel-v75 .question-panel-close { left: 0; right: auto; }
+html[dir="rtl"] .question-panel-v75 .question-prefill-grid,
+html[dir="rtl"] .question-meta-grid { direction: rtl; }
+
+@media (max-height: 760px) and (min-width: 701px) {
+  .question-panel.question-panel-v75 {
+    bottom: 12px !important;
+    max-height: calc(100dvh - 24px) !important;
+    padding: 17px !important;
+  }
+  .question-panel-v75 .question-panel-header {
+    grid-template-columns: 112px minmax(0, 1fr) auto !important;
+    margin-bottom: 12px !important;
+  }
+  .question-panel-v75 .question-agent-avatar { width: 112px !important; height: 112px !important; }
+  .question-panel-v75 .question-panel-title h2 { font-size: clamp(1.2rem, 2.5vw, 1.7rem) !important; margin-bottom: 5px !important; }
+  .question-panel-v75 textarea { min-height: 96px !important; }
+  .question-message-field { margin-top: 10px !important; }
+  .question-footer-row { margin-top: 10px !important; }
+}
+
+@media (max-width: 700px) {
+  .question-fab { right: 12px !important; bottom: 12px !important; min-height: 50px !important; padding: 6px 13px 6px 6px !important; }
+  .question-fab-avatar { width: 38px; height: 38px; }
+  .question-panel.question-panel-v75 {
+    right: 8px !important;
+    bottom: 8px !important;
+    width: calc(100vw - 16px) !important;
+    max-height: calc(100dvh - 16px) !important;
+    padding: 15px !important;
+    border-radius: 18px !important;
+  }
+  .question-panel-v75 .question-panel-header {
+    grid-template-columns: 78px minmax(0, 1fr) !important;
+    gap: 12px !important;
+    padding-top: 24px;
+  }
+  .question-panel-v75 .question-agent-avatar { width: 78px !important; height: 78px !important; }
+  .question-panel-v75 .question-panel-close { top: -5px; right: 0; }
+  html[dir="rtl"] .question-panel-v75 .question-panel-close { left: 0; right: auto; }
+  .question-panel-v75 .question-agent-identification { margin-bottom: 5px; }
+  .question-panel-v75 .question-panel-title h2 { font-size: 1.1rem !important; margin-bottom: 5px !important; }
+  .question-panel-v75 .question-panel-title p { font-size: .70rem !important; }
+  .question-panel-v75 .question-prefill-grid {
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+  }
+  .question-panel-v75 .question-prefill-row { padding: 8px 9px; }
+  .question-prefill-icon { width: 32px; height: 32px; }
+  .question-meta-grid { grid-template-columns: 1fr; gap: 9px; }
+  .question-panel-v75 textarea { min-height: 92px !important; }
+  .question-footer-row { grid-template-columns: 1fr; gap: 10px; }
+  .question-panel-v75 .question-actions { width: 100%; }
+  .question-panel-v75 .question-actions button { flex: 1 1 0; }
+  .question-panel-v75 .question-submit { min-width: 0; }
+}
+
 </style>
 </head>
 <body>
@@ -6568,80 +7003,99 @@ body.welcome-open .question-fab { display: none !important; }
 
   <!-- FLOATING QUESTION / DISCORD SUPPORT WIDGET -->
   <button class="question-fab" id="question-fab" type="button" aria-controls="question-panel" aria-expanded="false">
-    <span class="question-fab-icon" aria-hidden="true">?</span>
+    <span class="question-fab-avatar" aria-hidden="true"><img src="dolphy-support-agent.png" alt="" /></span>
     <span class="question-fab-copy">
       <strong data-i18n="questionFabTitle">Questions?</strong>
       <span data-i18n="questionFabSub">We’re here to help</span>
     </span>
   </button>
 
-  <aside class="question-panel" id="question-panel" hidden aria-labelledby="question-panel-title">
+  <aside class="question-panel question-panel-v75" id="question-panel" hidden aria-labelledby="question-panel-title">
     <div id="question-form-view">
       <div class="question-panel-header question-agent-header">
         <div class="question-agent-avatar" aria-hidden="true">
-          <img src="guide-dolph-transparent.png" alt="" />
-          <span class="question-agent-headset">🎧</span>
+          <img src="dolphy-support-agent.png" alt="" />
         </div>
         <div class="question-panel-title">
-          <span class="question-agent-name">Dolphy</span>
+          <div class="question-agent-identification">
+            <span class="question-agent-name">Dolphy</span>
+            <span class="question-agent-role" data-i18n="questionAgentRole">Support Agent</span>
+          </div>
           <h2 id="question-panel-title" data-i18n="questionPanelTitle">Hi, what can I help you with?</h2>
           <p data-i18n="questionPanelIntro">Your question will be sent to the 1616 transfer team through Discord. This is not a live chat.</p>
         </div>
-        <button class="question-panel-close" id="question-panel-close" type="button">
+        <button class="question-panel-close" id="question-panel-close" type="button" aria-label="Close">
           <span data-i18n="closeGuide">Close</span><span class="x" aria-hidden="true">×</span>
         </button>
       </div>
 
       <div class="question-prefill-grid">
         <div class="question-prefill-row">
-          <label data-i18n="questionUsername">Username</label>
-          <div class="question-prefill-value"><span id="question-prefill-username">—</span><span class="question-lock" aria-hidden="true">▣</span></div>
+          <span class="question-prefill-icon" aria-hidden="true">●</span>
+          <div class="question-prefill-copy">
+            <label data-i18n="questionUsername">Username</label>
+            <div class="question-prefill-value"><span id="question-prefill-username">—</span><span class="question-lock" aria-hidden="true">▣</span></div>
+          </div>
         </div>
         <div class="question-prefill-row">
-          <label data-i18n="questionServer">Server</label>
-          <div class="question-prefill-value"><span id="question-prefill-server">—</span><span class="question-lock" aria-hidden="true">▣</span></div>
+          <span class="question-prefill-icon" aria-hidden="true">✦</span>
+          <div class="question-prefill-copy">
+            <label data-i18n="questionAlliance">Alliance</label>
+            <div class="question-prefill-value"><span id="question-prefill-alliance">—</span><span class="question-lock" aria-hidden="true">▣</span></div>
+          </div>
         </div>
         <div class="question-prefill-row">
-          <label data-i18n="questionAlliance">Alliance</label>
-          <div class="question-prefill-value"><span id="question-prefill-alliance">—</span><span class="question-lock" aria-hidden="true">▣</span></div>
+          <span class="question-prefill-icon" aria-hidden="true">#</span>
+          <div class="question-prefill-copy">
+            <label data-i18n="questionServer">Server</label>
+            <div class="question-prefill-value"><span id="question-prefill-server">—</span><span class="question-lock" aria-hidden="true">▣</span></div>
+          </div>
         </div>
       </div>
 
-      <div class="question-field">
-        <label for="question-category"><span data-i18n="questionCategory">Category</span> <em>*</em></label>
-        <select id="question-category">
-          <option value="" data-i18n="questionCategoryPlaceholder">Select a category</option>
-          <option value="application" data-i18n="questionCategoryApplication">Application Question</option>
-          <option value="transfer_group" data-i18n="questionCategoryGroup">Transfer Group Question</option>
-          <option value="technical" data-i18n="questionCategoryTechnical">Technical Issue</option>
-          <option value="other" data-i18n="questionCategoryOther">Other</option>
-        </select>
+      <div class="question-meta-grid">
+        <div class="question-field">
+          <label for="question-category"><span data-i18n="questionCategory">Category</span> <em>*</em></label>
+          <select id="question-category">
+            <option value="" data-i18n="questionCategoryPlaceholder">Select a category</option>
+            <option value="application" data-i18n="questionCategoryApplication">Application Question</option>
+            <option value="transfer_group" data-i18n="questionCategoryGroup">Transfer Group Question</option>
+            <option value="technical" data-i18n="questionCategoryTechnical">Technical Issue</option>
+            <option value="other" data-i18n="questionCategoryOther">Other</option>
+          </select>
+        </div>
+
+        <div class="question-field">
+          <label for="question-email"><span data-i18n="questionEmailLabel">Email for a reply</span> <span data-i18n="optional">(Optional)</span></label>
+          <input id="question-email" type="email" maxlength="160" autocomplete="email" data-i18n-placeholder="questionEmailPlaceholder" placeholder="you@example.com" />
+          <p class="question-field-help" data-i18n="questionEmailHelp">Only add this if you would like the team to be able to contact you outside the game.</p>
+        </div>
       </div>
 
-      <div class="question-field">
-        <label for="question-message"><span data-i18n="questionMessageLabel">Your Question</span> <em>*</em></label>
+      <div class="question-field question-message-field">
+        <div class="question-field-label-row">
+          <label for="question-message"><span data-i18n="questionMessageLabel">Your Question</span> <em>*</em></label>
+          <span class="question-char-count" id="question-char-count">0/1500</span>
+        </div>
         <textarea id="question-message" maxlength="1500" data-i18n-placeholder="questionMessagePlaceholder" placeholder="Type your question here..."></textarea>
       </div>
 
-      <div class="question-field">
-        <label for="question-email"><span data-i18n="questionEmailLabel">Email for a reply</span> <span data-i18n="optional">(Optional)</span></label>
-        <input id="question-email" type="email" maxlength="160" autocomplete="email" data-i18n-placeholder="questionEmailPlaceholder" placeholder="you@example.com" />
-        <p class="question-field-help" data-i18n="questionEmailHelp">Only add this if you would like the team to be able to contact you outside the game.</p>
+      <div class="question-footer-row">
+        <p class="question-discord-note"><span class="question-discord-icon" aria-hidden="true">◉</span><span data-i18n="questionDiscordNote">Submitting this form sends your question to the 1616 transfer team through Discord. It is not a live chat.</span></p>
+        <div class="question-actions">
+          <button class="question-cancel" id="question-cancel" type="button" data-i18n="cancelQuestion">Cancel</button>
+          <button class="question-submit" id="question-submit" type="button"><span class="question-send-icon" aria-hidden="true">➤</span><span data-i18n="sendQuestion">Send Question</span></button>
+        </div>
       </div>
-
-      <p class="question-discord-note"><span aria-hidden="true">◉</span><span data-i18n="questionDiscordNote">Submitting this form sends your question to the 1616 transfer team through Discord. It is not a live chat.</span></p>
       <p class="question-error" id="question-error" hidden></p>
-
-      <div class="question-actions">
-        <button class="question-cancel" id="question-cancel" type="button" data-i18n="cancelQuestion">Cancel</button>
-        <button class="question-submit" id="question-submit" type="button" data-i18n="sendQuestion">Send Question</button>
-      </div>
     </div>
 
     <div class="question-confirmation" id="question-confirmation" hidden>
+      <div class="question-confirmation-agent" aria-hidden="true"><img src="dolphy-support-agent.png" alt="" /></div>
       <div class="question-confirmation-check" aria-hidden="true">✓</div>
       <h3 data-i18n="questionThanksTitle">Thanks for your question!</h3>
       <p data-i18n="questionThanksBody">Your question has been submitted successfully. Our transfer team will review it.</p>
+      <p class="question-confirmation-discord" data-i18n="questionDiscordNote">Submitting this form sends your question to the 1616 transfer team through Discord. It is not a live chat.</p>
       <button class="question-submit" id="question-done" type="button" data-i18n="questionDone">Got it</button>
     </div>
   </aside>
@@ -6853,6 +7307,7 @@ const I18N = {
     questionFabTitle: "Questions?",
     questionFabSub: "We’re here to help",
     questionPanelTitle: "Hi, what can I help you with?",
+    questionAgentRole: "Support Agent",
     questionPanelIntro: "Your question will be sent to the 1616 transfer team through Discord. This is not a live chat.",
     questionUsername: "Username",
     questionServer: "Server",
@@ -6991,6 +7446,7 @@ const I18N = {
     questionFabTitle: "¿Preguntas?",
     questionFabSub: "Estamos aquí para ayudarte",
     questionPanelTitle: "Hola, ¿en qué puedo ayudarte?",
+    questionAgentRole: "Agente de soporte",
     questionPanelIntro: "Tu pregunta se enviará al equipo de transferencias de 1616 a través de Discord. Esto no es un chat en vivo.",
     questionUsername: "Usuario",
     questionServer: "Servidor",
@@ -7129,6 +7585,7 @@ const I18N = {
     questionFabTitle: "Dúvidas?",
     questionFabSub: "Estamos aqui para ajudar",
     questionPanelTitle: "Olá, como posso ajudar?",
+    questionAgentRole: "Agente de suporte",
     questionPanelIntro: "Sua pergunta será enviada à equipe de transferência do 1616 pelo Discord. Isto não é um chat ao vivo.",
     questionUsername: "Nome de usuário",
     questionServer: "Servidor",
@@ -7267,6 +7724,7 @@ const I18N = {
     questionFabTitle: "Questions ?",
     questionFabSub: "Nous sommes là pour aider",
     questionPanelTitle: "Bonjour, comment puis-je vous aider ?",
+    questionAgentRole: "Agent d’assistance",
     questionPanelIntro: "Votre question sera envoyée à l’équipe de transfert 1616 via Discord. Il ne s’agit pas d’un chat en direct.",
     questionUsername: "Nom d’utilisateur",
     questionServer: "Serveur",
@@ -7405,6 +7863,7 @@ const I18N = {
     questionFabTitle: "لديك سؤال؟",
     questionFabSub: "نحن هنا للمساعدة",
     questionPanelTitle: "مرحبًا، كيف يمكنني مساعدتك؟",
+    questionAgentRole: "مسؤول الدعم",
     questionPanelIntro: "سيتم إرسال سؤالك إلى فريق انتقال 1616 عبر Discord. هذه ليست دردشة مباشرة.",
     questionUsername: "اسم المستخدم",
     questionServer: "السيرفر",
@@ -7543,6 +8002,7 @@ const I18N = {
     questionFabTitle: "Có câu hỏi?",
     questionFabSub: "Chúng tôi sẵn sàng hỗ trợ",
     questionPanelTitle: "Chào bạn, tôi có thể giúp gì?",
+    questionAgentRole: "Nhân viên hỗ trợ",
     questionPanelIntro: "Câu hỏi của bạn sẽ được gửi đến đội chuyển server 1616 qua Discord. Đây không phải trò chuyện trực tiếp.",
     questionUsername: "Tên người chơi",
     questionServer: "Server",
@@ -7681,6 +8141,7 @@ const I18N = {
     questionFabTitle: "질문이 있나요?",
     questionFabSub: "도와드리겠습니다",
     questionPanelTitle: "안녕하세요, 무엇을 도와드릴까요?",
+    questionAgentRole: "지원 담당자",
     questionPanelIntro: "질문은 Discord를 통해 1616 이동 팀에 전송됩니다. 실시간 채팅이 아닙니다.",
     questionUsername: "사용자 이름",
     questionServer: "서버",
@@ -7819,6 +8280,7 @@ const I18N = {
     questionFabTitle: "Fragen?",
     questionFabSub: "Wir helfen gerne",
     questionPanelTitle: "Hi, womit kann ich dir helfen?",
+    questionAgentRole: "Support-Agent",
     questionPanelIntro: "Deine Frage wird über Discord an das 1616-Transferteam gesendet. Dies ist kein Live-Chat.",
     questionUsername: "Benutzername",
     questionServer: "Server",
@@ -8803,11 +9265,22 @@ function resetQuestionPanel() {
   const error = document.getElementById('question-error');
   if (category) { category.value = ''; syncCustomSelect(category); }
   if (message) message.value = '';
+  updateQuestionCharacterCount();
   if (email) email.value = '';
   if (error) { error.hidden = true; error.textContent = ''; }
   document.getElementById('question-form-view').hidden = false;
   document.getElementById('question-confirmation').hidden = true;
 }
+
+function updateQuestionCharacterCount() {
+  const message = document.getElementById('question-message');
+  const counter = document.getElementById('question-char-count');
+  if (!message || !counter) return;
+  counter.textContent = `${message.value.length}/${message.maxLength || 1500}`;
+}
+
+document.getElementById('question-message')?.addEventListener('input', updateQuestionCharacterCount);
+updateQuestionCharacterCount();
 
 function questionStepLabel() {
   const keys = ['stepYourInfo','stepGameDetails','stepTransferGroup','stepAdditional','stepReview'];
