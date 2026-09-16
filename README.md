@@ -604,5 +604,10 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 ## v80 Step 3 design
 - Applies the selected Option C colour treatment: dark eggplant panels with lantern-amber accents.
 - Simplifies duplicate Step 3 helper copy.
-- Uses optimized minimalist icons from `assets/icons/`.
+- Uses optimized minimalist icon PNGs stored directly in the website root.
 - Keeps the native player server dropdown so server choices remain visible over the cards.
+
+
+## v81 update
+- Moved all Transfer Group icon PNGs to the website root.
+- Updated every HTML reference so no `assets` or `icons` folder is required.
