@@ -6976,6 +6976,30 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
   }
 }
 
+
+/* v82 — conditional group alliance placement question */
+.group-same-alliance-card[hidden] { display: none !important; }
+.group-same-alliance-fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.group-same-alliance-fieldset legend {
+  display: block;
+  width: 100%;
+  margin: 0 0 13px;
+  color: #eef4f6;
+  font-size: .88rem;
+  font-weight: 750;
+  line-height: 1.5;
+}
+.group-same-alliance-card .choice-grid {
+  margin-top: 0;
+}
+.group-same-alliance-card .choice-card {
+  min-height: 72px;
+}
+
 </style>
 </head>
 <body>
@@ -7567,12 +7591,57 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
             <h2 data-i18n="alliancePreferenceTitle">1616 Alliance Preference</h2>
             <div class="field-block">
               <label for="preferred-1616-alliance"><span data-i18n="alliancePreferenceQuestion">Do you have a preference for which alliance in 1616 you may want to join?</span> <span class="optional-label" data-i18n="optional">(Optional)</span></label>
-              <input id="preferred-1616-alliance" name="preferred1616Alliance" type="text" maxlength="80" placeholder="[Alliance tag / name] or No preference" />
+              <select id="preferred-1616-alliance" name="preferred1616Alliance">
+                  <option value="" data-i18n="selectReferralAlliance">Select an alliance</option>
+                  <option value="[NvSP] Nova Sapphire">[NvSP] Nova Sapphire</option>
+                  <option value="[WaE] WorstAllianceEver">[WaE] WorstAllianceEver</option>
+                  <option value="[NvEM] Nova Emerald">[NvEM] Nova Emerald</option>
+                  <option value="[DRoN] 5 Drones and a Dream">[DRoN] 5 Drones and a Dream</option>
+                  <option value="[ECKO] ECKO Collective">[ECKO] ECKO Collective</option>
+                  <option value="[B14K] FALCON5">[B14K] FALCON5</option>
+                  <option value="[bnhH] CrystalGuardians">[bnhH] CrystalGuardians</option>
+                  <option value="[VGDs] AVENGERs">[VGDs] AVENGERs</option>
+                  <option value="[N201] MexAlliance">[N201] MexAlliance</option>
+                  <option value="[BR1c] LEGACY KING">[BR1c] LEGACY KING</option>
+                  <option value="[di82] Diamond">[di82] Diamond</option>
+                  <option value="[U5AN] Lane Eyre">[U5AN] Lane Eyre</option>
+                  <option value="[2T2c] TooTired2Care">[2T2c] TooTired2Care</option>
+                  <option value="[KIRN] KASTIRONs">[KIRN] KASTIRONs</option>
+                  <option value="[oriz] Orizaba">[oriz] Orizaba</option>
+                  <option value="[yykk] AmanssaLoko">[yykk] AmanssaLoko</option>
+                  <option value="[0920] 시모구">[0920] 시모구</option>
+                  <option value="[L1Fe] Eternal Life">[L1Fe] Eternal Life</option>
+                  <option value="[NG25] Los muchos">[NG25] Los muchos</option>
+                  <option value="OTHER / NOT LISTED" data-i18n="otherNotListed">Other / not listed</option>
+                </select>
             </div>
             <div class="placement-alert" role="note">
               <span class="placement-alert-icon" aria-hidden="true">!</span>
               <p data-i18n="alliancePreferenceDisclaimer">This is a preference only. It is not a confirmation or promise that you will be placed in that alliance. Final placement will depend on available space and the needs of Server 1616.</p>
             </div>
+          </div>
+
+          <div class="preference-card group-same-alliance-card" id="group-same-alliance-card" hidden>
+            <fieldset class="group-same-alliance-fieldset">
+              <legend data-i18n="groupSameAllianceQuestion">If you are transferring as a group, do your group members need to be in the same alliance?</legend>
+              <div class="choice-grid three-col">
+                <label class="choice-card">
+                  <input type="radio" name="groupSameAlliance" value="yes" />
+                  <span class="choice-dot"></span>
+                  <div><strong data-i18n="yes">Yes</strong></div>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="groupSameAlliance" value="no" />
+                  <span class="choice-dot"></span>
+                  <div><strong data-i18n="no">No</strong></div>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="groupSameAlliance" value="unsure" />
+                  <span class="choice-dot"></span>
+                  <div><strong data-i18n="unsure">Unsure</strong></div>
+                </label>
+              </div>
+            </fieldset>
           </div>
 
           <div class="referral-card">
@@ -8073,6 +8142,8 @@ const I18N = {
     alliancePreferenceQuestion: "Do you have a preference for which alliance in 1616 you may want to join?",
     alliancePreferenceDisclaimer: "This is a preference only. It is not a confirmation or promise that you will be placed in that alliance. Final placement will depend on available space and the needs of Server 1616.",
     alliancePreferenceReview: "Preferred 1616 alliance",
+    groupSameAllianceQuestion: "If you are transferring as a group, do your group members need to be in the same alliance?",
+    groupSameAllianceReview: "Group members need to be in the same alliance",
     referralTitle: "Referral",
     referralQuestion: "Did someone refer you to 1616? If so, who?",
     referrerUsername: "Referrer's in-game username",
@@ -8215,6 +8286,8 @@ const I18N = {
     alliancePreferenceQuestion: "¿Tienes preferencia por alguna alianza de 1616?",
     alliancePreferenceDisclaimer: "Esto es solo una preferencia. No confirma ni garantiza que serás asignado a esa alianza. La ubicación final dependerá del espacio disponible y de las necesidades del Servidor 1616.",
     alliancePreferenceReview: "Alianza 1616 preferida",
+    groupSameAllianceQuestion: "Si te transfieres como grupo, ¿los miembros de tu grupo necesitan estar en la misma alianza?",
+    groupSameAllianceReview: "El grupo necesita estar en la misma alianza",
     referralTitle: "Referencia",
     referralQuestion: "¿Alguien te recomendó 1616? Si es así, ¿quién?",
     referrerUsername: "Usuario en el juego de quien te recomendó",
@@ -8357,6 +8430,8 @@ const I18N = {
     alliancePreferenceQuestion: "Você tem preferência por alguma aliança em 1616?",
     alliancePreferenceDisclaimer: "Esta é apenas uma preferência. Não é uma confirmação nem uma promessa de que você será colocado nessa aliança. A colocação final dependerá do espaço disponível e das necessidades do Servidor 1616.",
     alliancePreferenceReview: "Aliança 1616 preferida",
+    groupSameAllianceQuestion: "Se você estiver se transferindo em grupo, os membros do seu grupo precisam estar na mesma aliança?",
+    groupSameAllianceReview: "O grupo precisa estar na mesma aliança",
     referralTitle: "Indicação",
     referralQuestion: "Alguém indicou você para o 1616? Se sim, quem?",
     referrerUsername: "Nome de usuário de quem indicou",
@@ -8499,6 +8574,8 @@ const I18N = {
     alliancePreferenceQuestion: "Avez-vous une préférence pour l’alliance que vous souhaiteriez rejoindre sur 1616 ?",
     alliancePreferenceDisclaimer: "Il s’agit uniquement d’une préférence. Cela ne confirme ni ne garantit votre placement dans cette alliance. Le placement final dépendra des places disponibles et des besoins du serveur 1616.",
     alliancePreferenceReview: "Alliance 1616 préférée",
+    groupSameAllianceQuestion: "Si vous vous transférez en groupe, les membres de votre groupe doivent-ils être dans la même alliance ?",
+    groupSameAllianceReview: "Les membres du groupe doivent être dans la même alliance",
     referralTitle: "Parrainage",
     referralQuestion: "Quelqu’un vous a-t-il recommandé 1616 ? Si oui, qui ?",
     referrerUsername: "Nom d’utilisateur du parrain",
@@ -8641,6 +8718,8 @@ const I18N = {
     alliancePreferenceQuestion: "هل لديك تفضيل لتحالف معين في 1616؟",
     alliancePreferenceDisclaimer: "هذا مجرد تفضيل وليس تأكيدًا أو وعدًا بوضعك في هذا التحالف. يعتمد التوزيع النهائي على المساحة المتاحة واحتياجات سيرفر 1616.",
     alliancePreferenceReview: "تحالف 1616 المفضل",
+    groupSameAllianceQuestion: "إذا كنت تنتقل ضمن مجموعة، فهل يجب أن يكون أعضاء مجموعتك في التحالف نفسه؟",
+    groupSameAllianceReview: "يجب أن يكون أعضاء المجموعة في التحالف نفسه",
     referralTitle: "الإحالة",
     referralQuestion: "هل قام شخص ما بإحالتك إلى 1616؟ إذا نعم، من؟",
     referrerUsername: "اسم المستخدم داخل اللعبة للشخص الذي أحالك",
@@ -8783,6 +8862,8 @@ const I18N = {
     alliancePreferenceQuestion: "Bạn có ưu tiên liên minh nào tại 1616 mà bạn muốn tham gia không?",
     alliancePreferenceDisclaimer: "Đây chỉ là nguyện vọng. Không phải xác nhận hay cam kết rằng bạn sẽ được xếp vào liên minh đó. Việc xếp chỗ cuối cùng phụ thuộc vào chỗ trống và nhu cầu của Server 1616.",
     alliancePreferenceReview: "Liên minh 1616 ưu tiên",
+    groupSameAllianceQuestion: "Nếu bạn chuyển theo nhóm, các thành viên trong nhóm có cần ở cùng một liên minh không?",
+    groupSameAllianceReview: "Các thành viên nhóm cần ở cùng một liên minh",
     referralTitle: "Giới thiệu",
     referralQuestion: "Có ai giới thiệu bạn đến 1616 không? Nếu có, là ai?",
     referrerUsername: "Tên trong game của người giới thiệu",
@@ -8925,6 +9006,8 @@ const I18N = {
     alliancePreferenceQuestion: "1616에서 배정받고 싶은 연맹에 선호가 있나요?",
     alliancePreferenceDisclaimer: "이는 선호 사항일 뿐이며 해당 연맹 배정을 확인하거나 보장하는 것이 아닙니다. 최종 배정은 자리와 Server 1616의 필요에 따라 결정됩니다.",
     alliancePreferenceReview: "선호 1616 연맹",
+    groupSameAllianceQuestion: "그룹으로 이전하는 경우, 그룹원들이 같은 연맹에 있어야 하나요?",
+    groupSameAllianceReview: "그룹원들이 같은 연맹에 있어야 함",
     referralTitle: "추천",
     referralQuestion: "누군가가 당신을 1616에 추천했나요? 그렇다면 누구인가요?",
     referrerUsername: "추천인의 게임 내 사용자명",
@@ -9067,6 +9150,8 @@ const I18N = {
     alliancePreferenceQuestion: "Hast du eine Präferenz, welcher Allianz auf 1616 du gerne beitreten würdest?",
     alliancePreferenceDisclaimer: "Dies ist nur eine Präferenz. Es ist keine Bestätigung oder Zusage, dass du dieser Allianz zugeteilt wirst. Die endgültige Platzierung hängt von verfügbaren Plätzen und den Bedürfnissen von Server 1616 ab.",
     alliancePreferenceReview: "Bevorzugte 1616-Allianz",
+    groupSameAllianceQuestion: "Wenn du als Gruppe wechselst, müssen deine Gruppenmitglieder in derselben Allianz sein?",
+    groupSameAllianceReview: "Gruppenmitglieder müssen in derselben Allianz sein",
     referralTitle: "Empfehlung",
     referralQuestion: "Hat dich jemand an 1616 verwiesen? Wenn ja, wer?",
     referrerUsername: "Ingame-Name der empfehlenden Person",
@@ -9926,6 +10011,12 @@ function confirmTransferGroupReminderAndContinue() {
 
 function currentGroupAnswer() { return form.querySelector('input[name="transferWithGroup"]:checked')?.value || ''; }
 
+function syncGroupSameAllianceQuestion() {
+  const card = document.getElementById('group-same-alliance-card');
+  if (!card) return;
+  card.hidden = currentGroupAnswer() !== 'yes';
+}
+
 function collectPayload() {
   const groupAnswer = currentGroupAnswer();
   const applicationId = getApplicationId();
@@ -9955,6 +10046,7 @@ function collectPayload() {
     expectedAdditionalPlayers: groupAnswer === 'yes' ? digitsOnly(document.getElementById('expected-additional-players')?.value || '') : '',
     groupMembers: groupAnswer === 'yes' ? state.groupMembers.map(m => ({ name: m.name.trim(), alliance: m.alliance.trim(), server: digitsOnly(m.server) })) : [],
     preferred1616Alliance: document.getElementById('preferred-1616-alliance')?.value.trim() || '',
+    groupSameAlliance: groupAnswer === 'yes' ? (form.querySelector('input[name="groupSameAlliance"]:checked')?.value || '') : '',
     referrerUsername: document.getElementById('referrer-username')?.value.trim() || '',
     referrerAlliance: document.getElementById('referrer-alliance')?.value.trim() || '',
     comments: document.getElementById('comments').value.trim(),
@@ -9979,7 +10071,7 @@ function renderReview() {
     reviewSection(t('reviewApplicant'), 1, `<div class="review-grid">${reviewItem(t('currentServer'), p.currentServer)}${reviewItem(t('username'), p.username)}${reviewItem(t('allianceTag'), p.alliance)}</div>`),
     reviewSection(t('reviewGame'), 2, `<div class="review-grid">${reviewItem(t('professionLevel'), p.professionLevel)}${reviewItem(t('killCount'), formatNumber(p.killCount))}${reviewItem(t('heroPower'), formatNumber(p.heroPower))}${reviewItem(t('seatColour'), seatLabel)}${p.reportedTransferScore ? reviewItem(t('reportedTransferScore'), formatNumber(p.reportedTransferScore)) : ''}</div>`),
     reviewSection(t('reviewGroup'), 3, `<div class="review-grid">${reviewItem(t('transferAnswer'), transferLabel)}${reviewItem(t('transferGroupNameShort'), p.transferGroupName || t('notProvided'))}${reviewItem(t('totalGroup'), p.transferWithGroup === 'yes' ? (p.expectedAdditionalPlayers ? String(Number(p.expectedAdditionalPlayers) + 1) : (p.groupMembers.length ? `≥ ${p.groupMembers.length + 1}` : t('notProvided'))) : '1')}${reviewItem(t('additionalPlayers'), String(p.groupMembers.length))}${members}</div>`),
-    reviewSection(t('reviewAdditional'), 4, `<div class="review-grid">${reviewItem(t('alliancePreferenceReview'), p.preferred1616Alliance || t('notProvided'))}${reviewItem(t('referrerUsername'), p.referrerUsername || t('notProvided'))}${reviewItem(t('referrerAlliance'), p.referrerAlliance || t('notProvided'))}${reviewItem(t('comments'), p.comments || t('none'))}</div>`)
+    reviewSection(t('reviewAdditional'), 4, `<div class="review-grid">${reviewItem(t('alliancePreferenceReview'), p.preferred1616Alliance || t('notProvided'))}${p.transferWithGroup === 'yes' ? reviewItem(t('groupSameAllianceReview'), p.groupSameAlliance ? t(p.groupSameAlliance) : t('notProvided')) : ''}${reviewItem(t('referrerUsername'), p.referrerUsername || t('notProvided'))}${reviewItem(t('referrerAlliance'), p.referrerAlliance || t('notProvided'))}${reviewItem(t('comments'), p.comments || t('none'))}</div>`)
   ].join('');
   reviewContainer.querySelectorAll('[data-edit-step]').forEach(btn => btn.addEventListener('click', () => goToStep(Number(btn.dataset.editStep))));
 }
@@ -10235,6 +10327,7 @@ function clearEntireForm() {
 
   renderGroupMembers();
   groupBuilder.hidden = true;
+  syncGroupSameAllianceQuestion();
   updateGroupContactOptions();
   updateGroupSummary();
   
@@ -10475,6 +10568,7 @@ document.getElementById('add-player').addEventListener('click', () => addGroupMe
 document.querySelectorAll('input[name="transferWithGroup"]').forEach(r => r.addEventListener('change', () => {
   const yes = r.checked && r.value === 'yes';
   groupBuilder.hidden = !yes;
+  syncGroupSameAllianceQuestion();
   updateGroupContactOptions(); updateGroupSummary();  saveDraft();
 }));
 document.getElementById('transfer-group-name').addEventListener('input', e => {
@@ -10546,6 +10640,7 @@ setupNumericInputs();
 setLanguage(state.language);
 const groupAnswer = currentGroupAnswer();
 groupBuilder.hidden = groupAnswer !== 'yes';
+syncGroupSameAllianceQuestion();
 updateGroupContactOptions(); updateGroupSummary();  updateTransferEstimate(); updateProgress();
 document.getElementById('comments-count').textContent = document.getElementById('comments').value.length;
 initPetals();

@@ -611,3 +611,9 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 ## v81 update
 - Moved all Transfer Group icon PNGs to the website root.
 - Updated every HTML reference so no `assets` or `icons` folder is required.
+
+## v82 Additional Information update
+- 1616 Alliance Preference now uses the same alliance dropdown options as Referrer's alliance / tag.
+- Added a conditional Yes / No / Unsure question for group applicants asking whether all group members need to be in the same alliance.
+- The new answer is included in the application payload and Review & Submit screen.
+
