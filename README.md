@@ -666,3 +666,9 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 - Reworked the main navigation to **1616's Story / World / Characters / Media / Application**, with an underline showing the active page.
 - World, Characters, and Media are functional placeholder pages for future content.
 
+## v89 — story page visual redesign
+- Restyled **1616's Story** as a centered, rounded story container that more closely matches the approved story mock-up.
+- Added a soft background treatment using `story-design-reference.png` inside the story container.
+- Changed content pages so the main website background fades to dark gray / black behind the story container.
+- Updated World / Characters / Media placeholder pages to use the same modal-style container treatment.
+

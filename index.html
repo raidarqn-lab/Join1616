@@ -8,7 +8,7 @@
   <title>1616 Server Transfer Application</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Tint&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Tint&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
 /* Background and 1616 wordmark are embedded directly in this HTML for reliable GitHub Pages deployment. */
 :root {
@@ -7517,6 +7517,900 @@ body.story-page-open .transfer-group-reminder-modal {
   display: none !important;
 }
 
+
+/* =================================================================
+   v88 — 1616's Story interactive editorial timeline
+   ================================================================= */
+
+/* Menu inspired by the Story / World / Characters / Media reference. */
+.site-main-nav {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 2.7vw, 42px);
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.site-nav-button {
+  position: relative;
+  min-height: 44px;
+  padding: 0 2px 2px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: rgba(255,243,238,.72);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(.88rem, 1vw, 1.03rem);
+  font-weight: 600;
+  letter-spacing: .01em;
+  text-transform: none;
+  box-shadow: none !important;
+}
+.site-nav-button:hover,
+.site-nav-button:focus-visible {
+  color: #fff8f4;
+  background: transparent !important;
+  transform: none;
+}
+.site-nav-button::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: 1px;
+  height: 2px;
+  border-radius: 999px;
+  background: #e43932;
+  transition: left .18s ease, right .18s ease, opacity .18s ease;
+  opacity: 0;
+}
+.site-nav-button.active {
+  color: #fff8f4 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+.site-nav-button.active::after {
+  left: 0;
+  right: 0;
+  bottom: 1px;
+  height: 2px;
+  background: #ed3e36;
+  box-shadow: none;
+  opacity: 1;
+}
+.site-nav-mark { display: none !important; }
+.story-brand-subtitle { display: none; }
+
+/* Light editorial header on Story/future content pages. */
+body.content-page-open {
+  background: #f3eee7;
+}
+body.content-page-open .scene {
+  display: none;
+}
+body.content-page-open .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  min-height: 88px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(91,56,50,.12);
+  background: rgba(246,242,236,.96);
+  backdrop-filter: blur(14px);
+}
+body.content-page-open .wordmark-header {
+  visibility: hidden;
+  width: 145px;
+}
+body.content-page-open .brand-number {
+  position: relative;
+}
+body.content-page-open .brand-number::after {
+  content: "1616";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-54%);
+  color: #7b171a;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 3rem;
+  line-height: .8;
+  font-weight: 700;
+  letter-spacing: -.04em;
+}
+body.content-page-open .app-brand-subtitle { display: none; }
+body.content-page-open .story-brand-subtitle {
+  display: block;
+  margin-top: 2px;
+  color: #6d5a54;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: .58rem;
+  letter-spacing: .30em;
+}
+body.content-page-open .brand-wrap::after { display: none; }
+body.content-page-open .site-nav-button {
+  color: #3e302c;
+}
+body.content-page-open .site-nav-button:hover,
+body.content-page-open .site-nav-button.active {
+  color: #941c1e !important;
+}
+body.content-page-open .language-compact {
+  border-color: rgba(128,45,48,.26);
+  background: rgba(255,255,255,.58);
+}
+body.content-page-open .language-compact select {
+  color: #5b3d38;
+}
+body.content-page-open .tagline {
+  color: #856b64;
+}
+
+/* Full-paper Story page. */
+.story-page {
+  width: 100% !important;
+  margin: 0 !important;
+  background: #f3eee7;
+}
+.story-page-panel {
+  width: 100%;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+.story-page-panel::before { display: none !important; }
+.story-paper {
+  position: relative;
+  min-height: 100vh;
+  padding: 62px clamp(24px, 6vw, 92px) 110px;
+  color: #382a26;
+  background:
+    radial-gradient(circle at 86% 5%, rgba(196,45,39,.10) 0 5%, transparent 5.2%),
+    radial-gradient(circle at 16% 34%, rgba(205,52,46,.045), transparent 13%),
+    linear-gradient(180deg, #f7f3ee 0%, #f2ece4 100%);
+  overflow: hidden;
+}
+.story-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .35;
+  background:
+    repeating-linear-gradient(0deg, rgba(91,58,46,.018) 0 1px, transparent 1px 4px),
+    radial-gradient(circle at 50% 50%, transparent 0 62%, rgba(116,87,72,.03) 100%);
+  mix-blend-mode: multiply;
+}
+.story-paper::after {
+  content: "";
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  bottom: -80px;
+  height: 390px;
+  pointer-events: none;
+  opacity: .10;
+  background: url("story-season-s0.png") left bottom / 520px auto no-repeat;
+  filter: grayscale(1);
+}
+.story-hero {
+  position: relative;
+  z-index: 3;
+  max-width: 900px;
+  margin: 0 auto 52px;
+  text-align: center;
+}
+.story-eyebrow {
+  margin: 0 0 10px;
+  color: #4f403a;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .46em;
+  text-transform: uppercase;
+}
+.story-hero h1 {
+  margin: 0;
+  color: #7d1519;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(3.7rem, 8vw, 7.7rem);
+  font-weight: 600;
+  line-height: .84;
+  letter-spacing: -.05em;
+}
+.story-subtitle {
+  margin: 18px 0 0;
+  color: #463732;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.12rem, 2vw, 1.55rem);
+}
+.story-hero-rule {
+  display: block;
+  width: 58px;
+  height: 2px;
+  margin: 20px auto 0;
+  background: #dd302b;
+}
+.story-vertical-note {
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  gap: 5px;
+  color: #5f5049;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: .61rem;
+  font-weight: 600;
+  letter-spacing: .24em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+.story-note-left {
+  left: clamp(14px, 2.5vw, 42px);
+  top: 130px;
+}
+.story-note-right {
+  right: clamp(14px, 2.5vw, 42px);
+  top: 150px;
+}
+
+/* Timeline structure. */
+.story-timeline {
+  position: relative;
+  z-index: 4;
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 10px;
+  padding: 10px 0 60px;
+}
+.story-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 20px;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(177,47,44,.20), #b62c2b 8%, #b62c2b 90%, rgba(177,47,44,.16));
+}
+.story-timeline .journey-footprints {
+  top: 62px;
+  bottom: 58px;
+  width: 66px;
+  z-index: 2;
+}
+.story-timeline .journey-footstep {
+  width: 17px;
+  height: 31px;
+  opacity: 0;
+}
+.story-timeline .journey-footstep::before {
+  left: 5px;
+  width: 8px;
+  height: 9px;
+  background: #b47d5e;
+}
+.story-timeline .journey-footstep::after {
+  left: 3px;
+  width: 12px;
+  height: 19px;
+  background: #b47d5e;
+}
+.story-milestone {
+  position: relative;
+  min-height: 300px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 80px minmax(0, 1fr);
+  align-items: center;
+}
+.story-node {
+  grid-column: 2;
+  position: relative;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+}
+.story-node span {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #b72d2d;
+  background: #f7f2ec;
+  color: #7e171a;
+  font-size: 1.08rem;
+  box-shadow: 0 0 0 7px rgba(247,242,236,.90);
+}
+.story-card {
+  position: relative;
+  width: min(520px, 100%);
+  min-height: 205px;
+  display: grid;
+  grid-template-columns: 205px minmax(0, 1fr);
+  align-items: center;
+  border: 1px solid rgba(102,76,65,.14);
+  border-radius: 14px;
+  background: rgba(255,255,255,.32);
+  box-shadow: 0 10px 26px rgba(93,66,52,.055);
+  transition: background .22s ease, border-color .22s ease, box-shadow .22s ease, transform .22s ease;
+}
+.story-milestone.left .story-card {
+  grid-column: 1;
+  justify-self: end;
+}
+.story-milestone.right .story-card {
+  grid-column: 3;
+  justify-self: start;
+}
+.story-card.right {
+  grid-template-columns: minmax(0, 1fr) 205px;
+}
+.story-card.right .story-art-wrap { grid-column: 2; grid-row: 1; }
+.story-card.right .story-card-copy { grid-column: 1; grid-row: 1; }
+.story-card:hover {
+  border-color: rgba(177,45,42,.24);
+  background: rgba(255,255,255,.50);
+  box-shadow: 0 18px 40px rgba(93,66,52,.08);
+}
+.story-card.is-expanded {
+  background: rgba(255,250,246,.86);
+  border-color: rgba(218,61,52,.52);
+  box-shadow: 0 22px 52px rgba(128,45,40,.11);
+}
+.story-art-wrap {
+  position: relative;
+  width: 235px;
+  height: 235px;
+  margin: -18px 0 -18px -34px;
+  z-index: 2;
+}
+.story-card.right .story-art-wrap {
+  margin: -18px -34px -18px 0;
+}
+.story-season-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 13px 18px rgba(57,41,35,.09));
+}
+.story-card-copy {
+  position: relative;
+  z-index: 3;
+  padding: 23px 24px 22px 8px;
+}
+.story-card.right .story-card-copy {
+  padding: 23px 8px 22px 24px;
+}
+.story-season-label {
+  margin: 0 0 6px;
+  color: #d32d28;
+  font-family: Inter, sans-serif;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+}
+.story-card h2 {
+  margin: 0 0 8px;
+  color: #5f1717;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.55rem, 2.2vw, 2.15rem);
+  font-weight: 700;
+  line-height: 1;
+}
+.story-season-summary {
+  margin: 0;
+  color: #52423d;
+  font-size: .79rem;
+  line-height: 1.46;
+}
+.story-expand-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 13px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #cf3b34;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: .88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.story-plus {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  border: 1px solid #df3a33;
+  color: #df3a33;
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform .22s ease, background .22s ease, color .22s ease;
+}
+.story-card.is-expanded .story-plus {
+  transform: rotate(45deg);
+  background: #a52424;
+  border-color: #a52424;
+  color: #fff;
+}
+.story-expanded-content {
+  margin-top: 16px;
+  animation: storyExpand .22s ease-out both;
+}
+.story-expanded-content[hidden] { display: none !important; }
+.story-expanded-rule {
+  height: 1px;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, rgba(175,45,41,.34), transparent);
+}
+.story-expanded-kicker {
+  margin: 0 0 6px;
+  color: #ad2726;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+}
+.story-expanded-placeholder {
+  margin: 0;
+  color: #57443e;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: .98rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+.story-detail-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
+.story-detail-chips span {
+  padding: 5px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(154,73,65,.18);
+  background: rgba(139,57,50,.045);
+  color: #76554d;
+  font-size: .64rem;
+}
+@keyframes storyExpand {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.story-ending {
+  position: relative;
+  z-index: 4;
+  margin: 40px auto 0;
+  text-align: center;
+}
+.story-ending p {
+  margin: 0;
+  color: #4a3b36;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .28em;
+  line-height: 1.8;
+}
+.story-ending span {
+  display: block;
+  width: 44px;
+  height: 2px;
+  margin: 16px auto 0;
+  background: #d63530;
+}
+
+/* Placeholder pages for future navigation. */
+.site-placeholder-page {
+  min-height: calc(100vh - 88px);
+  display: grid;
+  place-items: center;
+  padding: 40px 20px;
+  background: #f3eee7;
+}
+.site-placeholder-page[hidden] { display: none !important; }
+.site-placeholder-card {
+  width: min(680px, 100%);
+  padding: 58px 36px;
+  border: 1px solid rgba(111,74,64,.14);
+  background: rgba(255,255,255,.42);
+  text-align: center;
+}
+.placeholder-kicker {
+  color: #c72e2d;
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .24em;
+}
+.site-placeholder-card h1 {
+  margin: 8px 0 12px;
+  color: #711718;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.8rem, 7vw, 5.6rem);
+}
+.site-placeholder-card p:last-child {
+  color: #705c55;
+}
+
+/* Application hidden from all non-application pages. */
+body.content-page-open .app-shell {
+  display: none !important;
+}
+body.content-page-open #validation-banner,
+body.content-page-open .stats-guide-modal,
+body.content-page-open .transfer-group-reminder-modal {
+  display: none !important;
+}
+
+/* Responsive story layout. */
+@media (max-width: 1000px) {
+  .story-paper {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  .story-vertical-note { display: none; }
+  .story-timeline {
+    width: min(760px, 100%);
+    gap: 24px;
+  }
+  .story-line,
+  .story-timeline .journey-footprints {
+    left: 36px;
+    transform: none;
+  }
+  .story-milestone {
+    grid-template-columns: 72px minmax(0, 1fr);
+    min-height: 250px;
+  }
+  .story-node {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .story-milestone.left .story-card,
+  .story-milestone.right .story-card {
+    grid-column: 2;
+    justify-self: stretch;
+  }
+  .story-card,
+  .story-card.right {
+    width: 100%;
+    grid-template-columns: 170px minmax(0, 1fr);
+  }
+  .story-card.right .story-art-wrap {
+    grid-column: 1;
+    grid-row: 1;
+    margin: -14px 0 -14px -24px;
+  }
+  .story-card.right .story-card-copy {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 22px 22px 20px 4px;
+  }
+  .story-art-wrap {
+    width: 200px;
+    height: 200px;
+    margin-left: -24px;
+  }
+}
+@media (max-width: 760px) {
+  .site-header {
+    gap: 10px;
+  }
+  .site-main-nav {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 24px;
+    overflow-x: auto;
+    padding: 2px 4px 0 !important;
+    scrollbar-width: none;
+  }
+  .site-main-nav::-webkit-scrollbar { display: none; }
+  .site-nav-button {
+    flex: 0 0 auto !important;
+    min-height: 36px;
+    font-size: .88rem;
+  }
+  .story-paper {
+    padding-top: 44px;
+  }
+  .story-hero h1 {
+    font-size: clamp(3.35rem, 16vw, 5.4rem);
+  }
+  .story-eyebrow {
+    letter-spacing: .28em;
+  }
+  .story-timeline {
+    padding-bottom: 20px;
+  }
+  .story-line,
+  .story-timeline .journey-footprints {
+    left: 26px;
+  }
+  .story-milestone {
+    grid-template-columns: 52px minmax(0, 1fr);
+  }
+  .story-node span {
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 0 0 5px rgba(247,242,236,.94);
+  }
+  .story-card,
+  .story-card.right {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding-top: 132px;
+  }
+  .story-art-wrap,
+  .story-card.right .story-art-wrap {
+    position: absolute;
+    left: 8px;
+    top: -30px;
+    width: 180px;
+    height: 180px;
+    margin: 0;
+  }
+  .story-card-copy,
+  .story-card.right .story-card-copy {
+    grid-column: 1;
+    padding: 20px;
+  }
+  .story-card h2 {
+    font-size: 1.7rem;
+  }
+  .story-season-summary {
+    font-size: .82rem;
+  }
+}
+
+
+
+/* ================================================================
+   v89 — story page modal-style redesign + dark faded site backdrop
+   ================================================================ */
+body.content-page-open {
+  background:
+    radial-gradient(circle at top, #34363d 0%, #1d2026 42%, #0b0c0f 100%) !important;
+}
+body.content-page-open .scene {
+  display: block !important;
+  opacity: .16;
+  filter: grayscale(.45) brightness(.20) saturate(.55);
+  pointer-events: none;
+}
+body.content-page-open::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(8,8,10,.60), rgba(8,8,10,.78));
+  pointer-events: none;
+}
+body.content-page-open .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(11, 12, 15, .74) !important;
+  border-bottom: 1px solid rgba(255,255,255,.08) !important;
+  backdrop-filter: blur(18px);
+}
+body.content-page-open .brand-number::after {
+  color: #f6eee8 !important;
+}
+body.content-page-open .story-brand-subtitle,
+body.content-page-open .tagline,
+body.content-page-open .site-nav-button,
+body.content-page-open .language-compact select,
+body.content-page-open .language-label {
+  color: rgba(255,245,240,.82) !important;
+}
+body.content-page-open .site-nav-button:hover,
+body.content-page-open .site-nav-button.active {
+  color: #fff7f1 !important;
+}
+body.content-page-open .site-nav-button.active::after {
+  background: #e43b34;
+}
+body.content-page-open .language-compact {
+  background: rgba(255,255,255,.06) !important;
+  border-color: rgba(255,255,255,.10) !important;
+}
+body.content-page-open .story-page,
+body.content-page-open .site-placeholder-page {
+  position: relative;
+  z-index: 5;
+  background: transparent !important;
+}
+
+/* modal-like story container */
+.story-page {
+  width: 100% !important;
+  padding: 28px 24px 72px !important;
+  background: transparent !important;
+}
+.story-page-panel {
+  position: relative;
+  width: min(1320px, 100%);
+  margin: 0 auto;
+  border-radius: 34px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  background:
+    linear-gradient(180deg, rgba(247,241,234,.97), rgba(241,234,226,.97));
+  box-shadow:
+    0 30px 70px rgba(0,0,0,.42),
+    0 0 0 1px rgba(255,255,255,.04) inset;
+}
+.story-page-panel::before {
+  display: block !important;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.32), rgba(255,255,255,.08)),
+    url("story-design-reference.png") center top / cover no-repeat;
+  opacity: .14;
+  filter: saturate(.75) contrast(.95);
+  pointer-events: none;
+}
+.story-page-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(224,61,56,.12) 0, rgba(224,61,56,0) 16%),
+    radial-gradient(circle at 84% 16%, rgba(224,61,56,.09) 0, rgba(224,61,56,0) 12%),
+    radial-gradient(circle at 77% 64%, rgba(224,61,56,.07) 0, rgba(224,61,56,0) 10%),
+    repeating-linear-gradient(0deg, rgba(86,58,48,.015) 0 1px, transparent 1px 5px);
+}
+.story-paper {
+  min-height: auto !important;
+  padding: 74px clamp(28px, 5vw, 76px) 96px !important;
+  background: transparent !important;
+}
+.story-paper::before {
+  opacity: .20 !important;
+}
+.story-paper::after {
+  opacity: .04 !important;
+  left: auto !important;
+  right: -6% !important;
+  bottom: -50px !important;
+  width: 40%;
+  background-size: 440px auto !important;
+}
+.story-hero {
+  max-width: 980px;
+}
+.story-eyebrow {
+  color: #5b4943;
+}
+.story-hero h1 {
+  color: #5e2221;
+}
+.story-subtitle {
+  color: #4c3b36;
+}
+.story-hero-rule {
+  background: #d84036;
+}
+.story-vertical-note {
+  color: rgba(82,63,56,.9);
+}
+.story-timeline {
+  width: min(1120px, 100%);
+  padding-bottom: 48px;
+}
+.story-line {
+  background: linear-gradient(180deg, rgba(201,61,56,.16), #cb433a 8%, #cb433a 90%, rgba(201,61,56,.16));
+}
+.story-timeline .journey-footprints {
+  width: 72px;
+}
+.story-node span {
+  width: 56px;
+  height: 56px;
+  border-color: rgba(188,51,46,.85);
+  background: rgba(250,247,243,.94);
+  color: #8b1f20;
+  box-shadow: 0 0 0 9px rgba(246,239,231,.92);
+}
+.story-card {
+  border-color: rgba(112,81,70,.16) !important;
+  background: rgba(255,255,255,.42) !important;
+  box-shadow: 0 16px 34px rgba(78,56,47,.07) !important;
+  backdrop-filter: blur(3px);
+}
+.story-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(201,61,56,.22) !important;
+}
+.story-card.is-expanded {
+  background: rgba(255,252,248,.92) !important;
+  border-color: rgba(216,63,52,.45) !important;
+  box-shadow: 0 22px 50px rgba(110,49,43,.12) !important;
+}
+.story-season-label,
+.story-expanded-kicker {
+  color: #d33b33 !important;
+}
+.story-card h2 {
+  color: #58201f !important;
+}
+.story-season-summary,
+.story-expanded-placeholder {
+  color: #5b4942 !important;
+}
+.story-expand-toggle,
+.story-plus {
+  color: #cf3f35;
+}
+.story-plus {
+  border-color: #dd4b3d;
+}
+.story-detail-chips span {
+  background: rgba(210,59,51,.06);
+  color: #72544d;
+}
+.story-ending p {
+  color: #4a3d38;
+}
+.story-ending span {
+  background: #d84036;
+}
+.site-placeholder-page {
+  padding: 28px 24px 72px;
+}
+.site-placeholder-card {
+  width: min(980px, 100%);
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: linear-gradient(180deg, rgba(247,241,234,.97), rgba(241,234,226,.97));
+  box-shadow: 0 28px 70px rgba(0,0,0,.42);
+}
+.placeholder-kicker {
+  color: #d03d35;
+}
+.site-placeholder-card h1 {
+  color: #67201f;
+}
+.site-placeholder-card p:last-child {
+  color: #6a5750;
+}
+
+@media (max-width: 1000px) {
+  .story-page { padding: 18px 14px 56px !important; }
+  .story-page-panel { border-radius: 24px; }
+  .story-paper { padding: 54px 20px 72px !important; }
+}
+@media (max-width: 760px) {
+  body.content-page-open .site-header {
+    background: rgba(11,12,15,.88) !important;
+  }
+  .story-page { padding: 12px 10px 44px !important; }
+  .story-page-panel,
+  .site-placeholder-card { border-radius: 20px; }
+  .story-paper { padding: 42px 14px 60px !important; }
+  .story-node span {
+    width: 44px;
+    height: 44px;
+    box-shadow: 0 0 0 6px rgba(246,239,231,.94);
+  }
+}
+
 </style>
 </head>
 <body>
@@ -7632,17 +8526,25 @@ body.story-page-open .transfer-group-reminder-modal {
   <header class="site-header">
     <div class="brand-wrap">
       <div class="brand-number" aria-label="1616"><img src="wordmark-1616-transparent-v56.png" alt="1616" class="wordmark-image wordmark-header" /></div>
-      <div class="brand-subtitle" data-i18n="serverTransferApplication">SERVER TRANSFER APPLICATION</div>
+      <div class="brand-subtitle app-brand-subtitle" data-i18n="serverTransferApplication">SERVER TRANSFER APPLICATION</div>
+      <div class="brand-subtitle story-brand-subtitle">LAST WAR · A NEW DAWN</div>
     </div>
 
     <nav class="site-main-nav" aria-label="Main navigation">
-      <button type="button" class="site-nav-button active" id="nav-application" data-page-target="application">
-        <span class="site-nav-mark" aria-hidden="true">✦</span>
-        <span data-i18n="navApplication">Application</span>
-      </button>
       <button type="button" class="site-nav-button" id="nav-story" data-page-target="story">
-        <span class="site-nav-mark story-mark" aria-hidden="true">◉</span>
         <span data-i18n="navStory">1616&#39;s Story</span>
+      </button>
+      <button type="button" class="site-nav-button" id="nav-world" data-page-target="world">
+        <span data-i18n="navWorld">World</span>
+      </button>
+      <button type="button" class="site-nav-button" id="nav-characters" data-page-target="characters">
+        <span data-i18n="navCharacters">Characters</span>
+      </button>
+      <button type="button" class="site-nav-button" id="nav-media" data-page-target="media">
+        <span data-i18n="navMedia">Media</span>
+      </button>
+      <button type="button" class="site-nav-button active" id="nav-application" data-page-target="application">
+        <span data-i18n="navApplication">Application</span>
       </button>
     </nav>
 
@@ -7666,13 +8568,23 @@ body.story-page-open .transfer-group-reminder-modal {
 
   <main class="story-page" id="story-page" hidden>
     <section class="story-page-panel">
-        <div class="about-1616-hero">
-          <span class="about-1616-kicker" data-i18n="about1616JourneyLabel">A visual journey</span>
-          <h1 class="welcome-title" data-i18n="about1616Title">1616&#39;s Story</h1>
-          <p class="welcome-subtitle about-1616-copy" data-i18n="about1616Intro">Use this page to tell the story of 1616 through a visual journey of milestones. Replace the placeholder titles and text later with your real timeline.</p>
+      <div class="story-paper">
+        <div class="story-vertical-note story-note-left" aria-hidden="true">
+          <span>THE STORY</span><span>LIVES ON</span>
+        </div>
+        <div class="story-vertical-note story-note-right" aria-hidden="true">
+          <span>PEOPLE</span><span>LAND</span><span>HONOR</span><span>FOREVER</span>
         </div>
 
-        <div class="about-journey-map" aria-label="About 1616 season journey">
+        <header class="story-hero">
+          <p class="story-eyebrow" data-i18n="storyEyebrow">A NATION AT A CROSSROADS</p>
+          <h1 data-i18n="about1616Title">1616&#39;s Story</h1>
+          <p class="story-subtitle" data-i18n="storySubtitle">Six seasons. One turning point in history.</p>
+          <span class="story-hero-rule" aria-hidden="true"></span>
+        </header>
+
+        <div class="story-timeline" aria-label="1616 season timeline">
+          <div class="story-line" aria-hidden="true"></div>
           <div class="journey-footprints" aria-hidden="true">
             <span class="journey-footstep left p1"></span>
             <span class="journey-footstep right p2"></span>
@@ -7685,105 +8597,201 @@ body.story-page-open .transfer-group-reminder-modal {
             <span class="journey-footstep left p9"></span>
             <span class="journey-footstep right p10"></span>
           </div>
-
-          <div class="journey-milestone" data-story-step="0">
-            <article class="journey-card left">
-              <div class="journey-card-head">
-                <div class="journey-card-icon"><img src="about-journey-torii.png" alt="" /></div>
-                <div class="journey-card-meta">
-                  <span class="journey-card-kicker"><span data-i18n="seasonLabel">Season</span><span class="num">S0</span></span>
-                  <h3 data-i18n="aboutSeason0Title">Pre-Season (Season 0)</h3>
+          
+          <article class="story-milestone journey-milestone left" data-story-step="0">
+            <div class="story-node" aria-hidden="true"><span>⌃</span></div>
+            <div class="story-card left">
+              <div class="story-art-wrap">
+                <img class="story-season-art" src="story-season-s0.png" alt="" />
+              </div>
+              <div class="story-card-copy">
+                <p class="story-season-label">PRE-SEASON (SEASON 0)</p>
+                <h2 data-i18n="aboutSeason0Title">Pre-Season (Season 0)</h2>
+                <p class="story-season-summary" data-i18n="aboutSeason0Copy">The foundational phase lasts around 120 days. It focuses on building toward HQ 30, unlocking early events such as Capitol Conquest, and establishing the initial tank meta.</p>
+                <button type="button" class="story-expand-toggle" aria-expanded="false">
+                  <span class="story-plus" aria-hidden="true">+</span>
+                  <span class="story-expand-label" data-i18n="tapToExpand">Tap to expand</span>
+                </button>
+                <div class="story-expanded-content" hidden>
+                  <div class="story-expanded-rule"></div>
+                  <p class="story-expanded-kicker" data-i18n="about1616StoryLabel">1616&#39;s Story</p>
+                  <p class="story-expanded-placeholder" data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</p>
+                  <div class="story-detail-chips">
+                    <span data-i18n="storyDetailPeople">People</span>
+                    <span data-i18n="storyDetailMoments">Moments</span>
+                    <span data-i18n="storyDetailLegacy">Legacy</span>
+                  </div>
                 </div>
               </div>
-              <p data-i18n="aboutSeason0Copy">The foundational phase lasts around 120 days. It focuses on building toward HQ 30, unlocking early events such as Capitol Conquest, and establishing the initial tank meta.</p>
-              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616&#39;s Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
-            </article>
-            <div class="journey-marker"><div class="journey-marker-dot">S0</div></div>
-            <div class="journey-card-empty"></div>
-          </div>
-
-          <div class="journey-milestone" data-story-step="1">
-            <div class="journey-card-empty"></div>
-            <div class="journey-marker"><div class="journey-marker-dot">S1</div></div>
-            <article class="journey-card right">
-              <div class="journey-card-head">
-                <div class="journey-card-icon"><img src="about-journey-moon.png" alt="" /></div>
-                <div class="journey-card-meta">
-                  <span class="journey-card-kicker"><span data-i18n="seasonLabel">Season</span><span class="num">S1</span></span>
-                  <h3 data-i18n="aboutSeason1Title">Season 1: The Crimson Plague</h3>
+            </div>
+          </article>
+          <article class="story-milestone journey-milestone right" data-story-step="1">
+            <div class="story-node" aria-hidden="true"><span>✿</span></div>
+            <div class="story-card right">
+              <div class="story-art-wrap">
+                <img class="story-season-art" src="story-season-s1.png" alt="" />
+              </div>
+              <div class="story-card-copy">
+                <p class="story-season-label">SEASON 1</p>
+                <h2 data-i18n="aboutSeason1Title">Season 1: The Crimson Plague</h2>
+                <p class="story-season-summary" data-i18n="aboutSeason1Copy">Introduces virus mechanics, Immune Protein Farms, exclusive hero weapons beginning with Kimberly, and a larger focus on fighting for land control across the expanded map.</p>
+                <button type="button" class="story-expand-toggle" aria-expanded="false">
+                  <span class="story-plus" aria-hidden="true">+</span>
+                  <span class="story-expand-label" data-i18n="tapToExpand">Tap to expand</span>
+                </button>
+                <div class="story-expanded-content" hidden>
+                  <div class="story-expanded-rule"></div>
+                  <p class="story-expanded-kicker" data-i18n="about1616StoryLabel">1616&#39;s Story</p>
+                  <p class="story-expanded-placeholder" data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</p>
+                  <div class="story-detail-chips">
+                    <span data-i18n="storyDetailPeople">People</span>
+                    <span data-i18n="storyDetailMoments">Moments</span>
+                    <span data-i18n="storyDetailLegacy">Legacy</span>
+                  </div>
                 </div>
               </div>
-              <p data-i18n="aboutSeason1Copy">Introduces virus mechanics, Immune Protein Farms, exclusive hero weapons beginning with Kimberly, and a larger focus on fighting for land control across the expanded map.</p>
-              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616&#39;s Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
-            </article>
-          </div>
-
-          <div class="journey-milestone" data-story-step="2">
-            <article class="journey-card left">
-              <div class="journey-card-head">
-                <div class="journey-card-icon"><img src="transfer-group-army.png" alt="" /></div>
-                <div class="journey-card-meta">
-                  <span class="journey-card-kicker"><span data-i18n="seasonLabel">Season</span><span class="num">S2</span></span>
-                  <h3 data-i18n="aboutSeason2Title">Season 2: Polar World / Polar Storm</h3>
+            </div>
+          </article>
+          <article class="story-milestone journey-milestone left" data-story-step="2">
+            <div class="story-node" aria-hidden="true"><span>❄</span></div>
+            <div class="story-card left">
+              <div class="story-art-wrap">
+                <img class="story-season-art" src="story-season-s2.png" alt="" />
+              </div>
+              <div class="story-card-copy">
+                <p class="story-season-label">SEASON 2</p>
+                <h2 data-i18n="aboutSeason2Title">Season 2: Polar World / Polar Storm</h2>
+                <p class="story-season-summary" data-i18n="aboutSeason2Copy">Moves the battlefield into a frozen wasteland where alliances manage temperature mechanics and compete for rare soil rankings.</p>
+                <button type="button" class="story-expand-toggle" aria-expanded="false">
+                  <span class="story-plus" aria-hidden="true">+</span>
+                  <span class="story-expand-label" data-i18n="tapToExpand">Tap to expand</span>
+                </button>
+                <div class="story-expanded-content" hidden>
+                  <div class="story-expanded-rule"></div>
+                  <p class="story-expanded-kicker" data-i18n="about1616StoryLabel">1616&#39;s Story</p>
+                  <p class="story-expanded-placeholder" data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</p>
+                  <div class="story-detail-chips">
+                    <span data-i18n="storyDetailPeople">People</span>
+                    <span data-i18n="storyDetailMoments">Moments</span>
+                    <span data-i18n="storyDetailLegacy">Legacy</span>
+                  </div>
                 </div>
               </div>
-              <p data-i18n="aboutSeason2Copy">Moves the battlefield into a frozen wasteland where alliances manage temperature mechanics and compete for rare soil rankings.</p>
-              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616&#39;s Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
-            </article>
-            <div class="journey-marker"><div class="journey-marker-dot">S2</div></div>
-            <div class="journey-card-empty"></div>
-          </div>
-
-          <div class="journey-milestone" data-story-step="3">
-            <div class="journey-card-empty"></div>
-            <div class="journey-marker"><div class="journey-marker-dot">S3</div></div>
-            <article class="journey-card right">
-              <div class="journey-card-head">
-                <div class="journey-card-icon"><img src="about-journey-sakura.png" alt="" /></div>
-                <div class="journey-card-meta">
-                  <span class="journey-card-kicker"><span data-i18n="seasonLabel">Season</span><span class="num">S3</span></span>
-                  <h3 data-i18n="aboutSeason3Title">Season 3: Golden Realm</h3>
+            </div>
+          </article>
+          <article class="story-milestone journey-milestone right" data-story-step="3">
+            <div class="story-node" aria-hidden="true"><span>☀</span></div>
+            <div class="story-card right">
+              <div class="story-art-wrap">
+                <img class="story-season-art" src="story-season-s3.png" alt="" />
+              </div>
+              <div class="story-card-copy">
+                <p class="story-season-label">SEASON 3</p>
+                <h2 data-i18n="aboutSeason3Title">Season 3: Golden Realm</h2>
+                <p class="story-season-summary" data-i18n="aboutSeason3Copy">Brings desert mechanics, curse resistance, and the Goldust Conquest.</p>
+                <button type="button" class="story-expand-toggle" aria-expanded="false">
+                  <span class="story-plus" aria-hidden="true">+</span>
+                  <span class="story-expand-label" data-i18n="tapToExpand">Tap to expand</span>
+                </button>
+                <div class="story-expanded-content" hidden>
+                  <div class="story-expanded-rule"></div>
+                  <p class="story-expanded-kicker" data-i18n="about1616StoryLabel">1616&#39;s Story</p>
+                  <p class="story-expanded-placeholder" data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</p>
+                  <div class="story-detail-chips">
+                    <span data-i18n="storyDetailPeople">People</span>
+                    <span data-i18n="storyDetailMoments">Moments</span>
+                    <span data-i18n="storyDetailLegacy">Legacy</span>
+                  </div>
                 </div>
               </div>
-              <p data-i18n="aboutSeason3Copy">Brings desert mechanics, curse resistance, and the Goldust Conquest.</p>
-              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616&#39;s Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
-            </article>
-          </div>
-
-          <div class="journey-milestone" data-story-step="4">
-            <article class="journey-card left">
-              <div class="journey-card-head">
-                <div class="journey-card-icon"><img src="about-journey-katanas.png" alt="" /></div>
-                <div class="journey-card-meta">
-                  <span class="journey-card-kicker"><span data-i18n="seasonLabel">Season</span><span class="num">S4</span></span>
-                  <h3 data-i18n="aboutSeason4Title">Season 4: Evernight Isle</h3>
+            </div>
+          </article>
+          <article class="story-milestone journey-milestone left" data-story-step="4">
+            <div class="story-node" aria-hidden="true"><span>⌂</span></div>
+            <div class="story-card left">
+              <div class="story-art-wrap">
+                <img class="story-season-art" src="story-season-s4.png" alt="" />
+              </div>
+              <div class="story-card-copy">
+                <p class="story-season-label">SEASON 4</p>
+                <h2 data-i18n="aboutSeason4Title">Season 4: Evernight Isle</h2>
+                <p class="story-season-summary" data-i18n="aboutSeason4Copy">Features darkness-themed mechanics, lighthouses, tactics cards, and the introduction of T11 troops.</p>
+                <button type="button" class="story-expand-toggle" aria-expanded="false">
+                  <span class="story-plus" aria-hidden="true">+</span>
+                  <span class="story-expand-label" data-i18n="tapToExpand">Tap to expand</span>
+                </button>
+                <div class="story-expanded-content" hidden>
+                  <div class="story-expanded-rule"></div>
+                  <p class="story-expanded-kicker" data-i18n="about1616StoryLabel">1616&#39;s Story</p>
+                  <p class="story-expanded-placeholder" data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</p>
+                  <div class="story-detail-chips">
+                    <span data-i18n="storyDetailPeople">People</span>
+                    <span data-i18n="storyDetailMoments">Moments</span>
+                    <span data-i18n="storyDetailLegacy">Legacy</span>
+                  </div>
                 </div>
               </div>
-              <p data-i18n="aboutSeason4Copy">Features darkness-themed mechanics, lighthouses, tactics cards, and the introduction of T11 troops.</p>
-              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616&#39;s Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
-            </article>
-            <div class="journey-marker"><div class="journey-marker-dot">S4</div></div>
-            <div class="journey-card-empty"></div>
-          </div>
-
-          <div class="journey-milestone" data-story-step="5">
-            <div class="journey-card-empty"></div>
-            <div class="journey-marker"><div class="journey-marker-dot">S5</div></div>
-            <article class="journey-card right">
-              <div class="journey-card-head">
-                <div class="journey-card-icon"><img src="about-journey-castle.png" alt="" /></div>
-                <div class="journey-card-meta">
-                  <span class="journey-card-kicker"><span data-i18n="seasonLabel">Season</span><span class="num">S5</span></span>
-                  <h3 data-i18n="aboutSeason5Title">Season 5: Wild West</h3>
+            </div>
+          </article>
+          <article class="story-milestone journey-milestone right" data-story-step="5">
+            <div class="story-node" aria-hidden="true"><span>⚔</span></div>
+            <div class="story-card right">
+              <div class="story-art-wrap">
+                <img class="story-season-art" src="story-season-s5.png" alt="" />
+              </div>
+              <div class="story-card-copy">
+                <p class="story-season-label">SEASON 5</p>
+                <h2 data-i18n="aboutSeason5Title">Season 5: Wild West</h2>
+                <p class="story-season-summary" data-i18n="aboutSeason5Copy">Focuses on bank strongholds and a crystal-gold economy.</p>
+                <button type="button" class="story-expand-toggle" aria-expanded="false">
+                  <span class="story-plus" aria-hidden="true">+</span>
+                  <span class="story-expand-label" data-i18n="tapToExpand">Tap to expand</span>
+                </button>
+                <div class="story-expanded-content" hidden>
+                  <div class="story-expanded-rule"></div>
+                  <p class="story-expanded-kicker" data-i18n="about1616StoryLabel">1616&#39;s Story</p>
+                  <p class="story-expanded-placeholder" data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</p>
+                  <div class="story-detail-chips">
+                    <span data-i18n="storyDetailPeople">People</span>
+                    <span data-i18n="storyDetailMoments">Moments</span>
+                    <span data-i18n="storyDetailLegacy">Legacy</span>
+                  </div>
                 </div>
               </div>
-              <p data-i18n="aboutSeason5Copy">Focuses on bank strongholds and a crystal-gold economy.</p>
-              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616&#39;s Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
-            </article>
-          </div>
+            </div>
+          </article>
         </div>
 
-          </section>
+        <footer class="story-ending">
+          <p>“SOME WARS END BATTLES.<br>THIS ONE SHAPED A NATION.”</p>
+          <span></span>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <main class="site-placeholder-page" id="world-page" hidden>
+    <section class="site-placeholder-card">
+      <p class="placeholder-kicker">1616</p>
+      <h1 data-i18n="navWorld">World</h1>
+      <p data-i18n="comingSoonCopy">This page is being prepared and will be added to the 1616 site soon.</p>
+    </section>
+  </main>
+
+  <main class="site-placeholder-page" id="characters-page" hidden>
+    <section class="site-placeholder-card">
+      <p class="placeholder-kicker">1616</p>
+      <h1 data-i18n="navCharacters">Characters</h1>
+      <p data-i18n="comingSoonCopy">This page is being prepared and will be added to the 1616 site soon.</p>
+    </section>
+  </main>
+
+  <main class="site-placeholder-page" id="media-page" hidden>
+    <section class="site-placeholder-card">
+      <p class="placeholder-kicker">1616</p>
+      <h1 data-i18n="navMedia">Media</h1>
+      <p data-i18n="comingSoonCopy">This page is being prepared and will be added to the 1616 site soon.</p>
+    </section>
   </main>
 
   <main class="app-shell">
@@ -8714,6 +9722,16 @@ const I18N = {
     serverTransferApplication: 'SERVER TRANSFER APPLICATION', strongerTogether: 'A STRONGER TOMORROW',
     navApplication: "Application",
     navStory: "1616\'s Story",
+    navWorld: "World",
+    navCharacters: "Characters",
+    navMedia: "Media",
+    storyEyebrow: "A NATION AT A CROSSROADS",
+    storySubtitle: "Six seasons. One turning point in history.",
+    tapToExpand: "Tap to expand",
+    storyDetailPeople: "People",
+    storyDetailMoments: "Moments",
+    storyDetailLegacy: "Legacy",
+    comingSoonCopy: "This page is being prepared and will be added to the 1616 site soon.",
     stepLanguage: 'Language', stepYourInfo: 'Your Information', stepGameDetails: 'Game Details', stepTransferGroup: 'Transfer Group', stepAdditional: 'Additional Information', stepReview: 'Review & Submit',
     step1Kicker: 'STEP 1 OF 6', step2Kicker: 'STEP 2 OF 6', step3Kicker: 'STEP 3 OF 6', step4Kicker: 'STEP 4 OF 6', step5Kicker: 'STEP 5 OF 6', step6Kicker: 'STEP 6 OF 6',
     chooseLanguage: 'Choose your language', languageIntro: 'Choose the language you would like to use. You can change it at any time.',
@@ -8930,6 +9948,16 @@ const I18N = {
     serverTransferApplication: 'SOLICITUD DE TRANSFERENCIA', strongerTogether: 'UN MAÑANA MÁS FUERTE',
     navApplication: "Solicitud",
     navStory: "Historia 1616",
+    navWorld: "Mundo",
+    navCharacters: "Personajes",
+    navMedia: "Medios",
+    storyEyebrow: "UNA NACIÓN EN UNA ENCRUCIJADA",
+    storySubtitle: "Seis temporadas. Un punto de inflexión en la historia.",
+    tapToExpand: "Toca para ampliar",
+    storyDetailPeople: "Personas",
+    storyDetailMoments: "Momentos",
+    storyDetailLegacy: "Legado",
+    comingSoonCopy: "Esta página está en preparación y se añadirá pronto al sitio de 1616.",
     stepLanguage: 'Idioma', stepYourInfo: 'Tu información', stepGameDetails: 'Datos del juego', stepTransferGroup: 'Grupo de transferencia', stepAdditional: 'Información adicional', stepReview: 'Revisar y enviar',
     step1Kicker: 'PASO 1 DE 6', step2Kicker: 'PASO 2 DE 6', step3Kicker: 'PASO 3 DE 6', step4Kicker: 'PASO 4 DE 6', step5Kicker: 'PASO 5 DE 6', step6Kicker: 'PASO 6 DE 6',
     chooseLanguage: 'Elige tu idioma', languageIntro: 'Elige el idioma que quieres usar. Puedes cambiarlo en cualquier momento.',
@@ -9109,6 +10137,16 @@ const I18N = {
     serverTransferApplication: 'INSCRIÇÃO DE TRANSFERÊNCIA', strongerTogether: 'UM AMANHÃ MAIS FORTE',
     navApplication: "Inscrição",
     navStory: "História 1616",
+    navWorld: "Mundo",
+    navCharacters: "Personagens",
+    navMedia: "Mídia",
+    storyEyebrow: "UMA NAÇÃO EM UMA ENCRUZILHADA",
+    storySubtitle: "Seis temporadas. Um ponto de virada na história.",
+    tapToExpand: "Toque para expandir",
+    storyDetailPeople: "Pessoas",
+    storyDetailMoments: "Momentos",
+    storyDetailLegacy: "Legado",
+    comingSoonCopy: "Esta página está sendo preparada e será adicionada em breve ao site 1616.",
     stepLanguage: 'Idioma', stepYourInfo: 'Suas informações', stepGameDetails: 'Dados do jogo', stepTransferGroup: 'Grupo de transferência', stepAdditional: 'Informações adicionais', stepReview: 'Revisar e enviar',
     step1Kicker: 'ETAPA 1 DE 6', step2Kicker: 'ETAPA 2 DE 6', step3Kicker: 'ETAPA 3 DE 6', step4Kicker: 'ETAPA 4 DE 6', step5Kicker: 'ETAPA 5 DE 6', step6Kicker: 'ETAPA 6 DE 6',
     chooseLanguage: 'Escolha seu idioma', languageIntro: 'Escolha o idioma que deseja usar. Você pode alterá-lo a qualquer momento.',
@@ -9288,6 +10326,16 @@ const I18N = {
     serverTransferApplication: 'DEMANDE DE TRANSFERT', strongerTogether: 'UN AVENIR PLUS FORT',
     navApplication: "Candidature",
     navStory: "Histoire 1616",
+    navWorld: "Monde",
+    navCharacters: "Personnages",
+    navMedia: "Médias",
+    storyEyebrow: "UNE NATION À LA CROISÉE DES CHEMINS",
+    storySubtitle: "Six saisons. Un tournant dans l’histoire.",
+    tapToExpand: "Touchez pour développer",
+    storyDetailPeople: "Personnes",
+    storyDetailMoments: "Moments",
+    storyDetailLegacy: "Héritage",
+    comingSoonCopy: "Cette page est en préparation et sera bientôt ajoutée au site 1616.",
     stepLanguage: 'Langue', stepYourInfo: 'Vos informations', stepGameDetails: 'Données du jeu', stepTransferGroup: 'Groupe de transfert', stepAdditional: 'Informations supplémentaires', stepReview: 'Vérifier et envoyer',
     step1Kicker: 'ÉTAPE 1 SUR 6', step2Kicker: 'ÉTAPE 2 SUR 6', step3Kicker: 'ÉTAPE 3 SUR 6', step4Kicker: 'ÉTAPE 4 SUR 6', step5Kicker: 'ÉTAPE 5 SUR 6', step6Kicker: 'ÉTAPE 6 SUR 6',
     chooseLanguage: 'Choisissez votre langue', languageIntro: 'Choisissez la langue que vous souhaitez utiliser. Vous pourrez la modifier à tout moment.',
@@ -9467,6 +10515,16 @@ const I18N = {
     serverTransferApplication: 'طلب الانتقال إلى السيرفر', strongerTogether: 'غدٌ أقوى معًا',
     navApplication: "الطلب",
     navStory: "قصة 1616",
+    navWorld: "العالم",
+    navCharacters: "الشخصيات",
+    navMedia: "الوسائط",
+    storyEyebrow: "أمة عند مفترق طرق",
+    storySubtitle: "ستة مواسم. نقطة تحول واحدة في التاريخ.",
+    tapToExpand: "اضغط للتوسيع",
+    storyDetailPeople: "الأشخاص",
+    storyDetailMoments: "اللحظات",
+    storyDetailLegacy: "الإرث",
+    comingSoonCopy: "هذه الصفحة قيد الإعداد وستتم إضافتها إلى موقع 1616 قريبًا.",
     stepLanguage: 'اللغة', stepYourInfo: 'معلوماتك', stepGameDetails: 'تفاصيل اللعبة', stepTransferGroup: 'مجموعة الانتقال', stepAdditional: 'معلومات إضافية', stepReview: 'المراجعة والإرسال',
     step1Kicker: 'الخطوة 1 من 6', step2Kicker: 'الخطوة 2 من 6', step3Kicker: 'الخطوة 3 من 6', step4Kicker: 'الخطوة 4 من 6', step5Kicker: 'الخطوة 5 من 6', step6Kicker: 'الخطوة 6 من 6',
     chooseLanguage: 'اختر لغتك', languageIntro: 'اختر اللغة التي تريد استخدامها. يمكنك تغييرها في أي وقت.',
@@ -9646,6 +10704,16 @@ const I18N = {
     serverTransferApplication: 'ĐƠN CHUYỂN SERVER', strongerTogether: 'MỘT NGÀY MAI MẠNH MẼ HƠN',
     navApplication: "Đơn đăng ký",
     navStory: "Câu chuyện 1616",
+    navWorld: "Thế giới",
+    navCharacters: "Nhân vật",
+    navMedia: "Truyền thông",
+    storyEyebrow: "MỘT QUỐC GIA Ở NGÃ RẼ",
+    storySubtitle: "Sáu mùa. Một bước ngoặt trong lịch sử.",
+    tapToExpand: "Chạm để mở rộng",
+    storyDetailPeople: "Con người",
+    storyDetailMoments: "Khoảnh khắc",
+    storyDetailLegacy: "Di sản",
+    comingSoonCopy: "Trang này đang được chuẩn bị và sẽ sớm được thêm vào trang 1616.",
     stepLanguage: 'Ngôn ngữ', stepYourInfo: 'Thông tin của bạn', stepGameDetails: 'Thông tin game', stepTransferGroup: 'Nhóm chuyển server', stepAdditional: 'Thông tin bổ sung', stepReview: 'Kiểm tra & gửi',
     step1Kicker: 'BƯỚC 1/6', step2Kicker: 'BƯỚC 2/6', step3Kicker: 'BƯỚC 3/6', step4Kicker: 'BƯỚC 4/6', step5Kicker: 'BƯỚC 5/6', step6Kicker: 'BƯỚC 6/6',
     chooseLanguage: 'Chọn ngôn ngữ', languageIntro: 'Chọn ngôn ngữ bạn muốn sử dụng. Bạn có thể thay đổi bất cứ lúc nào.',
@@ -9825,6 +10893,16 @@ const I18N = {
     serverTransferApplication: '서버 이전 신청서', strongerTogether: '더 강한 내일',
     navApplication: "신청서",
     navStory: "1616 이야기",
+    navWorld: "세계",
+    navCharacters: "인물",
+    navMedia: "미디어",
+    storyEyebrow: "갈림길에 선 하나의 국가",
+    storySubtitle: "여섯 시즌. 역사의 한 전환점.",
+    tapToExpand: "눌러서 펼치기",
+    storyDetailPeople: "사람들",
+    storyDetailMoments: "순간들",
+    storyDetailLegacy: "유산",
+    comingSoonCopy: "이 페이지는 준비 중이며 곧 1616 사이트에 추가될 예정입니다.",
     stepLanguage: '언어', stepYourInfo: '내 정보', stepGameDetails: '게임 정보', stepTransferGroup: '이전 그룹', stepAdditional: '추가 정보', stepReview: '검토 및 제출',
     step1Kicker: '1 / 6단계', step2Kicker: '2 / 6단계', step3Kicker: '3 / 6단계', step4Kicker: '4 / 6단계', step5Kicker: '5 / 6단계', step6Kicker: '6 / 6단계',
     chooseLanguage: '언어 선택', languageIntro: '사용할 언어를 선택하세요. 언제든지 변경할 수 있습니다.',
@@ -10004,6 +11082,16 @@ const I18N = {
     serverTransferApplication: 'SERVER-TRANSFER-BEWERBUNG', strongerTogether: 'EINE STÄRKERE ZUKUNFT',
     navApplication: "Bewerbung",
     navStory: "1616-Geschichte",
+    navWorld: "Welt",
+    navCharacters: "Charaktere",
+    navMedia: "Medien",
+    storyEyebrow: "EINE NATION AM SCHEIDEWEG",
+    storySubtitle: "Sechs Saisons. Ein Wendepunkt der Geschichte.",
+    tapToExpand: "Zum Öffnen tippen",
+    storyDetailPeople: "Menschen",
+    storyDetailMoments: "Momente",
+    storyDetailLegacy: "Vermächtnis",
+    comingSoonCopy: "Diese Seite wird vorbereitet und bald zur 1616-Website hinzugefügt.",
     stepLanguage: 'Sprache', stepYourInfo: 'Deine Informationen', stepGameDetails: 'Spieldaten', stepTransferGroup: 'Transfergruppe', stepAdditional: 'Zusätzliche Informationen', stepReview: 'Prüfen & senden',
     step1Kicker: 'SCHRITT 1 VON 6', step2Kicker: 'SCHRITT 2 VON 6', step3Kicker: 'SCHRITT 3 VON 6', step4Kicker: 'SCHRITT 4 VON 6', step5Kicker: 'SCHRITT 5 VON 6', step6Kicker: 'SCHRITT 6 VON 6',
     chooseLanguage: 'Wähle deine Sprache', languageIntro: 'Wähle die Sprache, die du verwenden möchtest. Du kannst sie jederzeit ändern.',
@@ -11449,25 +12537,74 @@ function initStoryFootprints() {
 function showTopPage(page) {
   const appShell = document.querySelector('.app-shell');
   const storyPage = document.getElementById('story-page');
-  const appButton = document.getElementById('nav-application');
-  const storyButton = document.getElementById('nav-story');
-  if (!appShell || !storyPage || !appButton || !storyButton) return;
+  const pageMap = {
+    story: storyPage,
+    world: document.getElementById('world-page'),
+    characters: document.getElementById('characters-page'),
+    media: document.getElementById('media-page')
+  };
+  const navMap = {
+    story: document.getElementById('nav-story'),
+    world: document.getElementById('nav-world'),
+    characters: document.getElementById('nav-characters'),
+    media: document.getElementById('nav-media'),
+    application: document.getElementById('nav-application')
+  };
+  if (!appShell || !storyPage) return;
 
-  const story = page === 'story';
-  appShell.hidden = story;
-  storyPage.hidden = !story;
+  const contentPage = page !== 'application';
+  appShell.hidden = contentPage;
+  appShell.style.display = contentPage ? 'none' : '';
 
-  // Explicitly control display as well as the hidden attribute because
-  // .app-shell uses display:grid elsewhere in the stylesheet.
-  appShell.style.display = story ? 'none' : '';
-  storyPage.style.display = story ? '' : 'none';
+  Object.entries(pageMap).forEach(([name, element]) => {
+    if (!element) return;
+    const active = page === name;
+    element.hidden = !active;
+    element.style.display = active ? '' : 'none';
+  });
 
-  appButton.classList.toggle('active', !story);
-  storyButton.classList.toggle('active', story);
-  appButton.setAttribute('aria-current', story ? 'false' : 'page');
-  storyButton.setAttribute('aria-current', story ? 'page' : 'false');
-  document.body.classList.toggle('story-page-open', story);
+  Object.entries(navMap).forEach(([name, button]) => {
+    if (!button) return;
+    const active = page === name;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-current', active ? 'page' : 'false');
+  });
+
+  document.body.classList.toggle('story-page-open', page === 'story');
+  document.body.classList.toggle('content-page-open', contentPage);
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function initStoryMilestones() {
+  const toggles = [...document.querySelectorAll('.story-expand-toggle')];
+  if (!toggles.length) return;
+
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const card = toggle.closest('.story-card');
+      const content = card?.querySelector('.story-expanded-content');
+      if (!card || !content) return;
+
+      const opening = !card.classList.contains('is-expanded');
+
+      document.querySelectorAll('.story-card.is-expanded').forEach(other => {
+        if (other === card) return;
+        other.classList.remove('is-expanded');
+        const otherToggle = other.querySelector('.story-expand-toggle');
+        const otherContent = other.querySelector('.story-expanded-content');
+        if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+        if (otherContent) otherContent.hidden = true;
+      });
+
+      card.classList.toggle('is-expanded', opening);
+      toggle.setAttribute('aria-expanded', String(opening));
+      content.hidden = !opening;
+
+      if (opening) {
+        setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+      }
+    });
+  });
 }
 
 function initWelcomeScreen() {
@@ -11558,8 +12695,9 @@ form.addEventListener('submit', submitApplication);
 form.addEventListener('input', hideValidationBanner);
 form.addEventListener('change', hideValidationBanner);
 headerLanguage.addEventListener('change', () => setLanguage(headerLanguage.value));
-document.getElementById('nav-application')?.addEventListener('click', () => showTopPage('application'));
-document.getElementById('nav-story')?.addEventListener('click', () => showTopPage('story'));
+document.querySelectorAll('[data-page-target]').forEach(button => {
+  button.addEventListener('click', () => showTopPage(button.dataset.pageTarget));
+});
 document.querySelectorAll('.language-card').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.language)));
 stepLinks.forEach(btn => btn.addEventListener('click', () => {
   const target = Number(btn.dataset.stepTarget);
@@ -11646,6 +12784,7 @@ updateGroupContactOptions(); updateGroupSummary();  updateTransferEstimate(); up
 document.getElementById('comments-count').textContent = document.getElementById('comments').value.length;
 initPetals();
 initStoryFootprints();
+initStoryMilestones();
 initCustomSelects();
 document.querySelectorAll('select').forEach(syncCustomSelect);
 showTopPage('application');
