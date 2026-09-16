@@ -5328,6 +5328,147 @@ body.welcome-open .question-fab { display: none !important; }
   .question-prefill-row { grid-template-columns: 78px minmax(0,1fr); }
 }
 
+
+
+/* ================================================================
+   v72 — VIEWPORT-SAFE OVERLAYS
+   Keep the welcome experience and question widget fully inside the
+   visible browser area, above the persistent header/language controls.
+   ================================================================ */
+
+/* The welcome overlay can be taller than short laptop/browser windows.
+   Use flex + auto margins so a short panel stays centered, while a tall
+   panel starts inside the viewport instead of being centered off-screen. */
+.welcome-screen {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  box-sizing: border-box;
+  padding: clamp(12px, 2.2vh, 24px) clamp(12px, 2.2vw, 24px) !important;
+  overflow: hidden !important;
+}
+.welcome-screen[hidden] { display: none !important; }
+.welcome-panel {
+  width: min(1120px, 100%) !important;
+  max-height: calc(100dvh - clamp(24px, 4.4vh, 48px));
+  margin-block: auto !important;
+  padding: clamp(22px, 3.2vw, 42px) !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+/* Slightly compact the guide composition according to viewport height.
+   This keeps the full welcome card visible without sacrificing width. */
+.guide-meme-stage {
+  width: min(940px, 100%) !important;
+  height: clamp(260px, 40dvh, 410px) !important;
+  margin-top: clamp(10px, 1.8vh, 18px) !important;
+}
+.meme-yaba,
+.meme-raid {
+  height: clamp(205px, 34dvh, 330px) !important;
+}
+.meme-dolph {
+  height: clamp(170px, 27dvh, 265px) !important;
+}
+.welcome-guide-stage .welcome-kicker { margin-bottom: 8px; }
+.welcome-title { font-size: clamp(1.55rem, 3vw, 2.7rem) !important; }
+.welcome-title-slash { margin-top: 4px; margin-bottom: 6px; }
+.welcome-guide-copy { margin-top: 2px !important; }
+
+/* The question widget must float above the site header (z 1200–1400),
+   while remaining below validation/welcome modal layers. */
+.question-fab {
+  z-index: 4100 !important;
+}
+.question-panel {
+  z-index: 4200 !important;
+  width: min(400px, calc(100vw - 28px)) !important;
+  max-height: min(680px, calc(100dvh - 104px)) !important;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+/* Short browser windows: reduce vertical chrome before forcing scrolling. */
+@media (max-height: 780px) and (min-width: 621px) {
+  .welcome-panel { padding: 20px 30px !important; }
+  .welcome-kicker { margin-bottom: 6px !important; }
+  .welcome-title { font-size: clamp(1.45rem, 2.65vw, 2.25rem) !important; }
+  .welcome-subtitle { margin-top: 7px !important; }
+  .guide-meme-stage {
+    height: clamp(235px, 36dvh, 300px) !important;
+    margin-top: 8px !important;
+  }
+  .meme-yaba,
+  .meme-raid { height: clamp(190px, 31dvh, 255px) !important; }
+  .meme-dolph { height: clamp(155px, 24dvh, 205px) !important; }
+  .welcome-action { margin-top: 4px !important; }
+
+  .question-panel {
+    bottom: 74px !important;
+    max-height: calc(100dvh - 92px) !important;
+    padding: 15px !important;
+  }
+  .question-panel-header { margin-bottom: 12px !important; }
+  .question-prefill-grid { gap: 6px !important; margin-bottom: 11px !important; }
+  .question-prefill-value { min-height: 30px !important; padding-block: 5px !important; }
+  .question-field { margin-top: 9px !important; }
+  .question-panel textarea { min-height: 86px !important; }
+  .question-discord-note { margin-top: 9px !important; padding: 7px 9px !important; }
+  .question-actions { margin-top: 11px !important; }
+}
+
+@media (max-width: 620px) {
+  .welcome-screen {
+    padding: 8px !important;
+    overflow: hidden !important;
+  }
+  .welcome-panel {
+    width: 100% !important;
+    max-height: calc(100dvh - 16px) !important;
+    margin-block: auto !important;
+    padding: 20px 14px !important;
+    border-radius: 17px !important;
+  }
+  .welcome-language-grid { gap: 8px !important; }
+  .guide-meme-stage {
+    width: min(350px, 100%) !important;
+    height: clamp(205px, 31dvh, 235px) !important;
+    margin-top: 8px !important;
+  }
+
+  .question-fab {
+    z-index: 4100 !important;
+  }
+  .question-panel {
+    z-index: 4200 !important;
+    right: 8px !important;
+    bottom: 66px !important;
+    width: calc(100vw - 16px) !important;
+    max-height: calc(100dvh - 78px) !important;
+    padding: 13px !important;
+    border-radius: 16px !important;
+  }
+  .question-panel-header {
+    grid-template-columns: 36px minmax(0,1fr) auto !important;
+    gap: 9px !important;
+    margin-bottom: 11px !important;
+  }
+  .question-panel-icon { width: 34px !important; height: 34px !important; }
+  .question-panel-title h2 { font-size: 1.05rem !important; }
+  .question-panel-title p { font-size: .71rem !important; }
+  .question-prefill-grid { gap: 6px !important; margin-bottom: 10px !important; }
+  .question-prefill-row { grid-template-columns: 72px minmax(0,1fr) !important; gap: 7px !important; }
+  .question-prefill-value { min-height: 30px !important; padding: 5px 8px !important; }
+  .question-field { margin-top: 9px !important; }
+  .question-panel textarea { min-height: 82px !important; }
+  .question-discord-note { margin-top: 9px !important; padding: 7px 8px !important; }
+  .question-actions { margin-top: 10px !important; }
+}
+
 </style>
 </head>
 <body>

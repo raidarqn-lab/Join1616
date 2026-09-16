@@ -1,3 +1,7 @@
+# v72 viewport/layout fix
+
+This build keeps the welcome screen and floating Questions panel fully within the browser viewport. The welcome card is slightly wider and height-responsive, and the Questions panel now sits above the persistent header/language controls with a viewport-safe maximum height.
+
 # 1616 Server Transfer Application — v2
 
 This version includes the full visual treatment in the HTML itself:
