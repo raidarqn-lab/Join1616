@@ -6591,8 +6591,8 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
 .form-step[data-step="3"] .group-option-rail {
   align-items: center;
   justify-content: flex-start;
-  gap: 12px;
-  padding-top: 0;
+  gap: 14px;
+  padding-top: 2px;
 }
 .form-step[data-step="3"] .group-option-number {
   width: 58px;
@@ -6602,20 +6602,24 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
   box-shadow: 0 0 0 5px rgba(255,255,255,.02), 0 0 20px rgba(255, 124, 173, .14);
 }
 .form-step[data-step="3"] .group-option-icon {
-  width: 74px;
-  height: 74px;
-  padding: 10px;
+  width: 76px;
+  height: 76px;
+  padding: 12px;
   border-radius: 18px;
-  border: 1px solid rgba(248, 132, 190, .38);
-  background: linear-gradient(180deg, rgba(91, 32, 59, .82), rgba(46, 21, 36, .96));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 10px 20px rgba(0,0,0,.18);
+  border: 1px solid rgba(255, 176, 216, .44);
+  background: linear-gradient(180deg, rgba(116, 42, 79, .88), rgba(58, 24, 43, .98));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 10px 20px rgba(0,0,0,.18),
+    0 0 0 1px rgba(255, 205, 229, .03);
 }
 .form-step[data-step="3"] .group-option-icon img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: center;
   display: block;
-  filter: drop-shadow(0 4px 10px rgba(255, 102, 170, .22));
+  filter: drop-shadow(0 4px 10px rgba(255, 102, 170, .16));
 }
 .form-step[data-step="3"] .group-option-icon-hash {
   font-size: 0;
@@ -6665,19 +6669,20 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
 .form-step[data-step="3"] .member-title {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  padding: 8px 16px 8px 13px;
+  gap: 8px;
+  padding: 8px 16px 8px 12px;
   background: linear-gradient(180deg, #ffd75f, #f1b640) !important;
   border-color: rgba(255, 236, 179, .92) !important;
   color: #241605 !important;
   box-shadow: 0 10px 18px rgba(0,0,0,.14);
 }
 .form-step[data-step="3"] .member-title-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   object-fit: contain;
+  object-position: center;
   display: block;
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,.14));
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.10));
 }
 .form-step[data-step="3"] .group-member-card .field-grid.three-col {
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) minmax(210px, .9fr);
@@ -6707,7 +6712,7 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
   .form-step[data-step="3"] .group-option-card::before { width: 100%; height: 5px; top: 0; left: 0; right: 0; bottom: auto; border-radius: 22px 22px 0 0; }
   .form-step[data-step="3"] .group-option-rail { flex-direction: row; justify-content: flex-start; }
   .form-step[data-step="3"] .group-option-number { width: 50px; height: 50px; font-size: 1.3rem; }
-  .form-step[data-step="3"] .group-option-icon { width: 62px; height: 62px; }
+  .form-step[data-step="3"] .group-option-icon { width: 60px; height: 60px; padding: 10px; }
 }
 
 
@@ -6741,7 +6746,9 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
 .form-step[data-step="3"] select.member-server-native:focus {
   outline: none;
   border-color: rgba(255, 211, 95, .82) !important;
-  box-shadow: 0 0 0 3px rgba(255, 211, 95, .10), 0 0 18px rgba(255, 181, 75, .12) !important;
+  box-shadow:
+    0 0 0 3px rgba(255, 211, 95, .10),
+    0 0 18px rgba(255, 181, 75, .12) !important;
 }
 .form-step[data-step="3"] select.member-server-native option {
   background: #171017;

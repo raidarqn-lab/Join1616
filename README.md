@@ -594,3 +594,9 @@ The Transfer Group page includes three exported PNG assets that are used directl
 - `player-helmet-icon.png` — samurai helmet used for the Group Members section and beside each Player badge
 
 Each player card keeps Username, Alliance name, and Server number. Server number uses a native dropdown (1573–1636) so the option list remains visible above surrounding cards.
+
+
+## v79 update
+- Replaced transfer group section icons with simpler minimalist exported icon assets.
+- Tuned icon containers and player label icon sizing for better readability at smaller sizes.
+- Preserved native visible server dropdowns in the player cards.
