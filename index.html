@@ -4111,6 +4111,132 @@ body.transfer-group-reminder-open { overflow: hidden; }
     0 0 14px rgba(255,199,103,.08);
 }
 
+
+/* v60 — clearer visual differentiation on Transfer Group page */
+.form-step[data-step="3"] .group-lead-card,
+.form-step[data-step="3"] .group-contact-card,
+.form-step[data-step="3"] .group-summary-card,
+.form-step[data-step="3"] .group-member-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.form-step[data-step="3"] .group-lead-card::before,
+.form-step[data-step="3"] .group-contact-card::before,
+.form-step[data-step="3"] .group-summary-card::before,
+.form-step[data-step="3"] .group-member-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  border-radius: 14px 0 0 14px;
+  opacity: .95;
+}
+
+.form-step[data-step="3"] .group-lead-card {
+  border: 1px solid rgba(235, 113, 140, .48) !important;
+  background:
+    radial-gradient(circle at 94% 6%, rgba(235, 102, 130, .16), transparent 34%),
+    linear-gradient(180deg, rgba(84, 28, 47, .42), rgba(23, 13, 18, .88)) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.02) inset,
+    0 12px 30px rgba(0,0,0,.18),
+    0 0 22px rgba(214, 50, 82, .08) !important;
+}
+.form-step[data-step="3"] .group-lead-card::before {
+  background: linear-gradient(180deg, rgba(255, 167, 188, .92), rgba(214, 62, 97, .92));
+}
+
+.form-step[data-step="3"] .group-contact-card {
+  margin-top: 16px;
+  padding: 18px;
+  border-radius: 13px;
+  border: 1px solid rgba(255, 202, 118, .38);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(255, 211, 117, .10), transparent 34%),
+    linear-gradient(180deg, rgba(74, 44, 24, .32), rgba(20, 14, 12, .86));
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.02) inset,
+    0 12px 30px rgba(0,0,0,.16),
+    0 0 24px rgba(255, 189, 92, .06);
+}
+.form-step[data-step="3"] .group-contact-card::before {
+  background: linear-gradient(180deg, rgba(255, 216, 132, .96), rgba(220, 143, 43, .96));
+}
+.form-step[data-step="3"] .group-contact-card .subsection-icon {
+  color: #ffd07e;
+  text-shadow: 0 0 10px rgba(255, 195, 99, .18);
+}
+.form-step[data-step="3"] .group-contact-card p {
+  color: #d9c0ac;
+}
+
+.form-step[data-step="3"] .group-summary-card {
+  margin-top: 16px;
+  border: 1px solid rgba(175, 126, 255, .34);
+  background:
+    radial-gradient(circle at 92% 10%, rgba(187, 132, 255, .09), transparent 34%),
+    linear-gradient(180deg, rgba(45, 28, 57, .32), rgba(17, 14, 26, .88)) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.02) inset,
+    0 12px 30px rgba(0,0,0,.16),
+    0 0 24px rgba(174, 114, 255, .07) !important;
+}
+.form-step[data-step="3"] .group-summary-card::before {
+  background: linear-gradient(180deg, rgba(200, 151, 255, .96), rgba(131, 76, 214, .96));
+}
+.form-step[data-step="3"] .group-summary-card span {
+  color: #d3c4ea;
+}
+.form-step[data-step="3"] .group-summary-card strong {
+  color: #f4e8ff;
+}
+
+.form-step[data-step="3"] .group-member-card {
+  border: 1px solid rgba(129, 95, 164, .34) !important;
+  background:
+    radial-gradient(circle at 90% 8%, rgba(172, 120, 222, .08), transparent 28%),
+    linear-gradient(180deg, rgba(36, 28, 49, .38), rgba(14, 19, 28, .82)) !important;
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.12),
+    0 0 18px rgba(123, 92, 164, .06) !important;
+}
+.form-step[data-step="3"] .group-member-card::before {
+  background: linear-gradient(180deg, rgba(179, 137, 227, .94), rgba(93, 69, 130, .94));
+}
+
+.form-step[data-step="3"] .group-lead-card .subsection-heading,
+.form-step[data-step="3"] .group-contact-card .subsection-heading,
+.form-step[data-step="3"] .group-summary-card .subsection-heading {
+  margin-bottom: 16px;
+}
+
+.form-step[data-step="3"] .group-lead-card .subsection-heading h2 { color: #ffd2dc; }
+.form-step[data-step="3"] .group-contact-card .subsection-heading h2 { color: #ffe0a3; }
+.form-step[data-step="3"] .group-summary-card .subsection-heading h2,
+.form-step[data-step="3"] .group-member-card .subsection-heading h2 { color: #e6d7ff; }
+
+.form-step[data-step="3"] .group-name-divider {
+  border-top-color: rgba(255, 218, 150, .20);
+}
+
+.form-step[data-step="3"] .group-name-caps-note {
+  border-color: rgba(255, 202, 118, .28);
+  background: rgba(96, 62, 26, .20);
+  color: #f0d0aa;
+}
+
+.form-step[data-step="3"] .group-name-critical-alert {
+  border-color: rgba(240, 105, 130, .46);
+  background:
+    radial-gradient(circle at 92% 18%, rgba(240, 105, 130, .08), transparent 32%),
+    linear-gradient(180deg, rgba(89, 28, 46, .56), rgba(38, 14, 22, .80));
+}
+
+.form-step[data-step="3"] .group-builder > .choice-fieldset {
+  border-color: rgba(255, 193, 104, .16);
+}
+
 </style>
 </head>
 <body>

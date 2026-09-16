@@ -459,3 +459,13 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 ## v59
 - Replaced the `◎` icon beside “Transfer Group Name” with the sakura-style `✿` symbol.
 - Added a subtle pink/lantern-gold glow so it fits the existing visual theme.
+
+
+## v60
+- Improved visual differentiation between the sections on the Transfer Group page.
+- The main section cards now use distinct themed shades instead of feeling uniformly red:
+  - Transfer Group Name / lead area: rose-red
+  - Group contact / shared details area: warm lantern-gold
+  - Summary area: plum-violet
+  - Dynamically added player cards: cool plum-slate
+- Added subtle left accent bars and heading tint differences to help each section read as a separate block more clearly.
