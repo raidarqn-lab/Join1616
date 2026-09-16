@@ -8610,6 +8610,40 @@ body.page-transitioning .story-page:not([hidden]) {
   margin-bottom: 10px !important;
 }
 
+
+/* v92 — cinematic headings and story paragraphs */
+.story-cinematic-heading {
+  margin: 2px 0 11px;
+  color: #8a4a3f;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.15;
+}
+.story-season-summary-rich,
+.story-expanded-rich {
+  display: grid;
+  gap: 9px;
+}
+.story-season-summary-rich p,
+.story-expanded-rich p {
+  margin: 0;
+}
+.story-season-summary-rich strong {
+  color: #722421;
+  font-weight: 700;
+}
+.story-expanded-rich {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.story-expand-label {
+  white-space: normal;
+  text-align: left;
+}
+
 </style>
 </head>
 <body>
@@ -8797,19 +8831,23 @@ body.page-transitioning .story-page:not([hidden]) {
               <div class="story-card-copy">
                 <p class="story-season-label" data-i18n="storySeason0Label">SEASON 0</p>
                 <h2 data-i18n="aboutSeason0Title">PRE-SEASON</h2>
-                <p class="story-season-summary" data-i18n="aboutSeason0Copy">The foundational phase lasts around 120 days. It focuses on building toward HQ 30, unlocking early events such as Capitol Conquest, and establishing the initial tank meta.</p>
+                <p class="story-cinematic-heading" data-i18n="season0CinematicHeading">The Dawn of 1616</p>
+                <div class="story-season-summary story-season-summary-rich">
+                  <p data-i18n="season0Intro1">None of us knew what we were getting into.</p>
+                  <p data-i18n="season0Intro2">We thought we had downloaded a game about shooting barrels and killing zombies. Simple enough. Instead, we were dropped onto Server 1616 — a strange new world filled with alliances, rivalries, territory, politics, and people from every corner of the planet.</p>
+                  <p data-i18n="season0Intro3">Somewhere between upgrading our HQs and wondering what half the buttons did, 1616 began to take shape.</p>
+                </div>
                 <button type="button" class="story-expand-toggle" aria-expanded="false">
                   <span class="story-plus" aria-hidden="true">+</span>
-                  <span class="story-expand-label" data-i18n="tapToExpand">Tap to expand</span>
+                  <span class="story-expand-label" data-i18n="storyTapToExpand">1616&#39;s Story — tap to expand</span>
                 </button>
                 <div class="story-expanded-content" hidden>
                   <div class="story-expanded-rule"></div>
                   <p class="story-expanded-kicker" data-i18n="about1616StoryLabel">1616&#39;s Story</p>
-                  <p class="story-expanded-placeholder" data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</p>
-                  <div class="story-detail-chips">
-                    <span data-i18n="storyDetailPeople">People</span>
-                    <span data-i18n="storyDetailMoments">Moments</span>
-                    <span data-i18n="storyDetailLegacy">Legacy</span>
+                  <div class="story-expanded-placeholder story-expanded-rich">
+                    <p data-i18n="season0Story1">We settled into our first alliances and started figuring out how this world actually worked.</p>
+                    <p data-i18n="season0Story2">Some of those alliance choices turned out to be terrible decisions. Others introduced us to people who, four seasons later, are still fighting beside us.</p>
+                    <p data-i18n="season0Story3">We learned the rules, broke a few of them by accident, made friends, made enemies, and slowly realized that this was definitely not just a game about shooting barrels.</p>
                   </div>
                 </div>
               </div>
@@ -8824,20 +8862,21 @@ body.page-transitioning .story-page:not([hidden]) {
               <div class="story-card-copy">
                 <p class="story-season-label" data-i18n="storySeason1Label">SEASON 1</p>
                 <h2 data-i18n="aboutSeason1Title">The Crimson Plague</h2>
-                <p class="story-season-summary" data-i18n="aboutSeason1Copy">Introduces virus mechanics, Immune Protein Farms, exclusive hero weapons beginning with Kimberly, and a larger focus on fighting for land control across the expanded map.</p>
+                <p class="story-cinematic-heading" data-i18n="season1CinematicHeading">The Virus Arrives</p>
+                <div class="story-season-summary story-season-summary-rich">
+                  <p data-i18n="season1Intro1">Season 1 changed the battlefield.</p>
+                  <p data-i18n="season1Intro2">Crimson Plague introduced virus mechanics, Protein Farms, exclusive hero weapons, and a full-scale fight for control of land across the map. Alliances had to coordinate expansion, defend territory, and learn an entirely new set of mechanics while the server descended into beautifully organized chaos.</p>
+                  <p><span data-i18n="season1Intro3a">And somewhere along the way, 1616 discovered one of its specialties:</span> <strong data-i18n="season1Intro3b">the sneak-attack virus bomb.</strong></p>
+                  <p data-i18n="season1Intro4">The planning, timing, and orchestration behind those attacks became one of the season's defining memories — and they are still remembered as some of the funniest and most entertaining moments we've had in the game.</p>
+                </div>
                 <button type="button" class="story-expand-toggle" aria-expanded="false">
                   <span class="story-plus" aria-hidden="true">+</span>
-                  <span class="story-expand-label" data-i18n="tapToExpand">Tap to expand</span>
+                  <span class="story-expand-label" data-i18n="storyTapToExpand">1616&#39;s Story — tap to expand</span>
                 </button>
                 <div class="story-expanded-content" hidden>
                   <div class="story-expanded-rule"></div>
                   <p class="story-expanded-kicker" data-i18n="about1616StoryLabel">1616&#39;s Story</p>
                   <p class="story-expanded-placeholder" data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</p>
-                  <div class="story-detail-chips">
-                    <span data-i18n="storyDetailPeople">People</span>
-                    <span data-i18n="storyDetailMoments">Moments</span>
-                    <span data-i18n="storyDetailLegacy">Legacy</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -9892,6 +9931,20 @@ const I18N = {
     navMedia: "Media",
     storyEyebrow: "A SERVER BOUND FOR SUCCESS",
     storySubtitle: "Four Seasons. Now is Your Chance to Be A Part of History.",
+    season0CinematicHeading: "The Dawn of 1616",
+    season0Intro1: "None of us knew what we were getting into.",
+    season0Intro2: "We thought we had downloaded a game about shooting barrels and killing zombies. Simple enough. Instead, we were dropped onto Server 1616 — a strange new world filled with alliances, rivalries, territory, politics, and people from every corner of the planet.",
+    season0Intro3: "Somewhere between upgrading our HQs and wondering what half the buttons did, 1616 began to take shape.",
+    storyTapToExpand: "1616's Story — tap to expand",
+    season0Story1: "We settled into our first alliances and started figuring out how this world actually worked.",
+    season0Story2: "Some of those alliance choices turned out to be terrible decisions. Others introduced us to people who, four seasons later, are still fighting beside us.",
+    season0Story3: "We learned the rules, broke a few of them by accident, made friends, made enemies, and slowly realized that this was definitely not just a game about shooting barrels.",
+    season1CinematicHeading: "The Virus Arrives",
+    season1Intro1: "Season 1 changed the battlefield.",
+    season1Intro2: "Crimson Plague introduced virus mechanics, Protein Farms, exclusive hero weapons, and a full-scale fight for control of land across the map. Alliances had to coordinate expansion, defend territory, and learn an entirely new set of mechanics while the server descended into beautifully organized chaos.",
+    season1Intro3a: "And somewhere along the way, 1616 discovered one of its specialties:",
+    season1Intro3b: "the sneak-attack virus bomb.",
+    season1Intro4: "The planning, timing, and orchestration behind those attacks became one of the season's defining memories — and they are still remembered as some of the funniest and most entertaining moments we've had in the game.",
     storySeason5Label: "SEASON 5",
     storySeason4Label: "SEASON 4",
     storySeason3Label: "SEASON 3",
@@ -10124,6 +10177,20 @@ const I18N = {
     navMedia: "Medios",
     storyEyebrow: "UN SERVIDOR DESTINADO AL ÉXITO",
     storySubtitle: "Cuatro temporadas. Ahora es tu oportunidad de formar parte de la historia.",
+    season0CinematicHeading: "El amanecer de 1616",
+    season0Intro1: "Ninguno de nosotros sabía en qué nos estábamos metiendo.",
+    season0Intro2: "Pensábamos que habíamos descargado un juego sobre disparar barriles y matar zombis. Bastante simple. En cambio, aparecimos en el Servidor 1616: un mundo extraño lleno de alianzas, rivalidades, territorio, política y personas de todos los rincones del planeta.",
+    season0Intro3: "En algún momento entre mejorar nuestros HQ y preguntarnos para qué servían la mitad de los botones, 1616 empezó a tomar forma.",
+    storyTapToExpand: "La historia de 1616 — toca para ampliar",
+    season0Story1: "Nos instalamos en nuestras primeras alianzas y empezamos a descubrir cómo funcionaba realmente este mundo.",
+    season0Story2: "Algunas de esas decisiones de alianza resultaron ser terribles. Otras nos presentaron a personas que, cuatro temporadas después, todavía luchan a nuestro lado.",
+    season0Story3: "Aprendimos las reglas, rompimos algunas por accidente, hicimos amigos, hicimos enemigos y poco a poco entendimos que esto definitivamente no era solo un juego de disparar barriles.",
+    season1CinematicHeading: "Llega el virus",
+    season1Intro1: "La Temporada 1 cambió el campo de batalla.",
+    season1Intro2: "Crimson Plague introdujo mecánicas de virus, Protein Farms, armas exclusivas de héroes y una lucha a gran escala por el control del territorio. Las alianzas tuvieron que coordinar su expansión, defender tierras y aprender nuevas mecánicas mientras el servidor descendía en un caos magníficamente organizado.",
+    season1Intro3a: "Y en algún momento, 1616 descubrió una de sus especialidades:",
+    season1Intro3b: "la bomba de virus por ataque sorpresa.",
+    season1Intro4: "La planificación, el momento exacto y la coordinación de esos ataques se convirtieron en uno de los recuerdos que definieron la temporada, y todavía se recuerdan como algunos de los momentos más divertidos del juego.",
     storySeason5Label: "TEMPORADA 5",
     storySeason4Label: "TEMPORADA 4",
     storySeason3Label: "TEMPORADA 3",
@@ -10319,6 +10386,20 @@ const I18N = {
     navMedia: "Mídia",
     storyEyebrow: "UM SERVIDOR DESTINADO AO SUCESSO",
     storySubtitle: "Quatro temporadas. Agora é a sua chance de fazer parte da história.",
+    season0CinematicHeading: "O amanhecer de 1616",
+    season0Intro1: "Nenhum de nós sabia no que estava se metendo.",
+    season0Intro2: "Achávamos que tínhamos baixado um jogo sobre atirar em barris e matar zumbis. Simples. Em vez disso, fomos jogados no Servidor 1616 — um mundo estranho cheio de alianças, rivalidades, território, política e pessoas de todos os cantos do planeta.",
+    season0Intro3: "Em algum ponto entre evoluir nossos HQs e tentar entender para que serviam metade dos botões, o 1616 começou a tomar forma.",
+    storyTapToExpand: "A história do 1616 — toque para expandir",
+    season0Story1: "Entramos nas nossas primeiras alianças e começamos a descobrir como esse mundo realmente funcionava.",
+    season0Story2: "Algumas dessas escolhas de aliança acabaram sendo péssimas decisões. Outras nos apresentaram a pessoas que, quatro temporadas depois, ainda estão lutando ao nosso lado.",
+    season0Story3: "Aprendemos as regras, quebramos algumas sem querer, fizemos amigos, fizemos inimigos e percebemos aos poucos que aquilo definitivamente não era apenas um jogo sobre atirar em barris.",
+    season1CinematicHeading: "O vírus chega",
+    season1Intro1: "A Temporada 1 mudou o campo de batalha.",
+    season1Intro2: "Crimson Plague trouxe mecânicas de vírus, Protein Farms, armas exclusivas de heróis e uma disputa em grande escala pelo controle de território. As alianças precisaram coordenar expansão, defender terras e aprender um conjunto totalmente novo de mecânicas enquanto o servidor mergulhava em um caos lindamente organizado.",
+    season1Intro3a: "E, em algum momento, o 1616 descobriu uma de suas especialidades:",
+    season1Intro3b: "a bomba de vírus em ataque surpresa.",
+    season1Intro4: "O planejamento, o timing e a coordenação desses ataques viraram uma das memórias que definiram a temporada e ainda são lembrados como alguns dos momentos mais engraçados e divertidos do jogo.",
     storySeason5Label: "TEMPORADA 5",
     storySeason4Label: "TEMPORADA 4",
     storySeason3Label: "TEMPORADA 3",
@@ -10514,6 +10595,20 @@ const I18N = {
     navMedia: "Médias",
     storyEyebrow: "UN SERVEUR DESTINÉ AU SUCCÈS",
     storySubtitle: "Quatre saisons. C’est maintenant votre chance de faire partie de l’histoire.",
+    season0CinematicHeading: "L’aube de 1616",
+    season0Intro1: "Aucun de nous ne savait vraiment dans quoi il s’engageait.",
+    season0Intro2: "Nous pensions avoir téléchargé un jeu où l’on tirait sur des barils et tuait des zombies. Plutôt simple. À la place, nous avons été projetés sur le serveur 1616 — un monde étrange rempli d’alliances, de rivalités, de territoires, de politique et de personnes venues des quatre coins du monde.",
+    season0Intro3: "Quelque part entre l’amélioration de nos QG et la découverte de l’utilité de la moitié des boutons, 1616 a commencé à prendre forme.",
+    storyTapToExpand: "L’histoire de 1616 — toucher pour développer",
+    season0Story1: "Nous avons rejoint nos premières alliances et commencé à comprendre comment ce monde fonctionnait réellement.",
+    season0Story2: "Certaines de ces décisions d’alliance se sont révélées désastreuses. D’autres nous ont fait rencontrer des personnes qui, quatre saisons plus tard, combattent toujours à nos côtés.",
+    season0Story3: "Nous avons appris les règles, enfreint certaines par accident, trouvé des amis, trouvé des ennemis et compris peu à peu que ce n’était vraiment pas simplement un jeu où l’on tirait sur des barils.",
+    season1CinematicHeading: "Le virus arrive",
+    season1Intro1: "La Saison 1 a changé le champ de bataille.",
+    season1Intro2: "Crimson Plague a introduit les mécaniques de virus, les Protein Farms, les armes exclusives des héros et une lutte à grande échelle pour le contrôle des terres. Les alliances ont dû coordonner leur expansion, défendre leur territoire et apprendre de toutes nouvelles mécaniques pendant que le serveur sombrait dans un chaos magnifiquement organisé.",
+    season1Intro3a: "Et quelque part en chemin, 1616 a découvert l’une de ses spécialités :",
+    season1Intro3b: "la bombe virale en attaque surprise.",
+    season1Intro4: "La planification, le timing et l’orchestration de ces attaques sont devenus l’un des souvenirs marquants de la saison et restent parmi les moments les plus drôles et divertissants du jeu.",
     storySeason5Label: "SAISON 5",
     storySeason4Label: "SAISON 4",
     storySeason3Label: "SAISON 3",
@@ -10709,6 +10804,20 @@ const I18N = {
     navMedia: "الوسائط",
     storyEyebrow: "سيرفر متجه نحو النجاح",
     storySubtitle: "أربعة مواسم. الآن فرصتك لتكون جزءًا من التاريخ.",
+    season0CinematicHeading: "فجر 1616",
+    season0Intro1: "لم يكن أي منا يعرف حقًا ما الذي دخلنا فيه.",
+    season0Intro2: "ظننا أننا حمّلنا لعبة عن إطلاق النار على البراميل وقتل الزومبي. بسيطة بما يكفي. لكن بدلًا من ذلك وجدنا أنفسنا في سيرفر 1616 — عالم غريب مليء بالتحالفات والمنافسات والأراضي والسياسة وأشخاص من كل أنحاء العالم.",
+    season0Intro3: "وفي مكان ما بين تطوير مقراتنا ومحاولة فهم وظيفة نصف الأزرار، بدأ 1616 يتشكل.",
+    storyTapToExpand: "قصة 1616 — اضغط للتوسيع",
+    season0Story1: "استقر كل منا في تحالفاته الأولى وبدأنا نفهم كيف يعمل هذا العالم فعلًا.",
+    season0Story2: "بعض اختيارات التحالف كانت قرارات سيئة جدًا. وبعضها الآخر عرّفنا على أشخاص ما زالوا يقاتلون إلى جانبنا بعد أربعة مواسم.",
+    season0Story3: "تعلمنا القواعد، وكسرنا بعضها عن طريق الخطأ، وكوّنا صداقات وعداوات، وبدأنا ندرك أن هذه بالتأكيد ليست مجرد لعبة عن إطلاق النار على البراميل.",
+    season1CinematicHeading: "وصول الفيروس",
+    season1Intro1: "غيّر الموسم الأول ساحة المعركة.",
+    season1Intro2: "قدّم Crimson Plague آليات الفيروس وProtein Farms والأسلحة الحصرية للأبطال ومعركة واسعة للسيطرة على الأراضي. كان على التحالفات تنسيق التوسع والدفاع عن الأراضي وتعلم مجموعة جديدة تمامًا من الآليات بينما انغمس السيرفر في فوضى منظمة بشكل جميل.",
+    season1Intro3a: "وفي مكان ما خلال ذلك، اكتشف 1616 إحدى تخصصاته:",
+    season1Intro3b: "قنبلة الفيروس بالهجوم المفاجئ.",
+    season1Intro4: "أصبح التخطيط والتوقيت والتنسيق وراء تلك الهجمات من أكثر ذكريات الموسم تميزًا، وما زالت تُذكر باعتبارها من أطرف وأكثر لحظات اللعبة متعة.",
     storySeason5Label: "الموسم 5",
     storySeason4Label: "الموسم 4",
     storySeason3Label: "الموسم 3",
@@ -10904,6 +11013,20 @@ const I18N = {
     navMedia: "Truyền thông",
     storyEyebrow: "MỘT SERVER HƯỚNG ĐẾN THÀNH CÔNG",
     storySubtitle: "Bốn mùa. Bây giờ là cơ hội để bạn trở thành một phần của lịch sử.",
+    season0CinematicHeading: "Bình minh của 1616",
+    season0Intro1: "Không ai trong chúng ta thực sự biết mình đang bước vào chuyện gì.",
+    season0Intro2: "Chúng ta nghĩ mình đã tải một trò chơi chỉ để bắn thùng và giết zombie. Khá đơn giản. Thay vào đó, chúng ta bị thả vào Server 1616 — một thế giới kỳ lạ đầy liên minh, đối đầu, lãnh thổ, chính trị và những con người từ khắp nơi trên thế giới.",
+    season0Intro3: "Ở đâu đó giữa việc nâng HQ và cố hiểu một nửa số nút dùng để làm gì, 1616 bắt đầu thành hình.",
+    storyTapToExpand: "Câu chuyện 1616 — chạm để mở rộng",
+    season0Story1: "Chúng ta gia nhập những liên minh đầu tiên và bắt đầu hiểu thế giới này thực sự vận hành như thế nào.",
+    season0Story2: "Một vài lựa chọn liên minh hóa ra là những quyết định tệ hại. Những lựa chọn khác lại giúp chúng ta gặp những người mà bốn mùa sau vẫn đang chiến đấu bên cạnh mình.",
+    season0Story3: "Chúng ta học luật, vô tình phá vài luật, kết bạn, kết thù và dần nhận ra đây chắc chắn không chỉ là một trò chơi bắn thùng.",
+    season1CinematicHeading: "Virus xuất hiện",
+    season1Intro1: "Mùa 1 đã thay đổi chiến trường.",
+    season1Intro2: "Crimson Plague mang đến cơ chế virus, Protein Farms, vũ khí độc quyền cho hero và cuộc chiến quy mô lớn để kiểm soát lãnh thổ. Các liên minh phải phối hợp mở rộng, bảo vệ đất và học một loạt cơ chế hoàn toàn mới trong khi server rơi vào một sự hỗn loạn được tổ chức cực kỳ bài bản.",
+    season1Intro3a: "Và đâu đó trong quá trình đó, 1616 phát hiện ra một sở trường:",
+    season1Intro3b: "bom virus đánh úp.",
+    season1Intro4: "Việc lên kế hoạch, căn thời gian và phối hợp những đợt tấn công đó đã trở thành một trong những ký ức tiêu biểu của mùa và vẫn được nhớ tới như những khoảnh khắc vui nhất trong game.",
     storySeason5Label: "MÙA 5",
     storySeason4Label: "MÙA 4",
     storySeason3Label: "MÙA 3",
@@ -11099,6 +11222,20 @@ const I18N = {
     navMedia: "미디어",
     storyEyebrow: "성공을 향해 나아가는 서버",
     storySubtitle: "네 번의 시즌. 이제 당신도 역사의 일부가 될 기회입니다.",
+    season0CinematicHeading: "1616의 새벽",
+    season0Intro1: "우리 중 누구도 우리가 무엇에 뛰어든 것인지 몰랐습니다.",
+    season0Intro2: "우리는 배럴을 쏘고 좀비를 잡는 게임을 다운로드했다고 생각했습니다. 단순해 보였죠. 하지만 실제로는 동맹, 경쟁, 영토, 정치, 그리고 전 세계의 사람들이 뒤섞인 낯선 세계인 서버 1616에 떨어졌습니다.",
+    season0Intro3: "HQ를 올리고 수많은 버튼이 무엇을 하는지 고민하는 사이, 1616은 조금씩 모습을 갖추기 시작했습니다.",
+    storyTapToExpand: "1616 이야기 — 눌러서 펼치기",
+    season0Story1: "우리는 첫 동맹에 자리 잡고 이 세계가 실제로 어떻게 돌아가는지 알아가기 시작했습니다.",
+    season0Story2: "그 동맹 선택 중 일부는 정말 끔찍한 결정이었습니다. 다른 선택은 네 시즌이 지난 지금도 우리 곁에서 싸우는 사람들을 만나게 해주었습니다.",
+    season0Story3: "규칙을 배우고, 실수로 몇 개를 어기고, 친구도 만들고 적도 만들면서 이것이 절대 단순한 배럴 슈팅 게임이 아니라는 걸 깨달았습니다.",
+    season1CinematicHeading: "바이러스의 등장",
+    season1Intro1: "시즌 1은 전장을 바꿨습니다.",
+    season1Intro2: "Crimson Plague는 바이러스 메커니즘, Protein Farms, 전용 영웅 무기, 그리고 맵 전체의 영토를 두고 벌어지는 대규모 경쟁을 도입했습니다. 동맹들은 확장을 조율하고 영토를 지키며 완전히 새로운 메커니즘을 배워야 했고, 서버는 아름답게 조직된 혼돈 속으로 들어갔습니다.",
+    season1Intro3a: "그러는 동안 1616은 자신들의 특기 중 하나를 발견했습니다:",
+    season1Intro3b: "기습 바이러스 폭탄.",
+    season1Intro4: "그 공격을 위한 계획, 타이밍, 조율은 시즌을 대표하는 기억 중 하나가 되었고 지금도 게임에서 가장 웃기고 재미있었던 순간으로 남아 있습니다.",
     storySeason5Label: "시즌 5",
     storySeason4Label: "시즌 4",
     storySeason3Label: "시즌 3",
@@ -11294,6 +11431,20 @@ const I18N = {
     navMedia: "Medien",
     storyEyebrow: "EIN SERVER AUF ERFOLGSKURS",
     storySubtitle: "Vier Saisons. Jetzt ist deine Chance, Teil der Geschichte zu werden.",
+    season0CinematicHeading: "Der Morgen von 1616",
+    season0Intro1: "Keiner von uns wusste wirklich, worauf wir uns eingelassen hatten.",
+    season0Intro2: "Wir dachten, wir hätten ein Spiel heruntergeladen, in dem man auf Fässer schießt und Zombies erledigt. Einfach genug. Stattdessen landeten wir auf Server 1616 — einer seltsamen Welt voller Allianzen, Rivalitäten, Territorien, Politik und Menschen aus allen Teilen der Welt.",
+    season0Intro3: "Irgendwo zwischen HQ-Upgrades und der Frage, wofür die Hälfte der Buttons eigentlich da ist, nahm 1616 langsam Gestalt an.",
+    storyTapToExpand: "1616-Geschichte — zum Öffnen tippen",
+    season0Story1: "Wir fanden uns in unseren ersten Allianzen ein und begannen herauszufinden, wie diese Welt wirklich funktionierte.",
+    season0Story2: "Einige dieser Allianzentscheidungen waren ziemlich furchtbar. Andere brachten uns mit Menschen zusammen, die vier Saisons später immer noch an unserer Seite kämpfen.",
+    season0Story3: "Wir lernten die Regeln, brachen einige versehentlich, fanden Freunde, machten uns Feinde und merkten langsam, dass dies definitiv nicht nur ein Spiel über das Abschießen von Fässern war.",
+    season1CinematicHeading: "Das Virus kommt",
+    season1Intro1: "Saison 1 veränderte das Schlachtfeld.",
+    season1Intro2: "Crimson Plague führte Virusmechaniken, Protein Farms, exklusive Heldenwaffen und einen groß angelegten Kampf um die Kontrolle der Karte ein. Allianzen mussten ihre Expansion koordinieren, Territorien verteidigen und völlig neue Mechaniken lernen, während der Server in wunderschön organisiertem Chaos versank.",
+    season1Intro3a: "Und irgendwo auf dem Weg entdeckte 1616 eine seiner Spezialitäten:",
+    season1Intro3b: "die Überraschungs-Virusbombe.",
+    season1Intro4: "Die Planung, das Timing und die Koordination dieser Angriffe wurden zu einer der prägenden Erinnerungen der Saison und gehören bis heute zu den lustigsten und unterhaltsamsten Momenten im Spiel.",
     storySeason5Label: "SAISON 5",
     storySeason4Label: "SAISON 4",
     storySeason3Label: "SAISON 3",

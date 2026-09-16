@@ -690,3 +690,14 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 - Example: **SEASON 0** → **PRE-SEASON**.
 - Updated the same hierarchy across all supported languages.
 
+## v92 — Pre-Season and Crimson Plague story copy
+- Added cinematic chapter headings:
+  - **The Dawn of 1616**
+  - **The Virus Arrives**
+- Replaced the generic Pre-Season summary with the new Server 1616 opening story.
+- Pre-Season's expandable 1616 Story now contains the completed first chapter.
+- Replaced the Crimson Plague summary with the new narrative, including the sneak-attack virus bomb memory.
+- Crimson Plague's expandable **1616's Story** remains a placeholder.
+- Removed People / Moments / Legacy from Pre-Season and Crimson Plague only.
+- Seasons 2–4 remain unchanged.
+
