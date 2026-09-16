@@ -1438,6 +1438,77 @@ select:hover,
 textarea:hover {
   border-color: rgba(221,91,116,.68);
 }
+
+/* v44 — themed dropdowns */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  color-scheme: dark;
+  color: #f7edf0;
+  cursor: pointer;
+  padding-right: 46px;
+  border-color: rgba(210,72,101,.62);
+  background-color: #0c1822;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 7.5 10 12l4.5-4.5' fill='none' stroke='%23f39aae' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, rgba(73,25,42,.38), rgba(8,22,32,.94));
+  background-repeat: no-repeat, no-repeat;
+  background-position: right 14px center, 0 0;
+  background-size: 18px 18px, 100% 100%;
+  box-shadow:
+    0 0 0 1px rgba(255,160,179,.025) inset,
+    0 0 15px rgba(209,48,79,.055);
+}
+
+select:hover {
+  border-color: rgba(239,111,136,.82);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 7.5 10 12l4.5-4.5' fill='none' stroke='%23ffc0cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, rgba(91,30,49,.48), rgba(9,24,34,.96));
+  box-shadow:
+    0 0 0 1px rgba(255,173,190,.04) inset,
+    0 0 18px rgba(211,49,80,.11);
+}
+
+select:focus {
+  border-color: #ed7890;
+  background-color: #111923;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 7.5 10 12l4.5-4.5' fill='none' stroke='%23ffd0d9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, rgba(102,33,53,.52), rgba(10,25,36,.98));
+  box-shadow:
+    0 0 0 3px rgba(237,120,144,.11),
+    0 0 18px rgba(211,49,80,.14);
+}
+
+/* Native option menus use the same dark Blood Moon palette where supported. */
+select option,
+select optgroup {
+  background: #101923;
+  color: #f7edf0;
+}
+select option:checked {
+  background: #5b2034;
+  color: #ffffff;
+}
+
+/* Header language selector gets the same treatment instead of a grey/native look. */
+.language-compact {
+  border-color: rgba(214,77,104,.58);
+  background: linear-gradient(180deg, rgba(74,25,42,.38), rgba(5,20,31,.82));
+  box-shadow: 0 0 16px rgba(205,49,79,.055);
+}
+.language-compact select {
+  color: #f7edf0;
+  background-color: transparent;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 7.5 10 12l4.5-4.5' fill='none' stroke='%23f39aae' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  background-size: 17px 17px;
+  padding-right: 28px;
+}
+
 input:focus,
 select:focus,
 textarea:focus {
@@ -2962,9 +3033,7 @@ body.welcome-open { overflow: hidden; }
         <div class="welcome-title-slash" aria-hidden="true"></div>
 
         <p class="welcome-subtitle welcome-guide-copy">
-          <span data-i18n="welcomeGuideLead">We are your transfer guides:</span>
-          <strong>Yabadabadoo</strong>, <strong>Dolphy RN</strong>, <span data-i18n="welcomeAnd">and</span> <strong>RaidARQN</strong>.
-          <span class="welcome-guide-help" data-i18n="welcomeGuideHelp">We are here to support the transfer application process for the server.</span>
+          <span data-i18n="welcomeGuideLead">We are your chaotic 1616 transfer team</span> <strong>Yabadabadoo [WaE]</strong>, <strong>Dolphy RN [NvEM]</strong>, <span data-i18n="welcomeAnd">and</span> <strong>RaidARQN [NvSP]</strong>.
         </p>
 
         
@@ -2985,23 +3054,7 @@ body.welcome-open { overflow: hidden; }
           </div>
         </div>
 
-<div class="guide-name-strip" aria-label="Transfer guide usernames">
-            <div class="guide-name-chip guide-name-yaba" data-comic="Calm, Cool, Collected">
-              <strong>Yabadabadoo</strong>
-              <span>[WaE]</span>
-            </div>
-            <div class="guide-name-chip guide-name-dolphy" data-comic="Mr. Personality">
-              <strong>Dolphy RN</strong>
-              <span>[NvEM]</span>
-            </div>
-            <div class="guide-name-chip guide-name-raid" data-comic="Pew Pew queen of 1616">
-              <strong>RaidARQN</strong>
-              <span>[NvSP]</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="welcome-action">
+<div class="welcome-action">
           <button type="button" class="welcome-enter" id="welcome-enter"><span data-i18n="beginApplication">Begin Application</span> →</button>
         </div>
       </div>
@@ -3697,9 +3750,9 @@ const I18N = {
     welcomeChooseLanguageTitle: "Choose your language",
     welcomeChooseLanguageIntro: "Choose the language you would like to use for the transfer application.",
     welcomeThanksTitle: "Thank you for your interest in joining 1616!",
-    welcomeGuideLead: "We are your transfer guides:",
+    welcomeGuideLead: "We are your chaotic 1616 transfer team",
     welcomeAnd: "and",
-    welcomeGuideHelp: "We are here to support the transfer application process for the server.",
+    welcomeGuideHelp: "",
     beginApplication: "Begin Application",
     transferPlanningTitle: "Transfer Planning Information",
     transferPlanningIntro: "Please provide the account-development information below when available.",

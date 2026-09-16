@@ -333,3 +333,17 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - The welcome scene now uses Yabadabadoo on the left, Dolphy RN in the center, and RaidARQN on the right.
 - The characters now point naturally in their own poses, so no extra synthetic pointer bars are used.
 - Kept the sequential welcome animation and existing nameplate layout.
+
+
+## v44
+- Restyled all dropdown/select fields to match the Blood Moon / Sakura form theme.
+- Replaced the browser-grey closed select appearance with a dark navy/crimson gradient.
+- Added pink/red borders, glow, hover/focus states, and a custom pink chevron.
+- Styled native option lists dark with white text where the browser supports option styling.
+- Updated the header language dropdown to match.
+
+
+## v45
+- Changed the welcome copy to: "We are your chaotic 1616 transfer team Yabadabadoo [WaE], Dolphy RN [NvEM], and RaidARQN [NvSP]."
+- Removed the name labels from underneath the welcome images so the screen no longer looks like users need to choose a guide.
+- Kept the welcome-screen trio images and animation intact.
