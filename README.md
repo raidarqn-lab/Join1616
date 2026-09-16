@@ -1,3 +1,7 @@
+# 1616 Server Transfer Application v73
+
+Includes the Dolphy support-agent question widget header, Discord/not-live-chat messaging, and all previous v72 viewport fixes.
+
 # v72 viewport/layout fix
 
 This build keeps the welcome screen and floating Questions panel fully within the browser viewport. The welcome card is slightly wider and height-responsive, and the Questions panel now sits above the persistent header/language controls with a viewport-safe maximum height.

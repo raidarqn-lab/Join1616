@@ -5173,10 +5173,58 @@ body.welcome-open .question-fab { display: none !important; }
 }
 .question-panel-header {
   display: grid;
-  grid-template-columns: 42px minmax(0,1fr) auto;
-  gap: 11px;
+  grid-template-columns: 64px minmax(0,1fr) auto;
+  gap: 13px;
   align-items: start;
   margin-bottom: 16px;
+}
+.question-agent-avatar {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  border-radius: 999px;
+  overflow: visible;
+  border: 2px solid rgba(255, 170, 121, .78);
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 219, 181, .16), transparent 48%),
+    rgba(40, 13, 24, .94);
+  box-shadow: 0 0 0 3px rgba(222, 55, 89, .12), 0 0 22px rgba(225, 59, 91, .24);
+}
+.question-agent-avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  object-fit: cover;
+  object-position: 50% 23%;
+  transform: scale(1.42);
+  transform-origin: 50% 24%;
+  clip-path: circle(35.2% at 50% 50%);
+}
+.question-agent-headset {
+  position: absolute;
+  right: -7px;
+  top: -7px;
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 188, 133, .58);
+  background: linear-gradient(145deg, rgba(116, 28, 47, .98), rgba(54, 17, 31, .98));
+  font-size: 14px;
+  line-height: 1;
+  box-shadow: 0 4px 12px rgba(0,0,0,.35), 0 0 13px rgba(226, 62, 94, .28);
+}
+.question-agent-name {
+  display: inline-block;
+  margin: 0 0 4px;
+  color: #ffc986;
+  font-size: .66rem;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
 }
 .question-panel-icon {
   display: grid;
@@ -5192,8 +5240,8 @@ body.welcome-open .question-fab { display: none !important; }
   box-shadow: 0 0 18px rgba(225, 59, 91, .15);
 }
 .question-panel-title { min-width: 0; }
-.question-panel-title h2 { margin: 1px 0 4px; font-size: 1.18rem; line-height: 1.15; color: #fff7ef; }
-.question-panel-title p { margin: 0; color: rgba(255, 229, 216, .74); font-size: .77rem; line-height: 1.4; }
+.question-panel-title h2 { margin: 0 0 5px; font-size: 1.12rem; line-height: 1.18; color: #fff7ef; }
+.question-panel-title p { margin: 0; color: rgba(255, 229, 216, .78); font-size: .75rem; line-height: 1.42; }
 .question-panel-close {
   appearance: none;
   border: 0;
@@ -5412,7 +5460,7 @@ body.welcome-open .question-fab { display: none !important; }
     max-height: calc(100dvh - 92px) !important;
     padding: 15px !important;
   }
-  .question-panel-header { margin-bottom: 12px !important; }
+  .question-panel-header { grid-template-columns: 54px minmax(0,1fr) auto !important; margin-bottom: 12px !important; }
   .question-prefill-grid { gap: 6px !important; margin-bottom: 11px !important; }
   .question-prefill-value { min-height: 30px !important; padding-block: 5px !important; }
   .question-field { margin-top: 9px !important; }
@@ -5457,7 +5505,8 @@ body.welcome-open .question-fab { display: none !important; }
     gap: 9px !important;
     margin-bottom: 11px !important;
   }
-  .question-panel-icon { width: 34px !important; height: 34px !important; }
+  .question-agent-avatar { width: 50px !important; height: 50px !important; }
+  .question-agent-headset { right: -6px; top: -6px; width: 23px; height: 23px; font-size: 12px; }
   .question-panel-title h2 { font-size: 1.05rem !important; }
   .question-panel-title p { font-size: .71rem !important; }
   .question-prefill-grid { gap: 6px !important; margin-bottom: 10px !important; }
@@ -6286,11 +6335,15 @@ body.welcome-open .question-fab { display: none !important; }
 
   <aside class="question-panel" id="question-panel" hidden aria-labelledby="question-panel-title">
     <div id="question-form-view">
-      <div class="question-panel-header">
-        <span class="question-panel-icon" aria-hidden="true">?</span>
+      <div class="question-panel-header question-agent-header">
+        <div class="question-agent-avatar" aria-hidden="true">
+          <img src="guide-dolph-transparent.png" alt="" />
+          <span class="question-agent-headset">🎧</span>
+        </div>
         <div class="question-panel-title">
-          <h2 id="question-panel-title" data-i18n="questionPanelTitle">Ask a Question</h2>
-          <p data-i18n="questionPanelIntro">Send a question to our transfer team. This is not live chat.</p>
+          <span class="question-agent-name">Dolphy</span>
+          <h2 id="question-panel-title" data-i18n="questionPanelTitle">Hi, what can I help you with?</h2>
+          <p data-i18n="questionPanelIntro">Your question will be sent to the 1616 transfer team through Discord. This is not a live chat.</p>
         </div>
         <button class="question-panel-close" id="question-panel-close" type="button">
           <span data-i18n="closeGuide">Close</span><span class="x" aria-hidden="true">×</span>
@@ -6334,7 +6387,7 @@ body.welcome-open .question-fab { display: none !important; }
         <p class="question-field-help" data-i18n="questionEmailHelp">Only add this if you would like the team to be able to contact you outside the game.</p>
       </div>
 
-      <p class="question-discord-note"><span aria-hidden="true">◉</span><span data-i18n="questionDiscordNote">Your question will be logged and sent to the 1616 transfer team through Discord.</span></p>
+      <p class="question-discord-note"><span aria-hidden="true">◉</span><span data-i18n="questionDiscordNote">Submitting this form sends your question to the 1616 transfer team through Discord. It is not a live chat.</span></p>
       <p class="question-error" id="question-error" hidden></p>
 
       <div class="question-actions">
@@ -6557,8 +6610,8 @@ const I18N = {
     statsGuideButton: "Open visual guide",
     questionFabTitle: "Questions?",
     questionFabSub: "We’re here to help",
-    questionPanelTitle: "Ask a Question",
-    questionPanelIntro: "Send a question to our transfer team. This is not live chat.",
+    questionPanelTitle: "Hi, what can I help you with?",
+    questionPanelIntro: "Your question will be sent to the 1616 transfer team through Discord. This is not a live chat.",
     questionUsername: "Username",
     questionServer: "Server",
     questionAlliance: "Alliance",
@@ -6573,7 +6626,7 @@ const I18N = {
     questionEmailLabel: "Email for a reply",
     questionEmailPlaceholder: "you@example.com",
     questionEmailHelp: "Only add this if you would like the team to be able to contact you outside the game.",
-    questionDiscordNote: "Your question will be logged and sent to the 1616 transfer team through Discord.",
+    questionDiscordNote: "Submitting this form sends your question to the 1616 transfer team through Discord. It is not a live chat.",
     cancelQuestion: "Cancel",
     sendQuestion: "Send Question",
     questionThanksTitle: "Thanks for your question!",
@@ -6695,8 +6748,8 @@ const I18N = {
     statsGuideButton: "Abrir guía visual",
     questionFabTitle: "¿Preguntas?",
     questionFabSub: "Estamos aquí para ayudarte",
-    questionPanelTitle: "Haz una pregunta",
-    questionPanelIntro: "Envía una pregunta a nuestro equipo de transferencias. No es un chat en vivo.",
+    questionPanelTitle: "Hola, ¿en qué puedo ayudarte?",
+    questionPanelIntro: "Tu pregunta se enviará al equipo de transferencias de 1616 a través de Discord. Esto no es un chat en vivo.",
     questionUsername: "Usuario",
     questionServer: "Servidor",
     questionAlliance: "Alianza",
@@ -6711,7 +6764,7 @@ const I18N = {
     questionEmailLabel: "Correo para responder",
     questionEmailPlaceholder: "tu@ejemplo.com",
     questionEmailHelp: "Añádelo solo si quieres que el equipo pueda contactarte fuera del juego.",
-    questionDiscordNote: "Tu pregunta se registrará y se enviará al equipo de transferencias de 1616 por Discord.",
+    questionDiscordNote: "Al enviar este formulario, tu pregunta se enviará al equipo de transferencias de 1616 por Discord. No es un chat en vivo.",
     cancelQuestion: "Cancelar",
     sendQuestion: "Enviar pregunta",
     questionThanksTitle: "¡Gracias por tu pregunta!",
@@ -6833,8 +6886,8 @@ const I18N = {
     statsGuideButton: "Abrir guia visual",
     questionFabTitle: "Dúvidas?",
     questionFabSub: "Estamos aqui para ajudar",
-    questionPanelTitle: "Faça uma pergunta",
-    questionPanelIntro: "Envie uma pergunta para nossa equipe de transferência. Isto não é um chat ao vivo.",
+    questionPanelTitle: "Olá, como posso ajudar?",
+    questionPanelIntro: "Sua pergunta será enviada à equipe de transferência do 1616 pelo Discord. Isto não é um chat ao vivo.",
     questionUsername: "Nome de usuário",
     questionServer: "Servidor",
     questionAlliance: "Aliança",
@@ -6849,7 +6902,7 @@ const I18N = {
     questionEmailLabel: "E-mail para resposta",
     questionEmailPlaceholder: "voce@exemplo.com",
     questionEmailHelp: "Adicione apenas se quiser que a equipe possa entrar em contato fora do jogo.",
-    questionDiscordNote: "Sua pergunta será registrada e enviada à equipe de transferência do 1616 pelo Discord.",
+    questionDiscordNote: "Ao enviar este formulário, sua pergunta será enviada à equipe de transferência do 1616 pelo Discord. Não é um chat ao vivo.",
     cancelQuestion: "Cancelar",
     sendQuestion: "Enviar pergunta",
     questionThanksTitle: "Obrigado pela pergunta!",
@@ -6971,8 +7024,8 @@ const I18N = {
     statsGuideButton: "Ouvrir le guide visuel",
     questionFabTitle: "Questions ?",
     questionFabSub: "Nous sommes là pour aider",
-    questionPanelTitle: "Poser une question",
-    questionPanelIntro: "Envoyez une question à notre équipe de transfert. Ce n’est pas un chat en direct.",
+    questionPanelTitle: "Bonjour, comment puis-je vous aider ?",
+    questionPanelIntro: "Votre question sera envoyée à l’équipe de transfert 1616 via Discord. Il ne s’agit pas d’un chat en direct.",
     questionUsername: "Nom d’utilisateur",
     questionServer: "Serveur",
     questionAlliance: "Alliance",
@@ -6987,7 +7040,7 @@ const I18N = {
     questionEmailLabel: "E-mail pour une réponse",
     questionEmailPlaceholder: "vous@exemple.com",
     questionEmailHelp: "Ajoutez-le seulement si vous souhaitez que l’équipe puisse vous contacter hors du jeu.",
-    questionDiscordNote: "Votre question sera enregistrée et envoyée à l’équipe de transfert 1616 via Discord.",
+    questionDiscordNote: "En envoyant ce formulaire, votre question sera transmise à l’équipe de transfert 1616 via Discord. Ce n’est pas un chat en direct.",
     cancelQuestion: "Annuler",
     sendQuestion: "Envoyer la question",
     questionThanksTitle: "Merci pour votre question !",
@@ -7109,8 +7162,8 @@ const I18N = {
     statsGuideButton: "افتح الدليل المرئي",
     questionFabTitle: "لديك سؤال؟",
     questionFabSub: "نحن هنا للمساعدة",
-    questionPanelTitle: "اطرح سؤالاً",
-    questionPanelIntro: "أرسل سؤالاً إلى فريق النقل. هذه ليست محادثة مباشرة.",
+    questionPanelTitle: "مرحبًا، كيف يمكنني مساعدتك؟",
+    questionPanelIntro: "سيتم إرسال سؤالك إلى فريق انتقال 1616 عبر Discord. هذه ليست دردشة مباشرة.",
     questionUsername: "اسم المستخدم",
     questionServer: "السيرفر",
     questionAlliance: "التحالف",
@@ -7125,7 +7178,7 @@ const I18N = {
     questionEmailLabel: "البريد الإلكتروني للرد",
     questionEmailPlaceholder: "you@example.com",
     questionEmailHelp: "أضفه فقط إذا كنت تريد أن يتمكن الفريق من التواصل معك خارج اللعبة.",
-    questionDiscordNote: "سيتم تسجيل سؤالك وإرساله إلى فريق نقل 1616 عبر Discord.",
+    questionDiscordNote: "عند إرسال هذا النموذج، سيتم إرسال سؤالك إلى فريق انتقال 1616 عبر Discord. هذه ليست دردشة مباشرة.",
     cancelQuestion: "إلغاء",
     sendQuestion: "إرسال السؤال",
     questionThanksTitle: "شكراً على سؤالك!",
@@ -7247,8 +7300,8 @@ const I18N = {
     statsGuideButton: "Mở hướng dẫn hình ảnh",
     questionFabTitle: "Có câu hỏi?",
     questionFabSub: "Chúng tôi sẵn sàng hỗ trợ",
-    questionPanelTitle: "Đặt câu hỏi",
-    questionPanelIntro: "Gửi câu hỏi cho đội chuyển server. Đây không phải trò chuyện trực tiếp.",
+    questionPanelTitle: "Chào bạn, tôi có thể giúp gì?",
+    questionPanelIntro: "Câu hỏi của bạn sẽ được gửi đến đội chuyển server 1616 qua Discord. Đây không phải trò chuyện trực tiếp.",
     questionUsername: "Tên người chơi",
     questionServer: "Server",
     questionAlliance: "Liên minh",
@@ -7263,7 +7316,7 @@ const I18N = {
     questionEmailLabel: "Email để nhận phản hồi",
     questionEmailPlaceholder: "ban@example.com",
     questionEmailHelp: "Chỉ thêm nếu bạn muốn đội có thể liên hệ với bạn ngoài trò chơi.",
-    questionDiscordNote: "Câu hỏi của bạn sẽ được lưu và gửi đến đội chuyển server 1616 qua Discord.",
+    questionDiscordNote: "Khi gửi biểu mẫu này, câu hỏi của bạn sẽ được gửi đến đội chuyển server 1616 qua Discord. Đây không phải trò chuyện trực tiếp.",
     cancelQuestion: "Hủy",
     sendQuestion: "Gửi câu hỏi",
     questionThanksTitle: "Cảm ơn câu hỏi của bạn!",
@@ -7385,8 +7438,8 @@ const I18N = {
     statsGuideButton: "비주얼 가이드 열기",
     questionFabTitle: "질문이 있나요?",
     questionFabSub: "도와드리겠습니다",
-    questionPanelTitle: "질문 보내기",
-    questionPanelIntro: "이전 팀에 질문을 보내세요. 실시간 채팅은 아닙니다.",
+    questionPanelTitle: "안녕하세요, 무엇을 도와드릴까요?",
+    questionPanelIntro: "질문은 Discord를 통해 1616 이동 팀에 전송됩니다. 실시간 채팅이 아닙니다.",
     questionUsername: "사용자 이름",
     questionServer: "서버",
     questionAlliance: "연맹",
@@ -7401,7 +7454,7 @@ const I18N = {
     questionEmailLabel: "답변 받을 이메일",
     questionEmailPlaceholder: "you@example.com",
     questionEmailHelp: "게임 밖에서 연락을 받고 싶을 때만 입력하세요.",
-    questionDiscordNote: "질문은 기록되고 Discord를 통해 1616 이전 팀에 전송됩니다.",
+    questionDiscordNote: "이 양식을 제출하면 질문이 Discord를 통해 1616 이동 팀에 전송됩니다. 실시간 채팅이 아닙니다.",
     cancelQuestion: "취소",
     sendQuestion: "질문 보내기",
     questionThanksTitle: "질문 감사합니다!",
@@ -7523,8 +7576,8 @@ const I18N = {
     statsGuideButton: "Visuelle Anleitung öffnen",
     questionFabTitle: "Fragen?",
     questionFabSub: "Wir helfen gerne",
-    questionPanelTitle: "Frage stellen",
-    questionPanelIntro: "Sende eine Frage an unser Transfer-Team. Dies ist kein Live-Chat.",
+    questionPanelTitle: "Hi, womit kann ich dir helfen?",
+    questionPanelIntro: "Deine Frage wird über Discord an das 1616-Transferteam gesendet. Dies ist kein Live-Chat.",
     questionUsername: "Benutzername",
     questionServer: "Server",
     questionAlliance: "Allianz",
@@ -7539,7 +7592,7 @@ const I18N = {
     questionEmailLabel: "E-Mail für eine Antwort",
     questionEmailPlaceholder: "du@beispiel.de",
     questionEmailHelp: "Nur angeben, wenn das Team dich außerhalb des Spiels kontaktieren darf.",
-    questionDiscordNote: "Deine Frage wird gespeichert und über Discord an das 1616-Transfer-Team gesendet.",
+    questionDiscordNote: "Wenn du dieses Formular absendest, wird deine Frage über Discord an das 1616-Transferteam gesendet. Dies ist kein Live-Chat.",
     cancelQuestion: "Abbrechen",
     sendQuestion: "Frage senden",
     questionThanksTitle: "Danke für deine Frage!",
