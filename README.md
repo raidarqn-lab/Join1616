@@ -289,3 +289,9 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 ## v38
 - Changed the welcome-page “Thank you for your interest in joining 1616!” heading to use the same Bungee Tint font as the five step titles.
 - Other welcome-page typography remains unchanged.
+
+
+## v39
+- Changed the welcome heading to the regular Google Font “Bungee” for better readability.
+- Welcome heading is now solid white with a subtle pink/red glow.
+- Step titles remain in Bungee Tint.
