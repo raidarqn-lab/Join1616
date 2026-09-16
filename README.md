@@ -1,4 +1,4 @@
-# 1616 Server Transfer Application v73
+# 1616 Server Transfer Application v74
 
 Includes the Dolphy support-agent question widget header, Discord/not-live-chat messaging, and all previous v72 viewport fixes.
 
@@ -574,3 +574,11 @@ In Google Apps Script:
 5. Replace your deployed Apps Script code with this version of `Code.gs` and create a new deployment/version so the live `/exec` endpoint uses the new code.
 
 If the webhook is not configured, questions are still saved to the **Questions** sheet; the `Discord Notification` column will say `Webhook not configured`.
+
+
+## v74 visual update
+- Transfer Group page uses refined Option C accent bars.
+- Estimated Group Size now has a hashtag (#) icon.
+- Player 1 / Player 2 / Player 3 badges use glowing gold with dark text.
+- Transfer-lead information alert is now a high-contrast gold callout.
+- Step 3 validation highlights use amber/gold outlines and glow instead of flooding fields with red.

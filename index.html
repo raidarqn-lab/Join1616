@@ -5518,6 +5518,243 @@ body.welcome-open .question-fab { display: none !important; }
   .question-actions { margin-top: 10px !important; }
 }
 
+
+
+/* ================================================================
+   v74 — Transfer Group Option C visual hierarchy
+   Refined accent bars, gold player pills, clearer alerts, and
+   high-contrast validation states without flooding the page in red.
+   ================================================================ */
+.form-step[data-step="3"] {
+  --group-gold: #ffd35f;
+  --group-gold-soft: #ffe49a;
+  --group-gold-deep: #b97a16;
+  --group-pink: #f26f91;
+  --group-pink-soft: #ff9db4;
+  --group-neutral-border: rgba(224, 183, 166, .30);
+  --group-card-top: rgba(55, 28, 31, .82);
+  --group-card-bottom: rgba(29, 17, 20, .94);
+}
+
+/* Neutralize the cards so accents carry the hierarchy. */
+.form-step[data-step="3"] .group-lead-card,
+.form-step[data-step="3"] .group-contact-card,
+.form-step[data-step="3"] .group-member-card,
+.form-step[data-step="3"] .group-summary-card {
+  border: 1px solid var(--group-neutral-border) !important;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(255, 211, 95, .035), transparent 30%),
+    linear-gradient(180deg, var(--group-card-top), var(--group-card-bottom)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 12px 28px rgba(0,0,0,.18) !important;
+}
+
+/* Option C left rails. */
+.form-step[data-step="3"] .group-lead-card::before,
+.form-step[data-step="3"] .group-contact-card::before,
+.form-step[data-step="3"] .group-member-card::before,
+.form-step[data-step="3"] .group-summary-card::before {
+  width: 5px !important;
+  border-radius: 13px 0 0 13px !important;
+  box-shadow: 0 0 15px rgba(242,111,145,.20) !important;
+}
+.form-step[data-step="3"] .group-lead-card::before,
+.form-step[data-step="3"] .group-contact-card::before,
+.form-step[data-step="3"] .group-summary-card::before {
+  background: linear-gradient(180deg, var(--group-pink-soft), #e84e78) !important;
+}
+.form-step[data-step="3"] .group-member-card::before {
+  background: linear-gradient(180deg, var(--group-gold-soft), #d69a27) !important;
+  box-shadow: 0 0 16px rgba(255,211,95,.22) !important;
+}
+
+/* Estimated Group Size icon treatment. */
+.form-step[data-step="3"] .estimated-group-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-bottom: 2px;
+}
+.form-step[data-step="3"] .estimated-group-heading > div {
+  min-width: 0;
+}
+.form-step[data-step="3"] .estimated-group-heading h2 {
+  margin: 1px 0 0;
+  color: #fff0ea !important;
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.form-step[data-step="3"] .estimated-group-heading p {
+  margin-top: 5px !important;
+}
+.form-step[data-step="3"] .estimated-group-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border-radius: 9px;
+  border: 1px solid rgba(244,112,145,.30);
+  background: linear-gradient(180deg, rgba(142,44,69,.72), rgba(78,28,42,.88));
+  color: #ff7297;
+  font-size: 1.65rem;
+  line-height: 1;
+  font-weight: 950;
+  text-shadow: 0 0 12px rgba(255,92,132,.35);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 0 18px rgba(228,64,103,.08);
+}
+
+/* The transfer-lead message should read as important, not blend into the page. */
+.form-step[data-step="3"] .group-name-critical-alert {
+  position: relative;
+  overflow: hidden;
+  margin-top: 12px;
+  padding: 15px 16px 15px 15px;
+  border: 1px solid rgba(255, 205, 80, .72) !important;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 208, 77, .13), transparent 40%),
+    linear-gradient(100deg, rgba(93, 58, 18, .52), rgba(43, 26, 19, .86)) !important;
+  box-shadow:
+    inset 4px 0 0 var(--group-gold),
+    inset 0 1px 0 rgba(255,255,255,.045),
+    0 0 22px rgba(255, 196, 66, .11) !important;
+}
+.form-step[data-step="3"] .group-name-critical-alert::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, rgba(255,255,255,.025), transparent 38%);
+}
+.form-step[data-step="3"] .group-name-critical-icon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 226, 139, .62) !important;
+  background: linear-gradient(180deg, #ffd968, #e7a827) !important;
+  color: #281706 !important;
+  box-shadow: 0 0 18px rgba(255,205,80,.28) !important;
+}
+.form-step[data-step="3"] .group-name-critical-alert strong {
+  color: #ffe28c !important;
+  letter-spacing: .075em;
+}
+.form-step[data-step="3"] .group-name-critical-alert p {
+  color: #f0ddd0 !important;
+}
+
+/* Gold player badges: strong differentiation between repeated member cards. */
+.form-step[data-step="3"] .member-title {
+  min-height: 29px;
+  padding: 5px 14px;
+  border: 1px solid rgba(255, 228, 145, .74) !important;
+  background: linear-gradient(180deg, #ffdb67, #eeb33b) !important;
+  color: #241605 !important;
+  text-shadow: none !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.40),
+    0 0 18px rgba(255, 199, 65, .23) !important;
+}
+.form-step[data-step="3"] .group-member-card {
+  border-color: rgba(226, 178, 91, .30) !important;
+}
+.form-step[data-step="3"] .remove-member {
+  border-color: rgba(237, 105, 126, .46);
+  color: #ff9aaa;
+  background: rgba(91, 28, 41, .16);
+}
+
+/* Make ordinary fields calm and neutral on this step. */
+.form-step[data-step="3"] input,
+.form-step[data-step="3"] select,
+.form-step[data-step="3"] .custom-select-trigger {
+  border-color: rgba(211, 169, 151, .38) !important;
+  background: linear-gradient(180deg, rgba(39,20,22,.97), rgba(25,14,17,.99)) !important;
+}
+.form-step[data-step="3"] input:focus,
+.form-step[data-step="3"] select:focus,
+.form-step[data-step="3"] .custom-select.open .custom-select-trigger,
+.form-step[data-step="3"] .custom-select-trigger:focus-visible {
+  border-color: rgba(255, 211, 95, .86) !important;
+  box-shadow:
+    0 0 0 3px rgba(255, 211, 95, .09),
+    0 0 16px rgba(255, 199, 65, .11) !important;
+}
+
+/* Validation: gold/amber field highlight + readable error copy.
+   Red remains only as a small semantic text cue rather than the entire UI. */
+.form-step[data-step="3"] input.invalid,
+.form-step[data-step="3"] select.invalid,
+.form-step[data-step="3"] textarea.invalid,
+.form-step[data-step="3"] .custom-select.invalid .custom-select-trigger {
+  border-color: #ffd35f !important;
+  background:
+    linear-gradient(180deg, rgba(60,42,18,.42), rgba(29,17,17,.98)) !important;
+  box-shadow:
+    0 0 0 2px rgba(255, 211, 95, .14),
+    0 0 18px rgba(255, 191, 55, .16) !important;
+}
+.form-step[data-step="3"] .field-error:not(:empty) {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 7px;
+  color: #ffc96b !important;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.form-step[data-step="3"] .field-error:not(:empty)::before {
+  content: "!";
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  margin-top: 1px;
+  border-radius: 999px;
+  background: #ffd35f;
+  color: #2a1905;
+  font-size: .66rem;
+  font-weight: 950;
+}
+
+/* Caps note and help copy become secondary, not another red block. */
+.form-step[data-step="3"] .group-name-caps-note {
+  border: 0 !important;
+  background: transparent !important;
+  color: #d7b7aa !important;
+  padding-left: 0 !important;
+}
+.form-step[data-step="3"] .field-help,
+.form-step[data-step="3"] .validation-limit-help {
+  color: #c9aaa0;
+}
+
+/* Add-player control stays quiet while the player badges remain prominent. */
+.form-step[data-step="3"] .add-player-button {
+  border-color: rgba(226, 167, 177, .58);
+  color: #e9bbc4;
+  background: rgba(31, 17, 20, .36);
+}
+.form-step[data-step="3"] .add-player-button:hover,
+.form-step[data-step="3"] .add-player-button:focus-visible {
+  border-color: rgba(255, 210, 95, .68);
+  color: #ffe19a;
+  background: rgba(77, 49, 20, .20);
+}
+
+@media (max-width: 620px) {
+  .form-step[data-step="3"] .estimated-group-icon {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+    font-size: 1.42rem;
+  }
+  .form-step[data-step="3"] .member-title {
+    padding: 5px 12px;
+  }
+}
 </style>
 </head>
 <body>
@@ -6021,7 +6258,7 @@ body.welcome-open .question-fab { display: none !important; }
               </div>
             </div>
 
-            <div class="group-lead-card">
+            <div class="group-lead-card transfer-group-name-card">
               <div class="subsection-heading" style="margin-bottom:0">
                 <div>
                   <span class="subsection-icon">✿</span>
@@ -6049,9 +6286,14 @@ body.welcome-open .question-fab { display: none !important; }
               </div>
             </div>
 
-            <div class="group-contact-card" style="margin-top:16px">
-              <h2 data-i18n="estimatedGroupSize">Estimated Group Size</h2>
-              <p data-i18n="estimatedGroupSizeIntro">If you know roughly how many additional players may come with you, enter that number. An estimate is fine.</p>
+            <div class="group-contact-card estimated-group-card" style="margin-top:16px">
+              <div class="estimated-group-heading">
+                <span class="estimated-group-icon" aria-hidden="true">#</span>
+                <div>
+                  <h2 data-i18n="estimatedGroupSize">Estimated Group Size</h2>
+                  <p data-i18n="estimatedGroupSizeIntro">If you know roughly how many additional players may come with you, enter that number. An estimate is fine.</p>
+                </div>
+              </div>
               <div class="field-block" style="margin-top:14px">
                 <label for="expected-additional-players"><span data-i18n="expectedAdditionalPlayers">Expected additional players</span> <span class="optional-label" data-i18n="optional">(Optional)</span></label>
                 <input id="expected-additional-players" name="expectedAdditionalPlayers" type="text" inputmode="numeric" data-numeric="integer" data-max="99" data-max-error-key="groupSizeMaxError" maxlength="3" placeholder="3" />
