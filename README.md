@@ -483,3 +483,16 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
   - profession level: maximum 100
   - total kill count: maximum 9 digits
 - Added matching backend validation in `Code.gs` so invalid values cannot bypass the frontend.
+
+
+## v64
+- Replaced the stats guide image with the corrected version where the arrow clearly runs from #1 Total Power to #4 Power Details.
+- Added multilingual HTML overlays directly inside the guide image: four translated labels plus four translated instructions.
+- Overlay text changes automatically with the application's selected language (EN, ES, PT, FR, AR, VI, KO, DE).
+- Hid the duplicate caption grid and reduced the modal footprint.
+
+
+## v65
+- Removed the awkward “Uses a sample profile with fake data so it works in every language” sentence beside the visual-guide button.
+- Converted the missing-required-fields warning from a top banner into a centered, full-screen modal overlay so it cannot be cut off by the site header.
+- Raised the welcome screen above the persistent header/language controls so the landing experience is always the foremost layer.

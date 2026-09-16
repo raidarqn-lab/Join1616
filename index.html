@@ -3124,7 +3124,7 @@ html[dir="rtl"] .review-item, html[dir="rtl"] .field-block { text-align: right; 
   z-index: 60;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: 18px;
   overflow: auto;
   background:
     radial-gradient(circle at 80% 12%, rgba(190,35,67,.24), transparent 28%),
@@ -4416,7 +4416,7 @@ body.transfer-group-reminder-open { overflow: hidden; }
   overflow-y: auto;
 }
 .stats-guide-dialog {
-  width: min(1080px, 100%);
+  width: min(860px, 100%);
   margin: 0 auto;
   border-radius: 24px;
   border: 1px solid rgba(255, 206, 157, 0.16);
@@ -4426,7 +4426,7 @@ body.transfer-group-reminder-open { overflow: hidden; }
   position: relative;
 }
 .stats-guide-topbar {
-  padding: 20px 22px 0;
+  padding: 16px 18px 0;
   display: flex;
   justify-content: flex-end;
 }
@@ -4442,7 +4442,7 @@ body.transfer-group-reminder-open { overflow: hidden; }
   cursor: pointer;
 }
 .stats-guide-header {
-  padding: 0 26px 18px;
+  padding: 0 20px 14px;
 }
 .stats-guide-eyebrow {
   margin: 0 0 8px;
@@ -4465,20 +4465,23 @@ body.transfer-group-reminder-open { overflow: hidden; }
   line-height: 1.55;
 }
 .stats-guide-figure-wrap {
-  padding: 0 26px;
+  padding: 0 20px;
 }
 .stats-guide-image {
   display: block;
-  width: 100%;
+  width: min(100%, 760px);
+  max-height: 56vh;
+  object-fit: contain;
+  margin: 0 auto;
   border-radius: 20px;
   border: 1px solid rgba(255, 217, 182, 0.18);
   box-shadow: 0 16px 34px rgba(0,0,0,.32);
 }
 .stats-guide-caption-grid {
-  padding: 22px 26px 0;
+  padding: 16px 20px 0;
   display: grid;
   gap: 14px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
 }
 .stats-guide-caption-item {
   border-radius: 18px;
@@ -4519,13 +4522,13 @@ body.transfer-group-reminder-open { overflow: hidden; }
   font-size: .91rem;
 }
 .stats-guide-footnote {
-  padding: 16px 26px 0;
+  padding: 12px 20px 0;
   margin: 0;
   color: rgba(255, 226, 189, 0.88);
   font-size: .88rem;
 }
 .stats-guide-actions {
-  padding: 20px 26px 26px;
+  padding: 16px 20px 20px;
   display: flex;
   justify-content: flex-end;
 }
@@ -4537,6 +4540,181 @@ body.transfer-group-reminder-open { overflow: hidden; }
   .visual-guide-callout { padding: 13px 14px; }
   .visual-guide-trigger { width: 100%; justify-content: center; }
   .stats-guide-caption-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ================================================================
+   v64 — COMPACT MULTILINGUAL STATS GUIDE OVERLAY
+   Text is HTML over the sample image so it changes with language.
+   ================================================================ */
+.stats-guide-dialog {
+  width: min(640px, calc(100% - 24px)) !important;
+  max-height: calc(100vh - 28px);
+  overflow-y: auto !important;
+}
+.stats-guide-header { padding: 0 18px 12px !important; }
+.stats-guide-header h2 { font-size: clamp(1.35rem, 3.2vw, 1.9rem) !important; }
+.stats-guide-header p { margin-top: 7px !important; font-size: .82rem; line-height: 1.45; }
+.stats-guide-topbar { padding: 12px 14px 0 !important; }
+.stats-guide-figure-wrap { padding: 0 16px !important; }
+.stats-guide-visual-stage {
+  position: relative;
+  width: min(100%, 520px);
+  margin: 0 auto;
+  container-type: inline-size;
+}
+.stats-guide-image {
+  display: block;
+  width: 100% !important;
+  max-height: none !important;
+  height: auto;
+  margin: 0 !important;
+  border-radius: 16px !important;
+}
+.stats-guide-image-label {
+  position: absolute;
+  top: 64.55%;
+  height: 5.85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.4%;
+  text-align: center;
+  color: #fff8ee;
+  font-weight: 900;
+  font-size: clamp(8px, 2.25cqw, 12px);
+  line-height: 1.12;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0,0,0,.95), 0 0 6px rgba(0,0,0,.65);
+  pointer-events: none;
+  z-index: 2;
+}
+.stats-guide-image-label.one   { left: 4.0%; width: 20.4%; }
+.stats-guide-image-label.two   { left: 27.55%; width: 19.3%; }
+.stats-guide-image-label.three { left: 49.95%; width: 19.7%; }
+.stats-guide-image-label.four  { left: 72.45%; width: 23.7%; }
+.stats-guide-image-copy {
+  position: absolute;
+  left: 4.0%;
+  top: 74.35%;
+  width: 92.6%;
+  height: 18.9%;
+  padding: 2.1% 3.0%;
+  display: grid;
+  align-content: center;
+  gap: .7cqw;
+  color: #fff6ed;
+  pointer-events: none;
+  z-index: 2;
+}
+.stats-guide-image-copy-row {
+  display: grid;
+  grid-template-columns: 2.25em minmax(0, 1fr);
+  gap: .55em;
+  align-items: start;
+  font-size: clamp(7.5px, 2.05cqw, 11px);
+  line-height: 1.24;
+  text-shadow: 0 1px 2px rgba(0,0,0,.96), 0 0 6px rgba(0,0,0,.75);
+}
+.stats-guide-image-copy-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.75em;
+  height: 1.75em;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 215, 160, .48);
+  background: rgba(74, 23, 26, .72);
+  color: #ffe6bf;
+  font-weight: 950;
+  line-height: 1;
+}
+.stats-guide-image-copy-text { font-weight: 750; }
+.stats-guide-footnote {
+  padding: 10px 18px 0 !important;
+  font-size: .74rem !important;
+  line-height: 1.4;
+  text-align: center;
+}
+.stats-guide-actions { padding: 12px 18px 18px !important; }
+.stats-guide-caption-grid { display: none !important; }
+@media (max-width: 560px) {
+  .stats-guide-modal { padding: 8px !important; }
+  .stats-guide-dialog { width: 100% !important; max-height: calc(100vh - 16px); border-radius: 16px !important; }
+  .stats-guide-header { padding: 0 12px 9px !important; }
+  .stats-guide-topbar { padding: 8px 9px 0 !important; }
+  .stats-guide-figure-wrap { padding: 0 8px !important; }
+  .stats-guide-footnote { padding: 8px 10px 0 !important; }
+  .stats-guide-actions { padding: 10px 10px 12px !important; }
+}
+
+
+/* ================================================================
+   v65 — modal layering / validation overlay cleanup
+   ================================================================ */
+
+/* Welcome must sit above the persistent site header and all app chrome. */
+.welcome-screen {
+  z-index: 5000 !important;
+}
+.welcome-panel {
+  z-index: 5001;
+}
+
+/* Missing-field notice is a true centered modal overlay, not a top banner. */
+.validation-banner {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 4500 !important;
+  width: auto !important;
+  transform: none !important;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(8, 4, 7, .68);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  overflow-y: auto;
+  pointer-events: auto;
+}
+.validation-banner[hidden] {
+  display: none !important;
+}
+.validation-banner-inner {
+  width: min(680px, 100%);
+  max-height: min(72vh, 620px);
+  overflow-y: auto;
+  margin: auto;
+  border-radius: 18px;
+  padding: 20px 50px 20px 20px;
+  box-shadow:
+    0 28px 80px rgba(0,0,0,.58),
+    0 0 0 1px rgba(255,255,255,.035) inset,
+    0 0 34px rgba(213,52,83,.20);
+  animation: validationModalIn .22s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes validationModalIn {
+  from { opacity: 0; transform: translateY(10px) scale(.975); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* With the explanatory sentence removed, the visual-guide entry point is compact. */
+.visual-guide-callout {
+  justify-content: flex-start;
+}
+
+@media (max-width: 620px) {
+  .validation-banner {
+    inset: 0 !important;
+    width: auto !important;
+    padding: 14px;
+  }
+  .validation-banner-inner {
+    width: 100%;
+    max-height: 78vh;
+    padding: 18px 44px 18px 16px;
+  }
 }
 
 </style>
@@ -4818,7 +4996,6 @@ body.transfer-group-reminder-open { overflow: hidden; }
               <span class="visual-guide-trigger-icon" aria-hidden="true">✿</span>
               <span data-i18n="statsGuideButton">Open visual guide</span>
             </button>
-            <p class="visual-guide-note" data-i18n="statsGuideHint">Uses a sample profile with fake data so it works in every language.</p>
           </div>
 
           <div class="field-grid two-col">
@@ -4885,7 +5062,7 @@ body.transfer-group-reminder-open { overflow: hidden; }
                 <span class="visual-guide-trigger-icon" aria-hidden="true">✿</span>
                 <span data-i18n="statsGuideButton">Open visual guide</span>
               </button>
-              <p data-i18n="statsGuideInlineHelp">See a sample screen that shows where Total Power, Kill Count, Profession Level, and Power Details are located.</p>
+              <p data-i18n="statsGuideInlineHelp">See a sample screen that shows where Total Power, Kill Count, Profession Level, and the Power Breakdown are located.</p>
             </div>
 
             <details class="transfer-location-guide">
@@ -5346,15 +5523,27 @@ body.transfer-group-reminder-open { overflow: hidden; }
       <div class="stats-guide-header">
         <p class="stats-guide-eyebrow" data-i18n="statsGuideEyebrow">Sample visual guide</p>
         <h2 id="stats-guide-title" data-i18n="statsGuideTitle">Where to find your stats</h2>
-        <p data-i18n="statsGuideIntro">This example uses a fake player name, fake avatar, and fake values, so you can use it safely in any language.</p>
+        <p data-i18n="statsGuideIntro">Use the numbered sample profile below. The text inside the guide changes with your selected language.</p>
       </div>
       <div class="stats-guide-figure-wrap">
-        <img class="stats-guide-image" src="stats-visual-guide-sample.png" alt="" />
+        <div class="stats-guide-visual-stage" aria-describedby="stats-guide-overlay-copy">
+          <img class="stats-guide-image" src="stats-visual-guide-sample.png" alt="" />
+          <div class="stats-guide-image-label one" data-i18n="statsGuideItem1Title">Total Power</div>
+          <div class="stats-guide-image-label two" data-i18n="statsGuideItem2Title">Kill Count</div>
+          <div class="stats-guide-image-label three" data-i18n="statsGuideItem3Title">Profession Level</div>
+          <div class="stats-guide-image-label four" data-i18n="statsGuideItem4Title">Power Breakdown</div>
+          <div class="stats-guide-image-copy" id="stats-guide-overlay-copy">
+            <div class="stats-guide-image-copy-row"><span class="stats-guide-image-copy-num">1</span><span class="stats-guide-image-copy-text" data-i18n="statsGuideOverlayLine1">Tap the Total Power box under #1 to open Power Details (#4). Total Power includes troops in base, so do not use it as Hero Power.</span></div>
+            <div class="stats-guide-image-copy-row"><span class="stats-guide-image-copy-num">2</span><span class="stats-guide-image-copy-text" data-i18n="statsGuideOverlayLine2">The crossed-weapons value under #2 is your Kill Count.</span></div>
+            <div class="stats-guide-image-copy-row"><span class="stats-guide-image-copy-num">3</span><span class="stats-guide-image-copy-text" data-i18n="statsGuideOverlayLine3">The helmet value under #3 is your Profession Level.</span></div>
+            <div class="stats-guide-image-copy-row"><span class="stats-guide-image-copy-num">4</span><span class="stats-guide-image-copy-text" data-i18n="statsGuideOverlayLine4">In Power Details, enter Hero, Building, Technology, Drone, and Decoration Power separately.</span></div>
+          </div>
+        </div>
       </div>
       <div class="stats-guide-caption-grid">
         <div class="stats-guide-caption-item">
           <div class="stats-guide-caption-head"><span class="stats-guide-caption-number">1</span><h3 data-i18n="statsGuideItem1Title">Total Power</h3></div>
-          <p data-i18n="statsGuideItem1Text">The gold badge on the profile screen is your Total Power. This includes troops in base, so do not use this number for Hero Power.</p>
+          <p data-i18n="statsGuideItem1Text">Tap the gold Total Power panel to open the next screen. This total includes troops in base, so do not use it as your Hero Power value.</p>
         </div>
         <div class="stats-guide-caption-item">
           <div class="stats-guide-caption-head"><span class="stats-guide-caption-number">2</span><h3 data-i18n="statsGuideItem2Title">Kill Count</h3></div>
@@ -5365,12 +5554,8 @@ body.transfer-group-reminder-open { overflow: hidden; }
           <p data-i18n="statsGuideItem3Text">The helmet icon shows your current Profession Level.</p>
         </div>
         <div class="stats-guide-caption-item">
-          <div class="stats-guide-caption-head"><span class="stats-guide-caption-number">4</span><h3 data-i18n="statsGuideItem4Title">Tap for details</h3></div>
-          <p data-i18n="statsGuideItem4Text">Tap the gray details box under the profile stats to open the next screen.</p>
-        </div>
-        <div class="stats-guide-caption-item">
-          <div class="stats-guide-caption-head"><span class="stats-guide-caption-number">5</span><h3 data-i18n="statsGuideItem5Title">Power breakdown</h3></div>
-          <p data-i18n="statsGuideItem5Text">On the Power Details screen, copy the values for Hero, Building, Technology, Drone, and Decoration Power.</p>
+          <div class="stats-guide-caption-head"><span class="stats-guide-caption-number">4</span><h3 data-i18n="statsGuideItem4Title">Power breakdown</h3></div>
+          <p data-i18n="statsGuideItem4Text">On the next screen, copy the values for Hero, Building, Technology, Drone, and Decoration Power.</p>
         </div>
       </div>
       <p class="stats-guide-footnote" data-i18n="statsGuideFootnote">The guide image stays the same, but the notes below it change with your selected language.</p>
@@ -5515,20 +5700,24 @@ const I18N = {
     statsGuideHint: "Uses a sample profile with fake data so it works in every language.",
     statsGuideEyebrow: "Sample visual guide",
     statsGuideTitle: "Where to find your stats",
-    statsGuideIntro: "This example uses a fake player name, fake avatar, and fake values, so you can use it safely in any language.",
-    statsGuideInlineHelp: "See a sample screen that shows where Total Power, Kill Count, Profession Level, and Power Details are located.",
+    statsGuideInlineHelp: "See a sample screen that shows where Total Power, Kill Count, Profession Level, and the Power Breakdown are located.",
     statsGuideItem1Title: "Total Power",
-    statsGuideItem1Text: "The gold badge on the profile screen is your Total Power. This includes troops in base, so do not use this number for Hero Power.",
+    statsGuideItem1Text: "Tap the gold Total Power panel to open the next screen. This total includes troops in base, so do not use it as your Hero Power value.",
     statsGuideItem2Title: "Kill Count",
     statsGuideItem2Text: "The crossed-weapons number on the top-right shows your current Kill Count.",
     statsGuideItem3Title: "Profession Level",
     statsGuideItem3Text: "The helmet icon shows your current Profession Level.",
-    statsGuideItem4Title: "Tap for details",
-    statsGuideItem4Text: "Tap the gray details box under the profile stats to open the next screen.",
+    statsGuideItem4Title: "Power breakdown",
+    statsGuideItem4Text: "On the next screen, copy the values for Hero, Building, Technology, Drone, and Decoration Power.",
     statsGuideItem5Title: "Power breakdown",
     statsGuideItem5Text: "On the Power Details screen, copy the values for Hero, Building, Technology, Drone, and Decoration Power.",
     statsGuideFootnote: "The guide image stays the same, but the notes below it change with your selected language.",
     closeGuide: "Close",
+    statsGuideIntro: "Use the numbered sample profile below. The text inside the guide changes with your selected language.",
+    statsGuideOverlayLine1: "Tap the Total Power box under #1 to open Power Details (#4). Total Power includes troops in base, so do not use it as Hero Power.",
+    statsGuideOverlayLine2: "The crossed-weapons value under #2 is your Kill Count.",
+    statsGuideOverlayLine3: "The helmet value under #3 is your Profession Level.",
+    statsGuideOverlayLine4: "In Power Details, enter Hero, Building, Technology, Drone, and Decoration Power separately.",
   },
   es: {
     serverTransferApplication: 'SOLICITUD DE TRANSFERENCIA', strongerTogether: 'UN MAÑANA MÁS FUERTE',
@@ -5618,20 +5807,24 @@ const I18N = {
     statsGuideHint: "Usa un perfil de ejemplo con datos falsos para que funcione en cualquier idioma.",
     statsGuideEyebrow: "Guía visual de ejemplo",
     statsGuideTitle: "Dónde encontrar tus estadísticas",
-    statsGuideIntro: "Este ejemplo usa un nombre, avatar y valores falsos, así que puedes usarlo con seguridad en cualquier idioma.",
-    statsGuideInlineHelp: "Consulta una pantalla de ejemplo que muestra dónde se encuentran el Poder Total, las Bajas, el Nivel de Profesión y los Detalles de Poder.",
+    statsGuideInlineHelp: "Consulta una pantalla de ejemplo que muestra dónde se encuentran el Poder Total, las Bajas, el Nivel de Profesión y el Desglose de Poder.",
     statsGuideItem1Title: "Poder total",
-    statsGuideItem1Text: "La insignia dorada en la pantalla del perfil es tu Poder Total. Incluye tropas en base, así que no uses este número como Poder de Héroes.",
+    statsGuideItem1Text: "Toca el panel dorado de Poder Total para abrir la siguiente pantalla. Este total incluye tropas en base, así que no lo uses como valor de Poder de Héroes.",
     statsGuideItem2Title: "Bajas",
     statsGuideItem2Text: "El número con las armas cruzadas en la parte superior derecha muestra tu conteo actual de bajas.",
     statsGuideItem3Title: "Nivel de profesión",
     statsGuideItem3Text: "El icono del casco muestra tu nivel actual de profesión.",
-    statsGuideItem4Title: "Toca para ver detalles",
-    statsGuideItem4Text: "Toca la caja gris de detalles debajo de las estadísticas del perfil para abrir la siguiente pantalla.",
+    statsGuideItem4Title: "Desglose de poder",
+    statsGuideItem4Text: "En la siguiente pantalla, copia los valores de Poder de Héroes, Construcción, Tecnología, Dron y Decoración.",
     statsGuideItem5Title: "Desglose de poder",
     statsGuideItem5Text: "En la pantalla Detalles de Poder, copia los valores de Poder de Héroes, Construcción, Tecnología, Dron y Decoración.",
     statsGuideFootnote: "La imagen guía permanece igual, pero las notas cambian según el idioma seleccionado.",
     closeGuide: "Cerrar",
+    statsGuideIntro: "Usa el perfil de ejemplo numerado de abajo. El texto dentro de la guía cambia según el idioma seleccionado.",
+    statsGuideOverlayLine1: "Toca el cuadro de Poder Total bajo el #1 para abrir Detalles de Poder (#4). El Poder Total incluye tropas en la base, así que no lo uses como Poder de Héroes.",
+    statsGuideOverlayLine2: "El valor con las armas cruzadas bajo el #2 es tu número de bajas.",
+    statsGuideOverlayLine3: "El valor con el casco bajo el #3 es tu nivel de profesión.",
+    statsGuideOverlayLine4: "En Detalles de Poder, introduce por separado Poder de Héroes, Edificios, Tecnología, Dron y Decoración.",
   },
   pt: {
     serverTransferApplication: 'INSCRIÇÃO DE TRANSFERÊNCIA', strongerTogether: 'UM AMANHÃ MAIS FORTE',
@@ -5721,20 +5914,24 @@ const I18N = {
     statsGuideHint: "Usa um perfil de exemplo com dados falsos para funcionar em qualquer idioma.",
     statsGuideEyebrow: "Guia visual de exemplo",
     statsGuideTitle: "Onde encontrar seus dados",
-    statsGuideIntro: "Este exemplo usa nome, avatar e valores falsos, então pode ser usado com segurança em qualquer idioma.",
-    statsGuideInlineHelp: "Veja uma tela de exemplo que mostra onde ficam o Poder Total, Abates, Nível de Profissão e Detalhes de Poder.",
+    statsGuideInlineHelp: "Veja uma tela de exemplo que mostra onde ficam o Poder Total, Abates, Nível de Profissão e o Detalhamento de Poder.",
     statsGuideItem1Title: "Poder total",
-    statsGuideItem1Text: "O selo dourado na tela do perfil é o seu Poder Total. Ele inclui tropas na base, então não use esse número como Poder de Heróis.",
+    statsGuideItem1Text: "Toque no painel dourado de Poder Total para abrir a próxima tela. Esse total inclui tropas na base, então não o use como valor de Poder de Heróis.",
     statsGuideItem2Title: "Abates",
     statsGuideItem2Text: "O número com armas cruzadas no canto superior direito mostra sua contagem atual de abates.",
     statsGuideItem3Title: "Nível de profissão",
     statsGuideItem3Text: "O ícone de capacete mostra seu nível atual de profissão.",
-    statsGuideItem4Title: "Toque para ver detalhes",
-    statsGuideItem4Text: "Toque na caixa cinza de detalhes abaixo das estatísticas do perfil para abrir a próxima tela.",
+    statsGuideItem4Title: "Detalhamento de poder",
+    statsGuideItem4Text: "Na tela seguinte, copie os valores de Poder de Heróis, Construções, Tecnologia, Drone e Decoração.",
     statsGuideItem5Title: "Detalhamento de poder",
     statsGuideItem5Text: "Na tela Detalhes de Poder, copie os valores de Poder de Heróis, Construções, Tecnologia, Drone e Decoração.",
     statsGuideFootnote: "A imagem permanece a mesma, mas as notas mudam conforme o idioma selecionado.",
     closeGuide: "Fechar",
+    statsGuideIntro: "Use o perfil de exemplo numerado abaixo. O texto dentro do guia muda conforme o idioma selecionado.",
+    statsGuideOverlayLine1: "Toque na caixa de Poder Total sob o #1 para abrir Detalhes de Poder (#4). O Poder Total inclui tropas na base, então não o use como Poder de Heróis.",
+    statsGuideOverlayLine2: "O valor com as armas cruzadas sob o #2 é sua contagem de abates.",
+    statsGuideOverlayLine3: "O valor com o capacete sob o #3 é seu nível de profissão.",
+    statsGuideOverlayLine4: "Em Detalhes de Poder, informe separadamente Poder de Heróis, Construções, Tecnologia, Drone e Decoração.",
   },
   fr: {
     serverTransferApplication: 'DEMANDE DE TRANSFERT', strongerTogether: 'UN AVENIR PLUS FORT',
@@ -5824,20 +6021,24 @@ const I18N = {
     statsGuideHint: "Utilise un profil d’exemple avec de fausses données afin de fonctionner dans toutes les langues.",
     statsGuideEyebrow: "Guide visuel d’exemple",
     statsGuideTitle: "Où trouver vos statistiques",
-    statsGuideIntro: "Cet exemple utilise un faux nom, un faux avatar et de fausses valeurs, vous pouvez donc l’utiliser sans risque dans n’importe quelle langue.",
-    statsGuideInlineHelp: "Consultez un écran d’exemple montrant où se trouvent la Puissance totale, le Nombre de kills, le Niveau de profession et les Détails de puissance.",
+    statsGuideInlineHelp: "Consultez un écran d’exemple montrant où se trouvent la Puissance totale, le Nombre de kills, le Niveau de profession et la Répartition de puissance.",
     statsGuideItem1Title: "Puissance totale",
-    statsGuideItem1Text: "L’insigne doré sur l’écran du profil correspond à votre Puissance totale. Elle inclut les troupes dans la base, donc n’utilisez pas ce nombre pour la Puissance des héros.",
+    statsGuideItem1Text: "Touchez le panneau doré de Puissance totale pour ouvrir l’écran suivant. Cette valeur inclut les troupes dans la base, donc ne l’utilisez pas comme valeur de Puissance des héros.",
     statsGuideItem2Title: "Nombre de kills",
     statsGuideItem2Text: "Le nombre avec les armes croisées en haut à droite indique votre nombre actuel de kills.",
     statsGuideItem3Title: "Niveau de profession",
     statsGuideItem3Text: "L’icône de casque indique votre niveau de profession actuel.",
-    statsGuideItem4Title: "Touchez pour voir les détails",
-    statsGuideItem4Text: "Touchez la zone grise sous les statistiques du profil pour ouvrir l’écran suivant.",
+    statsGuideItem4Title: "Répartition de puissance",
+    statsGuideItem4Text: "Sur l’écran suivant, copiez les valeurs de Puissance des héros, Bâtiments, Technologie, Drone et Décoration.",
     statsGuideItem5Title: "Répartition de puissance",
     statsGuideItem5Text: "Dans l’écran Détails de puissance, copiez les valeurs de Puissance des héros, Bâtiments, Technologie, Drone et Décoration.",
     statsGuideFootnote: "L’image reste la même, mais les notes changent selon la langue choisie.",
     closeGuide: "Fermer",
+    statsGuideIntro: "Utilisez le profil d’exemple numéroté ci-dessous. Le texte dans le guide change selon la langue sélectionnée.",
+    statsGuideOverlayLine1: "Touchez la case Puissance totale sous le #1 pour ouvrir Détails de puissance (#4). La Puissance totale inclut les troupes dans la base : ne l’utilisez pas comme Puissance des héros.",
+    statsGuideOverlayLine2: "La valeur avec les armes croisées sous le #2 correspond à votre nombre de kills.",
+    statsGuideOverlayLine3: "La valeur avec le casque sous le #3 correspond à votre niveau de profession.",
+    statsGuideOverlayLine4: "Dans Détails de puissance, saisissez séparément les puissances Héros, Bâtiments, Technologie, Drone et Décoration.",
   },
   ar: {
     serverTransferApplication: 'طلب الانتقال إلى السيرفر', strongerTogether: 'غدٌ أقوى معًا',
@@ -5927,20 +6128,24 @@ const I18N = {
     statsGuideHint: "يستخدم ملفًا شخصيًا تجريبيًا ببيانات وهمية، لذلك يصلح لكل اللغات.",
     statsGuideEyebrow: "دليل مرئي تجريبي",
     statsGuideTitle: "أين تجد إحصاءاتك",
-    statsGuideIntro: "يستخدم هذا المثال اسم لاعب وصورة رمزية وقيمًا وهمية، لذلك يمكنك استخدامه بأمان بأي لغة.",
-    statsGuideInlineHelp: "شاهد شاشة نموذجية توضّح مكان القوة الإجمالية وعدد القتلات ومستوى المهنة وتفاصيل القوة.",
+    statsGuideInlineHelp: "شاهد شاشة نموذجية توضّح مكان القوة الإجمالية وعدد القتلات ومستوى المهنة وتفصيل القوة.",
     statsGuideItem1Title: "القوة الإجمالية",
-    statsGuideItem1Text: "الشارة الذهبية في شاشة الملف الشخصي هي القوة الإجمالية. وهي تشمل القوات داخل القاعدة، لذلك لا تستخدم هذا الرقم لقوة الأبطال.",
+    statsGuideItem1Text: "اضغط على لوحة القوة الإجمالية الذهبية لفتح الشاشة التالية. هذا الإجمالي يشمل القوات داخل القاعدة، لذلك لا تستخدمه كقيمة لقوة الأبطال.",
     statsGuideItem2Title: "عدد القتلات",
     statsGuideItem2Text: "الرقم بجانب رمز الأسلحة المتقاطعة في أعلى اليمين هو عدد القتلات الحالي.",
     statsGuideItem3Title: "مستوى المهنة",
     statsGuideItem3Text: "أيقونة الخوذة تعرض مستوى مهنتك الحالي.",
-    statsGuideItem4Title: "اضغط للتفاصيل",
-    statsGuideItem4Text: "اضغط على المربع الرمادي أسفل إحصاءات الملف الشخصي لفتح الشاشة التالية.",
+    statsGuideItem4Title: "تفصيل القوة",
+    statsGuideItem4Text: "في الشاشة التالية، انسخ قيم قوة الأبطال والمباني والتقنية والطائرة المسيّرة والزينة.",
     statsGuideItem5Title: "تفصيل القوة",
     statsGuideItem5Text: "في شاشة تفاصيل القوة، انسخ قيم قوة الأبطال والمباني والتقنية والطائرة المسيّرة والزينة.",
     statsGuideFootnote: "تبقى صورة الدليل كما هي، لكن الملاحظات تتغيّر حسب اللغة التي اخترتها.",
     closeGuide: "إغلاق",
+    statsGuideIntro: "استخدم ملف اللاعب النموذجي المرقّم أدناه. يتغيّر النص داخل الدليل حسب اللغة التي اخترتها.",
+    statsGuideOverlayLine1: "اضغط على مربع القوة الإجمالية تحت الرقم 1 لفتح تفاصيل القوة (4). تشمل القوة الإجمالية القوات داخل القاعدة، لذلك لا تستخدمها كقوة الأبطال.",
+    statsGuideOverlayLine2: "القيمة ذات الأسلحة المتقاطعة تحت الرقم 2 هي عدد القتلات.",
+    statsGuideOverlayLine3: "القيمة ذات الخوذة تحت الرقم 3 هي مستوى المهنة.",
+    statsGuideOverlayLine4: "في تفاصيل القوة، أدخل قوة الأبطال والمباني والتقنية والطائرة المسيّرة والزينة كلٌ على حدة.",
   },
   vi: {
     serverTransferApplication: 'ĐƠN CHUYỂN SERVER', strongerTogether: 'MỘT NGÀY MAI MẠNH MẼ HƠN',
@@ -6030,20 +6235,24 @@ const I18N = {
     statsGuideHint: "Sử dụng hồ sơ mẫu với dữ liệu giả để dùng được cho mọi ngôn ngữ.",
     statsGuideEyebrow: "Hướng dẫn hình ảnh mẫu",
     statsGuideTitle: "Tìm chỉ số của bạn ở đâu",
-    statsGuideIntro: "Ví dụ này dùng tên người chơi, ảnh đại diện và số liệu giả nên bạn có thể dùng an toàn với mọi ngôn ngữ.",
-    statsGuideInlineHelp: "Xem màn hình mẫu cho biết vị trí của Tổng Sức Mạnh, Số Kill, Cấp Nghề và Chi Tiết Sức Mạnh.",
+    statsGuideInlineHelp: "Xem màn hình mẫu cho biết vị trí của Tổng Sức Mạnh, Số Kill, Cấp Nghề và Phân Tích Sức Mạnh.",
     statsGuideItem1Title: "Tổng sức mạnh",
-    statsGuideItem1Text: "Huy hiệu vàng trên màn hình hồ sơ là Tổng Sức Mạnh. Nó bao gồm quân trong căn cứ, vì vậy không dùng số này cho Sức Mạnh Tướng.",
+    statsGuideItem1Text: "Nhấn vào ô Tổng Sức Mạnh màu vàng để mở màn hình tiếp theo. Tổng này bao gồm quân trong căn cứ, vì vậy không dùng nó làm giá trị Sức Mạnh Tướng.",
     statsGuideItem2Title: "Số kill",
     statsGuideItem2Text: "Con số cạnh biểu tượng vũ khí chéo ở góc trên bên phải là Số Kill hiện tại của bạn.",
     statsGuideItem3Title: "Cấp nghề",
     statsGuideItem3Text: "Biểu tượng mũ bảo hiểm hiển thị Cấp Nghề hiện tại của bạn.",
-    statsGuideItem4Title: "Nhấn để xem chi tiết",
-    statsGuideItem4Text: "Nhấn vào ô chi tiết màu xám bên dưới phần chỉ số hồ sơ để mở màn hình tiếp theo.",
+    statsGuideItem4Title: "Phân tích sức mạnh",
+    statsGuideItem4Text: "Ở màn hình tiếp theo, hãy sao chép các giá trị Sức Mạnh Tướng, Xây Dựng, Công Nghệ, Drone và Trang Trí.",
     statsGuideItem5Title: "Chi tiết sức mạnh",
     statsGuideItem5Text: "Trong màn hình Chi Tiết Sức Mạnh, sao chép các giá trị Sức Mạnh Tướng, Xây Dựng, Công Nghệ, Drone và Trang Trí.",
     statsGuideFootnote: "Hình minh họa giữ nguyên, nhưng phần ghi chú sẽ đổi theo ngôn ngữ bạn chọn.",
     closeGuide: "Đóng",
+    statsGuideIntro: "Hãy dùng hồ sơ mẫu có đánh số bên dưới. Văn bản trong hướng dẫn sẽ đổi theo ngôn ngữ bạn chọn.",
+    statsGuideOverlayLine1: "Nhấn ô Tổng Sức Mạnh dưới số 1 để mở Chi Tiết Sức Mạnh (số 4). Tổng Sức Mạnh bao gồm quân trong căn cứ, vì vậy không dùng nó làm Sức Mạnh Tướng.",
+    statsGuideOverlayLine2: "Giá trị có biểu tượng vũ khí chéo dưới số 2 là Số Kill của bạn.",
+    statsGuideOverlayLine3: "Giá trị có biểu tượng mũ bảo hiểm dưới số 3 là Cấp Nghề của bạn.",
+    statsGuideOverlayLine4: "Trong Chi Tiết Sức Mạnh, hãy nhập riêng Sức Mạnh Tướng, Xây Dựng, Công Nghệ, Drone và Trang Trí.",
   },
   ko: {
     serverTransferApplication: '서버 이전 신청서', strongerTogether: '더 강한 내일',
@@ -6133,20 +6342,24 @@ const I18N = {
     statsGuideHint: "가짜 데이터가 들어간 예시 프로필을 사용하므로 모든 언어에서 사용할 수 있습니다.",
     statsGuideEyebrow: "예시 비주얼 가이드",
     statsGuideTitle: "내 수치를 찾는 위치",
-    statsGuideIntro: "이 예시는 가짜 플레이어 이름, 가짜 아바타, 가짜 수치를 사용하므로 어떤 언어에서도 안전하게 사용할 수 있습니다.",
-    statsGuideInlineHelp: "총 전투력, 처치 수, 직업 레벨, 전투력 세부정보의 위치를 보여주는 예시 화면을 확인하세요.",
+    statsGuideInlineHelp: "총 전투력, 처치 수, 직업 레벨, 전투력 세부 내역의 위치를 보여주는 예시 화면을 확인하세요.",
     statsGuideItem1Title: "총 전투력",
-    statsGuideItem1Text: "프로필 화면의 금색 배지는 총 전투력입니다. 기지 내 병력이 포함되므로 영웅 전투력으로 사용하지 마세요.",
+    statsGuideItem1Text: "금색 총 전투력 패널을 눌러 다음 화면을 여세요. 이 총합에는 기지 내 병력이 포함되므로 영웅 전투력 값으로 사용하지 마세요.",
     statsGuideItem2Title: "처치 수",
     statsGuideItem2Text: "오른쪽 위의 교차 무기 숫자가 현재 처치 수입니다.",
     statsGuideItem3Title: "직업 레벨",
     statsGuideItem3Text: "헬멧 아이콘이 현재 직업 레벨을 보여줍니다.",
-    statsGuideItem4Title: "자세히 보려면 탭",
-    statsGuideItem4Text: "프로필 수치 아래의 회색 상세 상자를 탭하면 다음 화면이 열립니다.",
+    statsGuideItem4Title: "전투력 세부 내역",
+    statsGuideItem4Text: "다음 화면에서 영웅, 건물, 연구, 드론, 장식 전투력 값을 복사하세요.",
     statsGuideItem5Title: "전투력 세부내역",
     statsGuideItem5Text: "전투력 세부정보 화면에서 영웅, 건물, 기술, 드론, 장식 전투력을 복사하세요.",
     statsGuideFootnote: "가이드 이미지는 그대로 유지되지만, 설명 문구는 선택한 언어에 맞게 바뀝니다.",
     closeGuide: "닫기",
+    statsGuideIntro: "아래의 번호가 표시된 예시 프로필을 사용하세요. 가이드 안의 텍스트는 선택한 언어에 따라 바뀝니다.",
+    statsGuideOverlayLine1: "1번 아래의 총 전투력 상자를 눌러 전투력 세부 정보(4번)를 여세요. 총 전투력에는 기지 내 병력이 포함되므로 영웅 전투력으로 사용하지 마세요.",
+    statsGuideOverlayLine2: "2번 아래의 교차 무기 값이 현재 처치 수입니다.",
+    statsGuideOverlayLine3: "3번 아래의 헬멧 값이 현재 직업 레벨입니다.",
+    statsGuideOverlayLine4: "전투력 세부 정보에서 영웅, 건물, 기술, 드론, 장식 전투력을 각각 입력하세요.",
   },
   de: {
     serverTransferApplication: 'SERVER-TRANSFER-BEWERBUNG', strongerTogether: 'EINE STÄRKERE ZUKUNFT',
@@ -6236,20 +6449,24 @@ const I18N = {
     statsGuideHint: "Verwendet ein Beispielprofil mit fiktiven Daten und funktioniert daher in jeder Sprache.",
     statsGuideEyebrow: "Visuelle Beispielanleitung",
     statsGuideTitle: "Wo du deine Werte findest",
-    statsGuideIntro: "Dieses Beispiel verwendet einen falschen Spielernamen, einen Beispiel-Avatar und erfundene Werte, daher kann es in jeder Sprache sicher genutzt werden.",
-    statsGuideInlineHelp: "Sieh dir einen Beispielbildschirm an, der zeigt, wo Gesamtstärke, Kills, Berufslevel und Kraftdetails zu finden sind.",
+    statsGuideInlineHelp: "Sieh dir einen Beispielbildschirm an, der zeigt, wo Gesamtstärke, Kills, Berufslevel und die Machtaufschlüsselung zu finden sind.",
     statsGuideItem1Title: "Gesamtstärke",
-    statsGuideItem1Text: "Das goldene Abzeichen im Profilbildschirm ist deine Gesamtstärke. Darin sind Truppen in der Basis enthalten, also nutze diese Zahl nicht für Heldenstärke.",
+    statsGuideItem1Text: "Tippe auf das goldene Feld für Gesamtstärke, um den nächsten Bildschirm zu öffnen. Dieser Gesamtwert enthält Truppen in der Basis, also verwende ihn nicht als Wert für Heldenstärke.",
     statsGuideItem2Title: "Kills",
     statsGuideItem2Text: "Die Zahl mit den gekreuzten Waffen oben rechts zeigt deinen aktuellen Kill-Wert.",
     statsGuideItem3Title: "Berufslevel",
     statsGuideItem3Text: "Das Helm-Symbol zeigt dein aktuelles Berufslevel.",
-    statsGuideItem4Title: "Tippen für Details",
-    statsGuideItem4Text: "Tippe auf das graue Detailfeld unter den Profilwerten, um den nächsten Bildschirm zu öffnen.",
+    statsGuideItem4Title: "Machtaufschlüsselung",
+    statsGuideItem4Text: "Kopiere auf dem nächsten Bildschirm die Werte für Helden-, Gebäude-, Technologie-, Drohnen- und Dekorationsstärke.",
     statsGuideItem5Title: "Kraftaufschlüsselung",
     statsGuideItem5Text: "Kopiere im Bildschirm Kraftdetails die Werte für Helden-, Gebäude-, Technologie-, Drohnen- und Dekorationskraft.",
     statsGuideFootnote: "Das Leitbild bleibt gleich, aber die Hinweise darunter wechseln mit deiner gewählten Sprache.",
-    closeGuide: "Schließen"
+    closeGuide: "Schließen",
+    statsGuideIntro: "Nutze das nummerierte Beispielprofil unten. Der Text im Leitfaden wechselt mit der ausgewählten Sprache.",
+    statsGuideOverlayLine1: "Tippe auf das Feld Gesamtstärke unter Nr. 1, um die Kraftdetails (Nr. 4) zu öffnen. Die Gesamtstärke enthält Truppen in der Basis und darf nicht als Heldenstärke verwendet werden.",
+    statsGuideOverlayLine2: "Der Wert mit den gekreuzten Waffen unter Nr. 2 ist deine Kill-Zahl.",
+    statsGuideOverlayLine3: "Der Wert mit dem Helm unter Nr. 3 ist dein Berufslevel.",
+    statsGuideOverlayLine4: "Trage in den Kraftdetails Helden-, Gebäude-, Technologie-, Drohnen- und Dekorationsstärke jeweils separat ein.",
   }
 };
 
