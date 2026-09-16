@@ -6190,6 +6190,339 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
   .question-panel-v75 .question-submit { min-width: 0; }
 }
 
+
+
+/* ================================================================
+   v76 — Transfer Group Option B implementation
+   Cleaner information hierarchy, numbered section rails, lighter copy,
+   and clearer contrast for Step 3 while staying in the approved theme.
+   ================================================================ */
+.form-step[data-step="3"] {
+  --tg-bg-top: rgba(53, 24, 29, .84);
+  --tg-bg-bottom: rgba(24, 13, 17, .96);
+  --tg-border: rgba(244, 108, 142, .46);
+  --tg-rail: linear-gradient(180deg, #ff7da4 0%, #e54f79 100%);
+  --tg-text-soft: #dcb8b1;
+  --tg-text-body: #f2ded8;
+  --tg-gold: #ffd35f;
+  --tg-gold-deep: #dda332;
+  --tg-dark-gold: #352006;
+}
+.form-step[data-step="3"] .step-intro { max-width: 820px; }
+.form-step[data-step="3"] .group-builder { margin-top: 20px; }
+.form-step[data-step="3"] .group-builder-banner {
+  margin-bottom: 14px;
+  padding: 6px 0 0;
+}
+.form-step[data-step="3"] .group-builder-banner .subsection-icon {
+  background: rgba(255, 193, 85, .12);
+  border: 1px solid rgba(255, 214, 110, .28);
+  color: #ffd76c;
+}
+.form-step[data-step="3"] .group-summary-card { display: none !important; }
+.form-step[data-step="3"] .group-option-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  padding: 22px 24px 20px 0 !important;
+  border: 1px solid var(--tg-border) !important;
+  border-radius: 22px !important;
+  background:
+    radial-gradient(circle at 88% 10%, rgba(255, 211, 95, .05), transparent 26%),
+    linear-gradient(180deg, var(--tg-bg-top), var(--tg-bg-bottom)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.03),
+    0 16px 34px rgba(0,0,0,.19) !important;
+}
+.form-step[data-step="3"] .group-option-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  border-radius: 22px 0 0 22px;
+  background: var(--tg-rail);
+  box-shadow: 0 0 18px rgba(236, 91, 126, .22);
+}
+.form-step[data-step="3"] .group-option-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  padding-top: 2px;
+}
+.form-step[data-step="3"] .group-option-number {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 125, 164, .92);
+  background: rgba(50, 20, 26, .9);
+  color: #ffeef3;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  letter-spacing: .02em;
+  box-shadow: 0 0 0 5px rgba(255,255,255,.02), 0 0 18px rgba(255, 99, 145, .15);
+}
+.form-step[data-step="3"] .group-option-icon {
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  border: 1px solid rgba(244,108,142,.46);
+  background: linear-gradient(180deg, rgba(105, 36, 53, .72), rgba(56, 24, 34, .92));
+  color: #ff7da4;
+  font-size: 2rem;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+}
+.form-step[data-step="3"] .group-option-icon-hash { font-size: 2.35rem; font-weight: 900; }
+.form-step[data-step="3"] .group-option-main { min-width: 0; }
+.form-step[data-step="3"] .group-option-header { margin-bottom: 14px; }
+.form-step[data-step="3"] .group-option-header h2,
+.form-step[data-step="3"] .estimated-group-heading h2 {
+  margin: 0;
+  color: #fff4ef !important;
+  font-size: clamp(1.1rem, 1.3vw, 1.35rem);
+  letter-spacing: -.01em;
+  text-transform: none;
+}
+.form-step[data-step="3"] .group-option-header p,
+.form-step[data-step="3"] .estimated-group-heading p {
+  margin: 6px 0 0;
+  color: var(--tg-text-soft) !important;
+  font-size: .95rem;
+  line-height: 1.55;
+}
+.form-step[data-step="3"] .section-name-card {
+  grid-template-columns: 132px minmax(0, 1fr) minmax(260px, 380px);
+}
+.form-step[data-step="3"] .group-option-aside { min-width: 0; }
+.form-step[data-step="3"] .group-name-field label,
+.form-step[data-step="3"] .group-estimate-field label,
+.form-step[data-step="3"] .group-member-card label {
+  color: #fff2ed;
+  font-weight: 700;
+}
+.form-step[data-step="3"] .group-name-field input,
+.form-step[data-step="3"] .group-estimate-field input,
+.form-step[data-step="3"] .group-member-card input,
+.form-step[data-step="3"] .group-member-card select {
+  height: 50px;
+  border-radius: 12px !important;
+  border-color: rgba(228, 187, 172, .4) !important;
+  background: linear-gradient(180deg, rgba(15, 11, 16, .94), rgba(7, 7, 10, .98)) !important;
+  color: #fff7f2 !important;
+}
+.form-step[data-step="3"] .group-name-field input::placeholder,
+.form-step[data-step="3"] .group-estimate-field input::placeholder,
+.form-step[data-step="3"] .group-member-card input::placeholder { color: #91818d; }
+.form-step[data-step="3"] .group-name-caps-note {
+  margin-top: 9px;
+  color: #ceb6af !important;
+  font-size: .82rem;
+}
+.form-step[data-step="3"] .group-name-critical-alert {
+  margin-top: 0;
+  padding: 16px 16px 16px 16px;
+  border: 1px solid rgba(255, 209, 95, .72) !important;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 208, 92, .16), transparent 38%),
+    linear-gradient(180deg, rgba(97, 61, 18, .52), rgba(45, 28, 18, .88)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 0 20px rgba(255, 190, 51, .08) !important;
+}
+.form-step[data-step="3"] .group-name-critical-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 0 !important;
+  background: linear-gradient(180deg, #ffd96b, #e4a42a) !important;
+  color: #281706 !important;
+  font-size: 1.15rem;
+}
+.form-step[data-step="3"] .group-name-critical-alert strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #ffe28c !important;
+  font-size: .95rem;
+  letter-spacing: .04em;
+}
+.form-step[data-step="3"] .group-name-critical-alert p {
+  color: var(--tg-text-body) !important;
+  font-size: .92rem;
+  line-height: 1.55;
+}
+.form-step[data-step="3"] .group-inline-notes {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+.form-step[data-step="3"] .group-inline-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  color: #efdccf;
+  font-size: .91rem;
+  line-height: 1.5;
+}
+.form-step[data-step="3"] .group-inline-note .note-icon {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  font-size: 1rem;
+}
+.form-step[data-step="3"] .group-inline-note.example .note-icon { color: #ffd35f; }
+.form-step[data-step="3"] .group-inline-note.caution .note-icon { color: #ff7d92; }
+.form-step[data-step="3"] .estimated-group-heading.standalone {
+  display: block;
+  margin-bottom: 0;
+}
+.form-step[data-step="3"] .section-members-card .group-option-main { display: block; }
+.form-step[data-step="3"] .group-members-shell #group-members {
+  display: grid;
+  gap: 14px;
+}
+.form-step[data-step="3"] .group-member-card {
+  position: relative;
+  margin: 0;
+  padding: 18px 18px 16px !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(228, 187, 172, .25) !important;
+  background: linear-gradient(180deg, rgba(29, 16, 20, .92), rgba(17, 11, 14, .97)) !important;
+}
+.form-step[data-step="3"] .group-member-card::before { display: none !important; }
+.form-step[data-step="3"] .member-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.form-step[data-step="3"] .member-title {
+  min-height: 0;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 229, 153, .85) !important;
+  background: linear-gradient(180deg, #ffd55c, #efb33b) !important;
+  color: #241605 !important;
+  font-size: .84rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.form-step[data-step="3"] .remove-member {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(241, 121, 151, .48);
+  background: rgba(61, 23, 33, .3);
+  color: #ff9eb1;
+  font-size: 1.25rem;
+}
+.form-step[data-step="3"] .remove-member:hover,
+.form-step[data-step="3"] .remove-member:focus-visible {
+  background: rgba(103, 34, 50, .42);
+  color: #fff0f3;
+}
+.form-step[data-step="3"] .group-member-card .field-grid { gap: 16px; }
+.form-step[data-step="3"] .add-player-button {
+  margin-top: 16px;
+  border-radius: 14px;
+  border: 1px dashed rgba(244, 196, 162, .48);
+  background: rgba(31, 17, 21, .34);
+  color: #f2d7cc;
+  font-size: .9rem;
+  letter-spacing: .04em;
+  text-transform: none;
+}
+.form-step[data-step="3"] .add-player-button span:first-child {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+.form-step[data-step="3"] .add-player-button:hover,
+.form-step[data-step="3"] .add-player-button:focus-visible {
+  border-color: rgba(255, 210, 95, .65);
+  color: #fff2cf;
+  background: rgba(75, 45, 20, .18);
+}
+.form-step[data-step="3"] input.invalid,
+.form-step[data-step="3"] select.invalid,
+.form-step[data-step="3"] textarea.invalid,
+.form-step[data-step="3"] .custom-select.invalid .custom-select-trigger {
+  border-color: #ffd35f !important;
+  background: linear-gradient(180deg, rgba(60,42,18,.34), rgba(15,11,16,.98)) !important;
+  box-shadow: 0 0 0 2px rgba(255, 211, 95, .16), 0 0 18px rgba(255, 191, 55, .14) !important;
+}
+.form-step[data-step="3"] .field-error:not(:empty) {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(88, 54, 13, .36);
+  color: #ffd278 !important;
+  font-size: .78rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.form-step[data-step="3"] .field-error:not(:empty)::before {
+  content: "!";
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  border-radius: 999px;
+  background: #ffd35f;
+  color: #2a1905;
+  font-size: .66rem;
+  font-weight: 950;
+}
+.form-step[data-step="3"] .field-help,
+.form-step[data-step="3"] .validation-limit-help {
+  color: #ceb5ad;
+  font-size: .84rem;
+}
+@media (max-width: 1100px) {
+  .form-step[data-step="3"] .section-name-card {
+    grid-template-columns: 132px minmax(0, 1fr);
+  }
+  .form-step[data-step="3"] .group-option-aside {
+    grid-column: 2 / -1;
+  }
+}
+@media (max-width: 760px) {
+  .form-step[data-step="3"] .group-option-card {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px 16px 16px !important;
+  }
+  .form-step[data-step="3"] .group-option-rail {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .form-step[data-step="3"] .group-option-number {
+    width: 46px;
+    height: 46px;
+    font-size: 1.35rem;
+  }
+  .form-step[data-step="3"] .group-option-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    font-size: 1.7rem;
+  }
+  .form-step[data-step="3"] .group-member-card .field-grid { grid-template-columns: 1fr !important; }
+}
+
 </style>
 </head>
 <body>
@@ -6683,62 +7016,87 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
           </fieldset>
 
           <div id="group-builder" class="group-builder" hidden>
-            <div class="subsection-heading">
+            <div class="subsection-heading group-builder-banner">
               <div>
                 <span class="subsection-icon">✦</span>
                 <div>
                   <h2 data-i18n="yourTransferGroup">Your Transfer Group</h2>
-                  <p data-i18n="groupBuilderIntro">You do not need to know every player yet. Add any players you know now, or leave the player list blank and continue.</p>
+                  <p data-i18n="groupBuilderIntro">Add any players you already know are transferring with you.</p>
                 </div>
               </div>
             </div>
 
-            <div class="group-lead-card transfer-group-name-card">
-              <div class="subsection-heading" style="margin-bottom:0">
-                <div>
-                  <span class="subsection-icon">✿</span>
+            <div class="group-lead-card transfer-group-name-card group-option-card section-name-card">
+              <div class="group-option-rail">
+                <span class="group-option-number">01</span>
+                <span class="group-option-icon" aria-hidden="true">✿</span>
+              </div>
+              <div class="group-option-main">
+                <div class="group-option-header">
                   <div>
                     <h2 data-i18n="transferGroupNameSectionTitle">Transfer Group Name</h2>
-                    <p data-i18n="transferGroupNameSectionIntro">Use one shared group name so we can connect applications from the same transfer group.</p>
+                    <p data-i18n="transferGroupNameSectionIntro">Use one shared group name for everyone in your transfer group.</p>
                   </div>
                 </div>
+                <div class="field-block group-name-field">
+                  <label for="transfer-group-name"><span data-i18n="transferGroupNameQuestion">What is your Transfer Group Name?</span> <em>*</em></label>
+                  <input id="transfer-group-name" name="transferGroupName" type="text" maxlength="50" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="MOONFALL" />
+                  <p class="group-name-caps-note" data-i18n="transferGroupNameCaps">This field automatically converts the group name to ALL CAPS.</p>
+                  <p class="field-error" data-error-for="transfer-group-name"></p>
+                </div>
               </div>
-<div class="group-name-divider"></div>
-
-              <div class="field-block group-name-field">
-                <label for="transfer-group-name"><span data-i18n="transferGroupNameQuestion">What is your Transfer Group Name?</span> <em>*</em></label>
-                <input id="transfer-group-name" name="transferGroupName" type="text" maxlength="50" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="MOONFALL" />
-                <p class="group-name-caps-note" data-i18n="transferGroupNameCaps">This field automatically converts the group name to ALL CAPS.</p>
+              <aside class="group-option-aside group-name-side-note">
                 <div class="group-name-critical-alert" role="note">
                   <span class="group-name-critical-icon" aria-hidden="true">!</span>
                   <div>
                     <strong data-i18n="transferGroupNameShareTitle">TRANSFER LEADS: CREATE THIS ONCE AND SHARE IT WITH YOUR GROUP.</strong>
-                    <p data-i18n="transferGroupNameHelp">If you are the transfer lead, create a short, unique group name and share the exact name with everyone applying with you. Do not use your alliance name. If you are not the lead, enter the exact group name your lead gave you. Everyone in the group must use the same group name.</p>
+                    <p data-i18n="transferGroupNameHelp">If you are the transfer lead, create one short, unique group name and share it with your group. If someone already gave you the name, enter it exactly the same way.</p>
                   </div>
                 </div>
-                <p class="field-help" data-i18n="transferGroupNameExample">Make it memorable and unique, for example MOONFALL or SAKURA7. Do not use an alliance name such as NvSP, WaE, or NvEM.</p>
-                <p class="field-error" data-error-for="transfer-group-name"></p>
-              </div>
+                <div class="group-inline-notes">
+                  <p class="group-inline-note example"><span class="note-icon" aria-hidden="true">★</span><span data-i18n="transferGroupNameExample">Example: MOONFALL or SAKURA7</span></p>
+                  <p class="group-inline-note caution"><span class="note-icon" aria-hidden="true">⊘</span><span data-i18n="transferGroupNameAllianceNote">Do not use alliance names like NvSP, WaE, or NvEM.</span></p>
+                </div>
+              </aside>
             </div>
 
-            <div class="group-contact-card estimated-group-card" style="margin-top:16px">
-              <div class="estimated-group-heading">
-                <span class="estimated-group-icon" aria-hidden="true">#</span>
-                <div>
-                  <h2 data-i18n="estimatedGroupSize">Estimated Group Size</h2>
-                  <p data-i18n="estimatedGroupSizeIntro">If you know roughly how many additional players may come with you, enter that number. An estimate is fine.</p>
+            <div class="group-contact-card estimated-group-card group-option-card section-size-card" style="margin-top:16px">
+              <div class="group-option-rail">
+                <span class="group-option-number">02</span>
+                <span class="group-option-icon group-option-icon-hash" aria-hidden="true">#</span>
+              </div>
+              <div class="group-option-main">
+                <div class="group-option-header estimated-group-heading standalone">
+                  <div>
+                    <h2 data-i18n="estimatedGroupSize">Estimated Group Size</h2>
+                    <p data-i18n="estimatedGroupSizeIntro">If you know roughly how many additional players may join you, enter that number.</p>
+                  </div>
+                </div>
+                <div class="field-block group-estimate-field">
+                  <label for="expected-additional-players"><span data-i18n="expectedAdditionalPlayers">Expected additional players</span> <span class="optional-label" data-i18n="optional">(Optional)</span></label>
+                  <input id="expected-additional-players" name="expectedAdditionalPlayers" type="text" inputmode="numeric" data-numeric="integer" data-max="99" data-max-error-key="groupSizeMaxError" maxlength="3" placeholder="3" />
+                  <p class="field-help" data-i18n="expectedAdditionalHelp">Maximum total group size is 100, including you.</p>
+                  <p class="field-error" data-error-for="expected-additional-players"></p>
                 </div>
               </div>
-              <div class="field-block" style="margin-top:14px">
-                <label for="expected-additional-players"><span data-i18n="expectedAdditionalPlayers">Expected additional players</span> <span class="optional-label" data-i18n="optional">(Optional)</span></label>
-                <input id="expected-additional-players" name="expectedAdditionalPlayers" type="text" inputmode="numeric" data-numeric="integer" data-max="99" data-max-error-key="groupSizeMaxError" maxlength="3" placeholder="3" />
-                <p class="field-help" data-i18n="expectedAdditionalHelp">Leave this blank if you do not know yet. Maximum total group size is 100, including you.</p>
-                <p class="field-error" data-error-for="expected-additional-players"></p>
-              </div>
             </div>
 
-            <div id="group-members"></div>
-            <button type="button" class="add-player-button" id="add-player"><span>＋</span> <span data-i18n="addAnotherPlayer">Add a player you know</span></button>
+            <div class="group-contact-card group-members-shell group-option-card section-members-card" style="margin-top:16px">
+              <div class="group-option-rail">
+                <span class="group-option-number">03</span>
+                <span class="group-option-icon" aria-hidden="true">◉</span>
+              </div>
+              <div class="group-option-main">
+                <div class="group-option-header">
+                  <div>
+                    <h2 data-i18n="groupMembersSectionTitle">Group Members</h2>
+                    <p data-i18n="groupMembersSectionIntro">Add the players you know now. You can add more later.</p>
+                  </div>
+                </div>
+                <div id="group-members"></div>
+                <button type="button" class="add-player-button" id="add-player"><span>＋</span> <span data-i18n="addAnotherPlayer">Add another player</span></button>
+              </div>
+            </div>
 
             <div class="group-summary-card">
               <div><span data-i18n="totalPlayersInGroup">Expected group size</span><strong id="total-group-size">—</strong><small data-i18n="includingYou">Including you</small></div>
@@ -7195,7 +7553,7 @@ const I18N = {
     estimatedSeatColour: 'Estimated S4 seat colour', estimatedTransferScoreBand: 'Experimental transfer-score band', contributingPowerProfile: 'Entered contributing power', contributingPowerHelp: 'This is a simple total of the power fields you entered, not the game’s official score.', scoreBandLowConfidence: 'Low-confidence community reference only.', estimateWarningLead: 'Important:', estimateWarning: ' Last War does not publish a universal transfer-score formula. Seat cutoffs vary by transfer group, and historical power may be used. This estimate is for planning only.',
     seatWhite: 'White', seatBlue: 'Blue', seatPurple: 'Purple', seatGold: 'Gold', seatBorderline: 'Borderline', confidenceLow: 'Low confidence', confidenceMedium: 'Medium confidence', confidenceHigher: 'Higher confidence',
  professionLevel: 'What is your profession level?', killCount: 'What is your current kill count?', fullNumberHelp: 'Enter the full number. Do not use M, K, or abbreviations. Maximum 9 digits.', heroPower: 'What is your total HERO power?', howToFind: 'How to find this', heroPowerHelp: 'Enter HERO Power only, not Total Power.', heroHelp1: 'Open your profile.', heroHelp2: 'Tap your Total Power badge.', heroHelp3: 'Open Power Details and find Hero Power.', heroHelp4: 'Report the full Hero Power number only.', seatColour: 'What seat colour are you?', gold: 'Gold', purple: 'Purple', blue: 'Blue', white: 'White', howToFindSeat: 'How to find your seat colour', seatHelp1: 'Tap the map icon on the right side of your game screen.', seatHelp2: 'Open Transfer Surge and check “Your Status”.', seatHelp3: 'Your seat colour is shown at the bottom of that screen.',
-    transferGroup: 'Transfer Group', transferGroupIntro: 'Let us know if you are transferring with other players. If so, add each player so we can keep your group connected during review.', transferWithGroup: 'Are you hoping to transfer with a group of people from your server?', yes: 'Yes', no: 'No', unsure: 'Unsure', yesGroupSub: 'I am bringing other player(s)', noGroupSub: 'I am transferring on my own', unsureGroupSub: 'I am not sure yet', yourTransferGroup: 'Your Transfer Group', groupBuilderIntro: "You do not need to know every player yet. Add any players you know now, or leave the player list blank and continue.", addAnotherPlayer: "Add a player you know", groupContact: 'Group Contact', groupContactIntro: "Who should we contact if we need to reach your group? If you do not choose someone else, we will use you as the group contact.", selectGroupContact: 'Select a group contact', totalPlayersInGroup: "Expected group size", additionalPlayers: 'Additional players', includingYou: 'Including you', playerName: 'Player Name', memberServer: 'Current Server', memberAlliance: 'Alliance Name / Tag', memberSeatColour: 'Seat Colour', selectSeatColour: 'Select seat colour', knownPlayersListed: "Known players listed", estimatedGroupSize: "Estimated Group Size", estimatedGroupSizeIntro: "If you know roughly how many additional players may come with you, enter that number. An estimate is fine.", expectedAdditionalPlayers: "Expected additional players", expectedAdditionalHelp: "Leave this blank if you do not know yet. Maximum total group size is 100, including you.", optional: "(Optional)", transferGroupIdTitle: "Transfer Group ID", transferGroupIdIntro: "If you are transferring as a group, share this ID with anyone applying with you. They can enter the same ID so your applications stay grouped together.", activeTransferGroupId: "Active Transfer Group ID", groupIdAuto: "Using NEW group ID", groupIdUsingExisting: "Using an existing shared Transfer Group ID", copyGroupId: "Copy ID", copiedGroupId: "Copied!", existingGroupId: "Already have a Transfer Group ID?", existingGroupIdHelp: "If someone in your group already created an ID, paste that shared ID here. Entering a shared ID will use that ID for your application instead of the new ID shown above. If you leave this blank, your application will use the new ID generated above.", reviewTransferGroupId: "Transfer Group ID",
+    transferGroup: 'Transfer Group', transferGroupIntro: 'Let us know if you are transferring with other players. If so, add each player so we can keep your group connected during review.', transferWithGroup: 'Are you hoping to transfer with a group of people from your server?', yes: 'Yes', no: 'No', unsure: 'Unsure', yesGroupSub: 'I am bringing other player(s)', noGroupSub: 'I am transferring on my own', unsureGroupSub: 'I am not sure yet', yourTransferGroup: 'Your Transfer Group', groupBuilderIntro: "Add any players you already know are transferring with you.", addAnotherPlayer: "Add another player", groupContact: 'Group Contact', groupContactIntro: "Who should we contact if we need to reach your group? If you do not choose someone else, we will use you as the group contact.", selectGroupContact: 'Select a group contact', totalPlayersInGroup: "Expected group size", additionalPlayers: 'Additional players', includingYou: 'Including you', playerName: 'Player Name', memberServer: 'Current Server', memberAlliance: 'Alliance Name / Tag', memberSeatColour: 'Seat Colour', selectSeatColour: 'Select seat colour', knownPlayersListed: "Known players listed", estimatedGroupSize: "Estimated Group Size", estimatedGroupSizeIntro: "If you know roughly how many additional players may join you, enter that number.", expectedAdditionalPlayers: "Expected additional players", expectedAdditionalHelp: "Maximum total group size is 100, including you.", optional: "(Optional)", transferGroupIdTitle: "Transfer Group ID", transferGroupIdIntro: "If you are transferring as a group, share this ID with anyone applying with you. They can enter the same ID so your applications stay grouped together.", activeTransferGroupId: "Active Transfer Group ID", groupIdAuto: "Using NEW group ID", groupIdUsingExisting: "Using an existing shared Transfer Group ID", copyGroupId: "Copy ID", copiedGroupId: "Copied!", existingGroupId: "Already have a Transfer Group ID?", existingGroupIdHelp: "If someone in your group already created an ID, paste that shared ID here. Entering a shared ID will use that ID for your application instead of the new ID shown above. If you leave this blank, your application will use the new ID generated above.", reviewTransferGroupId: "Transfer Group ID",
     additionalInfo: 'Additional Information', additionalInfoIntro: 'Add anything else that would help the 1616 team review your transfer request.', additionalComments: 'Do you have any additional comments or questions?', beforeContinue: 'Before you continue', waitlistReminder: 'Remember: this application adds you to the Server 1616 waitlist. It does not guarantee a transfer spot.',
     reviewSubmit: 'Review & Submit', reviewIntro: 'Review your information before submitting. You can go back to any section to make changes.', submitNote: 'Your application will be sent to the 1616 review spreadsheet. Your language choice is stored with your submission.', edit: 'Edit',
     back: 'Back', continue: 'Continue', submitApplication: 'Submit Application',
@@ -7291,13 +7649,16 @@ const I18N = {
     memberServerNumber: "Server number",
     transferGroupNameQuestion: "What is your Transfer Group Name?",
     transferGroupNameShareTitle: "TRANSFER LEADS: CREATE THIS ONCE AND SHARE IT WITH YOUR GROUP.",
-    transferGroupNameHelp: "If you are the transfer lead, create a short, unique group name and share the exact name with everyone applying with you. Do not use your alliance name. If you are not the lead, enter the exact group name your lead gave you. Everyone in the group must use the same group name.",
-    transferGroupNameExample: "Make it memorable and unique, for example MOONFALL or SAKURA7. Do not use an alliance name such as NvSP, WaE, or NvEM.",
+    transferGroupNameHelp: "If you are the transfer lead, create one short, unique group name and share it with your group. If someone already gave you the name, enter it exactly the same way.",
+    transferGroupNameExample: "Example: MOONFALL or SAKURA7",
     transferGroupNameRequired: "Please enter your Transfer Group Name.",
     transferGroupNameNotAlliance: "Your Transfer Group Name cannot be the same as your alliance name.",
     transferGroupNameShort: "Transfer Group Name",
     transferGroupNameSectionTitle: "Transfer Group Name",
-    transferGroupNameSectionIntro: "Use one shared group name so we can connect applications from the same transfer group.",
+    transferGroupNameSectionIntro: "Use one shared group name for everyone in your transfer group.",
+    transferGroupNameAllianceNote: "Do not use alliance names like NvSP, WaE, or NvEM.",
+    groupMembersSectionTitle: "Group Members",
+    groupMembersSectionIntro: "Add the players you know now. You can add more later.",
     selectServer: "Select a server",
     selectReferralAlliance: "Select an alliance",
     otherNotListed: "Other / not listed",
@@ -7437,6 +7798,9 @@ const I18N = {
     transferGroupNameShort: "Nombre del grupo",
     transferGroupNameSectionTitle: "Nombre del grupo de transferencia",
     transferGroupNameSectionIntro: "Usen un único nombre compartido para que podamos vincular las solicitudes del mismo grupo.",
+    transferGroupNameAllianceNote: "No usen nombres de alianza como NvSP, WaE o NvEM.",
+    groupMembersSectionTitle: "Miembros del grupo",
+    groupMembersSectionIntro: "Añadan ahora a los jugadores que ya conozcan. Pueden agregar más después.",
     selectServer: "Selecciona un servidor",
     selectReferralAlliance: "Selecciona una alianza",
     otherNotListed: "Otra / no aparece",
@@ -7576,6 +7940,9 @@ const I18N = {
     transferGroupNameShort: "Nome do grupo",
     transferGroupNameSectionTitle: "Nome do grupo de transferência",
     transferGroupNameSectionIntro: "Use um único nome compartilhado para podermos conectar as inscrições do mesmo grupo.",
+    transferGroupNameAllianceNote: "Não use nomes de alianças como NvSP, WaE ou NvEM.",
+    groupMembersSectionTitle: "Membros do grupo",
+    groupMembersSectionIntro: "Adicione agora os jogadores que você já conhece. Você pode adicionar mais depois.",
     selectServer: "Selecione um servidor",
     selectReferralAlliance: "Selecione uma aliança",
     otherNotListed: "Outra / não listada",
@@ -7715,6 +8082,9 @@ const I18N = {
     transferGroupNameShort: "Nom du groupe",
     transferGroupNameSectionTitle: "Nom du groupe de transfert",
     transferGroupNameSectionIntro: "Utilisez un seul nom partagé afin que nous puissions relier les demandes du même groupe.",
+    transferGroupNameAllianceNote: "N’utilisez pas de noms d’alliance comme NvSP, WaE ou NvEM.",
+    groupMembersSectionTitle: "Membres du groupe",
+    groupMembersSectionIntro: "Ajoutez maintenant les joueurs que vous connaissez déjà. Vous pourrez en ajouter d’autres plus tard.",
     selectServer: "Sélectionnez un serveur",
     selectReferralAlliance: "Sélectionnez une alliance",
     otherNotListed: "Autre / non répertoriée",
@@ -7854,6 +8224,9 @@ const I18N = {
     transferGroupNameShort: "اسم مجموعة الانتقال",
     transferGroupNameSectionTitle: "اسم مجموعة الانتقال",
     transferGroupNameSectionIntro: "استخدموا اسم مجموعة مشتركًا واحدًا حتى نتمكن من ربط طلبات المجموعة نفسها.",
+    transferGroupNameAllianceNote: "لا تستخدموا أسماء تحالفات مثل NvSP أو WaE أو NvEM.",
+    groupMembersSectionTitle: "أعضاء المجموعة",
+    groupMembersSectionIntro: "أضيفوا اللاعبين الذين تعرفونهم الآن. يمكنكم إضافة المزيد لاحقًا.",
     selectServer: "اختر سيرفر",
     selectReferralAlliance: "اختر تحالفًا",
     otherNotListed: "أخرى / غير مدرجة",
@@ -7993,6 +8366,9 @@ const I18N = {
     transferGroupNameShort: "Tên Nhóm Chuyển Server",
     transferGroupNameSectionTitle: "Tên Nhóm Chuyển Server",
     transferGroupNameSectionIntro: "Dùng một tên nhóm chung để chúng tôi có thể liên kết các đơn thuộc cùng một nhóm.",
+    transferGroupNameAllianceNote: "Không dùng tên liên minh như NvSP, WaE hoặc NvEM.",
+    groupMembersSectionTitle: "Thành viên nhóm",
+    groupMembersSectionIntro: "Hãy thêm những người chơi bạn đã biết bây giờ. Bạn có thể thêm nhiều hơn sau.",
     selectServer: "Chọn server",
     selectReferralAlliance: "Chọn liên minh",
     otherNotListed: "Khác / không có trong danh sách",
@@ -8132,6 +8508,9 @@ const I18N = {
     transferGroupNameShort: "이동 그룹 이름",
     transferGroupNameSectionTitle: "이동 그룹 이름",
     transferGroupNameSectionIntro: "같은 이동 그룹의 신청서를 연결할 수 있도록 하나의 공용 그룹 이름을 사용하세요.",
+    transferGroupNameAllianceNote: "NvSP, WaE, NvEM 같은 연맹 이름은 사용하지 마세요.",
+    groupMembersSectionTitle: "그룹 멤버",
+    groupMembersSectionIntro: "지금 알고 있는 플레이어를 추가하세요. 나중에 더 추가할 수 있습니다.",
     selectServer: "서버 선택",
     selectReferralAlliance: "연맹 선택",
     otherNotListed: "기타 / 목록에 없음",
@@ -8271,6 +8650,9 @@ const I18N = {
     transferGroupNameShort: "Transfergruppenname",
     transferGroupNameSectionTitle: "Transfergruppenname",
     transferGroupNameSectionIntro: "Verwendet einen gemeinsamen Gruppennamen, damit wir Bewerbungen derselben Transfergruppe verbinden können.",
+    transferGroupNameAllianceNote: "Verwendet keine Allianznamen wie NvSP, WaE oder NvEM.",
+    groupMembersSectionTitle: "Gruppenmitglieder",
+    groupMembersSectionIntro: "Fügt jetzt die Spieler hinzu, die ihr bereits kennt. Weitere könnt ihr später ergänzen.",
     selectServer: "Server auswählen",
     selectReferralAlliance: "Allianz auswählen",
     otherNotListed: "Andere / nicht aufgeführt",
