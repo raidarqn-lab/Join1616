@@ -7343,6 +7343,145 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
 .journey-footstep.p9 { top: 93%; left: 8px; }
 .journey-footstep.p10 { top: 98%; right: 5px; }
 
+
+
+/* ================================================================
+   v85 — persistent top navigation + standalone 1616 Story page
+   ================================================================ */
+.site-main-nav {
+  position: relative;
+  z-index: 1201;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-left: auto;
+  margin-right: 14px;
+  padding: 5px;
+  border: 1px solid rgba(255, 156, 177, .14);
+  border-radius: 13px;
+  background: rgba(21, 9, 14, .34);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+}
+.site-nav-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: #c9a9a8;
+  font-size: .75rem;
+  font-weight: 850;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+.site-nav-button:hover,
+.site-nav-button:focus-visible {
+  outline: none;
+  color: #fff4ef;
+  border-color: rgba(240, 105, 130, .34);
+  background: rgba(103, 30, 49, .30);
+}
+.site-nav-button.active {
+  color: #fff7f1;
+  border-color: rgba(255, 196, 135, .42);
+  background: linear-gradient(180deg, rgba(113, 42, 37, .54), rgba(71, 22, 32, .62));
+  box-shadow: 0 0 18px rgba(239, 101, 125, .10), inset 0 1px 0 rgba(255,255,255,.035);
+}
+.site-nav-button.active::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ef6f89, #ffd27a);
+  box-shadow: 0 0 8px rgba(239, 111, 137, .28);
+}
+.site-nav-mark {
+  color: #ef7e95;
+  font-size: .78rem;
+}
+.site-nav-button.active .site-nav-mark { color: #ffd27a; }
+
+.story-page {
+  position: relative;
+  z-index: 3;
+  width: min(1380px, calc(100% - 40px));
+  margin: 28px auto 70px;
+}
+.story-page[hidden] { display: none !important; }
+.story-page-panel {
+  position: relative;
+  width: 100%;
+  padding: clamp(26px, 4vw, 52px);
+  border: 1px solid rgba(164, 65, 82, .54);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 84% 2%, rgba(194, 52, 71, .14), transparent 30%),
+    radial-gradient(circle at 12% 12%, rgba(255, 210, 122, .06), transparent 24%),
+    linear-gradient(180deg, rgba(29, 13, 18, .96), rgba(15, 9, 12, .97));
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.025);
+  overflow: hidden;
+}
+.story-page-panel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ef6f89, #ffd27a 52%, #b93354);
+  opacity: .86;
+}
+.story-page .about-1616-hero {
+  margin-bottom: 30px;
+}
+.story-page .welcome-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+.story-page .about-1616-kicker {
+  background: rgba(115, 30, 47, .28);
+}
+.story-page .about-journey-map {
+  width: min(1120px, 100%);
+}
+body.story-page-open .question-fab {
+  display: flex;
+}
+
+@media (max-width: 980px) {
+  .site-header { flex-wrap: wrap; }
+  .site-main-nav {
+    order: 3;
+    width: 100%;
+    margin: 2px 0 0;
+    justify-content: flex-start;
+  }
+  .site-nav-button { flex: 1; justify-content: center; }
+}
+@media (max-width: 760px) {
+  .story-page {
+    width: min(100% - 20px, 760px);
+    margin-top: 12px;
+  }
+  .story-page-panel { padding: 24px 16px; }
+  .site-main-nav { gap: 5px; padding: 4px; }
+  .site-nav-button {
+    min-height: 39px;
+    padding: 0 9px;
+    font-size: .68rem;
+    letter-spacing: .05em;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -7417,8 +7556,81 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
         </div>
       </div>
 
-      <div class="welcome-stage welcome-about-stage" id="welcome-about-stage" hidden>
+      <div class="welcome-stage welcome-guide-stage" id="welcome-guide-stage" hidden>
         <p class="welcome-kicker" data-i18n="serverTransferApplication">SERVER TRANSFER APPLICATION</p>
+        <div class="welcome-title-hero">
+          <h1 class="welcome-title" id="welcome-title" data-i18n="welcomeThanksTitle">Thank you for your interest in joining 1616!</h1>
+          <span class="welcome-hanko-seal" aria-hidden="true"><span>1616</span></span>
+        </div>
+        <div class="welcome-title-slash" aria-hidden="true"></div>
+
+        <p class="welcome-subtitle welcome-guide-copy">
+          <span data-i18n="welcomeGuideLead">We are your chaotic 1616 transfer team</span> <strong>Yabadabadoo [WaE]</strong>, <strong>Dolphy RN [NvEM]</strong>, <span data-i18n="welcomeAnd">and</span> <strong>RaidARQN [NvSP]</strong>.
+        </p>
+
+        
+        <div class="guide-meme-stage" aria-label="1616 transfer guides pointing at each other">
+          <div class="meme-figure meme-yaba" aria-hidden="true">
+            <span class="meme-glow"></span>
+            <img class="meme-cutout" src="guide-yaba-transparent.png" alt="Yabadabadoo guide portrait">
+          </div>
+
+          <div class="meme-figure meme-dolph" aria-hidden="true">
+            <span class="meme-glow"></span>
+            <img class="meme-cutout" src="guide-dolph-transparent.png" alt="Dolphy RN guide portrait">
+          </div>
+
+          <div class="meme-figure meme-raid" aria-hidden="true">
+            <span class="meme-glow"></span>
+            <img class="meme-cutout" src="guide-raid-transparent.png" alt="RaidARQN guide portrait">
+          </div>
+        </div>
+
+<div class="welcome-action">
+          <button type="button" class="welcome-enter" id="welcome-enter"><span data-i18n="beginApplication">Begin Application</span> →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <header class="site-header">
+    <div class="brand-wrap">
+      <div class="brand-number" aria-label="1616"><img src="wordmark-1616-transparent-v56.png" alt="1616" class="wordmark-image wordmark-header" /></div>
+      <div class="brand-subtitle" data-i18n="serverTransferApplication">SERVER TRANSFER APPLICATION</div>
+    </div>
+
+    <nav class="site-main-nav" aria-label="Main navigation">
+      <button type="button" class="site-nav-button active" id="nav-application" data-page-target="application">
+        <span class="site-nav-mark" aria-hidden="true">✦</span>
+        <span data-i18n="navApplication">Application</span>
+      </button>
+      <button type="button" class="site-nav-button" id="nav-story" data-page-target="story">
+        <span class="site-nav-mark story-mark" aria-hidden="true">◉</span>
+        <span data-i18n="navStory">1616 Story</span>
+      </button>
+    </nav>
+
+    <div class="header-actions">
+      <label class="language-compact" for="header-language">
+        <span class="sakura-icon" aria-hidden="true"></span>
+        <select id="header-language" aria-label="Language">
+          <option value="en">EN · English</option>
+          <option value="es">ES · Español</option>
+          <option value="pt">PT · Português</option>
+          <option value="fr">FR · Français</option>
+          <option value="ar">AR · العربية</option>
+          <option value="vi">VI · Tiếng Việt</option>
+          <option value="ko">KO · 한국어</option>
+          <option value="de">DE · Deutsch</option>
+        </select>
+      </label>
+      <div class="tagline" data-i18n="headerChooseLanguage">Choose a language</div>
+    </div>
+  </header>
+
+  <main class="story-page" id="story-page" hidden>
+    <section class="story-page-panel">
         <div class="about-1616-hero">
           <span class="about-1616-kicker" data-i18n="about1616JourneyLabel">A visual journey</span>
           <h1 class="welcome-title" data-i18n="about1616Title">About 1616</h1>
@@ -7536,73 +7748,8 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
           </div>
         </div>
 
-        <div class="about-journey-actions">
-          <button type="button" class="welcome-secondary-button" id="about-back" data-i18n="aboutBack">Back</button>
-          <button type="button" class="welcome-enter" id="about-continue"><span data-i18n="aboutContinue">Continue to Welcome</span> →</button>
-        </div>
-      </div>
-
-      <div class="welcome-stage welcome-guide-stage" id="welcome-guide-stage" hidden>
-        <p class="welcome-kicker" data-i18n="serverTransferApplication">SERVER TRANSFER APPLICATION</p>
-        <div class="welcome-title-hero">
-          <h1 class="welcome-title" id="welcome-title" data-i18n="welcomeThanksTitle">Thank you for your interest in joining 1616!</h1>
-          <span class="welcome-hanko-seal" aria-hidden="true"><span>1616</span></span>
-        </div>
-        <div class="welcome-title-slash" aria-hidden="true"></div>
-
-        <p class="welcome-subtitle welcome-guide-copy">
-          <span data-i18n="welcomeGuideLead">We are your chaotic 1616 transfer team</span> <strong>Yabadabadoo [WaE]</strong>, <strong>Dolphy RN [NvEM]</strong>, <span data-i18n="welcomeAnd">and</span> <strong>RaidARQN [NvSP]</strong>.
-        </p>
-
-        
-        <div class="guide-meme-stage" aria-label="1616 transfer guides pointing at each other">
-          <div class="meme-figure meme-yaba" aria-hidden="true">
-            <span class="meme-glow"></span>
-            <img class="meme-cutout" src="guide-yaba-transparent.png" alt="Yabadabadoo guide portrait">
-          </div>
-
-          <div class="meme-figure meme-dolph" aria-hidden="true">
-            <span class="meme-glow"></span>
-            <img class="meme-cutout" src="guide-dolph-transparent.png" alt="Dolphy RN guide portrait">
-          </div>
-
-          <div class="meme-figure meme-raid" aria-hidden="true">
-            <span class="meme-glow"></span>
-            <img class="meme-cutout" src="guide-raid-transparent.png" alt="RaidARQN guide portrait">
-          </div>
-        </div>
-
-<div class="welcome-action">
-          <button type="button" class="welcome-enter" id="welcome-enter"><span data-i18n="beginApplication">Begin Application</span> →</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <header class="site-header">
-    <div class="brand-wrap">
-      <div class="brand-number" aria-label="1616"><img src="wordmark-1616-transparent-v56.png" alt="1616" class="wordmark-image wordmark-header" /></div>
-      <div class="brand-subtitle" data-i18n="serverTransferApplication">SERVER TRANSFER APPLICATION</div>
-    </div>
-
-    <div class="header-actions">
-      <label class="language-compact" for="header-language">
-        <span class="sakura-icon" aria-hidden="true"></span>
-        <select id="header-language" aria-label="Language">
-          <option value="en">EN · English</option>
-          <option value="es">ES · Español</option>
-          <option value="pt">PT · Português</option>
-          <option value="fr">FR · Français</option>
-          <option value="ar">AR · العربية</option>
-          <option value="vi">VI · Tiếng Việt</option>
-          <option value="ko">KO · 한국어</option>
-          <option value="de">DE · Deutsch</option>
-        </select>
-      </label>
-      <div class="tagline" data-i18n="headerChooseLanguage">Choose a language</div>
-    </div>
-  </header>
+          </section>
+  </main>
 
   <main class="app-shell">
     <aside class="progress-panel" aria-label="Application progress">
@@ -8530,6 +8677,8 @@ const CONFIG = {
 const I18N = {
   en: {
     serverTransferApplication: 'SERVER TRANSFER APPLICATION', strongerTogether: 'A STRONGER TOMORROW',
+    navApplication: "Application",
+    navStory: "1616 Story",
     stepLanguage: 'Language', stepYourInfo: 'Your Information', stepGameDetails: 'Game Details', stepTransferGroup: 'Transfer Group', stepAdditional: 'Additional Information', stepReview: 'Review & Submit',
     step1Kicker: 'STEP 1 OF 6', step2Kicker: 'STEP 2 OF 6', step3Kicker: 'STEP 3 OF 6', step4Kicker: 'STEP 4 OF 6', step5Kicker: 'STEP 5 OF 6', step6Kicker: 'STEP 6 OF 6',
     chooseLanguage: 'Choose your language', languageIntro: 'Choose the language you would like to use. You can change it at any time.',
@@ -8574,8 +8723,8 @@ const I18N = {
     welcomeChooseLanguageIntro: "Choose the language you would like to use for the transfer application.",
     welcomeThanksTitle: "Thank you for your interest in joining 1616!",
     welcomeGuideLead: "We are your chaotic 1616 transfer team",
-    about1616JourneyLabel: "A visual journey",
-    about1616Title: "About 1616",
+    about1616JourneyLabel: "Our journey through the seasons",
+    about1616Title: "1616 Story",
     about1616Intro: "The milestones below follow the game’s season journey. Each card includes a 1616 Story placeholder so we can later add what actually happened on our server.",
     seasonLabel: "Season",
     about1616StoryLabel: "1616 Story",
@@ -8744,6 +8893,8 @@ const I18N = {
   },
   es: {
     serverTransferApplication: 'SOLICITUD DE TRANSFERENCIA', strongerTogether: 'UN MAÑANA MÁS FUERTE',
+    navApplication: "Solicitud",
+    navStory: "Historia 1616",
     stepLanguage: 'Idioma', stepYourInfo: 'Tu información', stepGameDetails: 'Datos del juego', stepTransferGroup: 'Grupo de transferencia', stepAdditional: 'Información adicional', stepReview: 'Revisar y enviar',
     step1Kicker: 'PASO 1 DE 6', step2Kicker: 'PASO 2 DE 6', step3Kicker: 'PASO 3 DE 6', step4Kicker: 'PASO 4 DE 6', step5Kicker: 'PASO 5 DE 6', step6Kicker: 'PASO 6 DE 6',
     chooseLanguage: 'Elige tu idioma', languageIntro: 'Elige el idioma que quieres usar. Puedes cambiarlo en cualquier momento.',
@@ -8759,8 +8910,8 @@ const I18N = {
     welcomeChooseLanguageIntro: "Elige el idioma que quieres usar para la solicitud de transferencia.",
     welcomeThanksTitle: "¡Gracias por tu interés en unirte a 1616!",
     welcomeGuideLead: "Somos tus guías de transferencia:",
-    about1616JourneyLabel: "Un recorrido visual",
-    about1616Title: "Sobre 1616",
+    about1616JourneyLabel: "Nuestro recorrido a través de las temporadas",
+    about1616Title: "Historia 1616",
     about1616Intro: "Los hitos de abajo siguen el recorrido de temporadas del juego. Cada tarjeta incluye un espacio de Historia de 1616 para que más adelante podamos añadir lo que realmente ocurrió en nuestro servidor.",
     seasonLabel: "Temporada",
     about1616StoryLabel: "Historia de 1616",
@@ -8921,6 +9072,8 @@ const I18N = {
   },
   pt: {
     serverTransferApplication: 'INSCRIÇÃO DE TRANSFERÊNCIA', strongerTogether: 'UM AMANHÃ MAIS FORTE',
+    navApplication: "Inscrição",
+    navStory: "História 1616",
     stepLanguage: 'Idioma', stepYourInfo: 'Suas informações', stepGameDetails: 'Dados do jogo', stepTransferGroup: 'Grupo de transferência', stepAdditional: 'Informações adicionais', stepReview: 'Revisar e enviar',
     step1Kicker: 'ETAPA 1 DE 6', step2Kicker: 'ETAPA 2 DE 6', step3Kicker: 'ETAPA 3 DE 6', step4Kicker: 'ETAPA 4 DE 6', step5Kicker: 'ETAPA 5 DE 6', step6Kicker: 'ETAPA 6 DE 6',
     chooseLanguage: 'Escolha seu idioma', languageIntro: 'Escolha o idioma que deseja usar. Você pode alterá-lo a qualquer momento.',
@@ -8936,8 +9089,8 @@ const I18N = {
     welcomeChooseLanguageIntro: "Escolha o idioma que deseja usar na inscrição de transferência.",
     welcomeThanksTitle: "Obrigado pelo seu interesse em entrar no 1616!",
     welcomeGuideLead: "Somos seus guias de transferência:",
-    about1616JourneyLabel: "Uma jornada visual",
-    about1616Title: "Sobre o 1616",
+    about1616JourneyLabel: "Nossa jornada pelas temporadas",
+    about1616Title: "História 1616",
     about1616Intro: "Os marcos abaixo seguem a jornada de temporadas do jogo. Cada cartão inclui um espaço de História do 1616 para adicionarmos depois o que realmente aconteceu no nosso servidor.",
     seasonLabel: "Temporada",
     about1616StoryLabel: "História do 1616",
@@ -9098,6 +9251,8 @@ const I18N = {
   },
   fr: {
     serverTransferApplication: 'DEMANDE DE TRANSFERT', strongerTogether: 'UN AVENIR PLUS FORT',
+    navApplication: "Candidature",
+    navStory: "Histoire 1616",
     stepLanguage: 'Langue', stepYourInfo: 'Vos informations', stepGameDetails: 'Données du jeu', stepTransferGroup: 'Groupe de transfert', stepAdditional: 'Informations supplémentaires', stepReview: 'Vérifier et envoyer',
     step1Kicker: 'ÉTAPE 1 SUR 6', step2Kicker: 'ÉTAPE 2 SUR 6', step3Kicker: 'ÉTAPE 3 SUR 6', step4Kicker: 'ÉTAPE 4 SUR 6', step5Kicker: 'ÉTAPE 5 SUR 6', step6Kicker: 'ÉTAPE 6 SUR 6',
     chooseLanguage: 'Choisissez votre langue', languageIntro: 'Choisissez la langue que vous souhaitez utiliser. Vous pourrez la modifier à tout moment.',
@@ -9113,8 +9268,8 @@ const I18N = {
     welcomeChooseLanguageIntro: "Choisissez la langue que vous souhaitez utiliser pour la demande de transfert.",
     welcomeThanksTitle: "Merci de votre intérêt pour rejoindre 1616 !",
     welcomeGuideLead: "Nous sommes vos guides de transfert :",
-    about1616JourneyLabel: "Un parcours visuel",
-    about1616Title: "À propos de 1616",
+    about1616JourneyLabel: "Notre parcours à travers les saisons",
+    about1616Title: "Histoire 1616",
     about1616Intro: "Les jalons ci-dessous suivent le parcours des saisons du jeu. Chaque carte comprend un emplacement Histoire de 1616 afin que nous puissions ajouter plus tard ce qui s’est réellement passé sur notre serveur.",
     seasonLabel: "Saison",
     about1616StoryLabel: "Histoire de 1616",
@@ -9275,6 +9430,8 @@ const I18N = {
   },
   ar: {
     serverTransferApplication: 'طلب الانتقال إلى السيرفر', strongerTogether: 'غدٌ أقوى معًا',
+    navApplication: "الطلب",
+    navStory: "قصة 1616",
     stepLanguage: 'اللغة', stepYourInfo: 'معلوماتك', stepGameDetails: 'تفاصيل اللعبة', stepTransferGroup: 'مجموعة الانتقال', stepAdditional: 'معلومات إضافية', stepReview: 'المراجعة والإرسال',
     step1Kicker: 'الخطوة 1 من 6', step2Kicker: 'الخطوة 2 من 6', step3Kicker: 'الخطوة 3 من 6', step4Kicker: 'الخطوة 4 من 6', step5Kicker: 'الخطوة 5 من 6', step6Kicker: 'الخطوة 6 من 6',
     chooseLanguage: 'اختر لغتك', languageIntro: 'اختر اللغة التي تريد استخدامها. يمكنك تغييرها في أي وقت.',
@@ -9290,8 +9447,8 @@ const I18N = {
     welcomeChooseLanguageIntro: "اختر اللغة التي تريد استخدامها في طلب الانتقال.",
     welcomeThanksTitle: "شكرًا لاهتمامك بالانضمام إلى 1616!",
     welcomeGuideLead: "نحن مرشدو الانتقال الخاصون بك:",
-    about1616JourneyLabel: "رحلة بصرية",
-    about1616Title: "حول 1616",
+    about1616JourneyLabel: "رحلتنا عبر المواسم",
+    about1616Title: "قصة 1616",
     about1616Intro: "تتبع المحطات أدناه رحلة مواسم اللعبة. تتضمن كل بطاقة مساحة لقصة 1616 حتى نضيف لاحقًا ما حدث فعليًا على سيرفرنا.",
     seasonLabel: "الموسم",
     about1616StoryLabel: "قصة 1616",
@@ -9452,6 +9609,8 @@ const I18N = {
   },
   vi: {
     serverTransferApplication: 'ĐƠN CHUYỂN SERVER', strongerTogether: 'MỘT NGÀY MAI MẠNH MẼ HƠN',
+    navApplication: "Đơn đăng ký",
+    navStory: "Câu chuyện 1616",
     stepLanguage: 'Ngôn ngữ', stepYourInfo: 'Thông tin của bạn', stepGameDetails: 'Thông tin game', stepTransferGroup: 'Nhóm chuyển server', stepAdditional: 'Thông tin bổ sung', stepReview: 'Kiểm tra & gửi',
     step1Kicker: 'BƯỚC 1/6', step2Kicker: 'BƯỚC 2/6', step3Kicker: 'BƯỚC 3/6', step4Kicker: 'BƯỚC 4/6', step5Kicker: 'BƯỚC 5/6', step6Kicker: 'BƯỚC 6/6',
     chooseLanguage: 'Chọn ngôn ngữ', languageIntro: 'Chọn ngôn ngữ bạn muốn sử dụng. Bạn có thể thay đổi bất cứ lúc nào.',
@@ -9467,8 +9626,8 @@ const I18N = {
     welcomeChooseLanguageIntro: "Chọn ngôn ngữ bạn muốn sử dụng cho đơn chuyển server.",
     welcomeThanksTitle: "Cảm ơn bạn đã quan tâm đến việc tham gia 1616!",
     welcomeGuideLead: "Chúng tôi là những người hướng dẫn chuyển server của bạn:",
-    about1616JourneyLabel: "Hành trình trực quan",
-    about1616Title: "Về 1616",
+    about1616JourneyLabel: "Hành trình của chúng ta qua các mùa",
+    about1616Title: "Câu chuyện 1616",
     about1616Intro: "Các cột mốc dưới đây đi theo hành trình mùa của game. Mỗi thẻ đều có phần Câu chuyện 1616 để sau này chúng ta bổ sung những gì thực sự đã xảy ra trên server.",
     seasonLabel: "Mùa",
     about1616StoryLabel: "Câu chuyện 1616",
@@ -9629,6 +9788,8 @@ const I18N = {
   },
   ko: {
     serverTransferApplication: '서버 이전 신청서', strongerTogether: '더 강한 내일',
+    navApplication: "신청서",
+    navStory: "1616 이야기",
     stepLanguage: '언어', stepYourInfo: '내 정보', stepGameDetails: '게임 정보', stepTransferGroup: '이전 그룹', stepAdditional: '추가 정보', stepReview: '검토 및 제출',
     step1Kicker: '1 / 6단계', step2Kicker: '2 / 6단계', step3Kicker: '3 / 6단계', step4Kicker: '4 / 6단계', step5Kicker: '5 / 6단계', step6Kicker: '6 / 6단계',
     chooseLanguage: '언어 선택', languageIntro: '사용할 언어를 선택하세요. 언제든지 변경할 수 있습니다.',
@@ -9644,8 +9805,8 @@ const I18N = {
     welcomeChooseLanguageIntro: "서버 이동 신청에 사용할 언어를 선택하세요.",
     welcomeThanksTitle: "1616에 합류하는 데 관심을 가져주셔서 감사합니다!",
     welcomeGuideLead: "저희는 여러분의 서버 이동 가이드입니다:",
-    about1616JourneyLabel: "시각적 여정",
-    about1616Title: "1616 소개",
+    about1616JourneyLabel: "시즌을 따라가는 우리의 여정",
+    about1616Title: "1616 이야기",
     about1616Intro: "아래 이정표는 게임의 시즌 흐름을 따라갑니다. 각 카드에는 나중에 우리 서버에서 실제로 있었던 일을 추가할 수 있도록 1616 이야기 자리표시자가 있습니다.",
     seasonLabel: "시즌",
     about1616StoryLabel: "1616 이야기",
@@ -9806,6 +9967,8 @@ const I18N = {
   },
   de: {
     serverTransferApplication: 'SERVER-TRANSFER-BEWERBUNG', strongerTogether: 'EINE STÄRKERE ZUKUNFT',
+    navApplication: "Bewerbung",
+    navStory: "1616-Geschichte",
     stepLanguage: 'Sprache', stepYourInfo: 'Deine Informationen', stepGameDetails: 'Spieldaten', stepTransferGroup: 'Transfergruppe', stepAdditional: 'Zusätzliche Informationen', stepReview: 'Prüfen & senden',
     step1Kicker: 'SCHRITT 1 VON 6', step2Kicker: 'SCHRITT 2 VON 6', step3Kicker: 'SCHRITT 3 VON 6', step4Kicker: 'SCHRITT 4 VON 6', step5Kicker: 'SCHRITT 5 VON 6', step6Kicker: 'SCHRITT 6 VON 6',
     chooseLanguage: 'Wähle deine Sprache', languageIntro: 'Wähle die Sprache, die du verwenden möchtest. Du kannst sie jederzeit ändern.',
@@ -9821,8 +9984,8 @@ const I18N = {
     welcomeChooseLanguageIntro: "Wähle die Sprache, die du für die Transfer-Bewerbung verwenden möchtest.",
     welcomeThanksTitle: "Danke für dein Interesse, 1616 beizutreten!",
     welcomeGuideLead: "Wir sind deine Transfer-Guides:",
-    about1616JourneyLabel: "Eine visuelle Reise",
-    about1616Title: "Über 1616",
+    about1616JourneyLabel: "Unsere Reise durch die Saisons",
+    about1616Title: "1616-Geschichte",
     about1616Intro: "Die Meilensteine unten folgen der Saisonreise des Spiels. Jede Karte enthält einen Platzhalter für die 1616-Geschichte, damit wir später ergänzen können, was auf unserem Server tatsächlich passiert ist.",
     seasonLabel: "Saison",
     about1616StoryLabel: "1616-Geschichte",
@@ -11208,22 +11371,37 @@ function initPetals() {
 }
 
 
+
+function showTopPage(page) {
+  const appShell = document.querySelector('.app-shell');
+  const storyPage = document.getElementById('story-page');
+  const appButton = document.getElementById('nav-application');
+  const storyButton = document.getElementById('nav-story');
+  if (!appShell || !storyPage || !appButton || !storyButton) return;
+
+  const story = page === 'story';
+  appShell.hidden = story;
+  storyPage.hidden = !story;
+  appButton.classList.toggle('active', !story);
+  storyButton.classList.toggle('active', story);
+  appButton.setAttribute('aria-current', story ? 'false' : 'page');
+  storyButton.setAttribute('aria-current', story ? 'page' : 'false');
+  document.body.classList.toggle('story-page-open', story);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 function initWelcomeScreen() {
   const welcome = document.getElementById('welcome-screen');
   const languageStage = document.getElementById('welcome-language-stage');
-  const aboutStage = document.getElementById('welcome-about-stage');
   const guideStage = document.getElementById('welcome-guide-stage');
   const enter = document.getElementById('welcome-enter');
-  const aboutBack = document.getElementById('about-back');
-  const aboutContinue = document.getElementById('about-continue');
   const languageChoices = [...document.querySelectorAll('[data-welcome-language]')];
-  if (!welcome || !languageStage || !aboutStage || !guideStage || !enter || !aboutBack || !aboutContinue) return;
+  if (!welcome || !languageStage || !guideStage || !enter) return;
 
   const showStage = stage => {
     languageStage.hidden = stage !== 'language';
-    aboutStage.hidden = stage !== 'about';
     guideStage.hidden = stage !== 'guide';
-    const stageEl = stage === 'about' ? aboutStage : stage === 'guide' ? guideStage : languageStage;
+    const stageEl = stage === 'guide' ? guideStage : languageStage;
     stageEl.classList.remove('stage-enter');
     void stageEl.offsetWidth;
     stageEl.classList.add('stage-enter');
@@ -11237,16 +11415,14 @@ function initWelcomeScreen() {
   languageChoices.forEach(btn => {
     btn.addEventListener('click', () => {
       setLanguage(btn.dataset.welcomeLanguage);
-      showStage('about');
+      showStage('guide');
     });
   });
-
-  aboutBack.addEventListener('click', () => showStage('language'));
-  aboutContinue.addEventListener('click', () => showStage('guide'));
 
   enter.addEventListener('click', () => {
     welcome.hidden = true;
     document.body.classList.remove('welcome-open');
+    showTopPage('application');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
@@ -11302,6 +11478,8 @@ form.addEventListener('submit', submitApplication);
 form.addEventListener('input', hideValidationBanner);
 form.addEventListener('change', hideValidationBanner);
 headerLanguage.addEventListener('change', () => setLanguage(headerLanguage.value));
+document.getElementById('nav-application')?.addEventListener('click', () => showTopPage('application'));
+document.getElementById('nav-story')?.addEventListener('click', () => showTopPage('story'));
 document.querySelectorAll('.language-card').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.language)));
 stepLinks.forEach(btn => btn.addEventListener('click', () => {
   const target = Number(btn.dataset.stepTarget);
@@ -11389,6 +11567,7 @@ document.getElementById('comments-count').textContent = document.getElementById(
 initPetals();
 initCustomSelects();
 document.querySelectorAll('select').forEach(syncCustomSelect);
+showTopPage('application');
 initWelcomeScreen();
 
   </script>

@@ -634,3 +634,10 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 - Added a separate 1616 Story placeholder on every card for server-specific history to be filled in later.
 - Updated the About page content across all eight supported languages.
 
+## v85 standalone 1616 Story page
+- Removed the season journey from the initial welcome sequence.
+- Added a persistent top navigation menu with **Application** and **1616 Story**.
+- 1616 Story is now its own full page beneath the persistent site header.
+- The language selector remains available while viewing either page.
+- Language selection now proceeds directly to the transfer-team welcome screen, then into the application.
+
