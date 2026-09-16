@@ -260,3 +260,10 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Replaced the Transfer Planning expand/collapse chevron with a filled triangle.
 - The triangle points right when the optional section is closed and rotates downward when the section is open.
 - Added a subtle pink hover glow so the expand control is easier to recognize.
+
+
+## v35
+- Added a samurai-themed CSS animation to the main title whenever the user moves to a different application step.
+- The Bungee Tint title now reveals rapidly like an ink/blade cut, followed by a red katana slash and a small travelling spark.
+- Animation plays only on actual step changes, not ordinary language refreshes.
+- Added reduced-motion support for accessibility.
