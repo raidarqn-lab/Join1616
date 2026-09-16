@@ -447,3 +447,10 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - English now displays `(Optional)` everywhere instead of `Optional` / `OPTIONAL`.
 - Applied the equivalent parenthesized treatment to all supported languages.
 - Updated the Transfer Planning explanatory note so its optional designation also appears in parentheses and italics.
+
+
+## v58
+- The Transfer Group reminder popup no longer forces applicants to copy the group name before proceeding.
+- The Continue button is available immediately.
+- Copy Group Name remains available and still changes to “Copied!” when used.
+- Updated the reminder copy so copying is encouraged rather than required.

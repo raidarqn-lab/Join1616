@@ -4003,7 +4003,6 @@ select:focus,
 }
 .transfer-group-reminder-actions { display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; }
 #transfer-group-reminder-copy-button, #transfer-group-reminder-continue { min-width: 190px; }
-#transfer-group-reminder-continue[disabled] { opacity: .52; cursor: not-allowed; box-shadow: none; }
 .transfer-group-reminder-note { margin: 15px 0 0; color: #d9aea3; font-size: .8rem; line-height: 1.55; }
 body.transfer-group-reminder-open { overflow: hidden; }
 @keyframes transferGroupReminderIn {
@@ -4868,9 +4867,9 @@ body.transfer-group-reminder-open { overflow: hidden; }
       </div>
       <div class="transfer-group-reminder-actions">
         <button type="button" class="button submit" id="transfer-group-reminder-copy-button" data-i18n="copyTransferGroupName">Copy Group Name</button>
-        <button type="button" class="button secondary" id="transfer-group-reminder-continue" data-i18n="continueAfterCopy" disabled>Continue</button>
+        <button type="button" class="button secondary" id="transfer-group-reminder-continue" data-i18n="continueAfterCopy">Continue</button>
       </div>
-      <p class="transfer-group-reminder-note" data-i18n="transferGroupReminderNote">Please hit copy to save it to your clipboard, then continue.</p>
+      <p class="transfer-group-reminder-note" data-i18n="transferGroupReminderNote">You can copy the group name to your clipboard before continuing.</p>
     </div>
   </div>
 
@@ -4947,7 +4946,7 @@ const I18N = {
     copyTransferGroupName: "Copy Group Name",
     continueAfterCopy: "Continue",
     copiedTransferGroupName: "Copied!",
-    transferGroupReminderNote: "Please hit copy to save it to your clipboard, then continue.",
+    transferGroupReminderNote: "You can copy the group name to your clipboard before continuing.",
     usernameShort: "Player",
     serverShort: "Server",
     stepOfFive: "Step {step} of 5",
@@ -6239,7 +6238,7 @@ function renderTransferGroupReminderModal() {
   if (els.copy) els.copy.textContent = t('transferGroupReminderBody');
   if (els.name) els.name.textContent = groupName;
   if (els.copyButton) els.copyButton.textContent = state.transferGroupReminderCopied ? t('copiedTransferGroupName') : t('copyTransferGroupName');
-  if (els.continueButton) els.continueButton.disabled = !state.transferGroupReminderCopied;
+  if (els.continueButton) els.continueButton.disabled = false;
 }
 
 function openTransferGroupReminderModal(destinationStep = 4) {
