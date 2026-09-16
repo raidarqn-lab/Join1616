@@ -4019,6 +4019,53 @@ body.transfer-group-reminder-open { overflow: hidden; }
   #transfer-group-reminder-copy-button, #transfer-group-reminder-continue { width: 100%; }
 }
 
+
+/* ================================================================
+   v53 — HEADER LANGUAGE DROPDOWN STACKING FIX
+   Keep the expanded language menu above the application panel.
+   ================================================================ */
+.site-header {
+  position: relative;
+  z-index: 1200;
+  overflow: visible !important;
+}
+
+.header-actions,
+.language-compact,
+.language-compact .custom-select {
+  position: relative;
+  z-index: 1201;
+  overflow: visible !important;
+}
+
+.language-compact .custom-select-menu {
+  z-index: 1300;
+}
+
+.app-shell {
+  position: relative;
+  z-index: 3;
+}
+
+/* Make sure nearby application panels cannot clip or cover the header menu. */
+.progress-panel,
+.form-panel {
+  z-index: 1;
+}
+
+@media (max-width: 760px) {
+  .site-header,
+  .header-actions,
+  .language-compact,
+  .language-compact .custom-select {
+    overflow: visible !important;
+  }
+
+  .language-compact .custom-select-menu {
+    z-index: 1400;
+  }
+}
+
 </style>
 </head>
 <body>

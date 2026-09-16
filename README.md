@@ -413,3 +413,10 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Added a Copy Group Name button that copies the Transfer Group Name to the clipboard.
 - The Continue button inside the popup stays disabled until the applicant presses Copy.
 - If the Transfer Group Name changes, the reminder will be shown again before proceeding.
+
+
+## v53
+- Fixed the top-right language selector opening behind the main application area.
+- Raised the header and language selector into a higher stacking context.
+- Forced the header/language wrappers to allow overflow so the dropdown is not clipped.
+- Increased the language menu z-index on desktop and mobile.
