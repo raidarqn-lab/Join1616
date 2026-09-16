@@ -15,7 +15,8 @@
 const SHEETS = {
   APPLICATIONS: 'Applications',
   GROUPS: 'TransferGroups',
-  MEMBERS: 'GroupMembers'
+  MEMBERS: 'GroupMembers',
+  QUESTIONS: 'Questions'
 };
 
 const APPLICATION_HEADERS = [
@@ -38,11 +39,18 @@ const MEMBER_HEADERS = [
   'Player Name', 'Player Server', 'Player Alliance', 'Player Seat Colour', 'Matched Application ID', 'Match Status'
 ];
 
+
+const QUESTION_HEADERS = [
+  'Timestamp', 'Question ID', 'Username', 'Server', 'Alliance', 'Category', 'Question', 'Contact Email',
+  'Application Step', 'Application Step Label', 'Language', 'Status', 'Discord Notification'
+];
+
 function setupSheets() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   ensureSheet_(ss, SHEETS.APPLICATIONS, APPLICATION_HEADERS);
   ensureSheet_(ss, SHEETS.GROUPS, GROUP_HEADERS);
   ensureSheet_(ss, SHEETS.MEMBERS, MEMBER_HEADERS);
+  ensureSheet_(ss, SHEETS.QUESTIONS, QUESTION_HEADERS);
   SpreadsheetApp.flush();
 }
 
@@ -57,8 +65,11 @@ function doPost(e) {
   try {
     setupSheets();
     const payload = JSON.parse((e && e.postData && e.postData.contents) || '{}');
-    validatePayload_(payload);
     if (payload.website) throw new Error('Spam check failed.');
+    if (String(payload.requestType || '') === 'question') {
+      return handleQuestion_(payload);
+    }
+    validatePayload_(payload);
 
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     const applications = ss.getSheetByName(SHEETS.APPLICATIONS);
@@ -199,6 +210,108 @@ function doPost(e) {
   } finally {
     lock.releaseLock();
   }
+}
+
+
+
+function handleQuestion_(p) {
+  validateQuestionPayload_(p);
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const questions = ss.getSheetByName(SHEETS.QUESTIONS);
+  const now = new Date();
+  const questionId = `Q-${Utilities.getUuid().replace(/-/g, '').slice(0, 10).toUpperCase()}`;
+
+  let discordStatus = 'Webhook not configured';
+  try {
+    discordStatus = sendQuestionToDiscord_(p, questionId) || 'Sent';
+  } catch (err) {
+    console.error('Discord notification failed', err);
+    discordStatus = `Failed: ${String(err && err.message ? err.message : err).slice(0, 180)}`;
+  }
+
+  questions.appendRow([
+    now,
+    questionId,
+    clean_(p.username),
+    digits_(p.currentServer),
+    clean_(p.alliance),
+    clean_(p.category),
+    clean_(p.question),
+    clean_(p.contactEmail),
+    digits_(p.applicationStep),
+    clean_(p.applicationStepLabel),
+    clean_(p.language),
+    'New',
+    discordStatus
+  ]);
+
+  formatSheets_(ss);
+  return json_({ ok: true, requestType: 'question', questionId, discordStatus });
+}
+
+function validateQuestionPayload_(p) {
+  const category = String(p.category || '').trim();
+  const question = String(p.question || '').trim();
+  if (!category) throw new Error('Missing question category.');
+  if (!question) throw new Error('Missing question text.');
+  if (question.length > 1500) throw new Error('Question cannot exceed 1500 characters.');
+  if (String(p.username || '').length > 80) throw new Error('Username is too long.');
+  if (String(p.alliance || '').length > 4) throw new Error('Alliance tag must be 4 characters or fewer.');
+  if (p.currentServer && !/^\d+$/.test(String(p.currentServer))) throw new Error('Server must contain digits only.');
+  if (p.contactEmail && String(p.contactEmail).length > 160) throw new Error('Email is too long.');
+}
+
+function sendQuestionToDiscord_(p, questionId) {
+  const props = PropertiesService.getScriptProperties();
+  const webhookUrl = String(props.getProperty('DISCORD_WEBHOOK_URL') || '').trim();
+  if (!webhookUrl) return 'Webhook not configured';
+
+  const roleId = String(props.getProperty('DISCORD_MENTION_ROLE_ID') || '').replace(/\D/g, '');
+  const display = value => {
+    const text = String(value == null ? '' : value).trim();
+    return text || 'Not entered yet';
+  };
+  const categoryLabels = {
+    application: 'Application Question',
+    transfer_group: 'Transfer Group Question',
+    technical: 'Technical Issue',
+    other: 'Other'
+  };
+
+  const payload = {
+    username: '1616 Transfer Questions',
+    content: roleId ? `<@&${roleId}>` : '',
+    allowed_mentions: roleId ? { roles: [roleId] } : { parse: [] },
+    embeds: [{
+      title: 'New 1616 Transfer Question',
+      description: String(p.question || '').slice(0, 4000),
+      color: 13645891,
+      fields: [
+        { name: 'Question ID', value: display(questionId), inline: true },
+        { name: 'Username', value: display(p.username).slice(0, 1024), inline: true },
+        { name: 'Server', value: display(p.currentServer).slice(0, 1024), inline: true },
+        { name: 'Alliance', value: display(p.alliance).slice(0, 1024), inline: true },
+        { name: 'Category', value: display(categoryLabels[p.category] || p.category).slice(0, 1024), inline: true },
+        { name: 'Application Step', value: `${display(p.applicationStep)} — ${display(p.applicationStepLabel)}`.slice(0, 1024), inline: true },
+        { name: 'Language', value: display(p.language).toUpperCase().slice(0, 1024), inline: true },
+        { name: 'Contact Email', value: display(p.contactEmail).slice(0, 1024), inline: false }
+      ],
+      timestamp: new Date().toISOString(),
+      footer: { text: '1616 Server Transfer Application' }
+    }]
+  };
+
+  const response = UrlFetchApp.fetch(webhookUrl, {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify(payload),
+    muteHttpExceptions: true
+  });
+  const status = response.getResponseCode();
+  if (status < 200 || status >= 300) {
+    throw new Error(`Discord returned HTTP ${status}: ${response.getContentText().slice(0, 180)}`);
+  }
+  return `Sent (${status})`;
 }
 
 function validatePayload_(p) {

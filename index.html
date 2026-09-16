@@ -5090,6 +5090,244 @@ body.transfer-group-reminder-open { overflow: hidden; }
   .stats-guide-accordion-body { padding: 0 10px 12px 49px; }
 }
 
+
+
+/* ================================================================
+   v71 — FLOATING QUESTION / DISCORD SUPPORT WIDGET
+   Small chat-like entry point; this is a question form, not live chat.
+   Applicant username, server, and alliance are populated automatically.
+   ================================================================ */
+body.question-panel-open { overflow-x: hidden; }
+body.welcome-open .question-fab { display: none !important; }
+
+.question-fab {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 1180;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 9px 16px 9px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 103, 132, .58);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 221, 190, .12), transparent 30%),
+    linear-gradient(145deg, rgba(109, 25, 42, .98), rgba(54, 17, 31, .98));
+  color: #fff7ef;
+  box-shadow:
+    0 14px 36px rgba(0,0,0,.38),
+    0 0 0 1px rgba(255, 209, 155, .07) inset,
+    0 0 22px rgba(225, 59, 91, .23);
+  cursor: pointer;
+  font: inherit;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.question-fab:hover,
+.question-fab:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(255, 157, 174, .82);
+  box-shadow: 0 16px 42px rgba(0,0,0,.44), 0 0 28px rgba(232, 67, 101, .34);
+}
+.question-fab-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 219, 174, .35);
+  background: rgba(255,255,255,.06);
+  color: #ffe0c9;
+  font-size: 1.05rem;
+  font-weight: 950;
+  line-height: 1;
+}
+.question-fab-copy { display: grid; gap: 1px; text-align: left; }
+.question-fab-copy strong { font-size: .88rem; line-height: 1.1; letter-spacing: .02em; }
+.question-fab-copy span { color: rgba(255, 231, 217, .76); font-size: .66rem; line-height: 1.1; }
+
+.question-panel[hidden] { display: none !important; }
+.question-panel {
+  position: fixed;
+  right: 22px;
+  bottom: 82px;
+  z-index: 1190;
+  width: min(420px, calc(100vw - 32px));
+  max-height: min(78vh, 720px);
+  overflow-y: auto;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 112, 139, .54);
+  background:
+    radial-gradient(circle at top right, rgba(223, 67, 96, .18), transparent 34%),
+    linear-gradient(180deg, rgba(62, 19, 34, .985), rgba(29, 12, 23, .99));
+  color: #fff8f0;
+  box-shadow: 0 28px 80px rgba(0,0,0,.58), 0 0 30px rgba(206, 42, 74, .20);
+  padding: 18px;
+  animation: questionPanelIn .2s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes questionPanelIn {
+  from { opacity: 0; transform: translateY(10px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.question-panel-header {
+  display: grid;
+  grid-template-columns: 42px minmax(0,1fr) auto;
+  gap: 11px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+.question-panel-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 108, 136, .7);
+  background: rgba(197, 47, 78, .16);
+  color: #ffb7c5;
+  font-weight: 950;
+  font-size: 1.08rem;
+  box-shadow: 0 0 18px rgba(225, 59, 91, .15);
+}
+.question-panel-title { min-width: 0; }
+.question-panel-title h2 { margin: 1px 0 4px; font-size: 1.18rem; line-height: 1.15; color: #fff7ef; }
+.question-panel-title p { margin: 0; color: rgba(255, 229, 216, .74); font-size: .77rem; line-height: 1.4; }
+.question-panel-close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 244, 235, .78);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 2px 5px 8px;
+  font: inherit;
+  font-size: .72rem;
+}
+.question-panel-close .x { font-size: 1.2rem; line-height: 1; }
+
+.question-prefill-grid { display: grid; gap: 8px; margin-bottom: 15px; }
+.question-prefill-row {
+  display: grid;
+  grid-template-columns: 86px minmax(0,1fr);
+  gap: 9px;
+  align-items: center;
+}
+.question-prefill-row label,
+.question-field > label {
+  color: #fff4eb;
+  font-size: .72rem;
+  font-weight: 800;
+}
+.question-prefill-value {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(180, 193, 208, .22);
+  background: rgba(9, 22, 35, .52);
+  color: rgba(235, 243, 247, .86);
+  font-size: .78rem;
+}
+.question-lock { color: rgba(198, 212, 221, .45); font-size: .7rem; }
+.question-field { display: grid; gap: 6px; margin-top: 12px; }
+.question-field em { color: #ff7893; font-style: normal; }
+.question-panel select,
+.question-panel textarea,
+.question-panel input[type="email"] {
+  width: 100%;
+  border: 1px solid rgba(147, 179, 201, .32);
+  border-radius: 9px;
+  background: rgba(7, 23, 36, .64);
+  color: #f2f7fa;
+  font: inherit;
+  font-size: .82rem;
+  outline: none;
+}
+.question-panel select,
+.question-panel input[type="email"] { min-height: 40px; padding: 8px 10px; }
+.question-panel textarea { min-height: 112px; resize: vertical; padding: 10px 11px; line-height: 1.45; }
+.question-panel select:focus,
+.question-panel textarea:focus,
+.question-panel input[type="email"]:focus {
+  border-color: rgba(255, 107, 137, .70);
+  box-shadow: 0 0 0 3px rgba(222, 55, 89, .10);
+}
+.question-field-help { margin: 0; color: rgba(176, 206, 222, .70); font-size: .67rem; line-height: 1.38; }
+.question-discord-note {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin: 13px 0 0;
+  padding: 9px 10px;
+  border-radius: 9px;
+  border: 1px solid rgba(83, 167, 255, .18);
+  background: rgba(35, 91, 151, .10);
+  color: rgba(208, 229, 244, .84);
+  font-size: .7rem;
+  line-height: 1.38;
+}
+.question-actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 15px; }
+.question-actions button {
+  appearance: none;
+  border-radius: 9px;
+  padding: 9px 14px;
+  font: inherit;
+  font-weight: 800;
+  font-size: .78rem;
+  cursor: pointer;
+}
+.question-cancel {
+  border: 1px solid rgba(205, 220, 230, .22);
+  background: rgba(255,255,255,.045);
+  color: #eef4f7;
+}
+.question-submit {
+  border: 1px solid rgba(255, 121, 146, .62);
+  background: linear-gradient(180deg, rgba(208, 48, 82, .94), rgba(153, 29, 58, .96));
+  color: #fff8f3;
+  box-shadow: 0 0 18px rgba(213, 48, 81, .19);
+}
+.question-submit:disabled { opacity: .55; cursor: wait; }
+.question-error { margin: 9px 0 0; color: #ff9eae; font-size: .72rem; line-height: 1.35; }
+.question-confirmation { text-align: center; padding: 20px 10px 14px; }
+.question-confirmation-check {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 15px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 2px solid rgba(71, 219, 240, .88);
+  color: #54dceb;
+  font-size: 2rem;
+  font-weight: 900;
+  box-shadow: 0 0 25px rgba(54, 207, 232, .18);
+}
+.question-confirmation h3 { margin: 0 0 8px; color: #fff8f0; font-size: 1.2rem; }
+.question-confirmation p { margin: 0 auto; max-width: 34ch; color: rgba(224, 237, 244, .78); font-size: .8rem; line-height: 1.5; }
+.question-confirmation .question-submit { margin-top: 18px; min-width: 120px; }
+
+@media (max-width: 620px) {
+  .question-fab { right: 14px; bottom: 14px; min-height: 46px; padding: 7px 13px 7px 8px; }
+  .question-fab-icon { width: 32px; height: 32px; }
+  .question-panel {
+    right: 10px;
+    bottom: 70px;
+    width: calc(100vw - 20px);
+    max-height: calc(100vh - 88px);
+    padding: 15px;
+    border-radius: 18px;
+  }
+  .question-prefill-row { grid-template-columns: 78px minmax(0,1fr); }
+}
+
 </style>
 </head>
 <body>
@@ -5894,6 +6132,84 @@ body.transfer-group-reminder-open { overflow: hidden; }
   </div>
 
 
+
+
+  <!-- FLOATING QUESTION / DISCORD SUPPORT WIDGET -->
+  <button class="question-fab" id="question-fab" type="button" aria-controls="question-panel" aria-expanded="false">
+    <span class="question-fab-icon" aria-hidden="true">?</span>
+    <span class="question-fab-copy">
+      <strong data-i18n="questionFabTitle">Questions?</strong>
+      <span data-i18n="questionFabSub">We’re here to help</span>
+    </span>
+  </button>
+
+  <aside class="question-panel" id="question-panel" hidden aria-labelledby="question-panel-title">
+    <div id="question-form-view">
+      <div class="question-panel-header">
+        <span class="question-panel-icon" aria-hidden="true">?</span>
+        <div class="question-panel-title">
+          <h2 id="question-panel-title" data-i18n="questionPanelTitle">Ask a Question</h2>
+          <p data-i18n="questionPanelIntro">Send a question to our transfer team. This is not live chat.</p>
+        </div>
+        <button class="question-panel-close" id="question-panel-close" type="button">
+          <span data-i18n="closeGuide">Close</span><span class="x" aria-hidden="true">×</span>
+        </button>
+      </div>
+
+      <div class="question-prefill-grid">
+        <div class="question-prefill-row">
+          <label data-i18n="questionUsername">Username</label>
+          <div class="question-prefill-value"><span id="question-prefill-username">—</span><span class="question-lock" aria-hidden="true">▣</span></div>
+        </div>
+        <div class="question-prefill-row">
+          <label data-i18n="questionServer">Server</label>
+          <div class="question-prefill-value"><span id="question-prefill-server">—</span><span class="question-lock" aria-hidden="true">▣</span></div>
+        </div>
+        <div class="question-prefill-row">
+          <label data-i18n="questionAlliance">Alliance</label>
+          <div class="question-prefill-value"><span id="question-prefill-alliance">—</span><span class="question-lock" aria-hidden="true">▣</span></div>
+        </div>
+      </div>
+
+      <div class="question-field">
+        <label for="question-category"><span data-i18n="questionCategory">Category</span> <em>*</em></label>
+        <select id="question-category">
+          <option value="" data-i18n="questionCategoryPlaceholder">Select a category</option>
+          <option value="application" data-i18n="questionCategoryApplication">Application Question</option>
+          <option value="transfer_group" data-i18n="questionCategoryGroup">Transfer Group Question</option>
+          <option value="technical" data-i18n="questionCategoryTechnical">Technical Issue</option>
+          <option value="other" data-i18n="questionCategoryOther">Other</option>
+        </select>
+      </div>
+
+      <div class="question-field">
+        <label for="question-message"><span data-i18n="questionMessageLabel">Your Question</span> <em>*</em></label>
+        <textarea id="question-message" maxlength="1500" data-i18n-placeholder="questionMessagePlaceholder" placeholder="Type your question here..."></textarea>
+      </div>
+
+      <div class="question-field">
+        <label for="question-email"><span data-i18n="questionEmailLabel">Email for a reply</span> <span data-i18n="optional">(Optional)</span></label>
+        <input id="question-email" type="email" maxlength="160" autocomplete="email" data-i18n-placeholder="questionEmailPlaceholder" placeholder="you@example.com" />
+        <p class="question-field-help" data-i18n="questionEmailHelp">Only add this if you would like the team to be able to contact you outside the game.</p>
+      </div>
+
+      <p class="question-discord-note"><span aria-hidden="true">◉</span><span data-i18n="questionDiscordNote">Your question will be logged and sent to the 1616 transfer team through Discord.</span></p>
+      <p class="question-error" id="question-error" hidden></p>
+
+      <div class="question-actions">
+        <button class="question-cancel" id="question-cancel" type="button" data-i18n="cancelQuestion">Cancel</button>
+        <button class="question-submit" id="question-submit" type="button" data-i18n="sendQuestion">Send Question</button>
+      </div>
+    </div>
+
+    <div class="question-confirmation" id="question-confirmation" hidden>
+      <div class="question-confirmation-check" aria-hidden="true">✓</div>
+      <h3 data-i18n="questionThanksTitle">Thanks for your question!</h3>
+      <p data-i18n="questionThanksBody">Your question has been submitted successfully. Our transfer team will review it.</p>
+      <button class="question-submit" id="question-done" type="button" data-i18n="questionDone">Got it</button>
+    </div>
+  </aside>
+
   <section class="stats-guide-modal" id="stats-guide-modal" hidden role="dialog" aria-modal="true" aria-labelledby="stats-guide-title">
     <div class="stats-guide-dialog">
       <div class="stats-guide-topbar">
@@ -6098,6 +6414,35 @@ const I18N = {
     transferGroupNameCaps: "This field automatically converts the group name to ALL CAPS.",
     serverRangeError: "Please select a server from 1573 to 1636.",
     statsGuideButton: "Open visual guide",
+    questionFabTitle: "Questions?",
+    questionFabSub: "We’re here to help",
+    questionPanelTitle: "Ask a Question",
+    questionPanelIntro: "Send a question to our transfer team. This is not live chat.",
+    questionUsername: "Username",
+    questionServer: "Server",
+    questionAlliance: "Alliance",
+    questionCategory: "Category",
+    questionCategoryPlaceholder: "Select a category",
+    questionCategoryApplication: "Application Question",
+    questionCategoryGroup: "Transfer Group Question",
+    questionCategoryTechnical: "Technical Issue",
+    questionCategoryOther: "Other",
+    questionMessageLabel: "Your Question",
+    questionMessagePlaceholder: "Type your question here...",
+    questionEmailLabel: "Email for a reply",
+    questionEmailPlaceholder: "you@example.com",
+    questionEmailHelp: "Only add this if you would like the team to be able to contact you outside the game.",
+    questionDiscordNote: "Your question will be logged and sent to the 1616 transfer team through Discord.",
+    cancelQuestion: "Cancel",
+    sendQuestion: "Send Question",
+    questionThanksTitle: "Thanks for your question!",
+    questionThanksBody: "Your question has been submitted successfully. Our transfer team will review it.",
+    questionDone: "Got it",
+    questionRequiredError: "Please choose a category and enter your question.",
+    questionEmailError: "Please enter a valid email address or leave it blank.",
+    questionSending: "Sending…",
+    questionSendFailed: "We could not send your question. Please try again.",
+    questionNotEntered: "Not entered yet",
     statsGuideCalloutPrompt: "Need help finding these stats?",
     statsGuideHint: "Uses a sample profile with fake data so it works in every language.",
     statsGuideEyebrow: "Sample visual guide",
@@ -6207,6 +6552,35 @@ const I18N = {
     transferGroupNameCaps: "Este campo convierte automáticamente el nombre del grupo a MAYÚSCULAS.",
     serverRangeError: "Selecciona un servidor entre 1573 y 1636.",
     statsGuideButton: "Abrir guía visual",
+    questionFabTitle: "¿Preguntas?",
+    questionFabSub: "Estamos aquí para ayudarte",
+    questionPanelTitle: "Haz una pregunta",
+    questionPanelIntro: "Envía una pregunta a nuestro equipo de transferencias. No es un chat en vivo.",
+    questionUsername: "Usuario",
+    questionServer: "Servidor",
+    questionAlliance: "Alianza",
+    questionCategory: "Categoría",
+    questionCategoryPlaceholder: "Selecciona una categoría",
+    questionCategoryApplication: "Pregunta sobre la solicitud",
+    questionCategoryGroup: "Pregunta sobre grupo de transferencia",
+    questionCategoryTechnical: "Problema técnico",
+    questionCategoryOther: "Otro",
+    questionMessageLabel: "Tu pregunta",
+    questionMessagePlaceholder: "Escribe tu pregunta aquí...",
+    questionEmailLabel: "Correo para responder",
+    questionEmailPlaceholder: "tu@ejemplo.com",
+    questionEmailHelp: "Añádelo solo si quieres que el equipo pueda contactarte fuera del juego.",
+    questionDiscordNote: "Tu pregunta se registrará y se enviará al equipo de transferencias de 1616 por Discord.",
+    cancelQuestion: "Cancelar",
+    sendQuestion: "Enviar pregunta",
+    questionThanksTitle: "¡Gracias por tu pregunta!",
+    questionThanksBody: "Tu pregunta se ha enviado correctamente. Nuestro equipo de transferencias la revisará.",
+    questionDone: "Entendido",
+    questionRequiredError: "Selecciona una categoría y escribe tu pregunta.",
+    questionEmailError: "Introduce un correo válido o déjalo en blanco.",
+    questionSending: "Enviando…",
+    questionSendFailed: "No pudimos enviar tu pregunta. Inténtalo de nuevo.",
+    questionNotEntered: "Aún no ingresado",
     statsGuideCalloutPrompt: "¿Necesitas ayuda para encontrar estas estadísticas?",
     statsGuideHint: "Usa un perfil de ejemplo con datos falsos para que funcione en cualquier idioma.",
     statsGuideEyebrow: "Guía visual de ejemplo",
@@ -6316,6 +6690,35 @@ const I18N = {
     transferGroupNameCaps: "Este campo converte automaticamente o nome do grupo para LETRAS MAIÚSCULAS.",
     serverRangeError: "Selecione um servidor entre 1573 e 1636.",
     statsGuideButton: "Abrir guia visual",
+    questionFabTitle: "Dúvidas?",
+    questionFabSub: "Estamos aqui para ajudar",
+    questionPanelTitle: "Faça uma pergunta",
+    questionPanelIntro: "Envie uma pergunta para nossa equipe de transferência. Isto não é um chat ao vivo.",
+    questionUsername: "Nome de usuário",
+    questionServer: "Servidor",
+    questionAlliance: "Aliança",
+    questionCategory: "Categoria",
+    questionCategoryPlaceholder: "Selecione uma categoria",
+    questionCategoryApplication: "Pergunta sobre a inscrição",
+    questionCategoryGroup: "Pergunta sobre grupo de transferência",
+    questionCategoryTechnical: "Problema técnico",
+    questionCategoryOther: "Outro",
+    questionMessageLabel: "Sua pergunta",
+    questionMessagePlaceholder: "Digite sua pergunta aqui...",
+    questionEmailLabel: "E-mail para resposta",
+    questionEmailPlaceholder: "voce@exemplo.com",
+    questionEmailHelp: "Adicione apenas se quiser que a equipe possa entrar em contato fora do jogo.",
+    questionDiscordNote: "Sua pergunta será registrada e enviada à equipe de transferência do 1616 pelo Discord.",
+    cancelQuestion: "Cancelar",
+    sendQuestion: "Enviar pergunta",
+    questionThanksTitle: "Obrigado pela pergunta!",
+    questionThanksBody: "Sua pergunta foi enviada com sucesso. Nossa equipe de transferência irá analisá-la.",
+    questionDone: "Entendi",
+    questionRequiredError: "Selecione uma categoria e digite sua pergunta.",
+    questionEmailError: "Digite um e-mail válido ou deixe em branco.",
+    questionSending: "Enviando…",
+    questionSendFailed: "Não foi possível enviar sua pergunta. Tente novamente.",
+    questionNotEntered: "Ainda não informado",
     statsGuideCalloutPrompt: "Precisa de ajuda para encontrar estes dados?",
     statsGuideHint: "Usa um perfil de exemplo com dados falsos para funcionar em qualquer idioma.",
     statsGuideEyebrow: "Guia visual de exemplo",
@@ -6425,6 +6828,35 @@ const I18N = {
     transferGroupNameCaps: "Ce champ convertit automatiquement le nom du groupe en MAJUSCULES.",
     serverRangeError: "Veuillez sélectionner un serveur entre 1573 et 1636.",
     statsGuideButton: "Ouvrir le guide visuel",
+    questionFabTitle: "Questions ?",
+    questionFabSub: "Nous sommes là pour aider",
+    questionPanelTitle: "Poser une question",
+    questionPanelIntro: "Envoyez une question à notre équipe de transfert. Ce n’est pas un chat en direct.",
+    questionUsername: "Nom d’utilisateur",
+    questionServer: "Serveur",
+    questionAlliance: "Alliance",
+    questionCategory: "Catégorie",
+    questionCategoryPlaceholder: "Choisissez une catégorie",
+    questionCategoryApplication: "Question sur la candidature",
+    questionCategoryGroup: "Question sur le groupe de transfert",
+    questionCategoryTechnical: "Problème technique",
+    questionCategoryOther: "Autre",
+    questionMessageLabel: "Votre question",
+    questionMessagePlaceholder: "Écrivez votre question ici...",
+    questionEmailLabel: "E-mail pour une réponse",
+    questionEmailPlaceholder: "vous@exemple.com",
+    questionEmailHelp: "Ajoutez-le seulement si vous souhaitez que l’équipe puisse vous contacter hors du jeu.",
+    questionDiscordNote: "Votre question sera enregistrée et envoyée à l’équipe de transfert 1616 via Discord.",
+    cancelQuestion: "Annuler",
+    sendQuestion: "Envoyer la question",
+    questionThanksTitle: "Merci pour votre question !",
+    questionThanksBody: "Votre question a bien été envoyée. Notre équipe de transfert va l’examiner.",
+    questionDone: "Compris",
+    questionRequiredError: "Choisissez une catégorie et saisissez votre question.",
+    questionEmailError: "Saisissez une adresse e-mail valide ou laissez ce champ vide.",
+    questionSending: "Envoi…",
+    questionSendFailed: "Nous n’avons pas pu envoyer votre question. Réessayez.",
+    questionNotEntered: "Pas encore renseigné",
     statsGuideCalloutPrompt: "Besoin d’aide pour trouver ces statistiques ?",
     statsGuideHint: "Utilise un profil d’exemple avec de fausses données afin de fonctionner dans toutes les langues.",
     statsGuideEyebrow: "Guide visuel d’exemple",
@@ -6534,6 +6966,35 @@ const I18N = {
     transferGroupNameCaps: "يحوّل هذا الحقل اسم المجموعة تلقائيًا إلى أحرف كبيرة حيثما ينطبق.",
     serverRangeError: "يرجى اختيار سيرفر من 1573 إلى 1636.",
     statsGuideButton: "افتح الدليل المرئي",
+    questionFabTitle: "لديك سؤال؟",
+    questionFabSub: "نحن هنا للمساعدة",
+    questionPanelTitle: "اطرح سؤالاً",
+    questionPanelIntro: "أرسل سؤالاً إلى فريق النقل. هذه ليست محادثة مباشرة.",
+    questionUsername: "اسم المستخدم",
+    questionServer: "السيرفر",
+    questionAlliance: "التحالف",
+    questionCategory: "الفئة",
+    questionCategoryPlaceholder: "اختر فئة",
+    questionCategoryApplication: "سؤال عن الطلب",
+    questionCategoryGroup: "سؤال عن مجموعة النقل",
+    questionCategoryTechnical: "مشكلة تقنية",
+    questionCategoryOther: "أخرى",
+    questionMessageLabel: "سؤالك",
+    questionMessagePlaceholder: "اكتب سؤالك هنا...",
+    questionEmailLabel: "البريد الإلكتروني للرد",
+    questionEmailPlaceholder: "you@example.com",
+    questionEmailHelp: "أضفه فقط إذا كنت تريد أن يتمكن الفريق من التواصل معك خارج اللعبة.",
+    questionDiscordNote: "سيتم تسجيل سؤالك وإرساله إلى فريق نقل 1616 عبر Discord.",
+    cancelQuestion: "إلغاء",
+    sendQuestion: "إرسال السؤال",
+    questionThanksTitle: "شكراً على سؤالك!",
+    questionThanksBody: "تم إرسال سؤالك بنجاح. سيقوم فريق النقل بمراجعته.",
+    questionDone: "حسناً",
+    questionRequiredError: "يرجى اختيار فئة وكتابة سؤالك.",
+    questionEmailError: "أدخل بريداً إلكترونياً صالحاً أو اتركه فارغاً.",
+    questionSending: "جارٍ الإرسال…",
+    questionSendFailed: "تعذر إرسال سؤالك. حاول مرة أخرى.",
+    questionNotEntered: "لم يتم إدخاله بعد",
     statsGuideCalloutPrompt: "هل تحتاج إلى مساعدة في العثور على هذه الإحصائيات؟",
     statsGuideHint: "يستخدم ملفًا شخصيًا تجريبيًا ببيانات وهمية، لذلك يصلح لكل اللغات.",
     statsGuideEyebrow: "دليل مرئي تجريبي",
@@ -6643,6 +7104,35 @@ const I18N = {
     transferGroupNameCaps: "Trường này tự động chuyển tên nhóm thành CHỮ IN HOA.",
     serverRangeError: "Vui lòng chọn server từ 1573 đến 1636.",
     statsGuideButton: "Mở hướng dẫn hình ảnh",
+    questionFabTitle: "Có câu hỏi?",
+    questionFabSub: "Chúng tôi sẵn sàng hỗ trợ",
+    questionPanelTitle: "Đặt câu hỏi",
+    questionPanelIntro: "Gửi câu hỏi cho đội chuyển server. Đây không phải trò chuyện trực tiếp.",
+    questionUsername: "Tên người chơi",
+    questionServer: "Server",
+    questionAlliance: "Liên minh",
+    questionCategory: "Danh mục",
+    questionCategoryPlaceholder: "Chọn một danh mục",
+    questionCategoryApplication: "Câu hỏi về đơn đăng ký",
+    questionCategoryGroup: "Câu hỏi về nhóm chuyển server",
+    questionCategoryTechnical: "Vấn đề kỹ thuật",
+    questionCategoryOther: "Khác",
+    questionMessageLabel: "Câu hỏi của bạn",
+    questionMessagePlaceholder: "Nhập câu hỏi tại đây...",
+    questionEmailLabel: "Email để nhận phản hồi",
+    questionEmailPlaceholder: "ban@example.com",
+    questionEmailHelp: "Chỉ thêm nếu bạn muốn đội có thể liên hệ với bạn ngoài trò chơi.",
+    questionDiscordNote: "Câu hỏi của bạn sẽ được lưu và gửi đến đội chuyển server 1616 qua Discord.",
+    cancelQuestion: "Hủy",
+    sendQuestion: "Gửi câu hỏi",
+    questionThanksTitle: "Cảm ơn câu hỏi của bạn!",
+    questionThanksBody: "Câu hỏi đã được gửi thành công. Đội chuyển server sẽ xem xét.",
+    questionDone: "Đã hiểu",
+    questionRequiredError: "Vui lòng chọn danh mục và nhập câu hỏi.",
+    questionEmailError: "Nhập email hợp lệ hoặc để trống.",
+    questionSending: "Đang gửi…",
+    questionSendFailed: "Không thể gửi câu hỏi. Vui lòng thử lại.",
+    questionNotEntered: "Chưa nhập",
     statsGuideCalloutPrompt: "Bạn cần trợ giúp để tìm các chỉ số này?",
     statsGuideHint: "Sử dụng hồ sơ mẫu với dữ liệu giả để dùng được cho mọi ngôn ngữ.",
     statsGuideEyebrow: "Hướng dẫn hình ảnh mẫu",
@@ -6752,6 +7242,35 @@ const I18N = {
     transferGroupNameCaps: "이 필드는 그룹 이름을 자동으로 대문자로 변환합니다.",
     serverRangeError: "1573~1636 사이의 서버를 선택하세요.",
     statsGuideButton: "비주얼 가이드 열기",
+    questionFabTitle: "질문이 있나요?",
+    questionFabSub: "도와드리겠습니다",
+    questionPanelTitle: "질문 보내기",
+    questionPanelIntro: "이전 팀에 질문을 보내세요. 실시간 채팅은 아닙니다.",
+    questionUsername: "사용자 이름",
+    questionServer: "서버",
+    questionAlliance: "연맹",
+    questionCategory: "카테고리",
+    questionCategoryPlaceholder: "카테고리 선택",
+    questionCategoryApplication: "지원서 질문",
+    questionCategoryGroup: "이전 그룹 질문",
+    questionCategoryTechnical: "기술 문제",
+    questionCategoryOther: "기타",
+    questionMessageLabel: "질문",
+    questionMessagePlaceholder: "질문을 입력하세요...",
+    questionEmailLabel: "답변 받을 이메일",
+    questionEmailPlaceholder: "you@example.com",
+    questionEmailHelp: "게임 밖에서 연락을 받고 싶을 때만 입력하세요.",
+    questionDiscordNote: "질문은 기록되고 Discord를 통해 1616 이전 팀에 전송됩니다.",
+    cancelQuestion: "취소",
+    sendQuestion: "질문 보내기",
+    questionThanksTitle: "질문 감사합니다!",
+    questionThanksBody: "질문이 정상적으로 제출되었습니다. 이전 팀에서 검토하겠습니다.",
+    questionDone: "확인",
+    questionRequiredError: "카테고리를 선택하고 질문을 입력하세요.",
+    questionEmailError: "올바른 이메일 주소를 입력하거나 비워 두세요.",
+    questionSending: "전송 중…",
+    questionSendFailed: "질문을 보내지 못했습니다. 다시 시도하세요.",
+    questionNotEntered: "아직 입력되지 않음",
     statsGuideCalloutPrompt: "이 수치를 찾는 데 도움이 필요하신가요?",
     statsGuideHint: "가짜 데이터가 들어간 예시 프로필을 사용하므로 모든 언어에서 사용할 수 있습니다.",
     statsGuideEyebrow: "예시 비주얼 가이드",
@@ -6861,6 +7380,35 @@ const I18N = {
     transferGroupNameCaps: "Dieses Feld wandelt den Gruppennamen automatisch in GROSSBUCHSTABEN um.",
     serverRangeError: "Bitte wähle einen Server zwischen 1573 und 1636.",
     statsGuideButton: "Visuelle Anleitung öffnen",
+    questionFabTitle: "Fragen?",
+    questionFabSub: "Wir helfen gerne",
+    questionPanelTitle: "Frage stellen",
+    questionPanelIntro: "Sende eine Frage an unser Transfer-Team. Dies ist kein Live-Chat.",
+    questionUsername: "Benutzername",
+    questionServer: "Server",
+    questionAlliance: "Allianz",
+    questionCategory: "Kategorie",
+    questionCategoryPlaceholder: "Kategorie auswählen",
+    questionCategoryApplication: "Frage zur Bewerbung",
+    questionCategoryGroup: "Frage zur Transfergruppe",
+    questionCategoryTechnical: "Technisches Problem",
+    questionCategoryOther: "Andere",
+    questionMessageLabel: "Deine Frage",
+    questionMessagePlaceholder: "Schreibe deine Frage hier...",
+    questionEmailLabel: "E-Mail für eine Antwort",
+    questionEmailPlaceholder: "du@beispiel.de",
+    questionEmailHelp: "Nur angeben, wenn das Team dich außerhalb des Spiels kontaktieren darf.",
+    questionDiscordNote: "Deine Frage wird gespeichert und über Discord an das 1616-Transfer-Team gesendet.",
+    cancelQuestion: "Abbrechen",
+    sendQuestion: "Frage senden",
+    questionThanksTitle: "Danke für deine Frage!",
+    questionThanksBody: "Deine Frage wurde erfolgreich gesendet. Unser Transfer-Team wird sie prüfen.",
+    questionDone: "Verstanden",
+    questionRequiredError: "Bitte wähle eine Kategorie und gib deine Frage ein.",
+    questionEmailError: "Bitte gib eine gültige E-Mail-Adresse ein oder lasse das Feld leer.",
+    questionSending: "Wird gesendet…",
+    questionSendFailed: "Deine Frage konnte nicht gesendet werden. Bitte versuche es erneut.",
+    questionNotEntered: "Noch nicht eingegeben",
     statsGuideCalloutPrompt: "Brauchst du Hilfe, diese Werte zu finden?",
     statsGuideHint: "Verwendet ein Beispielprofil mit fiktiven Daten und funktioniert daher in jeder Sprache.",
     statsGuideEyebrow: "Visuelle Beispielanleitung",
@@ -7104,6 +7652,7 @@ function setLanguage(lang) {
   headerLanguage.value = lang;
   document.querySelectorAll('.language-card').forEach(btn => btn.classList.toggle('selected', btn.dataset.language === lang));
   document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; el.textContent = t(k); });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { const k = el.dataset.i18nPlaceholder; el.setAttribute('placeholder', t(k)); });
   document.getElementById('stats-guide-close')?.setAttribute('aria-label', t('closeGuide'));
   document.querySelectorAll('[data-i18n-dynamic]').forEach(el => { const k = el.dataset.i18nDynamic; el.textContent = t(k); });
   refreshGroupMemberLabels();
@@ -7114,6 +7663,7 @@ function setLanguage(lang) {
   if (state.step === 5) renderReview();
   initCustomSelects();
   if (!document.getElementById('transfer-group-reminder-modal')?.hidden) renderTransferGroupReminderModal();
+  updateQuestionPrefill();
   document.querySelectorAll('select').forEach(syncCustomSelect);
   saveDraft();
 }
@@ -7768,6 +8318,129 @@ async function submitApplication(event) {
 }
 
 
+
+
+function getQuestionApplicantContext() {
+  const username = String(document.getElementById('username')?.value || '').trim();
+  const server = String(document.getElementById('current-server')?.value || '').trim();
+  const alliance = String(document.getElementById('alliance')?.value || '').trim();
+  return { username, server, alliance };
+}
+
+function updateQuestionPrefill() {
+  const ctx = getQuestionApplicantContext();
+  const fallback = t('questionNotEntered');
+  const usernameEl = document.getElementById('question-prefill-username');
+  const serverEl = document.getElementById('question-prefill-server');
+  const allianceEl = document.getElementById('question-prefill-alliance');
+  if (usernameEl) usernameEl.textContent = ctx.username || fallback;
+  if (serverEl) serverEl.textContent = ctx.server || fallback;
+  if (allianceEl) allianceEl.textContent = ctx.alliance || fallback;
+}
+
+function openQuestionPanel() {
+  const panel = document.getElementById('question-panel');
+  const fab = document.getElementById('question-fab');
+  if (!panel) return;
+  updateQuestionPrefill();
+  document.getElementById('question-form-view').hidden = false;
+  document.getElementById('question-confirmation').hidden = true;
+  document.getElementById('question-error').hidden = true;
+  panel.hidden = false;
+  fab?.setAttribute('aria-expanded', 'true');
+  document.body.classList.add('question-panel-open');
+  requestAnimationFrame(() => document.getElementById('question-category')?.focus());
+}
+
+function closeQuestionPanel() {
+  const panel = document.getElementById('question-panel');
+  const fab = document.getElementById('question-fab');
+  if (panel) panel.hidden = true;
+  fab?.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('question-panel-open');
+}
+
+function resetQuestionPanel() {
+  const category = document.getElementById('question-category');
+  const message = document.getElementById('question-message');
+  const email = document.getElementById('question-email');
+  const error = document.getElementById('question-error');
+  if (category) { category.value = ''; syncCustomSelect(category); }
+  if (message) message.value = '';
+  if (email) email.value = '';
+  if (error) { error.hidden = true; error.textContent = ''; }
+  document.getElementById('question-form-view').hidden = false;
+  document.getElementById('question-confirmation').hidden = true;
+}
+
+function questionStepLabel() {
+  const keys = ['stepYourInfo','stepGameDetails','stepTransferGroup','stepAdditional','stepReview'];
+  const key = keys[Math.max(0, Math.min(keys.length - 1, Number(state.step || 1) - 1))];
+  return t(key);
+}
+
+async function submitQuestion() {
+  const category = String(document.getElementById('question-category')?.value || '').trim();
+  const question = String(document.getElementById('question-message')?.value || '').trim();
+  const email = String(document.getElementById('question-email')?.value || '').trim();
+  const error = document.getElementById('question-error');
+  const submit = document.getElementById('question-submit');
+
+  if (!category || !question) {
+    error.textContent = t('questionRequiredError');
+    error.hidden = false;
+    return;
+  }
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    error.textContent = t('questionEmailError');
+    error.hidden = false;
+    return;
+  }
+  if (!CONFIG.appsScriptUrl || CONFIG.appsScriptUrl.includes('PASTE_YOUR')) {
+    error.textContent = t('backendMissing');
+    error.hidden = false;
+    return;
+  }
+
+  const ctx = getQuestionApplicantContext();
+  const payload = {
+    requestType: 'question',
+    username: ctx.username,
+    currentServer: ctx.server,
+    alliance: ctx.alliance,
+    category,
+    question,
+    contactEmail: email,
+    applicationStep: Number(state.step || 1),
+    applicationStepLabel: questionStepLabel(),
+    language: state.language,
+    website: ''
+  };
+
+  error.hidden = true;
+  submit.disabled = true;
+  const original = submit.textContent;
+  submit.textContent = t('questionSending');
+
+  try {
+    await fetch(CONFIG.appsScriptUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    document.getElementById('question-form-view').hidden = true;
+    document.getElementById('question-confirmation').hidden = false;
+  } catch (err) {
+    console.error(err);
+    error.textContent = t('questionSendFailed');
+    error.hidden = false;
+  } finally {
+    submit.disabled = false;
+    submit.textContent = original || t('sendQuestion');
+  }
+}
+
 function openStatsGuideModal() {
   const modal = document.getElementById('stats-guide-modal');
   if (modal) {
@@ -8083,6 +8756,23 @@ document.querySelectorAll('[data-help-toggle]').forEach(btn => btn.addEventListe
 }));
 form.addEventListener('change', saveDraft);
 form.addEventListener('input', e => { if (!e.target.classList.contains('member-name') && !e.target.classList.contains('member-alliance')) saveDraft(); });
+
+
+document.getElementById('question-fab').addEventListener('click', () => {
+  const panel = document.getElementById('question-panel');
+  if (panel?.hidden) openQuestionPanel(); else closeQuestionPanel();
+});
+document.getElementById('question-panel-close').addEventListener('click', closeQuestionPanel);
+document.getElementById('question-cancel').addEventListener('click', closeQuestionPanel);
+document.getElementById('question-submit').addEventListener('click', submitQuestion);
+document.getElementById('question-done').addEventListener('click', () => { resetQuestionPanel(); closeQuestionPanel(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !document.getElementById('question-panel')?.hidden) closeQuestionPanel();
+});
+['username','current-server','alliance'].forEach(id => {
+  document.getElementById(id)?.addEventListener('input', updateQuestionPrefill);
+  document.getElementById(id)?.addEventListener('change', updateQuestionPrefill);
+});
 
 document.querySelectorAll('[data-open-stats-guide]').forEach(btn => btn.addEventListener('click', openStatsGuideModal));
 document.getElementById('stats-guide-close').addEventListener('click', closeStatsGuideModal);

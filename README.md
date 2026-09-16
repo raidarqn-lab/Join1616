@@ -515,3 +515,54 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 
 ## v69 visual guide update
 The stats guide now uses an accordion on the right: one numbered instruction expands at a time. The bottom Close button was removed; the top-right close control displays the localized Close label beside the X.
+
+
+## v71 — Floating question widget + Discord notifications
+
+This version adds a small **Questions?** button in the bottom-right corner of the application. It is a question form, not live chat.
+
+When opened, the widget automatically pulls the applicant's current:
+- in-game username
+- server
+- alliance tag
+- current application step
+- selected application language
+
+The applicant chooses a category, writes a question, and can optionally provide an email address for a reply. The question is sent to the **same Google Apps Script Web App URL** already used for applications.
+
+### Questions sheet
+Run `setupSheets()` again after replacing Code.gs. It will create a new **Questions** tab with:
+- Timestamp
+- Question ID
+- Username
+- Server
+- Alliance
+- Category
+- Question
+- Contact Email
+- Application Step
+- Application Step Label
+- Language
+- Status
+- Discord Notification
+
+### Discord setup
+Do **not** place your Discord webhook URL inside `index.html`.
+
+In Discord:
+1. Create or choose a private channel such as `#transfer-questions`.
+2. Open the channel settings / integrations and create a webhook.
+3. Copy the webhook URL.
+
+In Google Apps Script:
+1. Open **Project Settings**.
+2. Under **Script properties**, add:
+   - Property: `DISCORD_WEBHOOK_URL`
+   - Value: your Discord webhook URL
+3. Optional: to ping one Discord role on every question, add:
+   - Property: `DISCORD_MENTION_ROLE_ID`
+   - Value: the numeric Discord role ID
+4. Save the properties.
+5. Replace your deployed Apps Script code with this version of `Code.gs` and create a new deployment/version so the live `/exec` endpoint uses the new code.
+
+If the webhook is not configured, questions are still saved to the **Questions** sheet; the `Discord Notification` column will say `Webhook not configured`.
