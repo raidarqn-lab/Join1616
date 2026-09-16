@@ -8411,6 +8411,192 @@ body.content-page-open .site-placeholder-page {
   }
 }
 
+
+/* ================================================================
+   v90 — History page branding, taupe story window, two-item nav,
+   and animated page transitions
+   ================================================================ */
+
+/* Same 1616 branding on both Application and 1616 History. */
+body.content-page-open .wordmark-header {
+  visibility: visible !important;
+  width: clamp(170px, 16vw, 250px) !important;
+  opacity: 1 !important;
+}
+body.content-page-open .brand-number::after {
+  content: none !important;
+  display: none !important;
+}
+body.content-page-open .app-brand-subtitle {
+  display: block !important;
+  color: #f1849a !important;
+  text-shadow: 0 0 10px rgba(224,72,101,.14);
+}
+body.content-page-open .story-brand-subtitle {
+  display: none !important;
+}
+body.content-page-open .brand-wrap::after {
+  display: block !important;
+  background: linear-gradient(90deg, #e85f78, #ffd36f) !important;
+}
+
+/* Only two navigation items, centered like the approved reference. */
+.site-main-nav {
+  gap: clamp(34px, 5vw, 72px) !important;
+}
+.site-nav-button {
+  font-size: clamp(.92rem, 1.05vw, 1.08rem) !important;
+}
+.site-nav-button.active::after {
+  height: 2px !important;
+  background: #ef4239 !important;
+}
+
+/* Charcoal website background behind the History window. */
+body.content-page-open {
+  background:
+    radial-gradient(circle at 50% -12%, #404249 0%, #2b2d33 34%, #191b20 72%, #111216 100%) !important;
+}
+body.content-page-open::before {
+  background:
+    linear-gradient(180deg, rgba(11,12,15,.55), rgba(11,12,15,.78)) !important;
+}
+body.content-page-open .scene {
+  display: block !important;
+  opacity: .12 !important;
+  filter: grayscale(.6) brightness(.22) saturate(.42) !important;
+}
+
+/* Keep the header dark, but preserve the exact main-site 1616 logo artwork. */
+body.content-page-open .site-header {
+  background:
+    linear-gradient(90deg, rgba(19,19,22,.93), rgba(28,29,34,.86)) !important;
+  border-bottom-color: rgba(255,255,255,.08) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,.16);
+}
+body.content-page-open .site-nav-button {
+  color: rgba(255,247,242,.72) !important;
+}
+body.content-page-open .site-nav-button:hover,
+body.content-page-open .site-nav-button.active {
+  color: #fff9f5 !important;
+}
+body.content-page-open .language-compact {
+  background: rgba(255,255,255,.055) !important;
+  border-color: rgba(255,255,255,.10) !important;
+}
+
+/* Warm taupe/ivory History container like the approved design reference. */
+.story-page {
+  padding: 34px clamp(18px, 3vw, 42px) 78px !important;
+  background: transparent !important;
+}
+.story-page-panel {
+  width: min(1380px, 100%) !important;
+  border-radius: 32px !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  background:
+    linear-gradient(180deg, #e9dfd3 0%, #e4d8ca 42%, #ded0c1 100%) !important;
+  box-shadow:
+    0 34px 90px rgba(0,0,0,.48),
+    0 1px 0 rgba(255,255,255,.50) inset !important;
+}
+.story-page-panel::before {
+  display: block !important;
+  opacity: 1 !important;
+  filter: none !important;
+  background:
+    radial-gradient(circle at 84% 8%, rgba(201,57,50,.13) 0 6%, transparent 6.2%),
+    radial-gradient(circle at 15% 35%, rgba(197,55,49,.055), transparent 14%),
+    radial-gradient(circle at 74% 62%, rgba(197,55,49,.04), transparent 10%),
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,0)) !important;
+}
+.story-page-panel::after {
+  background:
+    repeating-linear-gradient(0deg, rgba(83,61,51,.017) 0 1px, transparent 1px 5px),
+    radial-gradient(circle at 52% 58%, rgba(255,255,255,.20), transparent 48%) !important;
+}
+.story-paper {
+  padding: 74px clamp(28px, 5vw, 78px) 100px !important;
+}
+.story-paper::before {
+  opacity: .16 !important;
+}
+.story-paper::after {
+  opacity: .045 !important;
+}
+.story-card {
+  background: rgba(247,241,234,.54) !important;
+  border-color: rgba(101,73,62,.16) !important;
+}
+.story-card:hover {
+  background: rgba(250,246,241,.72) !important;
+}
+.story-card.is-expanded {
+  background: rgba(252,248,243,.94) !important;
+}
+.story-node span {
+  background: #eee5dc !important;
+  box-shadow: 0 0 0 9px rgba(229,217,204,.92) !important;
+}
+.story-hero h1 {
+  color: #6d211f !important;
+}
+.story-subtitle,
+.story-season-summary,
+.story-expanded-placeholder {
+  color: #574840 !important;
+}
+.story-card h2 {
+  color: #64211f !important;
+}
+.story-line {
+  background: linear-gradient(
+    180deg,
+    rgba(190,57,50,.16),
+    #bd3c35 8%,
+    #bd3c35 90%,
+    rgba(190,57,50,.16)
+  ) !important;
+}
+
+/* True fade between Application and History. */
+.app-shell,
+.story-page {
+  transition:
+    opacity .28s ease,
+    transform .28s ease,
+    filter .28s ease !important;
+}
+body.page-transitioning .app-shell:not([hidden]),
+body.page-transitioning .story-page:not([hidden]) {
+  opacity: 0 !important;
+  transform: translateY(8px) !important;
+  filter: blur(1.5px) !important;
+}
+
+/* Hide no-longer-used placeholder pages if older markup is cached. */
+#world-page,
+#characters-page,
+#media-page {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .site-main-nav {
+    gap: 30px !important;
+  }
+  .story-page {
+    padding: 14px 10px 48px !important;
+  }
+  .story-page-panel {
+    border-radius: 20px !important;
+  }
+  .story-paper {
+    padding: 44px 14px 64px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -8532,16 +8718,7 @@ body.content-page-open .site-placeholder-page {
 
     <nav class="site-main-nav" aria-label="Main navigation">
       <button type="button" class="site-nav-button" id="nav-story" data-page-target="story">
-        <span data-i18n="navStory">1616&#39;s Story</span>
-      </button>
-      <button type="button" class="site-nav-button" id="nav-world" data-page-target="world">
-        <span data-i18n="navWorld">World</span>
-      </button>
-      <button type="button" class="site-nav-button" id="nav-characters" data-page-target="characters">
-        <span data-i18n="navCharacters">Characters</span>
-      </button>
-      <button type="button" class="site-nav-button" id="nav-media" data-page-target="media">
-        <span data-i18n="navMedia">Media</span>
+        <span data-i18n="navStory">1616 History</span>
       </button>
       <button type="button" class="site-nav-button active" id="nav-application" data-page-target="application">
         <span data-i18n="navApplication">Application</span>
@@ -8769,32 +8946,7 @@ body.content-page-open .site-placeholder-page {
       </div>
     </section>
   </main>
-
-  <main class="site-placeholder-page" id="world-page" hidden>
-    <section class="site-placeholder-card">
-      <p class="placeholder-kicker">1616</p>
-      <h1 data-i18n="navWorld">World</h1>
-      <p data-i18n="comingSoonCopy">This page is being prepared and will be added to the 1616 site soon.</p>
-    </section>
-  </main>
-
-  <main class="site-placeholder-page" id="characters-page" hidden>
-    <section class="site-placeholder-card">
-      <p class="placeholder-kicker">1616</p>
-      <h1 data-i18n="navCharacters">Characters</h1>
-      <p data-i18n="comingSoonCopy">This page is being prepared and will be added to the 1616 site soon.</p>
-    </section>
-  </main>
-
-  <main class="site-placeholder-page" id="media-page" hidden>
-    <section class="site-placeholder-card">
-      <p class="placeholder-kicker">1616</p>
-      <h1 data-i18n="navMedia">Media</h1>
-      <p data-i18n="comingSoonCopy">This page is being prepared and will be added to the 1616 site soon.</p>
-    </section>
-  </main>
-
-  <main class="app-shell">
+<main class="app-shell">
     <aside class="progress-panel" aria-label="Application progress">
       <div class="progress-title"><img src="wordmark-1616-transparent-v56.png" alt="1616" class="wordmark-image wordmark-sidebar" /></div>
       <nav>
@@ -9721,7 +9873,7 @@ const I18N = {
   en: {
     serverTransferApplication: 'SERVER TRANSFER APPLICATION', strongerTogether: 'A STRONGER TOMORROW',
     navApplication: "Application",
-    navStory: "1616\'s Story",
+    navStory: "1616 History",
     navWorld: "World",
     navCharacters: "Characters",
     navMedia: "Media",
@@ -9947,7 +10099,7 @@ const I18N = {
   es: {
     serverTransferApplication: 'SOLICITUD DE TRANSFERENCIA', strongerTogether: 'UN MAÑANA MÁS FUERTE',
     navApplication: "Solicitud",
-    navStory: "Historia 1616",
+    navStory: "Historia de 1616",
     navWorld: "Mundo",
     navCharacters: "Personajes",
     navMedia: "Medios",
@@ -10136,7 +10288,7 @@ const I18N = {
   pt: {
     serverTransferApplication: 'INSCRIÇÃO DE TRANSFERÊNCIA', strongerTogether: 'UM AMANHÃ MAIS FORTE',
     navApplication: "Inscrição",
-    navStory: "História 1616",
+    navStory: "História do 1616",
     navWorld: "Mundo",
     navCharacters: "Personagens",
     navMedia: "Mídia",
@@ -10325,7 +10477,7 @@ const I18N = {
   fr: {
     serverTransferApplication: 'DEMANDE DE TRANSFERT', strongerTogether: 'UN AVENIR PLUS FORT',
     navApplication: "Candidature",
-    navStory: "Histoire 1616",
+    navStory: "Histoire de 1616",
     navWorld: "Monde",
     navCharacters: "Personnages",
     navMedia: "Médias",
@@ -10514,7 +10666,7 @@ const I18N = {
   ar: {
     serverTransferApplication: 'طلب الانتقال إلى السيرفر', strongerTogether: 'غدٌ أقوى معًا',
     navApplication: "الطلب",
-    navStory: "قصة 1616",
+    navStory: "تاريخ 1616",
     navWorld: "العالم",
     navCharacters: "الشخصيات",
     navMedia: "الوسائط",
@@ -10703,7 +10855,7 @@ const I18N = {
   vi: {
     serverTransferApplication: 'ĐƠN CHUYỂN SERVER', strongerTogether: 'MỘT NGÀY MAI MẠNH MẼ HƠN',
     navApplication: "Đơn đăng ký",
-    navStory: "Câu chuyện 1616",
+    navStory: "Lịch sử 1616",
     navWorld: "Thế giới",
     navCharacters: "Nhân vật",
     navMedia: "Truyền thông",
@@ -10892,7 +11044,7 @@ const I18N = {
   ko: {
     serverTransferApplication: '서버 이전 신청서', strongerTogether: '더 강한 내일',
     navApplication: "신청서",
-    navStory: "1616 이야기",
+    navStory: "1616 역사",
     navWorld: "세계",
     navCharacters: "인물",
     navMedia: "미디어",
@@ -11081,7 +11233,7 @@ const I18N = {
   de: {
     serverTransferApplication: 'SERVER-TRANSFER-BEWERBUNG', strongerTogether: 'EINE STÄRKERE ZUKUNFT',
     navApplication: "Bewerbung",
-    navStory: "1616-Geschichte",
+    navStory: "Geschichte von 1616",
     navWorld: "Welt",
     navCharacters: "Charaktere",
     navMedia: "Medien",
@@ -12534,45 +12686,62 @@ function initStoryFootprints() {
   milestones.forEach(milestone => observer.observe(milestone));
 }
 
-function showTopPage(page) {
+let topPageTransitionTimer = null;
+
+function showTopPage(page, options = {}) {
   const appShell = document.querySelector('.app-shell');
   const storyPage = document.getElementById('story-page');
-  const pageMap = {
-    story: storyPage,
-    world: document.getElementById('world-page'),
-    characters: document.getElementById('characters-page'),
-    media: document.getElementById('media-page')
+  const appButton = document.getElementById('nav-application');
+  const storyButton = document.getElementById('nav-story');
+  if (!appShell || !storyPage || !appButton || !storyButton) return;
+
+  const requestedPage = page === 'story' ? 'story' : 'application';
+  const currentPage = document.body.dataset.topPage || '';
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const instant = Boolean(options.instant) || reducedMotion;
+
+  if (currentPage === requestedPage && !options.force) return;
+
+  const applyPage = () => {
+    const story = requestedPage === 'story';
+
+    appShell.hidden = story;
+    appShell.style.display = story ? 'none' : '';
+
+    storyPage.hidden = !story;
+    storyPage.style.display = story ? '' : 'none';
+
+    appButton.classList.toggle('active', !story);
+    storyButton.classList.toggle('active', story);
+    appButton.setAttribute('aria-current', story ? 'false' : 'page');
+    storyButton.setAttribute('aria-current', story ? 'page' : 'false');
+
+    document.body.classList.toggle('story-page-open', story);
+    document.body.classList.toggle('content-page-open', story);
+    document.body.dataset.topPage = requestedPage;
+
+    window.scrollTo({ top: 0, behavior: instant ? 'auto' : 'smooth' });
+
+    if (!instant) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          document.body.classList.remove('page-transitioning');
+        });
+      });
+    } else {
+      document.body.classList.remove('page-transitioning');
+    }
   };
-  const navMap = {
-    story: document.getElementById('nav-story'),
-    world: document.getElementById('nav-world'),
-    characters: document.getElementById('nav-characters'),
-    media: document.getElementById('nav-media'),
-    application: document.getElementById('nav-application')
-  };
-  if (!appShell || !storyPage) return;
 
-  const contentPage = page !== 'application';
-  appShell.hidden = contentPage;
-  appShell.style.display = contentPage ? 'none' : '';
+  clearTimeout(topPageTransitionTimer);
 
-  Object.entries(pageMap).forEach(([name, element]) => {
-    if (!element) return;
-    const active = page === name;
-    element.hidden = !active;
-    element.style.display = active ? '' : 'none';
-  });
+  if (instant || !currentPage) {
+    applyPage();
+    return;
+  }
 
-  Object.entries(navMap).forEach(([name, button]) => {
-    if (!button) return;
-    const active = page === name;
-    button.classList.toggle('active', active);
-    button.setAttribute('aria-current', active ? 'page' : 'false');
-  });
-
-  document.body.classList.toggle('story-page-open', page === 'story');
-  document.body.classList.toggle('content-page-open', contentPage);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.body.classList.add('page-transitioning');
+  topPageTransitionTimer = setTimeout(applyPage, 180);
 }
 
 function initStoryMilestones() {
@@ -12787,7 +12956,7 @@ initStoryFootprints();
 initStoryMilestones();
 initCustomSelects();
 document.querySelectorAll('select').forEach(syncCustomSelect);
-showTopPage('application');
+showTopPage('application', { instant: true, force: true });
 initWelcomeScreen();
 
   </script>

@@ -672,3 +672,11 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 - Changed content pages so the main website background fades to dark gray / black behind the story container.
 - Updated World / Characters / Media placeholder pages to use the same modal-style container treatment.
 
+## v90 — History navigation and page transition update
+- Top navigation now contains only **1616 History** and **Application**.
+- The History page uses the exact same 1616 logo artwork and subtitle treatment as the main application header.
+- The History content window now uses a lighter warm taupe / ivory palette based on the approved reference design.
+- The site behind the History window fades to charcoal / dark gray.
+- Added a smooth fade-and-lift transition when switching between Application and 1616 History.
+- Removed the World, Characters, and Media placeholder pages from the navigation.
+
