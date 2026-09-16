@@ -646,3 +646,8 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 - Fixed the standalone Story page so the transfer application is completely removed from the layout while Story is open.
 - Added both CSS and JavaScript safeguards so the application cannot appear underneath the Story timeline.
 
+## v87 update
+- The **1616's Story** page now reveals the timeline footprints progressively as you move through the milestones.
+- Footprints no longer all appear at once.
+- Added milestone-based scroll animation and stepped footprint transitions.
+
