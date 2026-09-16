@@ -8644,6 +8644,25 @@ body.page-transitioning .story-page:not([hidden]) {
   text-align: left;
 }
 
+
+/* v93 — top navigation font matches language selector */
+.site-nav-button {
+  font-family: var(--font) !important;
+  font-weight: 600 !important;
+  letter-spacing: .01em !important;
+}
+.story-ending p {
+  max-width: 720px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(1rem, 1.4vw, 1.28rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: .035em !important;
+  line-height: 1.45 !important;
+  text-transform: none !important;
+}
+
 </style>
 </head>
 <body>
@@ -8992,7 +9011,7 @@ body.page-transitioning .story-page:not([hidden]) {
         </div>
 
         <footer class="story-ending">
-          <p>“SOME WARS END BATTLES.<br>THIS ONE SHAPED A NATION.”</p>
+          <p data-i18n="storyEnding">Some wars tear us apart. 1616 has come out stronger.</p>
           <span></span>
         </footer>
       </div>
@@ -9931,6 +9950,7 @@ const I18N = {
     navMedia: "Media",
     storyEyebrow: "A SERVER BOUND FOR SUCCESS",
     storySubtitle: "Four Seasons. Now is Your Chance to Be A Part of History.",
+    storyEnding: "Some wars tear us apart. 1616 has come out stronger.",
     season0CinematicHeading: "The Dawn of 1616",
     season0Intro1: "None of us knew what we were getting into.",
     season0Intro2: "We thought we had downloaded a game about shooting barrels and killing zombies. Simple enough. Instead, we were dropped onto Server 1616 — a strange new world filled with alliances, rivalries, territory, politics, and people from every corner of the planet.",
@@ -10177,6 +10197,7 @@ const I18N = {
     navMedia: "Medios",
     storyEyebrow: "UN SERVIDOR DESTINADO AL ÉXITO",
     storySubtitle: "Cuatro temporadas. Ahora es tu oportunidad de formar parte de la historia.",
+    storyEnding: "Algunas guerras nos separan. 1616 ha salido más fuerte.",
     season0CinematicHeading: "El amanecer de 1616",
     season0Intro1: "Ninguno de nosotros sabía en qué nos estábamos metiendo.",
     season0Intro2: "Pensábamos que habíamos descargado un juego sobre disparar barriles y matar zombis. Bastante simple. En cambio, aparecimos en el Servidor 1616: un mundo extraño lleno de alianzas, rivalidades, territorio, política y personas de todos los rincones del planeta.",
@@ -10386,6 +10407,7 @@ const I18N = {
     navMedia: "Mídia",
     storyEyebrow: "UM SERVIDOR DESTINADO AO SUCESSO",
     storySubtitle: "Quatro temporadas. Agora é a sua chance de fazer parte da história.",
+    storyEnding: "Algumas guerras nos separam. O 1616 saiu mais forte.",
     season0CinematicHeading: "O amanhecer de 1616",
     season0Intro1: "Nenhum de nós sabia no que estava se metendo.",
     season0Intro2: "Achávamos que tínhamos baixado um jogo sobre atirar em barris e matar zumbis. Simples. Em vez disso, fomos jogados no Servidor 1616 — um mundo estranho cheio de alianças, rivalidades, território, política e pessoas de todos os cantos do planeta.",
@@ -10595,6 +10617,7 @@ const I18N = {
     navMedia: "Médias",
     storyEyebrow: "UN SERVEUR DESTINÉ AU SUCCÈS",
     storySubtitle: "Quatre saisons. C’est maintenant votre chance de faire partie de l’histoire.",
+    storyEnding: "Certaines guerres nous divisent. 1616 en est ressorti plus fort.",
     season0CinematicHeading: "L’aube de 1616",
     season0Intro1: "Aucun de nous ne savait vraiment dans quoi il s’engageait.",
     season0Intro2: "Nous pensions avoir téléchargé un jeu où l’on tirait sur des barils et tuait des zombies. Plutôt simple. À la place, nous avons été projetés sur le serveur 1616 — un monde étrange rempli d’alliances, de rivalités, de territoires, de politique et de personnes venues des quatre coins du monde.",
@@ -10804,6 +10827,7 @@ const I18N = {
     navMedia: "الوسائط",
     storyEyebrow: "سيرفر متجه نحو النجاح",
     storySubtitle: "أربعة مواسم. الآن فرصتك لتكون جزءًا من التاريخ.",
+    storyEnding: "بعض الحروب تفرقنا. خرج 1616 أقوى.",
     season0CinematicHeading: "فجر 1616",
     season0Intro1: "لم يكن أي منا يعرف حقًا ما الذي دخلنا فيه.",
     season0Intro2: "ظننا أننا حمّلنا لعبة عن إطلاق النار على البراميل وقتل الزومبي. بسيطة بما يكفي. لكن بدلًا من ذلك وجدنا أنفسنا في سيرفر 1616 — عالم غريب مليء بالتحالفات والمنافسات والأراضي والسياسة وأشخاص من كل أنحاء العالم.",
@@ -11013,6 +11037,7 @@ const I18N = {
     navMedia: "Truyền thông",
     storyEyebrow: "MỘT SERVER HƯỚNG ĐẾN THÀNH CÔNG",
     storySubtitle: "Bốn mùa. Bây giờ là cơ hội để bạn trở thành một phần của lịch sử.",
+    storyEnding: "Có những cuộc chiến khiến chúng ta chia rẽ. 1616 đã trở nên mạnh mẽ hơn.",
     season0CinematicHeading: "Bình minh của 1616",
     season0Intro1: "Không ai trong chúng ta thực sự biết mình đang bước vào chuyện gì.",
     season0Intro2: "Chúng ta nghĩ mình đã tải một trò chơi chỉ để bắn thùng và giết zombie. Khá đơn giản. Thay vào đó, chúng ta bị thả vào Server 1616 — một thế giới kỳ lạ đầy liên minh, đối đầu, lãnh thổ, chính trị và những con người từ khắp nơi trên thế giới.",
@@ -11222,6 +11247,7 @@ const I18N = {
     navMedia: "미디어",
     storyEyebrow: "성공을 향해 나아가는 서버",
     storySubtitle: "네 번의 시즌. 이제 당신도 역사의 일부가 될 기회입니다.",
+    storyEnding: "어떤 전쟁은 우리를 갈라놓습니다. 1616은 더 강해져 돌아왔습니다.",
     season0CinematicHeading: "1616의 새벽",
     season0Intro1: "우리 중 누구도 우리가 무엇에 뛰어든 것인지 몰랐습니다.",
     season0Intro2: "우리는 배럴을 쏘고 좀비를 잡는 게임을 다운로드했다고 생각했습니다. 단순해 보였죠. 하지만 실제로는 동맹, 경쟁, 영토, 정치, 그리고 전 세계의 사람들이 뒤섞인 낯선 세계인 서버 1616에 떨어졌습니다.",
@@ -11431,6 +11457,7 @@ const I18N = {
     navMedia: "Medien",
     storyEyebrow: "EIN SERVER AUF ERFOLGSKURS",
     storySubtitle: "Vier Saisons. Jetzt ist deine Chance, Teil der Geschichte zu werden.",
+    storyEnding: "Manche Kriege reißen uns auseinander. 1616 ist stärker daraus hervorgegangen.",
     season0CinematicHeading: "Der Morgen von 1616",
     season0Intro1: "Keiner von uns wusste wirklich, worauf wir uns eingelassen hatten.",
     season0Intro2: "Wir dachten, wir hätten ein Spiel heruntergeladen, in dem man auf Fässer schießt und Zombies erledigt. Einfach genug. Stattdessen landeten wir auf Server 1616 — einer seltsamen Welt voller Allianzen, Rivalitäten, Territorien, Politik und Menschen aus allen Teilen der Welt.",

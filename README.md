@@ -701,3 +701,9 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 - Removed People / Moments / Legacy from Pre-Season and Crimson Plague only.
 - Seasons 2–4 remain unchanged.
 
+## v93 — History footer and menu typography
+- Changed the closing line on **1616 History** to:
+  **Some wars tear us apart. 1616 has come out stronger.**
+- Updated the History/Application navigation to use the same font system as the language selector in the top-right header.
+- Added localized versions of the History closing line for all supported languages.
+
