@@ -12,23 +12,23 @@
   <style>
 /* Background and 1616 wordmark are embedded directly in this HTML for reliable GitHub Pages deployment. */
 :root {
-  --bg: #07121d;
-  --bg-deep: #050d16;
-  --panel: rgba(10, 27, 41, .92);
-  --panel-soft: rgba(16, 37, 55, .86);
-  --raised: #132a3d;
-  --field: #0b1b2a;
-  --border: #29465d;
-  --border-strong: #406a83;
-  --text: #e8f2f7;
-  --muted: #91aabd;
-  --accent: #58dbca;
-  --accent-2: #8df1e4;
-  --pink: #f0a7b6;
-  --pink-soft: #f8c3cd;
-  --gold: #e8c46a;
+  --bg: #120b0d;
+  --bg-deep: #090608;
+  --panel: rgba(28, 14, 18, .94);
+  --panel-soft: rgba(39, 20, 24, .90);
+  --raised: #30191f;
+  --field: #1b1014;
+  --border: #6d313d;
+  --border-strong: #a3485a;
+  --text: #fff3ee;
+  --muted: #c8a09d;
+  --accent: #e85f78;
+  --accent-2: #ffd27a;
+  --pink: #ef8297;
+  --pink-soft: #f5b0bc;
+  --gold: #ffd36f;
   --danger: #ff848d;
-  --success: #84e6b2;
+  --success: #ffd36f;
   --shadow: 0 30px 90px rgba(0,0,0,.38);
   --radius: 14px;
   --font: Inter, "Noto Sans KR", "Noto Sans Arabic", system-ui, sans-serif;
@@ -42,7 +42,7 @@ body {
   min-height: 100vh;
   color: var(--text);
   font-family: var(--font);
-  background: #07121d;
+  background: #120b0d;
   overflow-x: hidden;
 }
 button, input, select, textarea { font: inherit; }
@@ -3263,7 +3263,523 @@ body.welcome-open { overflow: hidden; }
   .guide-card { padding-bottom: 2px; }
 }
 
-  </style>
+  
+/* ================================================================
+   v50 — RED + LANTERN GOLD APPLICATION PALETTE
+   Removes the remaining blue/teal UI accents.
+   ================================================================ */
+
+body {
+  background: #120b0d;
+  color: #fff3ee;
+}
+
+.scene::after {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(232,69,92,.32) 0, rgba(232,69,92,.15) 12%, rgba(232,69,92,0) 25%),
+    linear-gradient(180deg, rgba(53,15,22,.04), rgba(57,16,24,.18));
+}
+
+.site-header {
+  border-bottom-color: rgba(176,65,84,.44);
+  background:
+    linear-gradient(90deg, rgba(20,9,12,.88), rgba(27,11,15,.62));
+}
+
+.brand-wrap::after {
+  background: linear-gradient(90deg, #e85f78, #ffd36f);
+}
+
+.brand-subtitle {
+  color: #f1849a;
+  text-shadow: 0 0 10px rgba(224,72,101,.14);
+}
+
+.tagline {
+  color: #d1aaa2;
+}
+
+.progress-panel {
+  border-color: rgba(160,62,80,.52);
+  background:
+    linear-gradient(180deg, rgba(34,15,20,.88), rgba(20,10,13,.80));
+}
+
+.form-panel {
+  border-color: rgba(171,64,84,.54);
+  background:
+    linear-gradient(180deg, rgba(31,15,19,.91), rgba(18,10,12,.88));
+  box-shadow:
+    0 28px 80px rgba(0,0,0,.40),
+    0 0 28px rgba(190,47,75,.045);
+}
+
+.step-link:hover {
+  background: rgba(105,35,50,.30);
+  color: #fff3ee;
+}
+.step-link.active {
+  background: rgba(117,38,54,.38);
+  color: #fff3ee;
+}
+.step-link.complete {
+  color: #e0bbb2;
+}
+
+.mobile-progress {
+  border-bottom-color: rgba(166,62,80,.50);
+  color: #cba29d;
+}
+.mobile-progress-track {
+  background: rgba(118,49,59,.36);
+}
+.mobile-progress-track span {
+  background: linear-gradient(90deg, #d84e6b, #ffd36f);
+}
+
+.form-step > h1 {
+  font-family: "Bungee", var(--font);
+  color: #ffd27a;
+  text-shadow:
+    0 1px 0 rgba(0,0,0,.44),
+    0 0 14px rgba(255,184,72,.08),
+    0 0 22px rgba(209,52,82,.10);
+}
+
+.step-intro,
+.field-help {
+  color: #c6a19b;
+}
+
+input,
+select,
+textarea {
+  color: #fff3ee;
+  background: rgba(27,15,18,.94);
+  border-color: rgba(137,59,73,.72);
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: rgba(222,91,116,.72);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #e85f78;
+  background: #251216;
+  box-shadow:
+    0 0 0 3px rgba(232,95,120,.11),
+    0 0 15px rgba(201,49,79,.10);
+}
+
+.inline-help {
+  border-left-color: #ffd36f;
+  background: rgba(106,52,27,.20);
+  color: #e4c4b4;
+}
+
+.help-toggle,
+.subsection-icon {
+  color: #ffd36f;
+}
+.help-toggle:hover {
+  color: #ffe3a5;
+}
+
+.language-card {
+  border-color: rgba(133,56,70,.72);
+  background: rgba(33,16,20,.74);
+}
+.language-card:hover {
+  border-color: rgba(225,92,117,.78);
+  background: rgba(69,25,36,.74);
+}
+.language-card.selected {
+  border-color: #e85f78;
+  background: rgba(105,37,52,.44);
+  box-shadow: inset 0 0 0 1px rgba(255,164,181,.15);
+}
+.language-card span {
+  color: #ffd36f;
+}
+
+.choice-card:not(.seat) {
+  border-color: rgba(147,60,75,.62);
+  background: rgba(35,16,21,.72);
+}
+.choice-card:not(.seat):hover {
+  border-color: rgba(229,98,123,.78);
+  background: rgba(73,26,38,.46);
+}
+.choice-dot {
+  border-color: rgba(195,93,109,.72);
+}
+
+.notice-card,
+.preference-card,
+.referral-card,
+.group-member-card,
+.group-summary-card,
+.transfer-estimator-card,
+.transfer-location-guide,
+.review-section,
+.group-contact-card,
+.group-lead-card {
+  background-color: rgba(29,14,18,.68);
+}
+
+.group-summary-card {
+  background: rgba(32,15,19,.72);
+}
+
+.review-item,
+.review-member {
+  border-bottom-color: rgba(147,57,72,.40);
+}
+
+.form-actions {
+  border-top-color: rgba(176,65,84,.54);
+  background: rgba(17,8,11,.78);
+}
+
+.button.secondary,
+.clear-form-button {
+  border-color: rgba(166,67,85,.64);
+  color: #e8c7c1;
+  background: rgba(55,22,29,.18);
+}
+.button.secondary:hover,
+.clear-form-button:hover {
+  border-color: rgba(238,111,135,.78);
+  background: rgba(97,31,46,.30);
+}
+
+.button.submit {
+  color: #2e1717;
+  border-color: #ffd36f;
+  background:
+    linear-gradient(90deg, #f17a91 0%, #ffb36b 58%, #ffd36f 100%);
+  box-shadow: 0 0 20px rgba(255,186,90,.10);
+}
+
+.custom-select-trigger {
+  border-color: rgba(174,66,87,.72);
+  background:
+    linear-gradient(180deg, rgba(83,27,43,.54), rgba(25,13,17,.98));
+}
+.custom-select-menu {
+  border-color: rgba(224,87,113,.74);
+  background:
+    radial-gradient(circle at 90% 0%, rgba(159,27,54,.20), transparent 34%),
+    linear-gradient(180deg, #241216, #130b0e);
+}
+.custom-select-option {
+  color: #ead2ce;
+}
+.custom-select-option:hover,
+.custom-select-option:focus-visible {
+  background:
+    linear-gradient(90deg, rgba(162,38,64,.60), rgba(95,31,43,.48));
+}
+.custom-select-option.selected {
+  background:
+    linear-gradient(90deg, rgba(188,43,72,.72), rgba(118,41,47,.56));
+}
+
+/* Lantern-gold accents replace old teal highlights. */
+.welcome-kicker,
+.globe,
+.confirmation-code,
+.transfer-option-number,
+.transfer-option-eyebrow {
+  color: #ffd36f;
+}
+
+.welcome-panel {
+  border-color: rgba(210,74,101,.48);
+  background:
+    radial-gradient(circle at 85% 5%, rgba(215,66,83,.20), transparent 34%),
+    radial-gradient(circle at 12% 94%, rgba(255,190,84,.055), transparent 28%),
+    linear-gradient(180deg, rgba(31,14,19,.96), rgba(18,9,12,.95));
+  box-shadow:
+    0 36px 100px rgba(0,0,0,.50),
+    0 0 0 1px rgba(255,255,255,.025) inset,
+    0 0 44px rgba(211,53,82,.08);
+}
+
+/* ================================================================
+   BLADE-DRAW CONTINUE BUTTON
+   ================================================================ */
+#next-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-width: 170px;
+  padding: 13px 20px 15px;
+  color: #fff0ed;
+  border: 1px solid rgba(220,78,106,.72);
+  background:
+    linear-gradient(180deg, rgba(53,24,32,.98), rgba(18,10,13,.99));
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.024) inset,
+    0 10px 28px rgba(0,0,0,.22),
+    0 0 16px rgba(203,45,77,.08);
+  transition:
+    border-color .18s ease,
+    box-shadow .18s ease,
+    transform .18s ease,
+    background .18s ease;
+}
+
+#next-button::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 18px;
+  right: 18px;
+  bottom: 8px;
+  height: 2px;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg,
+      transparent,
+      #f78da2 16%,
+      #ff667f 49%,
+      #ffd36f 83%,
+      transparent);
+  box-shadow:
+    0 0 5px rgba(255,107,134,.56),
+    0 0 14px rgba(255,183,72,.18);
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  transition:
+    transform .28s cubic-bezier(.2,.8,.2,1),
+    opacity .16s ease;
+}
+
+#next-button::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: -35%;
+  left: -55%;
+  width: 38%;
+  height: 175%;
+  background:
+    linear-gradient(90deg,
+      transparent,
+      rgba(255,240,216,.88) 40%,
+      rgba(255,105,132,.98) 52%,
+      rgba(255,210,111,.84) 58%,
+      transparent);
+  transform: skewX(-20deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+#next-button:hover,
+#next-button:focus-visible {
+  outline: none;
+  border-color: rgba(247,123,146,.96);
+  background:
+    linear-gradient(180deg, rgba(78,30,44,.98), rgba(20,10,14,.99));
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.24),
+    0 0 22px rgba(210,53,84,.17),
+    0 0 20px rgba(255,195,85,.035);
+  transform: translateY(-1px);
+}
+
+#next-button:hover::before,
+#next-button:focus-visible::before,
+#next-button.blade-activate::before {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+#next-button .continue-arrow {
+  display: inline-block;
+  margin-left: 6px;
+  transition:
+    transform .18s ease,
+    color .18s ease,
+    text-shadow .18s ease;
+}
+
+#next-button:hover .continue-arrow,
+#next-button:focus-visible .continue-arrow {
+  transform: translateX(5px);
+  color: #ffd36f;
+  text-shadow: 0 0 8px rgba(255,199,93,.26);
+}
+
+#next-button.blade-activate::after {
+  animation: continueBladeFlash .22s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+#next-button.validation-reject {
+  animation: continueReject .30s ease;
+  border-color: rgba(255,132,141,.98);
+  box-shadow:
+    0 0 0 3px rgba(255,132,141,.08),
+    0 0 20px rgba(229,66,91,.16);
+}
+
+@keyframes continueBladeFlash {
+  0% { left: -55%; opacity: 0; }
+  18% { opacity: .98; }
+  100% { left: 120%; opacity: 0; }
+}
+
+@keyframes continueReject {
+  0%,100% { transform: translateX(0); }
+  30% { transform: translateX(-4px); }
+  65% { transform: translateX(4px); }
+}
+
+/* ================================================================
+   REQUIRED-FIELD POPUP
+   ================================================================ */
+.validation-banner {
+  position: fixed;
+  z-index: 1000;
+  top: 14px;
+  left: 50%;
+  width: min(760px, calc(100% - 28px));
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.validation-banner[hidden] {
+  display: none !important;
+}
+
+.validation-banner-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr);
+  gap: 13px;
+  align-items: start;
+  padding: 15px 46px 15px 16px;
+  border: 1px solid rgba(239,104,129,.86);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(216,59,89,.20), transparent 31%),
+    radial-gradient(circle at 96% 100%, rgba(255,196,85,.055), transparent 25%),
+    linear-gradient(180deg, rgba(38,17,23,.99), rgba(18,9,12,.99));
+  box-shadow:
+    0 18px 46px rgba(0,0,0,.45),
+    0 0 0 1px rgba(255,255,255,.03) inset,
+    0 0 27px rgba(213,52,83,.18);
+  backdrop-filter: blur(18px);
+  pointer-events: auto;
+  animation: validationBannerIn .24s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.validation-sakura {
+  width: 25px;
+  height: 25px;
+  margin-top: 1px;
+  background: center / contain no-repeat
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='%23ef8297'%3E%3Cellipse cx='32' cy='14.5' rx='9.8' ry='13.2'/%3E%3Cellipse cx='48.4' cy='25' rx='9.8' ry='13.2' transform='rotate(72 48.4 25)'/%3E%3Cellipse cx='42.1' cy='44.6' rx='9.8' ry='13.2' transform='rotate(144 42.1 44.6)'/%3E%3Cellipse cx='21.9' cy='44.6' rx='9.8' ry='13.2' transform='rotate(-144 21.9 44.6)'/%3E%3Cellipse cx='15.6' cy='25' rx='9.8' ry='13.2' transform='rotate(-72 15.6 25)'/%3E%3C/g%3E%3Ccircle cx='32' cy='32' r='6.5' fill='%23ffd36f'/%3E%3C/svg%3E");
+  filter: drop-shadow(0 0 7px rgba(239,104,129,.24));
+}
+
+.validation-banner-copy strong {
+  display: block;
+  color: #fff1ee;
+  font-size: .92rem;
+  line-height: 1.45;
+}
+
+.validation-banner-copy ul {
+  margin: 7px 0 0;
+  padding-left: 19px;
+  color: #e8c4bc;
+  font-size: .79rem;
+  line-height: 1.5;
+}
+
+.validation-banner-copy li::marker {
+  color: #ffd36f;
+}
+
+.validation-banner-copy li + li {
+  margin-top: 3px;
+}
+
+.validation-banner-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #dca0ad;
+  font-size: 1.18rem;
+  cursor: pointer;
+}
+
+.validation-banner-close:hover,
+.validation-banner-close:focus-visible {
+  outline: none;
+  color: #fff;
+  background: rgba(208,67,95,.20);
+}
+
+@keyframes validationBannerIn {
+  from {
+    opacity: 0;
+    transform: translateY(-14px) scale(.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 620px) {
+  .validation-banner {
+    top: 8px;
+    width: calc(100% - 16px);
+  }
+  .validation-banner-inner {
+    gap: 10px;
+    padding: 13px 40px 13px 13px;
+  }
+  .validation-sakura {
+    width: 22px;
+    height: 22px;
+  }
+  .validation-banner-copy strong {
+    font-size: .84rem;
+  }
+  .validation-banner-copy ul {
+    font-size: .75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #next-button,
+  #next-button::before,
+  #next-button::after,
+  #next-button .continue-arrow,
+  .validation-banner-inner {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+</style>
 </head>
 <body>
 
@@ -3305,6 +3821,17 @@ body.welcome-open { overflow: hidden; }
   </svg>
 
   <div class="scene" aria-hidden="true"><div class="petals" id="petals"></div></div>
+
+  <div class="validation-banner" id="validation-banner" role="alert" aria-live="assertive" hidden>
+    <div class="validation-banner-inner">
+      <span class="validation-sakura" aria-hidden="true"></span>
+      <div class="validation-banner-copy">
+        <strong id="validation-banner-title">Hi there, it looks like you missed something.</strong>
+        <ul id="validation-banner-list"></ul>
+      </div>
+      <button type="button" class="validation-banner-close" id="validation-banner-close" aria-label="Close">×</button>
+    </div>
+  </div>
 
 
   <section class="welcome-screen" id="welcome-screen" aria-labelledby="welcome-language-title">
@@ -3865,7 +4392,7 @@ body.welcome-open { overflow: hidden; }
           <button type="button" class="button clear-form-button" id="clear-form-button"><span data-i18n="clearForm">Clear Form</span></button>
           <button type="button" class="button secondary" id="back-button" hidden>← <span data-i18n="back">Back</span></button>
           <div class="action-spacer"></div>
-          <button type="button" class="button primary" id="next-button"><span data-i18n="continue">Continue</span> →</button>
+          <button type="button" class="button primary" id="next-button"><span data-i18n="continue">Continue</span><span class="continue-arrow" aria-hidden="true">→</span></button>
           <button type="submit" class="button submit" id="submit-button" hidden><span data-i18n="submitApplication">Submit Application</span> →</button>
         </div>
       </form>
@@ -4030,7 +4557,7 @@ const I18N = {
     additionalInfo: 'Additional Information', additionalInfoIntro: 'Add anything else that would help the 1616 team review your transfer request.', additionalComments: 'Do you have any additional comments or questions?', beforeContinue: 'Before you continue', waitlistReminder: 'Remember: this application adds you to the Server 1616 waitlist. It does not guarantee a transfer spot.',
     reviewSubmit: 'Review & Submit', reviewIntro: 'Review your information before submitting. You can go back to any section to make changes.', submitNote: 'Your application will be sent to the 1616 review spreadsheet. Your language choice is stored with your submission.', edit: 'Edit',
     back: 'Back', continue: 'Continue', submitApplication: 'Submit Application',
-    requiredError: 'This field is required.', numberError: 'Please enter numbers only.', fullNumberError: 'Enter the full number using digits only (for example 26000000).', chooseError: 'Please select an option.', groupMemberError: "Please complete all three fields for this player: username, alliance name, and server number.", groupContactError: 'Please choose a group contact.', backendMissing: 'The form is ready, but the Google Apps Script URL has not been added yet. Paste your Web App /exec URL into the HTML CONFIG block.', submitting: 'Submitting your application…', submitted: 'Application submitted. Your reference is', submitFailed: 'We could not send your application. Please check your connection and try again.',
+    requiredError: 'This field is required.', missedSomethingTitle: 'Hi {username}, it looks like you missed something.', missedSomethingFallback: 'there', numberError: 'Please enter numbers only.', fullNumberError: 'Enter the full number using digits only (for example 26000000).', chooseError: 'Please select an option.', groupMemberError: "Please complete all three fields for this player: username, alliance name, and server number.", groupContactError: 'Please choose a group contact.', backendMissing: 'The form is ready, but the Google Apps Script URL has not been added yet. Paste your Web App /exec URL into the HTML CONFIG block.', submitting: 'Submitting your application…', submitted: 'Application submitted. Your reference is', submitFailed: 'We could not send your application. Please check your connection and try again.',
     reviewApplicant: 'Applicant', reviewGame: 'Game Details', reviewGroup: 'Transfer Group', reviewAdditional: 'Additional Information', transferAnswer: 'Transferring with group', groupMembers: 'Linked players', comments: 'Comments', none: 'None', notProvided: 'Not provided', groupLead: 'Group contact', totalGroup: 'Total group size',
     player: 'Player', removePlayer: 'Remove player', stepOf: 'Step {step} of 6',
     whereToFindPowerTitle: "Where do I find these power numbers?",
@@ -4132,7 +4659,7 @@ const I18N = {
     transferGroup: 'Grupo de transferencia', transferGroupIntro: 'Dinos si te transfieres con otras personas. Si es así, añade a cada jugador para mantener el grupo conectado durante la revisión.', transferWithGroup: '¿Esperas transferirte con un grupo de personas de tu servidor?', yes: 'Sí', no: 'No', unsure: 'No estoy seguro/a', yesGroupSub: 'Voy con otros jugadores', noGroupSub: 'Voy por mi cuenta', unsureGroupSub: 'Todavía no lo sé', yourTransferGroup: 'Tu grupo de transferencia', groupBuilderIntro: "No necesitas conocer todavía a todos los jugadores. Añade a los que conozcas o deja la lista vacía y continúa.", addAnotherPlayer: "Añadir un jugador conocido", groupContact: 'Contacto del grupo', groupContactIntro: "¿A quién debemos contactar si necesitamos hablar con tu grupo? Si no eliges a otra persona, te usaremos a ti como contacto.", selectGroupContact: 'Selecciona un contacto', totalPlayersInGroup: "Tamaño estimado del grupo", additionalPlayers: 'Jugadores adicionales', includingYou: 'Incluyéndote', playerName: 'Nombre del jugador', memberServer: 'Servidor actual', memberAlliance: 'Nombre / etiqueta de alianza', knownPlayersListed: "Jugadores conocidos añadidos", estimatedGroupSize: "Tamaño estimado del grupo", estimatedGroupSizeIntro: "Si sabes aproximadamente cuántos jugadores adicionales podrían venir contigo, introduce el número. Una estimación está bien.", expectedAdditionalPlayers: "Jugadores adicionales esperados", expectedAdditionalHelp: "Déjalo en blanco si todavía no lo sabes.", optional: "Opcional", transferGroupIdTitle: "ID del grupo de traslado", transferGroupIdIntro: "Si se transfieren como grupo, comparte este ID con cualquier persona que vaya a solicitar contigo. Pueden introducir el mismo ID para que sus solicitudes queden agrupadas.", activeTransferGroupId: "ID activo del grupo de traslado", groupIdAuto: "Usando ID NUEVO", groupIdUsingExisting: "Usando un ID de grupo de traslado compartido", copyGroupId: "Copiar ID", copiedGroupId: "¡Copiado!", existingGroupId: "¿Ya tienes un ID de grupo de traslado?", existingGroupIdHelp: "Si alguien de tu grupo ya creó un ID, pégalo aquí. Al introducirlo, tu solicitud usará ese ID en lugar del nuevo ID mostrado arriba. Si lo dejas en blanco, se usará el nuevo ID generado arriba.", reviewTransferGroupId: "ID del grupo de traslado",
     additionalInfo: 'Información adicional', additionalInfoIntro: 'Añade cualquier dato que pueda ayudar al equipo de 1616 a revisar tu solicitud.', additionalComments: '¿Tienes algún comentario o pregunta adicional?', beforeContinue: 'Antes de continuar', waitlistReminder: 'Recuerda: esta solicitud te añade a la lista de espera de 1616. No garantiza un lugar de transferencia.',
     reviewSubmit: 'Revisar y enviar', reviewIntro: 'Revisa tu información antes de enviarla. Puedes volver a cualquier sección para hacer cambios.', submitNote: 'Tu solicitud se enviará a la hoja de revisión de 1616. Guardaremos también el idioma elegido.', edit: 'Editar', back: 'Atrás', continue: 'Continuar', submitApplication: 'Enviar solicitud',
-    requiredError: 'Este campo es obligatorio.', numberError: 'Introduce solo números.', fullNumberError: 'Introduce el número completo usando solo dígitos (por ejemplo, 26000000).', chooseError: 'Selecciona una opción.', groupMemberError: "Completa los tres campos: usuario, alianza y servidor.", groupContactError: 'Selecciona un contacto del grupo.', backendMissing: 'El formulario está listo, pero falta la URL de Google Apps Script. Pega la URL /exec de tu aplicación web en app.js.', submitting: 'Enviando tu solicitud…', submitted: 'Solicitud enviada. Tu referencia es', submitFailed: 'No pudimos enviar la solicitud. Revisa tu conexión e inténtalo de nuevo.',
+    requiredError: 'Este campo es obligatorio.', missedSomethingTitle: 'Hola {username}, parece que te faltó algo.', missedSomethingFallback: 'ahí', numberError: 'Introduce solo números.', fullNumberError: 'Introduce el número completo usando solo dígitos (por ejemplo, 26000000).', chooseError: 'Selecciona una opción.', groupMemberError: "Completa los tres campos: usuario, alianza y servidor.", groupContactError: 'Selecciona un contacto del grupo.', backendMissing: 'El formulario está listo, pero falta la URL de Google Apps Script. Pega la URL /exec de tu aplicación web en app.js.', submitting: 'Enviando tu solicitud…', submitted: 'Solicitud enviada. Tu referencia es', submitFailed: 'No pudimos enviar la solicitud. Revisa tu conexión e inténtalo de nuevo.',
     reviewApplicant: 'Solicitante', reviewGame: 'Datos del juego', reviewGroup: 'Grupo de transferencia', reviewAdditional: 'Información adicional', transferAnswer: 'Se transfiere con grupo', groupMembers: 'Jugadores vinculados', comments: 'Comentarios', none: 'Ninguno', notProvided: 'No proporcionado', groupLead: 'Contacto del grupo', totalGroup: 'Tamaño total del grupo', player: 'Jugador', removePlayer: 'Eliminar jugador', stepOf: 'Paso {step} de 6',
     welcomeChooseLanguageTitle: "Elige tu idioma",
     welcomeChooseLanguageIntro: "Elige el idioma que quieres usar para la solicitud de transferencia.",
@@ -4217,7 +4744,7 @@ const I18N = {
     transferGroup: 'Grupo de transferência', transferGroupIntro: 'Informe se você está se transferindo com outros jogadores. Se sim, adicione cada pessoa para mantermos o grupo conectado durante a análise.', transferWithGroup: 'Você espera se transferir com um grupo de pessoas do seu servidor?', yes: 'Sim', no: 'Não', unsure: 'Não tenho certeza', yesGroupSub: 'Estou levando outros jogadores', noGroupSub: 'Estou indo sozinho(a)', unsureGroupSub: 'Ainda não tenho certeza', yourTransferGroup: 'Seu grupo de transferência', groupBuilderIntro: "Você não precisa saber ainda todos os jogadores. Adicione os que você conhece ou deixe a lista vazia e continue.", addAnotherPlayer: "Adicionar jogador conhecido", groupContact: 'Contato do grupo', groupContactIntro: "Quem devemos contatar se precisarmos falar com seu grupo? Se você não escolher outra pessoa, usaremos você como contato.", selectGroupContact: 'Selecione um contato', totalPlayersInGroup: "Tamanho estimado do grupo", additionalPlayers: 'Jogadores adicionais', includingYou: 'Incluindo você', playerName: 'Nome do jogador', memberServer: 'Servidor atual', memberAlliance: 'Nome / tag da aliança', knownPlayersListed: "Jogadores conhecidos adicionados", estimatedGroupSize: "Tamanho estimado do grupo", estimatedGroupSizeIntro: "Se você souber aproximadamente quantos jogadores adicionais podem vir com você, informe o número. Uma estimativa está bem.", expectedAdditionalPlayers: "Jogadores adicionais esperados", expectedAdditionalHelp: "Deixe em branco se ainda não souber.", optional: "Opcional", transferGroupIdTitle: "ID do grupo de transferência", transferGroupIdIntro: "Se vocês estão se transferindo em grupo, compartilhe este ID com qualquer pessoa que vai se inscrever com você. Eles podem inserir o mesmo ID para que as inscrições fiquem agrupadas.", activeTransferGroupId: "ID ativo do grupo de transferência", groupIdAuto: "Usando ID NOVO", groupIdUsingExisting: "Usando um ID de grupo de transferência compartilhado", copyGroupId: "Copiar ID", copiedGroupId: "Copiado!", existingGroupId: "Já tem um ID de grupo de transferência?", existingGroupIdHelp: "Se alguém do seu grupo já criou um ID, cole-o aqui. Ao inserir um ID compartilhado, sua inscrição usará esse ID no lugar do novo ID mostrado acima. Se deixar em branco, usaremos o novo ID gerado acima.", reviewTransferGroupId: "ID do grupo de transferência",
     additionalInfo: 'Informações adicionais', additionalInfoIntro: 'Adicione qualquer informação que possa ajudar a equipe 1616 a avaliar sua solicitação.', additionalComments: 'Você tem algum comentário ou pergunta adicional?', beforeContinue: 'Antes de continuar', waitlistReminder: 'Lembre-se: esta inscrição coloca você na lista de espera do Servidor 1616. Ela não garante uma vaga.',
     reviewSubmit: 'Revisar e enviar', reviewIntro: 'Revise suas informações antes de enviar. Você pode voltar a qualquer seção para fazer alterações.', submitNote: 'Sua inscrição será enviada para a planilha de análise de 1616. O idioma escolhido também será salvo.', edit: 'Editar', back: 'Voltar', continue: 'Continuar', submitApplication: 'Enviar inscrição',
-    requiredError: 'Este campo é obrigatório.', numberError: 'Digite apenas números.', fullNumberError: 'Digite o número completo usando apenas dígitos (por exemplo, 26000000).', chooseError: 'Selecione uma opção.', groupMemberError: "Preencha os três campos: usuário, aliança e servidor.", groupContactError: 'Selecione um contato do grupo.', backendMissing: 'O formulário está pronto, mas a URL do Google Apps Script ainda não foi adicionada. Cole a URL /exec em app.js.', submitting: 'Enviando sua inscrição…', submitted: 'Inscrição enviada. Sua referência é', submitFailed: 'Não foi possível enviar a inscrição. Verifique sua conexão e tente novamente.',
+    requiredError: 'Este campo é obrigatório.', missedSomethingTitle: 'Olá {username}, parece que você esqueceu algo.', missedSomethingFallback: 'aí', numberError: 'Digite apenas números.', fullNumberError: 'Digite o número completo usando apenas dígitos (por exemplo, 26000000).', chooseError: 'Selecione uma opção.', groupMemberError: "Preencha os três campos: usuário, aliança e servidor.", groupContactError: 'Selecione um contato do grupo.', backendMissing: 'O formulário está pronto, mas a URL do Google Apps Script ainda não foi adicionada. Cole a URL /exec em app.js.', submitting: 'Enviando sua inscrição…', submitted: 'Inscrição enviada. Sua referência é', submitFailed: 'Não foi possível enviar a inscrição. Verifique sua conexão e tente novamente.',
     reviewApplicant: 'Candidato', reviewGame: 'Dados do jogo', reviewGroup: 'Grupo de transferência', reviewAdditional: 'Informações adicionais', transferAnswer: 'Transferindo com grupo', groupMembers: 'Jogadores vinculados', comments: 'Comentários', none: 'Nenhum', notProvided: 'Não informado', groupLead: 'Contato do grupo', totalGroup: 'Tamanho total do grupo', player: 'Jogador', removePlayer: 'Remover jogador', stepOf: 'Etapa {step} de 6',
     welcomeChooseLanguageTitle: "Escolha seu idioma",
     welcomeChooseLanguageIntro: "Escolha o idioma que deseja usar na inscrição de transferência.",
@@ -4302,7 +4829,7 @@ const I18N = {
     transferGroup: 'Groupe de transfert', transferGroupIntro: 'Indiquez si vous vous transférez avec d’autres joueurs. Si oui, ajoutez chaque joueur afin que nous puissions garder le groupe lié pendant l’examen.', transferWithGroup: 'Souhaitez-vous vous transférer avec un groupe de joueurs de votre serveur ?', yes: 'Oui', no: 'Non', unsure: 'Incertain', yesGroupSub: 'Je viens avec d’autres joueurs', noGroupSub: 'Je viens seul(e)', unsureGroupSub: 'Je ne sais pas encore', yourTransferGroup: 'Votre groupe de transfert', groupBuilderIntro: "Vous n’avez pas besoin de connaître tous les joueurs pour le moment. Ajoutez ceux que vous connaissez ou laissez la liste vide et continuez.", addAnotherPlayer: "Ajouter un joueur connu", groupContact: 'Contact du groupe', groupContactIntro: "Qui devons-nous contacter si nous devons joindre votre groupe ? Si vous ne choisissez personne d’autre, nous vous utiliserons comme contact.", selectGroupContact: 'Sélectionnez un contact', totalPlayersInGroup: "Taille estimée du groupe", additionalPlayers: 'Joueurs supplémentaires', includingYou: 'Vous compris(e)', playerName: 'Nom du joueur', memberServer: 'Serveur actuel', memberAlliance: 'Nom / tag de l’alliance', knownPlayersListed: "Joueurs connus ajoutés", estimatedGroupSize: "Taille estimée du groupe", estimatedGroupSizeIntro: "Si vous savez approximativement combien de joueurs supplémentaires pourraient venir avec vous, indiquez ce nombre. Une estimation suffit.", expectedAdditionalPlayers: "Joueurs supplémentaires prévus", expectedAdditionalHelp: "Laissez vide si vous ne le savez pas encore.", optional: "Facultatif", transferGroupIdTitle: "ID du groupe de transfert", transferGroupIdIntro: "Si vous transférez en groupe, partagez cet identifiant avec toute personne qui postule avec vous. Elle pourra saisir le même identifiant afin que vos candidatures restent regroupées.", activeTransferGroupId: "ID actif du groupe de transfert", groupIdAuto: "Utilisation du NOUVEL ID", groupIdUsingExisting: "Utilisation d’un ID de groupe de transfert partagé", copyGroupId: "Copier l’ID", copiedGroupId: "Copié !", existingGroupId: "Vous avez déjà un ID de groupe de transfert ?", existingGroupIdHelp: "Si quelqu’un de votre groupe a déjà créé un ID, collez-le ici. Cet ID partagé sera utilisé pour votre demande à la place du nouvel ID affiché ci-dessus. Si vous laissez ce champ vide, le nouvel ID sera utilisé.", reviewTransferGroupId: "ID du groupe de transfert",
     additionalInfo: 'Informations supplémentaires', additionalInfoIntro: 'Ajoutez tout renseignement pouvant aider l’équipe 1616 à examiner votre demande.', additionalComments: 'Avez-vous des commentaires ou des questions supplémentaires ?', beforeContinue: 'Avant de continuer', waitlistReminder: 'Rappel : cette demande vous ajoute à la liste d’attente du serveur 1616. Elle ne garantit pas une place.',
     reviewSubmit: 'Vérifier et envoyer', reviewIntro: 'Vérifiez vos informations avant l’envoi. Vous pouvez revenir à n’importe quelle section pour les modifier.', submitNote: 'Votre demande sera envoyée dans la feuille de suivi 1616. La langue choisie sera également enregistrée.', edit: 'Modifier', back: 'Retour', continue: 'Continuer', submitApplication: 'Envoyer la demande',
-    requiredError: 'Ce champ est obligatoire.', numberError: 'Saisissez uniquement des chiffres.', fullNumberError: 'Saisissez le nombre complet uniquement avec des chiffres (ex. 26000000).', chooseError: 'Sélectionnez une option.', groupMemberError: "Complétez les trois champs : utilisateur, alliance et serveur.", groupContactError: 'Sélectionnez un contact du groupe.', backendMissing: 'Le formulaire est prêt, mais l’URL Google Apps Script n’a pas encore été ajoutée. Collez l’URL /exec dans app.js.', submitting: 'Envoi de votre demande…', submitted: 'Demande envoyée. Votre référence est', submitFailed: 'Impossible d’envoyer la demande. Vérifiez votre connexion et réessayez.',
+    requiredError: 'Ce champ est obligatoire.', missedSomethingTitle: 'Bonjour {username}, il semble qu’il manque quelque chose.', missedSomethingFallback: 'là', numberError: 'Saisissez uniquement des chiffres.', fullNumberError: 'Saisissez le nombre complet uniquement avec des chiffres (ex. 26000000).', chooseError: 'Sélectionnez une option.', groupMemberError: "Complétez les trois champs : utilisateur, alliance et serveur.", groupContactError: 'Sélectionnez un contact du groupe.', backendMissing: 'Le formulaire est prêt, mais l’URL Google Apps Script n’a pas encore été ajoutée. Collez l’URL /exec dans app.js.', submitting: 'Envoi de votre demande…', submitted: 'Demande envoyée. Votre référence est', submitFailed: 'Impossible d’envoyer la demande. Vérifiez votre connexion et réessayez.',
     reviewApplicant: 'Candidat', reviewGame: 'Données du jeu', reviewGroup: 'Groupe de transfert', reviewAdditional: 'Informations supplémentaires', transferAnswer: 'Transfert avec un groupe', groupMembers: 'Joueurs liés', comments: 'Commentaires', none: 'Aucun', notProvided: 'Non renseigné', groupLead: 'Contact du groupe', totalGroup: 'Taille totale du groupe', player: 'Joueur', removePlayer: 'Supprimer le joueur', stepOf: 'Étape {step} sur 6',
     welcomeChooseLanguageTitle: "Choisissez votre langue",
     welcomeChooseLanguageIntro: "Choisissez la langue que vous souhaitez utiliser pour la demande de transfert.",
@@ -4387,7 +4914,7 @@ const I18N = {
     transferGroup: 'مجموعة الانتقال', transferGroupIntro: 'أخبرنا إذا كنت ستنتقل مع لاعبين آخرين. إذا نعم، أضف كل لاعب حتى نبقي مجموعتك مرتبطة أثناء المراجعة.', transferWithGroup: 'هل تأمل في الانتقال مع مجموعة من الأشخاص من سيرفرك؟', yes: 'نعم', no: 'لا', unsure: 'غير متأكد', yesGroupSub: 'سأنتقل مع لاعبين آخرين', noGroupSub: 'سأنتقل بمفردي', unsureGroupSub: 'لست متأكدًا بعد', yourTransferGroup: 'مجموعة انتقالك', groupBuilderIntro: "لا تحتاج إلى معرفة جميع اللاعبين الآن. أضف أي لاعبين تعرفهم، أو اترك القائمة فارغة وتابع.", addAnotherPlayer: "إضافة لاعب تعرفه", groupContact: 'جهة اتصال المجموعة', groupContactIntro: "بمن نتواصل إذا احتجنا إلى الوصول إلى مجموعتك؟ إذا لم تختر شخصًا آخر، فسنعتبرك جهة اتصال المجموعة.", selectGroupContact: 'اختر جهة اتصال', totalPlayersInGroup: "الحجم المتوقع للمجموعة", additionalPlayers: 'اللاعبون الإضافيون', includingYou: 'بما فيهم أنت', playerName: 'اسم اللاعب', memberServer: 'السيرفر الحالي', memberAlliance: 'اسم / وسم التحالف', knownPlayersListed: "اللاعبون المعروفون المدرجون", estimatedGroupSize: "الحجم المتوقع للمجموعة", estimatedGroupSizeIntro: "إذا كنت تعرف تقريبًا عدد اللاعبين الإضافيين الذين قد ينتقلون معك، فأدخل العدد. التقدير مقبول.", expectedAdditionalPlayers: "عدد اللاعبين الإضافيين المتوقع", expectedAdditionalHelp: "اتركه فارغًا إذا كنت لا تعرف بعد.", optional: "اختياري", transferGroupIdTitle: "معرّف مجموعة الانتقال", transferGroupIdIntro: "إذا كنتم تنتقلون كمجموعة، شارك هذا المعرّف مع أي شخص سيتقدّم معك. يمكنهم إدخال نفس المعرّف حتى تبقى الطلبات مجمّعة معًا.", activeTransferGroupId: "معرّف مجموعة الانتقال النشط", groupIdAuto: "يتم استخدام معرّف جديد", groupIdUsingExisting: "يتم استخدام معرّف مجموعة انتقال مشترك", copyGroupId: "نسخ المعرّف", copiedGroupId: "تم النسخ!", existingGroupId: "هل لديك بالفعل معرّف مجموعة انتقال؟", existingGroupIdHelp: "إذا أنشأ شخص في مجموعتك معرّفًا بالفعل، الصقه هنا. سيستخدم طلبك هذا المعرّف المشترك بدلًا من المعرّف الجديد أعلاه. إذا تركته فارغًا، سيستخدم الطلب المعرّف الجديد.", reviewTransferGroupId: "معرّف مجموعة الانتقال",
     additionalInfo: 'معلومات إضافية', additionalInfoIntro: 'أضف أي معلومات أخرى قد تساعد فريق 1616 في مراجعة طلبك.', additionalComments: 'هل لديك أي تعليقات أو أسئلة إضافية؟', beforeContinue: 'قبل المتابعة', waitlistReminder: 'تذكير: هذا الطلب يضيفك إلى قائمة انتظار السيرفر 1616 ولا يضمن مكانًا للانتقال.',
     reviewSubmit: 'المراجعة والإرسال', reviewIntro: 'راجع معلوماتك قبل الإرسال. يمكنك العودة إلى أي قسم لإجراء تغييرات.', submitNote: 'سيتم إرسال طلبك إلى جدول مراجعة 1616، وسيتم حفظ اللغة التي اخترتها مع الطلب.', edit: 'تعديل', back: 'رجوع', continue: 'متابعة', submitApplication: 'إرسال الطلب',
-    requiredError: 'هذا الحقل مطلوب.', numberError: 'يرجى إدخال أرقام فقط.', fullNumberError: 'أدخل الرقم كاملًا باستخدام الأرقام فقط (مثال: 26000000).', chooseError: 'يرجى اختيار خيار.', groupMemberError: "يرجى إكمال الحقول الثلاثة: اسم المستخدم والتحالف ورقم السيرفر.", groupContactError: 'يرجى اختيار جهة اتصال للمجموعة.', backendMissing: 'النموذج جاهز، لكن لم تتم إضافة رابط Google Apps Script بعد. ألصق رابط /exec في app.js.', submitting: 'جارٍ إرسال طلبك…', submitted: 'تم إرسال الطلب. رقمك المرجعي هو', submitFailed: 'تعذر إرسال الطلب. تحقق من اتصالك وحاول مرة أخرى.',
+    requiredError: 'هذا الحقل مطلوب.', missedSomethingTitle: 'مرحبًا {username}، يبدو أنك نسيت شيئًا.', missedSomethingFallback: 'هناك', numberError: 'يرجى إدخال أرقام فقط.', fullNumberError: 'أدخل الرقم كاملًا باستخدام الأرقام فقط (مثال: 26000000).', chooseError: 'يرجى اختيار خيار.', groupMemberError: "يرجى إكمال الحقول الثلاثة: اسم المستخدم والتحالف ورقم السيرفر.", groupContactError: 'يرجى اختيار جهة اتصال للمجموعة.', backendMissing: 'النموذج جاهز، لكن لم تتم إضافة رابط Google Apps Script بعد. ألصق رابط /exec في app.js.', submitting: 'جارٍ إرسال طلبك…', submitted: 'تم إرسال الطلب. رقمك المرجعي هو', submitFailed: 'تعذر إرسال الطلب. تحقق من اتصالك وحاول مرة أخرى.',
     reviewApplicant: 'المتقدم', reviewGame: 'تفاصيل اللعبة', reviewGroup: 'مجموعة الانتقال', reviewAdditional: 'معلومات إضافية', transferAnswer: 'الانتقال مع مجموعة', groupMembers: 'اللاعبون المرتبطون', comments: 'التعليقات', none: 'لا يوجد', notProvided: 'غير متوفر', groupLead: 'جهة اتصال المجموعة', totalGroup: 'إجمالي حجم المجموعة', player: 'لاعب', removePlayer: 'إزالة اللاعب', stepOf: 'الخطوة {step} من 6',
     welcomeChooseLanguageTitle: "اختر لغتك",
     welcomeChooseLanguageIntro: "اختر اللغة التي تريد استخدامها في طلب الانتقال.",
@@ -4472,7 +4999,7 @@ const I18N = {
     transferGroup: 'Nhóm chuyển server', transferGroupIntro: 'Cho chúng tôi biết bạn có chuyển cùng người chơi khác không. Nếu có, hãy thêm từng người để chúng tôi có thể giữ nhóm của bạn được liên kết khi xét duyệt.', transferWithGroup: 'Bạn có muốn chuyển cùng một nhóm người từ server của bạn không?', yes: 'Có', no: 'Không', unsure: 'Không chắc', yesGroupSub: 'Tôi đi cùng người chơi khác', noGroupSub: 'Tôi chuyển một mình', unsureGroupSub: 'Tôi chưa chắc', yourTransferGroup: 'Nhóm chuyển của bạn', groupBuilderIntro: "Bạn chưa cần biết tất cả người chơi. Hãy thêm những người bạn biết, hoặc để trống danh sách và tiếp tục.", addAnotherPlayer: "Thêm người chơi đã biết", groupContact: 'Người liên hệ của nhóm', groupContactIntro: "Chúng tôi nên liên hệ ai nếu cần trao đổi với nhóm của bạn? Nếu bạn không chọn người khác, chúng tôi sẽ dùng bạn làm người liên hệ.", selectGroupContact: 'Chọn người liên hệ', totalPlayersInGroup: "Quy mô nhóm dự kiến", additionalPlayers: 'Người chơi bổ sung', includingYou: 'Bao gồm bạn', playerName: 'Tên người chơi', memberServer: 'Server hiện tại', memberAlliance: 'Tên / tag liên minh', knownPlayersListed: "Người chơi đã biết được thêm", estimatedGroupSize: "Quy mô nhóm dự kiến", estimatedGroupSizeIntro: "Nếu bạn biết khoảng bao nhiêu người chơi bổ sung có thể đi cùng, hãy nhập con số. Ước tính là được.", expectedAdditionalPlayers: "Số người chơi bổ sung dự kiến", expectedAdditionalHelp: "Để trống nếu bạn chưa biết.", optional: "Không bắt buộc", transferGroupIdTitle: "Mã nhóm chuyển server", transferGroupIdIntro: "Nếu bạn chuyển cùng một nhóm, hãy chia sẻ mã này với bất kỳ ai nộp đơn cùng bạn. Họ có thể nhập cùng một mã để các đơn được nhóm lại với nhau.", activeTransferGroupId: "Mã nhóm chuyển server đang dùng", groupIdAuto: "Đang dùng MÃ MỚI", groupIdUsingExisting: "Đang dùng mã nhóm chuyển server đã được chia sẻ", copyGroupId: "Sao chép mã", copiedGroupId: "Đã sao chép!", existingGroupId: "Bạn đã có mã nhóm chuyển server chưa?", existingGroupIdHelp: "Nếu ai đó trong nhóm đã tạo mã, hãy dán mã đó vào đây. Khi nhập mã được chia sẻ, đơn của bạn sẽ dùng mã đó thay cho mã mới phía trên. Nếu để trống, đơn sẽ dùng mã mới được tạo.", reviewTransferGroupId: "Mã nhóm chuyển server",
     additionalInfo: 'Thông tin bổ sung', additionalInfoIntro: 'Thêm bất kỳ thông tin nào có thể giúp đội 1616 xem xét yêu cầu chuyển của bạn.', additionalComments: 'Bạn có thêm nhận xét hoặc câu hỏi nào không?', beforeContinue: 'Trước khi tiếp tục', waitlistReminder: 'Hãy nhớ: đơn này đưa bạn vào danh sách chờ của Server 1616 và không đảm bảo một suất chuyển.',
     reviewSubmit: 'Kiểm tra & gửi', reviewIntro: 'Kiểm tra thông tin trước khi gửi. Bạn có thể quay lại bất kỳ phần nào để chỉnh sửa.', submitNote: 'Đơn của bạn sẽ được gửi vào bảng tính xét duyệt 1616. Ngôn ngữ bạn chọn cũng sẽ được lưu.', edit: 'Sửa', back: 'Quay lại', continue: 'Tiếp tục', submitApplication: 'Gửi đơn',
-    requiredError: 'Trường này là bắt buộc.', numberError: 'Vui lòng chỉ nhập số.', fullNumberError: 'Nhập đầy đủ con số chỉ bằng chữ số (ví dụ 26000000).', chooseError: 'Vui lòng chọn một tùy chọn.', groupMemberError: "Vui lòng điền đủ ba trường: tên người dùng, liên minh và server.", groupContactError: 'Vui lòng chọn người liên hệ của nhóm.', backendMissing: 'Biểu mẫu đã sẵn sàng nhưng chưa có URL Google Apps Script. Hãy dán URL /exec vào app.js.', submitting: 'Đang gửi đơn…', submitted: 'Đã gửi đơn. Mã tham chiếu của bạn là', submitFailed: 'Không thể gửi đơn. Vui lòng kiểm tra kết nối và thử lại.',
+    requiredError: 'Trường này là bắt buộc.', missedSomethingTitle: 'Chào {username}, có vẻ bạn đã bỏ sót một mục.', missedSomethingFallback: 'bạn', numberError: 'Vui lòng chỉ nhập số.', fullNumberError: 'Nhập đầy đủ con số chỉ bằng chữ số (ví dụ 26000000).', chooseError: 'Vui lòng chọn một tùy chọn.', groupMemberError: "Vui lòng điền đủ ba trường: tên người dùng, liên minh và server.", groupContactError: 'Vui lòng chọn người liên hệ của nhóm.', backendMissing: 'Biểu mẫu đã sẵn sàng nhưng chưa có URL Google Apps Script. Hãy dán URL /exec vào app.js.', submitting: 'Đang gửi đơn…', submitted: 'Đã gửi đơn. Mã tham chiếu của bạn là', submitFailed: 'Không thể gửi đơn. Vui lòng kiểm tra kết nối và thử lại.',
     reviewApplicant: 'Người nộp đơn', reviewGame: 'Thông tin game', reviewGroup: 'Nhóm chuyển server', reviewAdditional: 'Thông tin bổ sung', transferAnswer: 'Chuyển cùng nhóm', groupMembers: 'Người chơi liên kết', comments: 'Nhận xét', none: 'Không có', notProvided: 'Không cung cấp', groupLead: 'Người liên hệ nhóm', totalGroup: 'Tổng số người trong nhóm', player: 'Người chơi', removePlayer: 'Xóa người chơi', stepOf: 'Bước {step}/6',
     welcomeChooseLanguageTitle: "Chọn ngôn ngữ của bạn",
     welcomeChooseLanguageIntro: "Chọn ngôn ngữ bạn muốn sử dụng cho đơn chuyển server.",
@@ -4557,7 +5084,7 @@ const I18N = {
     transferGroup: '이전 그룹', transferGroupIntro: '다른 플레이어와 함께 이동하는지 알려주세요. 함께 이동한다면 각 플레이어를 추가하여 검토 중에도 그룹을 연결해 두겠습니다.', transferWithGroup: '서버의 다른 사람들과 함께 이동하시기를 원하시나요?', yes: '예', no: '아니요', unsure: '불확실', yesGroupSub: '다른 플레이어와 함께 이동합니다', noGroupSub: '혼자 이동합니다', unsureGroupSub: '아직 확실하지 않습니다', yourTransferGroup: '이전 그룹', groupBuilderIntro: "아직 모든 플레이어를 알 필요는 없습니다. 알고 있는 플레이어만 추가하거나 목록을 비워 둔 채 계속할 수 있습니다.", addAnotherPlayer: "아는 플레이어 추가", groupContact: '그룹 연락 담당자', groupContactIntro: "그룹에 연락해야 할 경우 누구에게 연락하면 되나요? 다른 사람을 선택하지 않으면 신청자를 그룹 연락 담당자로 사용합니다.", selectGroupContact: '연락 담당자 선택', totalPlayersInGroup: "예상 그룹 규모", additionalPlayers: '추가 플레이어', includingYou: '본인 포함', playerName: '플레이어 이름', memberServer: '현재 서버', memberAlliance: '연합 이름 / 태그', knownPlayersListed: "등록된 알려진 플레이어", estimatedGroupSize: "예상 그룹 규모", estimatedGroupSizeIntro: "함께 올 추가 플레이어 수를 대략 알고 있다면 입력해 주세요. 예상치여도 괜찮습니다.", expectedAdditionalPlayers: "예상 추가 플레이어 수", expectedAdditionalHelp: "아직 모르면 비워 두세요.", optional: "선택 사항", transferGroupIdTitle: "이동 그룹 ID", transferGroupIdIntro: "여러 명이 함께 이동한다면 이 ID를 함께 신청하는 사람들에게 공유하세요. 같은 ID를 입력하면 신청서가 하나의 그룹으로 묶입니다.", activeTransferGroupId: "현재 이동 그룹 ID", groupIdAuto: "새 ID 사용 중", groupIdUsingExisting: "공유된 기존 이동 그룹 ID 사용 중", copyGroupId: "ID 복사", copiedGroupId: "복사됨!", existingGroupId: "이미 이동 그룹 ID가 있나요?", existingGroupIdHelp: "그룹원이 이미 ID를 만들었다면 여기에 붙여넣으세요. 공유 ID를 입력하면 위의 새 ID 대신 그 ID가 이 신청서에 사용됩니다. 비워두면 새로 생성된 ID가 사용됩니다.", reviewTransferGroupId: "이동 그룹 ID",
     additionalInfo: '추가 정보', additionalInfoIntro: '1616 팀이 이전 요청을 검토하는 데 도움이 될 정보를 추가해 주세요.', additionalComments: '추가로 남기고 싶은 의견이나 질문이 있나요?', beforeContinue: '계속하기 전에', waitlistReminder: '이 신청서는 1616 대기자 명단에 추가하는 것이며 이전 자리를 보장하지 않습니다.',
     reviewSubmit: '검토 및 제출', reviewIntro: '제출 전에 정보를 확인하세요. 변경하려면 어느 섹션으로든 돌아갈 수 있습니다.', submitNote: '신청서는 1616 검토 스프레드시트로 전송되며 선택한 언어도 함께 저장됩니다.', edit: '수정', back: '뒤로', continue: '계속', submitApplication: '신청서 제출',
-    requiredError: '필수 입력 항목입니다.', numberError: '숫자만 입력해 주세요.', fullNumberError: '전체 숫자를 숫자로만 입력하세요 (예: 26000000).', chooseError: '옵션을 선택해 주세요.', groupMemberError: "사용자명, 연맹 이름, 서버 번호 세 항목을 모두 입력하세요.", groupContactError: '그룹 연락 담당자를 선택해 주세요.', backendMissing: '폼은 준비되었지만 Google Apps Script URL이 아직 없습니다. app.js에 /exec URL을 붙여 넣으세요.', submitting: '신청서를 제출하는 중…', submitted: '신청서가 제출되었습니다. 참조 번호:', submitFailed: '신청서를 보낼 수 없습니다. 연결 상태를 확인하고 다시 시도해 주세요.',
+    requiredError: '필수 입력 항목입니다.', missedSomethingTitle: '안녕하세요, {username}님. 빠뜨린 항목이 있는 것 같아요.', missedSomethingFallback: '회원', numberError: '숫자만 입력해 주세요.', fullNumberError: '전체 숫자를 숫자로만 입력하세요 (예: 26000000).', chooseError: '옵션을 선택해 주세요.', groupMemberError: "사용자명, 연맹 이름, 서버 번호 세 항목을 모두 입력하세요.", groupContactError: '그룹 연락 담당자를 선택해 주세요.', backendMissing: '폼은 준비되었지만 Google Apps Script URL이 아직 없습니다. app.js에 /exec URL을 붙여 넣으세요.', submitting: '신청서를 제출하는 중…', submitted: '신청서가 제출되었습니다. 참조 번호:', submitFailed: '신청서를 보낼 수 없습니다. 연결 상태를 확인하고 다시 시도해 주세요.',
     reviewApplicant: '신청자', reviewGame: '게임 정보', reviewGroup: '이전 그룹', reviewAdditional: '추가 정보', transferAnswer: '그룹과 함께 이전', groupMembers: '연결된 플레이어', comments: '의견', none: '없음', notProvided: '미입력', groupLead: '그룹 연락 담당자', totalGroup: '총 그룹 인원', player: '플레이어', removePlayer: '플레이어 삭제', stepOf: '{step} / 6단계',
     welcomeChooseLanguageTitle: "언어를 선택하세요",
     welcomeChooseLanguageIntro: "서버 이동 신청에 사용할 언어를 선택하세요.",
@@ -4642,7 +5169,7 @@ const I18N = {
     transferGroup: 'Transfergruppe', transferGroupIntro: 'Sag uns, ob du mit anderen Spielern wechselst. Wenn ja, füge jeden Spieler hinzu, damit wir eure Gruppe bei der Prüfung zusammenhalten können.', transferWithGroup: 'Möchtest du dich mit einer Gruppe von Personen von deinem Server transferieren?', yes: 'Ja', no: 'Nein', unsure: 'Unsicher', yesGroupSub: 'Ich bringe andere Spieler mit', noGroupSub: 'Ich transferiere allein', unsureGroupSub: 'Ich bin noch nicht sicher', yourTransferGroup: 'Deine Transfergruppe', groupBuilderIntro: "Du musst noch nicht alle Spielernamen kennen. Füge bekannte Spieler hinzu oder lasse die Liste leer und fahre fort.", addAnotherPlayer: "Bekannten Spieler hinzufügen", groupContact: 'Gruppenkontakt', groupContactIntro: "Wen sollen wir kontaktieren, wenn wir eure Gruppe erreichen müssen? Wenn du niemand anderen auswählst, verwenden wir dich als Gruppenkontakt.", selectGroupContact: 'Gruppenkontakt auswählen', totalPlayersInGroup: "Geschätzte Gruppengröße", additionalPlayers: 'Zusätzliche Spieler', includingYou: 'Einschließlich dir', playerName: 'Spielername', memberServer: 'Aktueller Server', memberAlliance: 'Allianzname / Tag', knownPlayersListed: "Bekannte Spieler eingetragen", estimatedGroupSize: "Geschätzte Gruppengröße", estimatedGroupSizeIntro: "Wenn du ungefähr weißt, wie viele zusätzliche Spieler mitkommen könnten, gib die Zahl ein. Eine Schätzung reicht.", expectedAdditionalPlayers: "Erwartete zusätzliche Spieler", expectedAdditionalHelp: "Lass das Feld leer, wenn du es noch nicht weißt.", optional: "Optional", transferGroupIdTitle: "Transfergruppen-ID", transferGroupIdIntro: "Wenn ihr als Gruppe wechselt, teile diese ID mit allen, die sich zusammen mit dir bewerben. Sie können dieselbe ID eingeben, damit eure Bewerbungen zusammengefasst werden.", activeTransferGroupId: "Aktive Transfergruppen-ID", groupIdAuto: "NEUE ID wird verwendet", groupIdUsingExisting: "Es wird eine vorhandene gemeinsame Transfergruppen-ID verwendet", copyGroupId: "ID kopieren", copiedGroupId: "Kopiert!", existingGroupId: "Hast du bereits eine Transfergruppen-ID?", existingGroupIdHelp: "Wenn jemand aus deiner Gruppe bereits eine ID erstellt hat, füge sie hier ein. Dann verwendet deine Bewerbung diese gemeinsame ID anstelle der neuen ID oben. Wenn du das Feld leer lässt, wird die neue ID verwendet.", reviewTransferGroupId: "Transfergruppen-ID",
     additionalInfo: 'Zusätzliche Informationen', additionalInfoIntro: 'Füge alles hinzu, was dem 1616-Team bei der Prüfung deiner Transferanfrage helfen könnte.', additionalComments: 'Hast du noch weitere Kommentare oder Fragen?', beforeContinue: 'Bevor du fortfährst', waitlistReminder: 'Denke daran: Diese Bewerbung setzt dich auf die Warteliste von Server 1616. Sie garantiert keinen Transferplatz.',
     reviewSubmit: 'Prüfen & senden', reviewIntro: 'Prüfe deine Angaben vor dem Absenden. Du kannst jederzeit zu einem Abschnitt zurückkehren und Änderungen vornehmen.', submitNote: 'Deine Bewerbung wird an die 1616-Prüftabelle gesendet. Deine gewählte Sprache wird mitgespeichert.', edit: 'Bearbeiten', back: 'Zurück', continue: 'Weiter', submitApplication: 'Bewerbung absenden',
-    requiredError: 'Dieses Feld ist erforderlich.', numberError: 'Bitte nur Zahlen eingeben.', fullNumberError: 'Gib die vollständige Zahl nur mit Ziffern ein (z. B. 26000000).', chooseError: 'Bitte wähle eine Option.', groupMemberError: "Bitte fülle alle drei Felder aus: Benutzername, Allianzname und Servernummer.", groupContactError: 'Bitte wähle einen Gruppenkontakt.', backendMissing: 'Das Formular ist bereit, aber die Google-Apps-Script-URL fehlt noch. Füge die /exec-URL in app.js ein.', submitting: 'Bewerbung wird gesendet…', submitted: 'Bewerbung gesendet. Deine Referenz lautet', submitFailed: 'Die Bewerbung konnte nicht gesendet werden. Prüfe deine Verbindung und versuche es erneut.',
+    requiredError: 'Dieses Feld ist erforderlich.', missedSomethingTitle: 'Hi {username}, es sieht so aus, als hättest du etwas übersehen.', missedSomethingFallback: 'du', numberError: 'Bitte nur Zahlen eingeben.', fullNumberError: 'Gib die vollständige Zahl nur mit Ziffern ein (z. B. 26000000).', chooseError: 'Bitte wähle eine Option.', groupMemberError: "Bitte fülle alle drei Felder aus: Benutzername, Allianzname und Servernummer.", groupContactError: 'Bitte wähle einen Gruppenkontakt.', backendMissing: 'Das Formular ist bereit, aber die Google-Apps-Script-URL fehlt noch. Füge die /exec-URL in app.js ein.', submitting: 'Bewerbung wird gesendet…', submitted: 'Bewerbung gesendet. Deine Referenz lautet', submitFailed: 'Die Bewerbung konnte nicht gesendet werden. Prüfe deine Verbindung und versuche es erneut.',
     reviewApplicant: 'Bewerber', reviewGame: 'Spieldaten', reviewGroup: 'Transfergruppe', reviewAdditional: 'Zusätzliche Informationen', transferAnswer: 'Transfer mit Gruppe', groupMembers: 'Verknüpfte Spieler', comments: 'Kommentare', none: 'Keine', notProvided: 'Nicht angegeben', groupLead: 'Gruppenkontakt', totalGroup: 'Gesamtgröße der Gruppe', player: 'Spieler', removePlayer: 'Spieler entfernen', stepOf: 'Schritt {step} von 6',
     welcomeChooseLanguageTitle: "Wähle deine Sprache",
     welcomeChooseLanguageIntro: "Wähle die Sprache, die du für die Transfer-Bewerbung verwenden möchtest.",
@@ -4997,6 +5524,7 @@ function animateCurrentStepTitle() {
 
 function goToStep(step) {
   if (step < 1 || step > 5) return;
+  hideValidationBanner();
   const changed = step !== state.step;
   state.step = step;
   updateProgress();
@@ -5064,6 +5592,132 @@ function clearFieldError(input) {
   if (id) {
     const err = document.querySelector(`[data-error-for="${id}"]`);
     if (err) err.textContent = '';
+  }
+}
+
+
+function cleanQuestionText(text) {
+  return String(text || '')
+    .replace(/\s*\*\s*$/, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function getQuestionForInput(input) {
+  if (!input) return '';
+
+  if (input.id) {
+    const label = document.querySelector(`label[for="${input.id}"]`);
+    if (label) {
+      const clone = label.cloneNode(true);
+      clone.querySelectorAll('em, .optional-label').forEach(el => el.remove());
+      return cleanQuestionText(clone.textContent);
+    }
+  }
+
+  const nestedLabel = input.closest('label');
+  if (nestedLabel) {
+    const clone = nestedLabel.cloneNode(true);
+    clone.querySelectorAll('input, select, textarea, .choice-dot, small').forEach(el => el.remove());
+    return cleanQuestionText(clone.textContent);
+  }
+
+  const nearby = input.closest('.field-block')?.querySelector('label');
+  return nearby ? cleanQuestionText(nearby.textContent) : cleanQuestionText(input.name || input.id);
+}
+
+function collectMissingQuestions() {
+  const current = steps.find(s => Number(s.dataset.step) === state.step);
+  if (!current) return [];
+
+  const questions = [];
+  const add = text => {
+    const question = cleanQuestionText(text);
+    if (question && !questions.includes(question)) questions.push(question);
+  };
+
+  current.querySelectorAll('[data-required="true"]').forEach(input => {
+    const raw = input.dataset.numeric ? digitsOnly(input.value) : String(input.value || '').trim();
+    if (!raw || input.classList.contains('invalid')) add(getQuestionForInput(input));
+  });
+
+  if (state.step === 1) {
+    const server = document.getElementById('current-server');
+    const n = Number(server?.value || 0);
+    if (!Number.isInteger(n) || n < 1573 || n > 1636) add(getQuestionForInput(server));
+  }
+
+  if (state.step === 3) {
+    const groupAnswer = form.querySelector('input[name="transferWithGroup"]:checked');
+
+    if (!groupAnswer) {
+      const legend = current.querySelector('.choice-fieldset legend');
+      if (legend) {
+        const clone = legend.cloneNode(true);
+        clone.querySelectorAll('em').forEach(el => el.remove());
+        add(clone.textContent);
+      }
+    }
+
+    if (groupAnswer?.value === 'yes') {
+      const groupName = document.getElementById('transfer-group-name');
+      if (!String(groupName?.value || '').trim() || groupName?.classList.contains('invalid')) {
+        add(getQuestionForInput(groupName));
+      }
+
+      current.querySelectorAll('.group-member-card').forEach((card, index) => {
+        const inputs = [...card.querySelectorAll('input, select')];
+        const anyStarted = inputs.some(inp => String(inp.value || '').trim());
+        if (!anyStarted) return;
+
+        inputs.forEach(inp => {
+          const value = String(inp.value || '').trim();
+          let invalid = !value;
+          if (inp.classList.contains('member-server') && value) {
+            const serverNumber = Number(value);
+            invalid = !Number.isInteger(serverNumber) || serverNumber < 1573 || serverNumber > 1636;
+          }
+          if (invalid || inp.classList.contains('invalid')) {
+            add(`${t('player')} ${index + 1}: ${getQuestionForInput(inp)}`);
+          }
+        });
+      });
+    }
+  }
+
+  return questions;
+}
+
+function hideValidationBanner() {
+  const banner = document.getElementById('validation-banner');
+  if (banner) banner.hidden = true;
+}
+
+function showValidationBanner(questions) {
+  const banner = document.getElementById('validation-banner');
+  const title = document.getElementById('validation-banner-title');
+  const list = document.getElementById('validation-banner-list');
+  if (!banner || !title || !list) return;
+
+  const username = document.getElementById('username')?.value.trim() || t('missedSomethingFallback');
+  title.textContent = t('missedSomethingTitle').replace('{username}', username);
+  list.innerHTML = '';
+
+  (questions || []).forEach(question => {
+    const li = document.createElement('li');
+    li.textContent = question;
+    list.appendChild(li);
+  });
+
+  banner.hidden = false;
+
+  const current = steps.find(s => Number(s.dataset.step) === state.step);
+  const firstInvalid = current?.querySelector('.invalid');
+  const groupQuestionError = current?.querySelector('[data-error-for="transfer-with-group"]');
+  const target = firstInvalid || (groupQuestionError?.textContent.trim() ? groupQuestionError.closest('fieldset') : null);
+
+  if (target) {
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 40);
   }
 }
 
@@ -5547,9 +6201,42 @@ function initWelcomeScreen() {
   });
 }
 
-nextButton.addEventListener('click', () => { if (validateCurrentStep()) goToStep(state.step + 1); });
+nextButton.addEventListener('click', () => {
+  hideValidationBanner();
+
+  if (!validateCurrentStep()) {
+    showValidationBanner(collectMissingQuestions());
+
+    nextButton.classList.remove('validation-reject');
+    void nextButton.offsetWidth;
+    nextButton.classList.add('validation-reject');
+    setTimeout(() => nextButton.classList.remove('validation-reject'), 360);
+    return;
+  }
+
+  const destination = state.step + 1;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  nextButton.classList.remove('blade-activate');
+  void nextButton.offsetWidth;
+  nextButton.classList.add('blade-activate');
+
+  if (reducedMotion) {
+    nextButton.classList.remove('blade-activate');
+    goToStep(destination);
+    return;
+  }
+
+  setTimeout(() => {
+    nextButton.classList.remove('blade-activate');
+    goToStep(destination);
+  }, 190);
+});
 backButton.addEventListener('click', () => goToStep(state.step - 1));
+document.getElementById('validation-banner-close').addEventListener('click', hideValidationBanner);
 form.addEventListener('submit', submitApplication);
+form.addEventListener('input', hideValidationBanner);
+form.addEventListener('change', hideValidationBanner);
 headerLanguage.addEventListener('change', () => setLanguage(headerLanguage.value));
 document.querySelectorAll('.language-card').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.language)));
 stepLinks.forEach(btn => btn.addEventListener('click', () => {

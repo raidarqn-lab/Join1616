@@ -376,3 +376,23 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Replaced the top-right language selector’s old circle/globe symbol with a minimalist sakura icon.
 - The new icon is rendered as a small inline SVG in the existing pink Blood Moon palette.
 - Added a subtle hover/focus animation so the sakura feels integrated with the form styling without becoming distracting.
+
+
+## v50
+- Shifted the application UI away from blue/teal to a red, sakura pink, and lantern-gold palette.
+- The top-left “SERVER TRANSFER APPLICATION” label is now pink/red.
+- Warmed panels, fields, borders, progress elements, help states, dropdowns, and action areas so the visible UI no longer uses teal accents.
+- Step titles now use regular Bungee in lantern gold instead of the colour-font treatment, avoiding unwanted cool tones.
+- Implemented the Blade-draw Continue button:
+  - dark red/charcoal default
+  - red-to-lantern-gold blade line draws underneath on hover/focus
+  - arrow slides forward
+  - a quick slash flashes across the button on a valid click before advancing
+- Added a required-field reminder popup at the top:
+  - greets the applicant by username
+  - says it looks like they missed something
+  - lists the actual question text for each missing/invalid required field
+  - supports required fields, the Step 3 group choice, Transfer Group Name, and partially completed known-player cards
+  - scrolls the first invalid area into view
+  - closes when the applicant starts correcting the form
+- Added localized popup greetings for all eight supported languages.
