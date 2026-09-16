@@ -496,3 +496,11 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Removed the awkward “Uses a sample profile with fake data so it works in every language” sentence beside the visual-guide button.
 - Converted the missing-required-fields warning from a top banner into a centered, full-screen modal overlay so it cannot be cut off by the site header.
 - Raised the welcome screen above the persistent header/language controls so the landing experience is always the foremost layer.
+
+
+## v66
+- Rebuilt the Sample Visual Guide popup as a horizontal layout.
+- Removed all translated HTML text from on top of the image.
+- The image now sits on the left and the user's selected-language instructions sit in a dedicated panel on the right.
+- The image is visually cropped to the useful profile/Power Details portion so the old empty caption area is not shown.
+- On smaller screens the layout stacks responsively for readability.
