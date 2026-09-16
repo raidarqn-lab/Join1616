@@ -707,3 +707,12 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 - Updated the History/Application navigation to use the same font system as the language selector in the top-right header.
 - Added localized versions of the History closing line for all supported languages.
 
+## v94 — exact menu typography match
+- Changed **1616 History** and **Application** to use the exact typography settings of **Choose a language**:
+  - same site font
+  - `.72rem` font size
+  - `400` weight
+  - `.24em` letter spacing
+  - uppercase
+  - `1.6` line height
+
