@@ -6755,6 +6755,227 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
   color: #fff7f2;
 }
 
+
+/* ================================================================
+   v80 — Step 3 Option C: dark eggplant + lantern amber
+   Minimal copy, warm hierarchy, centered minimalist exported icons.
+   ================================================================ */
+.form-step[data-step="3"] {
+  --tg80-eggplant-1: rgba(48, 27, 46, .97);
+  --tg80-eggplant-2: rgba(31, 18, 32, .985);
+  --tg80-eggplant-3: rgba(24, 14, 26, .995);
+  --tg80-amber: #e9a35a;
+  --tg80-amber-bright: #ffc472;
+  --tg80-amber-soft: rgba(233, 163, 90, .30);
+  --tg80-border: rgba(218, 146, 105, .40);
+  --tg80-pink: #e96c98;
+  --tg80-cream: #fff2e6;
+  --tg80-muted: #d7beb8;
+}
+
+/* Quiet section heading — no duplicate subcopy underneath. */
+.form-step[data-step="3"] .group-builder-banner {
+  margin: 24px 0 14px;
+  padding: 0 4px;
+}
+.form-step[data-step="3"] .group-builder-banner > div {
+  align-items: center;
+}
+.form-step[data-step="3"] .group-builder-banner .subsection-icon {
+  display: none !important;
+}
+.form-step[data-step="3"] .group-builder-banner h2 {
+  margin: 0;
+  color: var(--tg80-cream) !important;
+  font-size: .88rem !important;
+  font-weight: 850;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.form-step[data-step="3"] .group-builder-banner::after {
+  content: "";
+  display: block;
+  flex: 1;
+  height: 1px;
+  margin-left: 16px;
+  background: linear-gradient(90deg, rgba(233,163,90,.58), rgba(233,163,90,0));
+}
+.form-step[data-step="3"] .group-builder-banner {
+  display: flex;
+  align-items: center;
+}
+
+/* Main 01/02/03 cards. */
+.form-step[data-step="3"] .group-option-card {
+  border: 1px solid var(--tg80-border) !important;
+  background:
+    radial-gradient(circle at 88% 10%, rgba(233,163,90,.055), transparent 25%),
+    linear-gradient(135deg, var(--tg80-eggplant-1), var(--tg80-eggplant-2) 58%, var(--tg80-eggplant-3)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.028),
+    0 14px 30px rgba(0,0,0,.23),
+    0 0 22px rgba(233,163,90,.035) !important;
+}
+.form-step[data-step="3"] .section-name-card,
+.form-step[data-step="3"] .section-size-card,
+.form-step[data-step="3"] .section-members-card {
+  background:
+    radial-gradient(circle at 92% 12%, rgba(233,163,90,.065), transparent 27%),
+    linear-gradient(135deg, rgba(52,30,49,.985), rgba(31,18,32,.99) 62%, rgba(24,14,26,.995)) !important;
+}
+.form-step[data-step="3"] .group-option-card::before {
+  background: linear-gradient(180deg, #f1b06a 0%, #cf7c48 100%) !important;
+  box-shadow: 0 0 16px rgba(233,163,90,.21) !important;
+}
+
+/* Center the number/icon column and give it the lantern-amber hierarchy. */
+.form-step[data-step="3"] .group-option-rail {
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 13px !important;
+  padding-top: 1px !important;
+}
+.form-step[data-step="3"] .group-option-number {
+  width: 58px !important;
+  height: 58px !important;
+  border: 2px solid rgba(244,180,111,.78) !important;
+  background: linear-gradient(180deg, rgba(46,27,39,.98), rgba(27,16,27,.99)) !important;
+  color: #fff3df !important;
+  box-shadow:
+    0 0 0 4px rgba(233,163,90,.035),
+    0 0 17px rgba(233,163,90,.14) !important;
+}
+.form-step[data-step="3"] .group-option-icon {
+  width: 72px !important;
+  height: 72px !important;
+  padding: 12px !important;
+  border: 1px solid rgba(233,163,90,.38) !important;
+  border-radius: 17px !important;
+  background: linear-gradient(180deg, rgba(74,42,55,.94), rgba(41,24,38,.99)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.035),
+    0 8px 18px rgba(0,0,0,.18),
+    0 0 15px rgba(233,163,90,.055) !important;
+}
+.form-step[data-step="3"] .group-option-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  /* Warm the crimson source art into the lantern-amber/pink range. */
+  filter: sepia(.38) saturate(.92) hue-rotate(335deg) brightness(1.27) contrast(.95)
+          drop-shadow(0 2px 5px rgba(0,0,0,.12)) !important;
+}
+
+/* Headings and body copy. */
+.form-step[data-step="3"] .group-option-header h2,
+.form-step[data-step="3"] .estimated-group-heading h2 {
+  color: var(--tg80-cream) !important;
+}
+.form-step[data-step="3"] .group-option-header p,
+.form-step[data-step="3"] .estimated-group-heading p,
+.form-step[data-step="3"] .group-name-caps-note,
+.form-step[data-step="3"] .field-help,
+.form-step[data-step="3"] .group-inline-note {
+  color: var(--tg80-muted) !important;
+}
+
+/* Near-black fields create separation from the eggplant cards. */
+.form-step[data-step="3"] .group-name-field input,
+.form-step[data-step="3"] .group-estimate-field input,
+.form-step[data-step="3"] .group-member-card input,
+.form-step[data-step="3"] .group-member-card select,
+.form-step[data-step="3"] .custom-select-trigger,
+.form-step[data-step="3"] select.member-server-native {
+  border-color: rgba(205,154,137,.34) !important;
+  background: linear-gradient(180deg, rgba(18,13,18,.985), rgba(9,8,11,.995)) !important;
+  color: #fff7ef !important;
+}
+.form-step[data-step="3"] .group-name-field input:focus,
+.form-step[data-step="3"] .group-estimate-field input:focus,
+.form-step[data-step="3"] .group-member-card input:focus,
+.form-step[data-step="3"] select.member-server-native:focus,
+.form-step[data-step="3"] .custom-select.open .custom-select-trigger,
+.form-step[data-step="3"] .custom-select-trigger:focus-visible {
+  border-color: rgba(244,180,111,.78) !important;
+  box-shadow: 0 0 0 3px rgba(233,163,90,.10), 0 0 18px rgba(233,163,90,.08) !important;
+}
+
+/* Important transfer-lead alert remains the warm focal point. */
+.form-step[data-step="3"] .group-name-critical-alert {
+  border-color: rgba(241,181,91,.70) !important;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255,207,100,.14), transparent 38%),
+    linear-gradient(180deg, rgba(84,52,23,.66), rgba(50,30,23,.92)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035), 0 0 18px rgba(233,163,90,.07) !important;
+}
+.form-step[data-step="3"] .group-name-critical-icon {
+  background: linear-gradient(180deg, #ffc963, #e3a23d) !important;
+  color: #2d1a07 !important;
+}
+.form-step[data-step="3"] .group-name-critical-alert strong {
+  color: #ffd788 !important;
+}
+.form-step[data-step="3"] .group-name-critical-alert p {
+  color: #f4e3d5 !important;
+}
+.form-step[data-step="3"] .group-inline-note.example .note-icon { color: #ffc66d !important; }
+.form-step[data-step="3"] .group-inline-note.caution .note-icon { color: #ef7d91 !important; }
+
+/* Member cards stay dark and neutral; gold badge + small helmet identifies each player. */
+.form-step[data-step="3"] .group-member-card {
+  border-color: rgba(198,139,111,.24) !important;
+  background: linear-gradient(180deg, rgba(35,22,31,.96), rgba(18,12,19,.985)) !important;
+}
+.form-step[data-step="3"] .member-title {
+  background: linear-gradient(180deg, #f3bb69, #d98e47) !important;
+  border-color: rgba(255,224,174,.78) !important;
+  color: #2b190d !important;
+}
+.form-step[data-step="3"] .member-title-icon {
+  width: 16px !important;
+  height: 16px !important;
+  filter: sepia(.25) saturate(.7) hue-rotate(340deg) brightness(.72) contrast(1.12) !important;
+}
+.form-step[data-step="3"] .add-player-button {
+  background: rgba(27,17,26,.52) !important;
+  border-color: rgba(214,151,116,.38) !important;
+  color: #efd8cb !important;
+}
+.form-step[data-step="3"] .add-player-button:hover,
+.form-step[data-step="3"] .add-player-button:focus-visible {
+  border-color: rgba(244,180,111,.62) !important;
+  color: #ffe2b5 !important;
+  background: rgba(69,43,29,.24) !important;
+}
+
+/* Preserve gold validation: errors should stand out without making the entire UI red. */
+.form-step[data-step="3"] input.invalid,
+.form-step[data-step="3"] select.invalid,
+.form-step[data-step="3"] textarea.invalid,
+.form-step[data-step="3"] .custom-select.invalid .custom-select-trigger {
+  border-color: #f0b45d !important;
+  background: linear-gradient(180deg, rgba(65,46,23,.34), rgba(17,12,17,.99)) !important;
+  box-shadow: 0 0 0 2px rgba(240,180,93,.13), 0 0 16px rgba(240,180,93,.10) !important;
+}
+.form-step[data-step="3"] .field-error:not(:empty) {
+  background: rgba(85,58,24,.30) !important;
+  color: #f7c778 !important;
+}
+.form-step[data-step="3"] .field-error:not(:empty)::before {
+  background: #f0b45d !important;
+  color: #2a1807 !important;
+}
+
+@media (max-width: 720px) {
+  .form-step[data-step="3"] .group-option-icon {
+    width: 58px !important;
+    height: 58px !important;
+    padding: 10px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -7253,7 +7474,6 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
                 <span class="subsection-icon">✦</span>
                 <div>
                   <h2 data-i18n="yourTransferGroup">Your Transfer Group</h2>
-                  <p data-i18n="groupBuilderIntro">Add any players you already know are transferring with you.</p>
                 </div>
               </div>
             </div>
@@ -7261,7 +7481,7 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
             <div class="group-lead-card transfer-group-name-card group-option-card section-name-card">
               <div class="group-option-rail">
                 <span class="group-option-number">01</span>
-                <span class="group-option-icon" aria-hidden="true"><img src="transfer-group-icon.png" alt="" /></span>
+                <span class="group-option-icon" aria-hidden="true"><img src="assets/icons/transfer-group-army.png" alt="" /></span>
               </div>
               <div class="group-option-main">
                 <div class="group-option-header">
@@ -7271,7 +7491,7 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
                   </div>
                 </div>
                 <div class="field-block group-name-field">
-                  <label for="transfer-group-name"><span data-i18n="transferGroupNameQuestion">What is your Transfer Group Name?</span> <em>*</em></label>
+                  <label for="transfer-group-name"><span data-i18n="transferGroupNameShort">Transfer Group Name</span> <em>*</em></label>
                   <input id="transfer-group-name" name="transferGroupName" type="text" maxlength="50" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="MOONFALL" />
                   <p class="group-name-caps-note" data-i18n="transferGroupNameCaps">This field automatically converts the group name to ALL CAPS.</p>
                   <p class="field-error" data-error-for="transfer-group-name"></p>
@@ -7295,7 +7515,7 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
             <div class="group-contact-card estimated-group-card group-option-card section-size-card" style="margin-top:16px">
               <div class="group-option-rail">
                 <span class="group-option-number">02</span>
-                <span class="group-option-icon group-option-icon-hash" aria-hidden="true"><img src="group-size-icon.png" alt="" /></span>
+                <span class="group-option-icon group-option-icon-hash" aria-hidden="true"><img src="assets/icons/group-size-swords.png" alt="" /></span>
               </div>
               <div class="group-option-main">
                 <div class="group-option-header estimated-group-heading standalone">
@@ -7307,7 +7527,6 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
                 <div class="field-block group-estimate-field">
                   <label for="expected-additional-players"><span data-i18n="expectedAdditionalPlayers">Expected additional players</span> <span class="optional-label" data-i18n="optional">(Optional)</span></label>
                   <input id="expected-additional-players" name="expectedAdditionalPlayers" type="text" inputmode="numeric" data-numeric="integer" data-max="99" data-max-error-key="groupSizeMaxError" maxlength="3" placeholder="3" />
-                  <p class="field-help" data-i18n="expectedAdditionalHelp">Maximum total group size is 100, including you.</p>
                   <p class="field-error" data-error-for="expected-additional-players"></p>
                 </div>
               </div>
@@ -7316,7 +7535,7 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
             <div class="group-contact-card group-members-shell group-option-card section-members-card" style="margin-top:16px">
               <div class="group-option-rail">
                 <span class="group-option-number">03</span>
-                <span class="group-option-icon" aria-hidden="true"><img src="player-helmet-icon.png" alt="" /></span>
+                <span class="group-option-icon" aria-hidden="true"><img src="assets/icons/player-helmet.png" alt="" /></span>
               </div>
               <div class="group-option-main">
                 <div class="group-option-header">
@@ -7440,7 +7659,7 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
   <template id="group-member-template">
     <article class="group-member-card">
       <div class="member-heading">
-        <strong class="member-title"><img class="member-title-icon" src="player-helmet-icon.png" alt="" aria-hidden="true" /><span class="member-title-text">Player</span></strong>
+        <strong class="member-title"><img class="member-title-icon" src="assets/icons/player-helmet.png" alt="" aria-hidden="true" /><span class="member-title-text">Player</span></strong>
         <button type="button" class="remove-member" aria-label="Remove player">×</button>
       </div>
       <div class="field-grid three-col">

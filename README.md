@@ -600,3 +600,9 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 - Replaced transfer group section icons with simpler minimalist exported icon assets.
 - Tuned icon containers and player label icon sizing for better readability at smaller sizes.
 - Preserved native visible server dropdowns in the player cards.
+
+## v80 Step 3 design
+- Applies the selected Option C colour treatment: dark eggplant panels with lantern-amber accents.
+- Simplifies duplicate Step 3 helper copy.
+- Uses optimized minimalist icons from `assets/icons/`.
+- Keeps the native player server dropdown so server choices remain visible over the cards.
