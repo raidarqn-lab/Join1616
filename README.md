@@ -319,3 +319,17 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
   - nameplates appear one after another
   - Begin Application appears last
 - The sequence is timed to complete in roughly 1.2–1.5 seconds and includes reduced-motion support.
+
+
+## v42
+- Replaced the single welcome image with three separate guide images (Yabadabadoo, Dolphy RN, RaidARQN).
+- Added a Spider-Man-inspired welcome composition where the guides animate in one after another and visually point toward each other.
+- Created cropped local image assets for each guide to support the welcome-screen animation.
+- Preserved the clan-style nameplates, comic hover captions, and samurai/Blood Moon title treatment.
+
+
+## v43
+- Replaced the temporary welcome-screen cropped images with regenerated transparent character cutouts.
+- The welcome scene now uses Yabadabadoo on the left, Dolphy RN in the center, and RaidARQN on the right.
+- The characters now point naturally in their own poses, so no extra synthetic pointer bars are used.
+- Kept the sequential welcome animation and existing nameplate layout.
