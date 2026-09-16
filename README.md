@@ -254,3 +254,9 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Added the Google Font “Bungee Tint”.
 - Applied Bungee Tint to the main page title at the top of each of the five application steps.
 - Welcome-screen and other headings remain unchanged.
+
+
+## v34
+- Replaced the Transfer Planning expand/collapse chevron with a filled triangle.
+- The triangle points right when the optional section is closed and rotates downward when the section is open.
+- Added a subtle pink hover glow so the expand control is easier to recognize.

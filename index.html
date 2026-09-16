@@ -999,31 +999,27 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--danger); b
   flex: 0 0 18px;
   width: 18px;
   height: 18px;
-}
-.transfer-planning-chevron::before,
-.transfer-planning-chevron::after {
-  content: "";
-  position: absolute;
-  top: 8px;
-  width: 10px;
-  height: 2px;
-  border-radius: 999px;
-  background: #d56a80;
-  transition: transform .18s ease;
+  display: grid;
+  place-items: center;
 }
 .transfer-planning-chevron::before {
-  left: 0;
-  transform: rotate(45deg);
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 11px solid #e16d84;
+  filter: drop-shadow(0 0 5px rgba(225,109,132,.32));
+  transform: rotate(0deg);
+  transform-origin: 38% 50%;
+  transition: transform .2s ease, border-left-color .18s ease, filter .18s ease;
 }
-.transfer-planning-chevron::after {
-  right: 0;
-  transform: rotate(-45deg);
+.transfer-planning-summary:hover .transfer-planning-chevron::before {
+  border-left-color: #f29aae;
+  filter: drop-shadow(0 0 7px rgba(242,154,174,.44));
 }
 .transfer-planning-collapsible[open] .transfer-planning-chevron::before {
-  transform: rotate(-45deg);
-}
-.transfer-planning-collapsible[open] .transfer-planning-chevron::after {
-  transform: rotate(45deg);
+  transform: rotate(90deg);
 }
 .transfer-planning-collapsible[open] .transfer-planning-summary {
   border-bottom: 1px solid rgba(49,84,106,.58);
