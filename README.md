@@ -504,3 +504,10 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - The image now sits on the left and the user's selected-language instructions sit in a dedicated panel on the right.
 - The image is visually cropped to the useful profile/Power Details portion so the old empty caption area is not shown.
 - On smaller screens the layout stacks responsively for readability.
+
+## v68
+- Replaced the stats visual guide image with the finalized diagram-only version.
+- The diagram uses: (1) Total Power, (2) Profession Level, (3) Kill Count, and (4) Power Details.
+- Added final native-language instructions for all 8 supported languages beside the image.
+- Clarified that users tap area (1) to open screen (4).
+- Restyled the Close button for readability.

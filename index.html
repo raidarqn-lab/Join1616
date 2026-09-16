@@ -4778,7 +4778,7 @@ body.transfer-group-reminder-open { overflow: hidden; }
 .stats-guide-image-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 1.42 / 1;
+  aspect-ratio: 2 / 1;
   overflow: hidden;
   border-radius: 18px;
   border: 1px solid rgba(255, 217, 182, .18);
@@ -4904,10 +4904,23 @@ body.transfer-group-reminder-open { overflow: hidden; }
     gap: 14px;
     padding: 0 14px;
   }
-  .stats-guide-image-frame { aspect-ratio: 1.42 / 1; }
+  .stats-guide-image-frame { aspect-ratio: 2 / 1; }
   .stats-guide-instructions { padding: 14px; }
   .stats-guide-actions { padding: 12px 14px 16px !important; }
 }
+
+
+/* v68 — final visual guide polish */
+.stats-guide-image-frame { aspect-ratio: 2 / 1 !important; }
+.stats-guide-image { width: 100% !important; height: 100% !important; object-fit: contain !important; }
+#stats-guide-done.button.primary {
+  min-width: 150px;
+  background: linear-gradient(90deg, #ef8297, #ffd27a) !important;
+  color: #241116 !important;
+  border-color: rgba(255,226,181,.72) !important;
+  box-shadow: 0 0 18px rgba(239,130,151,.20), 0 8px 22px rgba(0,0,0,.24);
+}
+#stats-guide-done.button.primary:hover { filter: brightness(1.06); transform: translateY(-1px); }
 
 </style>
 </head>
@@ -5732,38 +5745,38 @@ body.transfer-group-reminder-open { overflow: hidden; }
             <span class="stats-guide-instruction-num">1</span>
             <div>
               <strong data-i18n="statsGuideItem1Title">Total Power</strong>
-              <p data-i18n="statsGuideOverlayLine1">Tap the Total Power box under #1 to open Power Details (#4). Total Power includes troops in base, so do not use it as Hero Power.</p>
+              <p data-i18n="statsGuideOverlayLine1">Tap the area labeled (1) to access your Power Details screen. Your Total Power includes troops in your base, so do not enter this number as Hero Power.</p>
             </div>
           </div>
 
           <div class="stats-guide-instruction-row instruction-two">
             <span class="stats-guide-instruction-num">2</span>
             <div>
-              <strong data-i18n="statsGuideItem2Title">Kill Count</strong>
-              <p data-i18n="statsGuideOverlayLine2">The crossed-weapons value under #2 is your Kill Count.</p>
+              <strong data-i18n="statsGuideItem2Title">Profession Level</strong>
+              <p data-i18n="statsGuideOverlayLine2">The area labeled (2) shows your Profession Level. Enter the level shown beside the helmet icon. The maximum profession level is 100.</p>
             </div>
           </div>
 
           <div class="stats-guide-instruction-row instruction-three">
             <span class="stats-guide-instruction-num">3</span>
             <div>
-              <strong data-i18n="statsGuideItem3Title">Profession Level</strong>
-              <p data-i18n="statsGuideOverlayLine3">The helmet value under #3 is your Profession Level.</p>
+              <strong data-i18n="statsGuideItem3Title">Kill Count</strong>
+              <p data-i18n="statsGuideOverlayLine3">The area labeled (3) shows your Kill Count. Enter the full number shown beside the crossed-weapons icon. Do not use M, K, or other abbreviations.</p>
             </div>
           </div>
 
           <div class="stats-guide-instruction-row instruction-four">
             <span class="stats-guide-instruction-num">4</span>
             <div>
-              <strong data-i18n="statsGuideItem4Title">Power Breakdown</strong>
-              <p data-i18n="statsGuideOverlayLine4">In Power Details, enter Hero, Building, Technology, Drone, and Decoration Power separately.</p>
+              <strong data-i18n="statsGuideItem4Title">Power Details</strong>
+              <p data-i18n="statsGuideOverlayLine4">After tapping (1), the screen labeled (4) opens. Enter the separate values shown for Hero Power, Building Power, Technology Power, Drone Power, and Decoration Power.</p>
             </div>
           </div>
         </aside>
       </div>
 
       <div class="stats-guide-actions">
-        <button class="button button-primary" id="stats-guide-done" type="button" data-i18n="closeGuide">Close</button>
+        <button class="button primary" id="stats-guide-done" type="button" data-i18n="closeGuide">Close</button>
       </div>
     </div>
   </section>
@@ -5907,21 +5920,21 @@ const I18N = {
     statsGuideInlineHelp: "See a sample screen that shows where Total Power, Kill Count, Profession Level, and the Power Breakdown are located.",
     statsGuideItem1Title: "Total Power",
     statsGuideItem1Text: "Tap the gold Total Power panel to open the next screen. This total includes troops in base, so do not use it as your Hero Power value.",
-    statsGuideItem2Title: "Kill Count",
+    statsGuideItem2Title: "Profession Level",
     statsGuideItem2Text: "The crossed-weapons number on the top-right shows your current Kill Count.",
-    statsGuideItem3Title: "Profession Level",
+    statsGuideItem3Title: "Kill Count",
     statsGuideItem3Text: "The helmet icon shows your current Profession Level.",
-    statsGuideItem4Title: "Power breakdown",
+    statsGuideItem4Title: "Power Details",
     statsGuideItem4Text: "On the next screen, copy the values for Hero, Building, Technology, Drone, and Decoration Power.",
     statsGuideItem5Title: "Power breakdown",
     statsGuideItem5Text: "On the Power Details screen, copy the values for Hero, Building, Technology, Drone, and Decoration Power.",
     statsGuideFootnote: "The guide image stays the same, but the notes below it change with your selected language.",
     closeGuide: "Close",
     statsGuideIntro: "Use the numbered sample profile and the instructions beside it.",
-    statsGuideOverlayLine1: "Tap the Total Power box under #1 to open Power Details (#4). Total Power includes troops in base, so do not use it as Hero Power.",
-    statsGuideOverlayLine2: "The crossed-weapons value under #2 is your Kill Count.",
-    statsGuideOverlayLine3: "The helmet value under #3 is your Profession Level.",
-    statsGuideOverlayLine4: "In Power Details, enter Hero, Building, Technology, Drone, and Decoration Power separately.",
+    statsGuideOverlayLine1: "Tap the area labeled (1) to access your Power Details screen. Your Total Power includes troops in your base, so do not enter this number as Hero Power.",
+    statsGuideOverlayLine2: "The area labeled (2) shows your Profession Level. Enter the level shown beside the helmet icon. The maximum profession level is 100.",
+    statsGuideOverlayLine3: "The area labeled (3) shows your Kill Count. Enter the full number shown beside the crossed-weapons icon. Do not use M, K, or other abbreviations.",
+    statsGuideOverlayLine4: "After tapping (1), the screen labeled (4) opens. Enter the separate values shown for Hero Power, Building Power, Technology Power, Drone Power, and Decoration Power.",
   },
   es: {
     serverTransferApplication: 'SOLICITUD DE TRANSFERENCIA', strongerTogether: 'UN MAÑANA MÁS FUERTE',
@@ -6015,21 +6028,21 @@ const I18N = {
     statsGuideInlineHelp: "Consulta una pantalla de ejemplo que muestra dónde se encuentran el Poder Total, las Bajas, el Nivel de Profesión y el Desglose de Poder.",
     statsGuideItem1Title: "Poder total",
     statsGuideItem1Text: "Toca el panel dorado de Poder Total para abrir la siguiente pantalla. Este total incluye tropas en base, así que no lo uses como valor de Poder de Héroes.",
-    statsGuideItem2Title: "Bajas",
+    statsGuideItem2Title: "Nivel de profesión",
     statsGuideItem2Text: "El número con las armas cruzadas en la parte superior derecha muestra tu conteo actual de bajas.",
-    statsGuideItem3Title: "Nivel de profesión",
+    statsGuideItem3Title: "Bajas",
     statsGuideItem3Text: "El icono del casco muestra tu nivel actual de profesión.",
-    statsGuideItem4Title: "Desglose de poder",
+    statsGuideItem4Title: "Detalles de poder",
     statsGuideItem4Text: "En la siguiente pantalla, copia los valores de Poder de Héroes, Construcción, Tecnología, Dron y Decoración.",
     statsGuideItem5Title: "Desglose de poder",
     statsGuideItem5Text: "En la pantalla Detalles de Poder, copia los valores de Poder de Héroes, Construcción, Tecnología, Dron y Decoración.",
     statsGuideFootnote: "La imagen guía permanece igual, pero las notas cambian según el idioma seleccionado.",
     closeGuide: "Cerrar",
     statsGuideIntro: "Usa el perfil de ejemplo numerado y las instrucciones que aparecen a su lado.",
-    statsGuideOverlayLine1: "Toca el cuadro de Poder Total bajo el #1 para abrir Detalles de Poder (#4). El Poder Total incluye tropas en la base, así que no lo uses como Poder de Héroes.",
-    statsGuideOverlayLine2: "El valor con las armas cruzadas bajo el #2 es tu número de bajas.",
-    statsGuideOverlayLine3: "El valor con el casco bajo el #3 es tu nivel de profesión.",
-    statsGuideOverlayLine4: "En Detalles de Poder, introduce por separado Poder de Héroes, Edificios, Tecnología, Dron y Decoración.",
+    statsGuideOverlayLine1: "Toca el área marcada con (1) para acceder a la pantalla Detalles de Poder. Tu Poder Total incluye tropas en tu base, así que no introduzcas este número como Poder de Héroes.",
+    statsGuideOverlayLine2: "El área marcada con (2) muestra tu Nivel de Profesión. Introduce el nivel que aparece junto al icono del casco. El nivel máximo de profesión es 100.",
+    statsGuideOverlayLine3: "El área marcada con (3) muestra tu número de bajas. Introduce el número completo que aparece junto al icono de armas cruzadas. No uses M, K ni otras abreviaturas.",
+    statsGuideOverlayLine4: "Después de tocar (1), se abre la pantalla marcada con (4). Introduce por separado los valores mostrados para Poder de Héroes, Poder de Edificios, Poder de Tecnología, Poder del Dron y Poder de Decoración.",
   },
   pt: {
     serverTransferApplication: 'INSCRIÇÃO DE TRANSFERÊNCIA', strongerTogether: 'UM AMANHÃ MAIS FORTE',
@@ -6123,21 +6136,21 @@ const I18N = {
     statsGuideInlineHelp: "Veja uma tela de exemplo que mostra onde ficam o Poder Total, Abates, Nível de Profissão e o Detalhamento de Poder.",
     statsGuideItem1Title: "Poder total",
     statsGuideItem1Text: "Toque no painel dourado de Poder Total para abrir a próxima tela. Esse total inclui tropas na base, então não o use como valor de Poder de Heróis.",
-    statsGuideItem2Title: "Abates",
+    statsGuideItem2Title: "Nível de profissão",
     statsGuideItem2Text: "O número com armas cruzadas no canto superior direito mostra sua contagem atual de abates.",
-    statsGuideItem3Title: "Nível de profissão",
+    statsGuideItem3Title: "Abates",
     statsGuideItem3Text: "O ícone de capacete mostra seu nível atual de profissão.",
-    statsGuideItem4Title: "Detalhamento de poder",
+    statsGuideItem4Title: "Detalhes de poder",
     statsGuideItem4Text: "Na tela seguinte, copie os valores de Poder de Heróis, Construções, Tecnologia, Drone e Decoração.",
     statsGuideItem5Title: "Detalhamento de poder",
     statsGuideItem5Text: "Na tela Detalhes de Poder, copie os valores de Poder de Heróis, Construções, Tecnologia, Drone e Decoração.",
     statsGuideFootnote: "A imagem permanece a mesma, mas as notas mudam conforme o idioma selecionado.",
     closeGuide: "Fechar",
     statsGuideIntro: "Use o perfil de exemplo numerado e as instruções ao lado dele.",
-    statsGuideOverlayLine1: "Toque na caixa de Poder Total sob o #1 para abrir Detalhes de Poder (#4). O Poder Total inclui tropas na base, então não o use como Poder de Heróis.",
-    statsGuideOverlayLine2: "O valor com as armas cruzadas sob o #2 é sua contagem de abates.",
-    statsGuideOverlayLine3: "O valor com o capacete sob o #3 é seu nível de profissão.",
-    statsGuideOverlayLine4: "Em Detalhes de Poder, informe separadamente Poder de Heróis, Construções, Tecnologia, Drone e Decoração.",
+    statsGuideOverlayLine1: "Toque na área marcada com (1) para acessar a tela Detalhes de Poder. Seu Poder Total inclui tropas na base, então não informe esse número como Poder de Heróis.",
+    statsGuideOverlayLine2: "A área marcada com (2) mostra seu Nível de Profissão. Informe o nível exibido ao lado do ícone de capacete. O nível máximo de profissão é 100.",
+    statsGuideOverlayLine3: "A área marcada com (3) mostra sua contagem de abates. Informe o número completo exibido ao lado do ícone de armas cruzadas. Não use M, K ou outras abreviações.",
+    statsGuideOverlayLine4: "Depois de tocar em (1), a tela marcada com (4) será aberta. Informe separadamente os valores de Poder de Heróis, Poder de Construções, Poder de Tecnologia, Poder do Drone e Poder de Decoração.",
   },
   fr: {
     serverTransferApplication: 'DEMANDE DE TRANSFERT', strongerTogether: 'UN AVENIR PLUS FORT',
@@ -6231,21 +6244,21 @@ const I18N = {
     statsGuideInlineHelp: "Consultez un écran d’exemple montrant où se trouvent la Puissance totale, le Nombre de kills, le Niveau de profession et la Répartition de puissance.",
     statsGuideItem1Title: "Puissance totale",
     statsGuideItem1Text: "Touchez le panneau doré de Puissance totale pour ouvrir l’écran suivant. Cette valeur inclut les troupes dans la base, donc ne l’utilisez pas comme valeur de Puissance des héros.",
-    statsGuideItem2Title: "Nombre de kills",
+    statsGuideItem2Title: "Niveau de profession",
     statsGuideItem2Text: "Le nombre avec les armes croisées en haut à droite indique votre nombre actuel de kills.",
-    statsGuideItem3Title: "Niveau de profession",
+    statsGuideItem3Title: "Nombre de kills",
     statsGuideItem3Text: "L’icône de casque indique votre niveau de profession actuel.",
-    statsGuideItem4Title: "Répartition de puissance",
+    statsGuideItem4Title: "Détails de puissance",
     statsGuideItem4Text: "Sur l’écran suivant, copiez les valeurs de Puissance des héros, Bâtiments, Technologie, Drone et Décoration.",
     statsGuideItem5Title: "Répartition de puissance",
     statsGuideItem5Text: "Dans l’écran Détails de puissance, copiez les valeurs de Puissance des héros, Bâtiments, Technologie, Drone et Décoration.",
     statsGuideFootnote: "L’image reste la même, mais les notes changent selon la langue choisie.",
     closeGuide: "Fermer",
     statsGuideIntro: "Utilisez le profil d’exemple numéroté et les instructions affichées à côté.",
-    statsGuideOverlayLine1: "Touchez la case Puissance totale sous le #1 pour ouvrir Détails de puissance (#4). La Puissance totale inclut les troupes dans la base : ne l’utilisez pas comme Puissance des héros.",
-    statsGuideOverlayLine2: "La valeur avec les armes croisées sous le #2 correspond à votre nombre de kills.",
-    statsGuideOverlayLine3: "La valeur avec le casque sous le #3 correspond à votre niveau de profession.",
-    statsGuideOverlayLine4: "Dans Détails de puissance, saisissez séparément les puissances Héros, Bâtiments, Technologie, Drone et Décoration.",
+    statsGuideOverlayLine1: "Touchez la zone indiquée (1) pour accéder à l’écran Détails de puissance. Votre Puissance totale inclut les troupes dans votre base, alors n’entrez pas ce nombre comme Puissance des héros.",
+    statsGuideOverlayLine2: "La zone indiquée (2) montre votre Niveau de profession. Entrez le niveau affiché à côté de l’icône du casque. Le niveau de profession maximal est 100.",
+    statsGuideOverlayLine3: "La zone indiquée (3) montre votre nombre de kills. Entrez le nombre complet affiché à côté de l’icône des armes croisées. N’utilisez pas M, K ou d’autres abréviations.",
+    statsGuideOverlayLine4: "Après avoir touché (1), l’écran indiqué (4) s’ouvre. Entrez séparément les valeurs affichées pour la Puissance des héros, des bâtiments, de la technologie, du drone et de la décoration.",
   },
   ar: {
     serverTransferApplication: 'طلب الانتقال إلى السيرفر', strongerTogether: 'غدٌ أقوى معًا',
@@ -6339,21 +6352,21 @@ const I18N = {
     statsGuideInlineHelp: "شاهد شاشة نموذجية توضّح مكان القوة الإجمالية وعدد القتلات ومستوى المهنة وتفصيل القوة.",
     statsGuideItem1Title: "القوة الإجمالية",
     statsGuideItem1Text: "اضغط على لوحة القوة الإجمالية الذهبية لفتح الشاشة التالية. هذا الإجمالي يشمل القوات داخل القاعدة، لذلك لا تستخدمه كقيمة لقوة الأبطال.",
-    statsGuideItem2Title: "عدد القتلات",
+    statsGuideItem2Title: "مستوى المهنة",
     statsGuideItem2Text: "الرقم بجانب رمز الأسلحة المتقاطعة في أعلى اليمين هو عدد القتلات الحالي.",
-    statsGuideItem3Title: "مستوى المهنة",
+    statsGuideItem3Title: "عدد القتلات",
     statsGuideItem3Text: "أيقونة الخوذة تعرض مستوى مهنتك الحالي.",
-    statsGuideItem4Title: "تفصيل القوة",
+    statsGuideItem4Title: "تفاصيل القوة",
     statsGuideItem4Text: "في الشاشة التالية، انسخ قيم قوة الأبطال والمباني والتقنية والطائرة المسيّرة والزينة.",
     statsGuideItem5Title: "تفصيل القوة",
     statsGuideItem5Text: "في شاشة تفاصيل القوة، انسخ قيم قوة الأبطال والمباني والتقنية والطائرة المسيّرة والزينة.",
     statsGuideFootnote: "تبقى صورة الدليل كما هي، لكن الملاحظات تتغيّر حسب اللغة التي اخترتها.",
     closeGuide: "إغلاق",
     statsGuideIntro: "استخدم ملف اللاعب النموذجي المرقّم أدناه. يتغيّر النص داخل الدليل حسب اللغة التي اخترتها.",
-    statsGuideOverlayLine1: "اضغط على مربع القوة الإجمالية تحت الرقم 1 لفتح تفاصيل القوة (4). تشمل القوة الإجمالية القوات داخل القاعدة، لذلك لا تستخدمها كقوة الأبطال.",
-    statsGuideOverlayLine2: "القيمة ذات الأسلحة المتقاطعة تحت الرقم 2 هي عدد القتلات.",
-    statsGuideOverlayLine3: "القيمة ذات الخوذة تحت الرقم 3 هي مستوى المهنة.",
-    statsGuideOverlayLine4: "في تفاصيل القوة، أدخل قوة الأبطال والمباني والتقنية والطائرة المسيّرة والزينة كلٌ على حدة.",
+    statsGuideOverlayLine1: "اضغط على المنطقة المعلّمة بالرقم (1) للوصول إلى شاشة تفاصيل القوة. تشمل القوة الإجمالية القوات الموجودة في قاعدتك، لذلك لا تُدخل هذا الرقم على أنه قوة الأبطال.",
+    statsGuideOverlayLine2: "تُظهر المنطقة المعلّمة بالرقم (2) مستوى مهنتك. أدخل المستوى الظاهر بجانب أيقونة الخوذة. الحد الأقصى لمستوى المهنة هو 100.",
+    statsGuideOverlayLine3: "تُظهر المنطقة المعلّمة بالرقم (3) عدد القتلات. أدخل الرقم الكامل الظاهر بجانب أيقونة الأسلحة المتقاطعة. لا تستخدم M أو K أو أي اختصارات أخرى.",
+    statsGuideOverlayLine4: "بعد الضغط على (1)، ستفتح الشاشة المعلّمة بالرقم (4). أدخل القيم المنفصلة الظاهرة لقوة الأبطال والمباني والتقنية والطائرة المسيّرة والزينة.",
   },
   vi: {
     serverTransferApplication: 'ĐƠN CHUYỂN SERVER', strongerTogether: 'MỘT NGÀY MAI MẠNH MẼ HƠN',
@@ -6447,21 +6460,21 @@ const I18N = {
     statsGuideInlineHelp: "Xem màn hình mẫu cho biết vị trí của Tổng Sức Mạnh, Số Kill, Cấp Nghề và Phân Tích Sức Mạnh.",
     statsGuideItem1Title: "Tổng sức mạnh",
     statsGuideItem1Text: "Nhấn vào ô Tổng Sức Mạnh màu vàng để mở màn hình tiếp theo. Tổng này bao gồm quân trong căn cứ, vì vậy không dùng nó làm giá trị Sức Mạnh Tướng.",
-    statsGuideItem2Title: "Số kill",
+    statsGuideItem2Title: "Cấp nghề",
     statsGuideItem2Text: "Con số cạnh biểu tượng vũ khí chéo ở góc trên bên phải là Số Kill hiện tại của bạn.",
-    statsGuideItem3Title: "Cấp nghề",
+    statsGuideItem3Title: "Số kill",
     statsGuideItem3Text: "Biểu tượng mũ bảo hiểm hiển thị Cấp Nghề hiện tại của bạn.",
-    statsGuideItem4Title: "Phân tích sức mạnh",
+    statsGuideItem4Title: "Chi tiết sức mạnh",
     statsGuideItem4Text: "Ở màn hình tiếp theo, hãy sao chép các giá trị Sức Mạnh Tướng, Xây Dựng, Công Nghệ, Drone và Trang Trí.",
     statsGuideItem5Title: "Chi tiết sức mạnh",
     statsGuideItem5Text: "Trong màn hình Chi Tiết Sức Mạnh, sao chép các giá trị Sức Mạnh Tướng, Xây Dựng, Công Nghệ, Drone và Trang Trí.",
     statsGuideFootnote: "Hình minh họa giữ nguyên, nhưng phần ghi chú sẽ đổi theo ngôn ngữ bạn chọn.",
     closeGuide: "Đóng",
     statsGuideIntro: "Hãy dùng hồ sơ mẫu có đánh số bên dưới. Văn bản trong hướng dẫn sẽ đổi theo ngôn ngữ bạn chọn.",
-    statsGuideOverlayLine1: "Nhấn ô Tổng Sức Mạnh dưới số 1 để mở Chi Tiết Sức Mạnh (số 4). Tổng Sức Mạnh bao gồm quân trong căn cứ, vì vậy không dùng nó làm Sức Mạnh Tướng.",
-    statsGuideOverlayLine2: "Giá trị có biểu tượng vũ khí chéo dưới số 2 là Số Kill của bạn.",
-    statsGuideOverlayLine3: "Giá trị có biểu tượng mũ bảo hiểm dưới số 3 là Cấp Nghề của bạn.",
-    statsGuideOverlayLine4: "Trong Chi Tiết Sức Mạnh, hãy nhập riêng Sức Mạnh Tướng, Xây Dựng, Công Nghệ, Drone và Trang Trí.",
+    statsGuideOverlayLine1: "Nhấn vào khu vực được đánh dấu (1) để mở màn hình Chi Tiết Sức Mạnh. Tổng Sức Mạnh bao gồm quân trong căn cứ, vì vậy không nhập số này làm Sức Mạnh Tướng.",
+    statsGuideOverlayLine2: "Khu vực được đánh dấu (2) hiển thị Cấp Nghề của bạn. Nhập cấp hiển thị bên cạnh biểu tượng mũ bảo hiểm. Cấp nghề tối đa là 100.",
+    statsGuideOverlayLine3: "Khu vực được đánh dấu (3) hiển thị Số Kill của bạn. Nhập đầy đủ con số bên cạnh biểu tượng vũ khí chéo. Không dùng M, K hoặc các dạng viết tắt khác.",
+    statsGuideOverlayLine4: "Sau khi nhấn (1), màn hình được đánh dấu (4) sẽ mở. Nhập riêng các giá trị Sức Mạnh Tướng, Sức Mạnh Xây Dựng, Sức Mạnh Công Nghệ, Sức Mạnh Drone và Sức Mạnh Trang Trí.",
   },
   ko: {
     serverTransferApplication: '서버 이전 신청서', strongerTogether: '더 강한 내일',
@@ -6555,21 +6568,21 @@ const I18N = {
     statsGuideInlineHelp: "총 전투력, 처치 수, 직업 레벨, 전투력 세부 내역의 위치를 보여주는 예시 화면을 확인하세요.",
     statsGuideItem1Title: "총 전투력",
     statsGuideItem1Text: "금색 총 전투력 패널을 눌러 다음 화면을 여세요. 이 총합에는 기지 내 병력이 포함되므로 영웅 전투력 값으로 사용하지 마세요.",
-    statsGuideItem2Title: "처치 수",
+    statsGuideItem2Title: "직업 레벨",
     statsGuideItem2Text: "오른쪽 위의 교차 무기 숫자가 현재 처치 수입니다.",
-    statsGuideItem3Title: "직업 레벨",
+    statsGuideItem3Title: "처치 수",
     statsGuideItem3Text: "헬멧 아이콘이 현재 직업 레벨을 보여줍니다.",
-    statsGuideItem4Title: "전투력 세부 내역",
+    statsGuideItem4Title: "전투력 세부 정보",
     statsGuideItem4Text: "다음 화면에서 영웅, 건물, 연구, 드론, 장식 전투력 값을 복사하세요.",
     statsGuideItem5Title: "전투력 세부내역",
     statsGuideItem5Text: "전투력 세부정보 화면에서 영웅, 건물, 기술, 드론, 장식 전투력을 복사하세요.",
     statsGuideFootnote: "가이드 이미지는 그대로 유지되지만, 설명 문구는 선택한 언어에 맞게 바뀝니다.",
     closeGuide: "닫기",
     statsGuideIntro: "아래의 번호가 표시된 예시 프로필을 사용하세요. 가이드 안의 텍스트는 선택한 언어에 따라 바뀝니다.",
-    statsGuideOverlayLine1: "1번 아래의 총 전투력 상자를 눌러 전투력 세부 정보(4번)를 여세요. 총 전투력에는 기지 내 병력이 포함되므로 영웅 전투력으로 사용하지 마세요.",
-    statsGuideOverlayLine2: "2번 아래의 교차 무기 값이 현재 처치 수입니다.",
-    statsGuideOverlayLine3: "3번 아래의 헬멧 값이 현재 직업 레벨입니다.",
-    statsGuideOverlayLine4: "전투력 세부 정보에서 영웅, 건물, 기술, 드론, 장식 전투력을 각각 입력하세요.",
+    statsGuideOverlayLine1: "(1)로 표시된 영역을 눌러 전투력 세부 정보 화면을 여세요. 총 전투력에는 기지 내 병력이 포함되므로 이 숫자를 영웅 전투력으로 입력하지 마세요.",
+    statsGuideOverlayLine2: "(2)로 표시된 영역은 현재 직업 레벨을 보여 줍니다. 헬멧 아이콘 옆에 표시된 레벨을 입력하세요. 최대 직업 레벨은 100입니다.",
+    statsGuideOverlayLine3: "(3)로 표시된 영역은 현재 처치 수를 보여 줍니다. 교차 무기 아이콘 옆에 표시된 전체 숫자를 입력하세요. M, K 또는 다른 축약 표기를 사용하지 마세요.",
+    statsGuideOverlayLine4: "(1)을 누르면 (4)로 표시된 화면이 열립니다. 영웅 전투력, 건물 전투력, 기술 전투력, 드론 전투력, 장식 전투력 값을 각각 입력하세요.",
   },
   de: {
     serverTransferApplication: 'SERVER-TRANSFER-BEWERBUNG', strongerTogether: 'EINE STÄRKERE ZUKUNFT',
@@ -6663,21 +6676,21 @@ const I18N = {
     statsGuideInlineHelp: "Sieh dir einen Beispielbildschirm an, der zeigt, wo Gesamtstärke, Kills, Berufslevel und die Machtaufschlüsselung zu finden sind.",
     statsGuideItem1Title: "Gesamtstärke",
     statsGuideItem1Text: "Tippe auf das goldene Feld für Gesamtstärke, um den nächsten Bildschirm zu öffnen. Dieser Gesamtwert enthält Truppen in der Basis, also verwende ihn nicht als Wert für Heldenstärke.",
-    statsGuideItem2Title: "Kills",
+    statsGuideItem2Title: "Berufslevel",
     statsGuideItem2Text: "Die Zahl mit den gekreuzten Waffen oben rechts zeigt deinen aktuellen Kill-Wert.",
-    statsGuideItem3Title: "Berufslevel",
+    statsGuideItem3Title: "Kills",
     statsGuideItem3Text: "Das Helm-Symbol zeigt dein aktuelles Berufslevel.",
-    statsGuideItem4Title: "Machtaufschlüsselung",
+    statsGuideItem4Title: "Kraftdetails",
     statsGuideItem4Text: "Kopiere auf dem nächsten Bildschirm die Werte für Helden-, Gebäude-, Technologie-, Drohnen- und Dekorationsstärke.",
     statsGuideItem5Title: "Kraftaufschlüsselung",
     statsGuideItem5Text: "Kopiere im Bildschirm Kraftdetails die Werte für Helden-, Gebäude-, Technologie-, Drohnen- und Dekorationskraft.",
     statsGuideFootnote: "Das Leitbild bleibt gleich, aber die Hinweise darunter wechseln mit deiner gewählten Sprache.",
     closeGuide: "Schließen",
     statsGuideIntro: "Nutze das nummerierte Beispielprofil unten. Der Text im Leitfaden wechselt mit der ausgewählten Sprache.",
-    statsGuideOverlayLine1: "Tippe auf das Feld Gesamtstärke unter Nr. 1, um die Kraftdetails (Nr. 4) zu öffnen. Die Gesamtstärke enthält Truppen in der Basis und darf nicht als Heldenstärke verwendet werden.",
-    statsGuideOverlayLine2: "Der Wert mit den gekreuzten Waffen unter Nr. 2 ist deine Kill-Zahl.",
-    statsGuideOverlayLine3: "Der Wert mit dem Helm unter Nr. 3 ist dein Berufslevel.",
-    statsGuideOverlayLine4: "Trage in den Kraftdetails Helden-, Gebäude-, Technologie-, Drohnen- und Dekorationsstärke jeweils separat ein.",
+    statsGuideOverlayLine1: "Tippe auf den mit (1) markierten Bereich, um den Bildschirm Kraftdetails zu öffnen. Deine Gesamtstärke enthält Truppen in deiner Basis, daher darfst du diesen Wert nicht als Heldenstärke eingeben.",
+    statsGuideOverlayLine2: "Der mit (2) markierte Bereich zeigt dein Berufslevel. Gib das Level ein, das neben dem Helm-Symbol angezeigt wird. Das maximale Berufslevel ist 100.",
+    statsGuideOverlayLine3: "Der mit (3) markierte Bereich zeigt deine Kill-Zahl. Gib die vollständige Zahl neben dem Symbol mit den gekreuzten Waffen ein. Verwende kein M, K oder andere Abkürzungen.",
+    statsGuideOverlayLine4: "Nachdem du auf (1) getippt hast, öffnet sich der mit (4) markierte Bildschirm. Gib die angezeigten Werte für Helden-, Gebäude-, Technologie-, Drohnen- und Dekorationsstärke jeweils separat ein.",
   }
 };
 
