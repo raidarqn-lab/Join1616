@@ -276,3 +276,11 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Future moons are dimmed; completed moons remain visible but restrained.
 - Added a subtle vertical red progression line behind the moons.
 - Existing step labels, fonts, typography, and form layout were left unchanged.
+
+
+## v37
+- Reworked the form’s binding boxes from blue/teal to glowing pink/red to better match the Sakura and Blood Moon theme.
+- Updated the main form panel, form fields, generic choice cards, grouped information cards, transfer-planning containers, group cards, referral/preference cards, review sections, and footer/action borders.
+- Added restrained pink/red outer glows rather than heavy neon effects.
+- Preserved the existing Gold, Purple, Blue, and White seat-colour identities.
+- Blood Moon progress phases, Bungee Tint step titles, and existing typography remain unchanged.

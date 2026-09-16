@@ -1418,6 +1418,124 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--danger); b
 .submission-status { margin-top: 14px; padding: 14px 16px; border-radius: 9px; background: rgba(72,146,107,.18); border: 1px solid rgba(132,230,178,.45); color: #c9f4dc; line-height: 1.5; }
 .submission-status.error { background: rgba(137,55,66,.18); border-color: rgba(255,132,141,.48); color: #ffd7da; }
 
+/* v37 — Sakura / Blood Moon binding-box treatment.
+   Structural containers now use glowing pink/red borders instead of teal/blue. */
+.form-panel {
+  border-color: rgba(232,83,112,.64);
+  box-shadow:
+    var(--shadow),
+    0 0 0 1px rgba(255,146,165,.035) inset,
+    0 0 30px rgba(211,49,80,.12);
+}
+
+input,
+select,
+textarea {
+  border-color: rgba(186,71,96,.58);
+}
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: rgba(221,91,116,.68);
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #ed7890;
+  box-shadow:
+    0 0 0 3px rgba(237,120,144,.11),
+    0 0 14px rgba(211,49,80,.11);
+  background: #0b1f2d;
+}
+
+.choice-card:not(.seat) {
+  border-color: rgba(194,72,98,.54);
+  box-shadow: 0 0 14px rgba(201,52,82,.055);
+}
+.choice-card:not(.seat):hover {
+  border-color: rgba(232,103,128,.74);
+  box-shadow: 0 0 17px rgba(217,58,89,.10);
+}
+.choice-card:not(.seat):has(input:checked) {
+  border-color: #eb8398;
+  box-shadow:
+    0 0 0 1px rgba(255,171,188,.08) inset,
+    0 0 20px rgba(217,58,89,.13);
+}
+
+.notice-card,
+.preference-card,
+.referral-card,
+.group-member-card,
+.group-summary-card,
+.transfer-estimator-card,
+.transfer-location-guide,
+.review-section {
+  border-color: rgba(213,73,101,.54);
+  box-shadow:
+    0 0 0 1px rgba(255,151,171,.025) inset,
+    0 0 22px rgba(209,48,79,.075);
+}
+
+.group-contact-card,
+.group-lead-card {
+  border-color: rgba(239,99,126,.62);
+  box-shadow:
+    0 0 0 1px rgba(255,167,184,.03) inset,
+    0 0 27px rgba(214,50,82,.12);
+}
+
+.transfer-location-guide summary::before {
+  border-color: rgba(235,99,126,.58);
+  color: #f3a4b3;
+  background: rgba(103,31,50,.40);
+  box-shadow: 0 0 11px rgba(214,50,82,.10);
+}
+.transfer-location-guide[open] summary,
+.transfer-planning-collapsible[open] .transfer-planning-summary,
+.review-section-head {
+  border-bottom-color: rgba(208,72,99,.48);
+}
+.transfer-location-item {
+  border-color: rgba(190,69,95,.46);
+  box-shadow: 0 0 12px rgba(205,51,81,.045);
+}
+
+.review-item,
+.review-member {
+  border-bottom-color: rgba(180,64,89,.36);
+}
+.review-edit {
+  color: #f19aae;
+}
+.review-edit:hover {
+  color: #ffc0cb;
+}
+
+.submit-note {
+  border: 1px solid rgba(196,68,94,.42);
+  background: linear-gradient(90deg, rgba(86,31,47,.34), rgba(17,43,53,.28));
+  box-shadow: 0 0 18px rgba(211,49,80,.065);
+}
+.lock-icon {
+  color: #ed8398;
+}
+
+.form-actions {
+  border-top-color: rgba(201,71,96,.54);
+}
+
+.button.secondary {
+  border-color: rgba(203,82,106,.52);
+}
+.button.secondary:hover {
+  border-color: rgba(239,117,140,.72);
+  background: rgba(91,35,51,.22);
+}
+
+/* Keep the four confirmed seat-colour cards using their own gold/purple/blue/white identities. */
+
+
 .form-actions { padding: 20px clamp(26px,4vw,48px); border-top: 1px solid rgba(62,96,117,.62); display: flex; align-items: center; gap: 12px; background: rgba(4,16,25,.64); }
 .action-spacer { flex: 1; }
 .button { min-width: 150px; border-radius: 9px; padding: 12px 17px; border: 1px solid #3a6079; cursor: pointer; font-weight: 700; }
