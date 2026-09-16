@@ -651,3 +651,18 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 - Footprints no longer all appear at once.
 - Added milestone-based scroll animation and stepped footprint transitions.
 
+## v88 — interactive editorial Story redesign
+- Rebuilt **1616's Story** to closely follow the approved Japanese editorial timeline mock-up.
+- Added six new transparent season illustrations directly to the website root:
+  - `story-season-s0.png`
+  - `story-season-s1.png`
+  - `story-season-s2.png`
+  - `story-season-s3.png`
+  - `story-season-s4.png`
+  - `story-season-s5.png`
+- Kept `story-design-reference.png` in the package as a visual reference.
+- Story milestone cards are interactive: **Tap to expand** opens a 1616-specific placeholder area.
+- Progressive timeline footprints from v87 are retained.
+- Reworked the main navigation to **1616's Story / World / Characters / Media / Application**, with an underline showing the active page.
+- World, Characters, and Media are functional placeholder pages for future content.
+
