@@ -8597,6 +8597,19 @@ body.page-transitioning .story-page:not([hidden]) {
   }
 }
 
+
+/* v91 — simplified season-card hierarchy */
+.story-season-label {
+  margin-bottom: 7px !important;
+  font-size: .65rem !important;
+  letter-spacing: .14em !important;
+}
+.story-card h2 {
+  font-size: clamp(1.72rem, 2.35vw, 2.35rem) !important;
+  line-height: .98 !important;
+  margin-bottom: 10px !important;
+}
+
 </style>
 </head>
 <body>
@@ -8754,9 +8767,9 @@ body.page-transitioning .story-page:not([hidden]) {
         </div>
 
         <header class="story-hero">
-          <p class="story-eyebrow" data-i18n="storyEyebrow">A NATION AT A CROSSROADS</p>
-          <h1 data-i18n="about1616Title">1616&#39;s Story</h1>
-          <p class="story-subtitle" data-i18n="storySubtitle">Six seasons. One turning point in history.</p>
+          <p class="story-eyebrow" data-i18n="storyEyebrow">A SERVER BOUND FOR SUCCESS</p>
+          <h1 data-i18n="about1616Title">1616&#39;s STORY</h1>
+          <p class="story-subtitle" data-i18n="storySubtitle">Four Seasons. Now is Your Chance to Be A Part of History.</p>
           <span class="story-hero-rule" aria-hidden="true"></span>
         </header>
 
@@ -8782,8 +8795,8 @@ body.page-transitioning .story-page:not([hidden]) {
                 <img class="story-season-art" src="story-season-s0.png" alt="" />
               </div>
               <div class="story-card-copy">
-                <p class="story-season-label">PRE-SEASON (SEASON 0)</p>
-                <h2 data-i18n="aboutSeason0Title">Pre-Season (Season 0)</h2>
+                <p class="story-season-label" data-i18n="storySeason0Label">SEASON 0</p>
+                <h2 data-i18n="aboutSeason0Title">PRE-SEASON</h2>
                 <p class="story-season-summary" data-i18n="aboutSeason0Copy">The foundational phase lasts around 120 days. It focuses on building toward HQ 30, unlocking early events such as Capitol Conquest, and establishing the initial tank meta.</p>
                 <button type="button" class="story-expand-toggle" aria-expanded="false">
                   <span class="story-plus" aria-hidden="true">+</span>
@@ -8809,8 +8822,8 @@ body.page-transitioning .story-page:not([hidden]) {
                 <img class="story-season-art" src="story-season-s1.png" alt="" />
               </div>
               <div class="story-card-copy">
-                <p class="story-season-label">SEASON 1</p>
-                <h2 data-i18n="aboutSeason1Title">Season 1: The Crimson Plague</h2>
+                <p class="story-season-label" data-i18n="storySeason1Label">SEASON 1</p>
+                <h2 data-i18n="aboutSeason1Title">The Crimson Plague</h2>
                 <p class="story-season-summary" data-i18n="aboutSeason1Copy">Introduces virus mechanics, Immune Protein Farms, exclusive hero weapons beginning with Kimberly, and a larger focus on fighting for land control across the expanded map.</p>
                 <button type="button" class="story-expand-toggle" aria-expanded="false">
                   <span class="story-plus" aria-hidden="true">+</span>
@@ -8836,8 +8849,8 @@ body.page-transitioning .story-page:not([hidden]) {
                 <img class="story-season-art" src="story-season-s2.png" alt="" />
               </div>
               <div class="story-card-copy">
-                <p class="story-season-label">SEASON 2</p>
-                <h2 data-i18n="aboutSeason2Title">Season 2: Polar World / Polar Storm</h2>
+                <p class="story-season-label" data-i18n="storySeason2Label">SEASON 2</p>
+                <h2 data-i18n="aboutSeason2Title">Polar World / Polar Storm</h2>
                 <p class="story-season-summary" data-i18n="aboutSeason2Copy">Moves the battlefield into a frozen wasteland where alliances manage temperature mechanics and compete for rare soil rankings.</p>
                 <button type="button" class="story-expand-toggle" aria-expanded="false">
                   <span class="story-plus" aria-hidden="true">+</span>
@@ -8863,8 +8876,8 @@ body.page-transitioning .story-page:not([hidden]) {
                 <img class="story-season-art" src="story-season-s3.png" alt="" />
               </div>
               <div class="story-card-copy">
-                <p class="story-season-label">SEASON 3</p>
-                <h2 data-i18n="aboutSeason3Title">Season 3: Golden Realm</h2>
+                <p class="story-season-label" data-i18n="storySeason3Label">SEASON 3</p>
+                <h2 data-i18n="aboutSeason3Title">Golden Realm</h2>
                 <p class="story-season-summary" data-i18n="aboutSeason3Copy">Brings desert mechanics, curse resistance, and the Goldust Conquest.</p>
                 <button type="button" class="story-expand-toggle" aria-expanded="false">
                   <span class="story-plus" aria-hidden="true">+</span>
@@ -8890,8 +8903,8 @@ body.page-transitioning .story-page:not([hidden]) {
                 <img class="story-season-art" src="story-season-s4.png" alt="" />
               </div>
               <div class="story-card-copy">
-                <p class="story-season-label">SEASON 4</p>
-                <h2 data-i18n="aboutSeason4Title">Season 4: Evernight Isle</h2>
+                <p class="story-season-label" data-i18n="storySeason4Label">SEASON 4</p>
+                <h2 data-i18n="aboutSeason4Title">Evernight Isle</h2>
                 <p class="story-season-summary" data-i18n="aboutSeason4Copy">Features darkness-themed mechanics, lighthouses, tactics cards, and the introduction of T11 troops.</p>
                 <button type="button" class="story-expand-toggle" aria-expanded="false">
                   <span class="story-plus" aria-hidden="true">+</span>
@@ -8917,8 +8930,8 @@ body.page-transitioning .story-page:not([hidden]) {
                 <img class="story-season-art" src="story-season-s5.png" alt="" />
               </div>
               <div class="story-card-copy">
-                <p class="story-season-label">SEASON 5</p>
-                <h2 data-i18n="aboutSeason5Title">Season 5: Wild West</h2>
+                <p class="story-season-label" data-i18n="storySeason5Label">SEASON 5</p>
+                <h2 data-i18n="aboutSeason5Title">Wild West</h2>
                 <p class="story-season-summary" data-i18n="aboutSeason5Copy">Focuses on bank strongholds and a crystal-gold economy.</p>
                 <button type="button" class="story-expand-toggle" aria-expanded="false">
                   <span class="story-plus" aria-hidden="true">+</span>
@@ -9877,8 +9890,14 @@ const I18N = {
     navWorld: "World",
     navCharacters: "Characters",
     navMedia: "Media",
-    storyEyebrow: "A NATION AT A CROSSROADS",
-    storySubtitle: "Six seasons. One turning point in history.",
+    storyEyebrow: "A SERVER BOUND FOR SUCCESS",
+    storySubtitle: "Four Seasons. Now is Your Chance to Be A Part of History.",
+    storySeason5Label: "SEASON 5",
+    storySeason4Label: "SEASON 4",
+    storySeason3Label: "SEASON 3",
+    storySeason2Label: "SEASON 2",
+    storySeason1Label: "SEASON 1",
+    storySeason0Label: "SEASON 0",
     tapToExpand: "Tap to expand",
     storyDetailPeople: "People",
     storyDetailMoments: "Moments",
@@ -9929,22 +9948,22 @@ const I18N = {
     welcomeThanksTitle: "Thank you for your interest in joining 1616!",
     welcomeGuideLead: "We are your chaotic 1616 transfer team",
     about1616JourneyLabel: "Our journey through the seasons",
-    about1616Title: "1616\'s Story",
+    about1616Title: "1616's STORY",
     about1616Intro: "The milestones below follow the game’s season journey. Each card includes a 1616 Story placeholder so we can later add what actually happened on our server.",
     seasonLabel: "Season",
     about1616StoryLabel: "1616\'s Story",
     about1616StoryPlaceholder: "[ Add what happened on Server 1616 during this season. ]",
-    aboutSeason0Title: "Pre-Season (Season 0)",
+    aboutSeason0Title: "PRE-SEASON",
     aboutSeason0Copy: "The foundational phase lasts around 120 days. It focuses on building toward HQ 30, unlocking early events such as Capitol Conquest, and establishing the initial tank meta.",
-    aboutSeason1Title: "Season 1: The Crimson Plague",
+    aboutSeason1Title: "The Crimson Plague",
     aboutSeason1Copy: "Introduces virus mechanics, Immune Protein Farms, exclusive hero weapons beginning with Kimberly, and a larger focus on fighting for land control across the expanded map.",
-    aboutSeason2Title: "Season 2: Polar World / Polar Storm",
+    aboutSeason2Title: "Polar World / Polar Storm",
     aboutSeason2Copy: "Moves the battlefield into a frozen wasteland where alliances manage temperature mechanics and compete for rare soil rankings.",
-    aboutSeason3Title: "Season 3: Golden Realm",
+    aboutSeason3Title: "Golden Realm",
     aboutSeason3Copy: "Brings desert mechanics, curse resistance, and the Goldust Conquest.",
-    aboutSeason4Title: "Season 4: Evernight Isle",
+    aboutSeason4Title: "Evernight Isle",
     aboutSeason4Copy: "Features darkness-themed mechanics, lighthouses, tactics cards, and the introduction of T11 troops.",
-    aboutSeason5Title: "Season 5: Wild West",
+    aboutSeason5Title: "Wild West",
     aboutSeason5Copy: "Focuses on bank strongholds and a crystal-gold economy.",
     milestoneLabel: "Milestone",
     aboutMilestoneTitlePlaceholder: "[ Add milestone title ]",
@@ -10103,8 +10122,14 @@ const I18N = {
     navWorld: "Mundo",
     navCharacters: "Personajes",
     navMedia: "Medios",
-    storyEyebrow: "UNA NACIÓN EN UNA ENCRUCIJADA",
-    storySubtitle: "Seis temporadas. Un punto de inflexión en la historia.",
+    storyEyebrow: "UN SERVIDOR DESTINADO AL ÉXITO",
+    storySubtitle: "Cuatro temporadas. Ahora es tu oportunidad de formar parte de la historia.",
+    storySeason5Label: "TEMPORADA 5",
+    storySeason4Label: "TEMPORADA 4",
+    storySeason3Label: "TEMPORADA 3",
+    storySeason2Label: "TEMPORADA 2",
+    storySeason1Label: "TEMPORADA 1",
+    storySeason0Label: "TEMPORADA 0",
     tapToExpand: "Toca para ampliar",
     storyDetailPeople: "Personas",
     storyDetailMoments: "Momentos",
@@ -10126,22 +10151,22 @@ const I18N = {
     welcomeThanksTitle: "¡Gracias por tu interés en unirte a 1616!",
     welcomeGuideLead: "Somos tus guías de transferencia:",
     about1616JourneyLabel: "Nuestro recorrido a través de las temporadas",
-    about1616Title: "Historia 1616",
+    about1616Title: "LA HISTORIA DE 1616",
     about1616Intro: "Los hitos de abajo siguen el recorrido de temporadas del juego. Cada tarjeta incluye un espacio de Historia de 1616 para que más adelante podamos añadir lo que realmente ocurrió en nuestro servidor.",
     seasonLabel: "Temporada",
     about1616StoryLabel: "Historia de 1616",
     about1616StoryPlaceholder: "[ Añade lo que ocurrió en el servidor 1616 durante esta temporada. ]",
-    aboutSeason0Title: "Pretemporada (Temporada 0)",
+    aboutSeason0Title: "PRETEMPORADA",
     aboutSeason0Copy: "La fase fundacional dura alrededor de 120 días. Se centra en avanzar hacia HQ 30, desbloquear eventos iniciales como Capitol Conquest y establecer el meta inicial de tanques.",
-    aboutSeason1Title: "Temporada 1: The Crimson Plague",
+    aboutSeason1Title: "The Crimson Plague",
     aboutSeason1Copy: "Introduce mecánicas de virus, Immune Protein Farms, armas exclusivas de héroes empezando por Kimberly y una mayor lucha por el control territorial en un mapa ampliado.",
-    aboutSeason2Title: "Temporada 2: Polar World / Polar Storm",
+    aboutSeason2Title: "Polar World / Polar Storm",
     aboutSeason2Copy: "Traslada el campo de batalla a un páramo helado donde las alianzas gestionan la temperatura y compiten por las clasificaciones de rare soil.",
-    aboutSeason3Title: "Temporada 3: Golden Realm",
+    aboutSeason3Title: "Golden Realm",
     aboutSeason3Copy: "Introduce mecánicas del desierto, resistencia a maldiciones y Goldust Conquest.",
-    aboutSeason4Title: "Temporada 4: Evernight Isle",
+    aboutSeason4Title: "Evernight Isle",
     aboutSeason4Copy: "Incluye mecánicas de oscuridad, faros, cartas tácticas y la introducción de las tropas T11.",
-    aboutSeason5Title: "Temporada 5: Wild West",
+    aboutSeason5Title: "Wild West",
     aboutSeason5Copy: "Se centra en fortalezas bancarias y una economía de cristal y oro.",
     milestoneLabel: "Hito",
     aboutMilestoneTitlePlaceholder: "[ Agrega un título del hito ]",
@@ -10292,8 +10317,14 @@ const I18N = {
     navWorld: "Mundo",
     navCharacters: "Personagens",
     navMedia: "Mídia",
-    storyEyebrow: "UMA NAÇÃO EM UMA ENCRUZILHADA",
-    storySubtitle: "Seis temporadas. Um ponto de virada na história.",
+    storyEyebrow: "UM SERVIDOR DESTINADO AO SUCESSO",
+    storySubtitle: "Quatro temporadas. Agora é a sua chance de fazer parte da história.",
+    storySeason5Label: "TEMPORADA 5",
+    storySeason4Label: "TEMPORADA 4",
+    storySeason3Label: "TEMPORADA 3",
+    storySeason2Label: "TEMPORADA 2",
+    storySeason1Label: "TEMPORADA 1",
+    storySeason0Label: "TEMPORADA 0",
     tapToExpand: "Toque para expandir",
     storyDetailPeople: "Pessoas",
     storyDetailMoments: "Momentos",
@@ -10315,22 +10346,22 @@ const I18N = {
     welcomeThanksTitle: "Obrigado pelo seu interesse em entrar no 1616!",
     welcomeGuideLead: "Somos seus guias de transferência:",
     about1616JourneyLabel: "Nossa jornada pelas temporadas",
-    about1616Title: "História 1616",
+    about1616Title: "A HISTÓRIA DO 1616",
     about1616Intro: "Os marcos abaixo seguem a jornada de temporadas do jogo. Cada cartão inclui um espaço de História do 1616 para adicionarmos depois o que realmente aconteceu no nosso servidor.",
     seasonLabel: "Temporada",
     about1616StoryLabel: "História do 1616",
     about1616StoryPlaceholder: "[ Adicione o que aconteceu no servidor 1616 durante esta temporada. ]",
-    aboutSeason0Title: "Pré-temporada (Temporada 0)",
+    aboutSeason0Title: "PRÉ-TEMPORADA",
     aboutSeason0Copy: "A fase de fundação dura cerca de 120 dias. O foco é evoluir rumo ao HQ 30, desbloquear eventos iniciais como Capitol Conquest e estabelecer o meta inicial de tanques.",
-    aboutSeason1Title: "Temporada 1: The Crimson Plague",
+    aboutSeason1Title: "The Crimson Plague",
     aboutSeason1Copy: "Introduz mecânicas de vírus, Immune Protein Farms, armas exclusivas de heróis começando por Kimberly e uma disputa maior por controle de território em um mapa ampliado.",
-    aboutSeason2Title: "Temporada 2: Polar World / Polar Storm",
+    aboutSeason2Title: "Polar World / Polar Storm",
     aboutSeason2Copy: "Leva o campo de batalha para um deserto congelado onde as alianças administram temperatura e competem pelos rankings de rare soil.",
-    aboutSeason3Title: "Temporada 3: Golden Realm",
+    aboutSeason3Title: "Golden Realm",
     aboutSeason3Copy: "Traz mecânicas de deserto, resistência a maldições e Goldust Conquest.",
-    aboutSeason4Title: "Temporada 4: Evernight Isle",
+    aboutSeason4Title: "Evernight Isle",
     aboutSeason4Copy: "Apresenta mecânicas de escuridão, faróis, cartas táticas e a introdução das tropas T11.",
-    aboutSeason5Title: "Temporada 5: Wild West",
+    aboutSeason5Title: "Wild West",
     aboutSeason5Copy: "Foca em fortalezas bancárias e em uma economia de cristal e ouro.",
     milestoneLabel: "Marco",
     aboutMilestoneTitlePlaceholder: "[ Adicione o título do marco ]",
@@ -10481,8 +10512,14 @@ const I18N = {
     navWorld: "Monde",
     navCharacters: "Personnages",
     navMedia: "Médias",
-    storyEyebrow: "UNE NATION À LA CROISÉE DES CHEMINS",
-    storySubtitle: "Six saisons. Un tournant dans l’histoire.",
+    storyEyebrow: "UN SERVEUR DESTINÉ AU SUCCÈS",
+    storySubtitle: "Quatre saisons. C’est maintenant votre chance de faire partie de l’histoire.",
+    storySeason5Label: "SAISON 5",
+    storySeason4Label: "SAISON 4",
+    storySeason3Label: "SAISON 3",
+    storySeason2Label: "SAISON 2",
+    storySeason1Label: "SAISON 1",
+    storySeason0Label: "SAISON 0",
     tapToExpand: "Touchez pour développer",
     storyDetailPeople: "Personnes",
     storyDetailMoments: "Moments",
@@ -10504,22 +10541,22 @@ const I18N = {
     welcomeThanksTitle: "Merci de votre intérêt pour rejoindre 1616 !",
     welcomeGuideLead: "Nous sommes vos guides de transfert :",
     about1616JourneyLabel: "Notre parcours à travers les saisons",
-    about1616Title: "Histoire 1616",
+    about1616Title: "L’HISTOIRE DE 1616",
     about1616Intro: "Les jalons ci-dessous suivent le parcours des saisons du jeu. Chaque carte comprend un emplacement Histoire de 1616 afin que nous puissions ajouter plus tard ce qui s’est réellement passé sur notre serveur.",
     seasonLabel: "Saison",
     about1616StoryLabel: "Histoire de 1616",
     about1616StoryPlaceholder: "[ Ajoutez ce qui s’est passé sur le serveur 1616 pendant cette saison. ]",
-    aboutSeason0Title: "Pré-saison (Saison 0)",
+    aboutSeason0Title: "PRÉ-SAISON",
     aboutSeason0Copy: "La phase fondatrice dure environ 120 jours. Elle met l’accent sur la progression vers le QG 30, le déblocage d’événements initiaux comme Capitol Conquest et l’établissement du premier méta des chars.",
-    aboutSeason1Title: "Saison 1 : The Crimson Plague",
+    aboutSeason1Title: "The Crimson Plague",
     aboutSeason1Copy: "Introduit les mécaniques de virus, les Immune Protein Farms, les armes exclusives de héros à commencer par Kimberly, ainsi qu’une lutte accrue pour le contrôle territorial sur une carte élargie.",
-    aboutSeason2Title: "Saison 2 : Polar World / Polar Storm",
+    aboutSeason2Title: "Polar World / Polar Storm",
     aboutSeason2Copy: "Déplace le champ de bataille vers un désert glacé où les alliances gèrent la température et concourent pour les classements de rare soil.",
-    aboutSeason3Title: "Saison 3 : Golden Realm",
+    aboutSeason3Title: "Golden Realm",
     aboutSeason3Copy: "Apporte des mécaniques de désert, de résistance aux malédictions et le Goldust Conquest.",
-    aboutSeason4Title: "Saison 4 : Evernight Isle",
+    aboutSeason4Title: "Evernight Isle",
     aboutSeason4Copy: "Comprend des mécaniques liées à l’obscurité, des phares, des cartes tactiques et l’introduction des troupes T11.",
-    aboutSeason5Title: "Saison 5 : Wild West",
+    aboutSeason5Title: "Wild West",
     aboutSeason5Copy: "Se concentre sur les forteresses bancaires et une économie de cristal et d’or.",
     milestoneLabel: "Jalon",
     aboutMilestoneTitlePlaceholder: "[ Ajouter un titre de jalon ]",
@@ -10670,8 +10707,14 @@ const I18N = {
     navWorld: "العالم",
     navCharacters: "الشخصيات",
     navMedia: "الوسائط",
-    storyEyebrow: "أمة عند مفترق طرق",
-    storySubtitle: "ستة مواسم. نقطة تحول واحدة في التاريخ.",
+    storyEyebrow: "سيرفر متجه نحو النجاح",
+    storySubtitle: "أربعة مواسم. الآن فرصتك لتكون جزءًا من التاريخ.",
+    storySeason5Label: "الموسم 5",
+    storySeason4Label: "الموسم 4",
+    storySeason3Label: "الموسم 3",
+    storySeason2Label: "الموسم 2",
+    storySeason1Label: "الموسم 1",
+    storySeason0Label: "الموسم 0",
     tapToExpand: "اضغط للتوسيع",
     storyDetailPeople: "الأشخاص",
     storyDetailMoments: "اللحظات",
@@ -10693,22 +10736,22 @@ const I18N = {
     welcomeThanksTitle: "شكرًا لاهتمامك بالانضمام إلى 1616!",
     welcomeGuideLead: "نحن مرشدو الانتقال الخاصون بك:",
     about1616JourneyLabel: "رحلتنا عبر المواسم",
-    about1616Title: "قصة 1616",
+    about1616Title: "تاريخ 1616",
     about1616Intro: "تتبع المحطات أدناه رحلة مواسم اللعبة. تتضمن كل بطاقة مساحة لقصة 1616 حتى نضيف لاحقًا ما حدث فعليًا على سيرفرنا.",
     seasonLabel: "الموسم",
     about1616StoryLabel: "قصة 1616",
     about1616StoryPlaceholder: "[ أضف ما حدث على سيرفر 1616 خلال هذا الموسم. ]",
-    aboutSeason0Title: "ما قبل الموسم (الموسم 0)",
+    aboutSeason0Title: "ما قبل الموسم",
     aboutSeason0Copy: "تستمر المرحلة التأسيسية نحو 120 يومًا. تركز على التطور نحو HQ 30، وفتح الفعاليات المبكرة مثل Capitol Conquest، وترسيخ الميتا الأولى للدبابات.",
-    aboutSeason1Title: "الموسم 1: The Crimson Plague",
+    aboutSeason1Title: "The Crimson Plague",
     aboutSeason1Copy: "يقدم آليات الفيروس، وImmune Protein Farms، والأسلحة الحصرية للأبطال بدءًا من Kimberly، مع تركيز أكبر على القتال للسيطرة على الأراضي في خريطة موسعة.",
-    aboutSeason2Title: "الموسم 2: Polar World / Polar Storm",
+    aboutSeason2Title: "Polar World / Polar Storm",
     aboutSeason2Copy: "ينقل ساحة القتال إلى عالم جليدي حيث تدير التحالفات آليات الحرارة وتتنافس على تصنيفات rare soil.",
-    aboutSeason3Title: "الموسم 3: Golden Realm",
+    aboutSeason3Title: "Golden Realm",
     aboutSeason3Copy: "يقدم آليات الصحراء، ومقاومة اللعنات، وGoldust Conquest.",
-    aboutSeason4Title: "الموسم 4: Evernight Isle",
+    aboutSeason4Title: "Evernight Isle",
     aboutSeason4Copy: "يتضمن آليات مرتبطة بالظلام، والمنارات، وبطاقات التكتيك، وإدخال قوات T11.",
-    aboutSeason5Title: "الموسم 5: Wild West",
+    aboutSeason5Title: "Wild West",
     aboutSeason5Copy: "يركز على الحصون البنكية واقتصاد البلورات والذهب.",
     milestoneLabel: "محطة",
     aboutMilestoneTitlePlaceholder: "[ أضف عنوان المحطة ]",
@@ -10859,8 +10902,14 @@ const I18N = {
     navWorld: "Thế giới",
     navCharacters: "Nhân vật",
     navMedia: "Truyền thông",
-    storyEyebrow: "MỘT QUỐC GIA Ở NGÃ RẼ",
-    storySubtitle: "Sáu mùa. Một bước ngoặt trong lịch sử.",
+    storyEyebrow: "MỘT SERVER HƯỚNG ĐẾN THÀNH CÔNG",
+    storySubtitle: "Bốn mùa. Bây giờ là cơ hội để bạn trở thành một phần của lịch sử.",
+    storySeason5Label: "MÙA 5",
+    storySeason4Label: "MÙA 4",
+    storySeason3Label: "MÙA 3",
+    storySeason2Label: "MÙA 2",
+    storySeason1Label: "MÙA 1",
+    storySeason0Label: "MÙA 0",
     tapToExpand: "Chạm để mở rộng",
     storyDetailPeople: "Con người",
     storyDetailMoments: "Khoảnh khắc",
@@ -10882,22 +10931,22 @@ const I18N = {
     welcomeThanksTitle: "Cảm ơn bạn đã quan tâm đến việc tham gia 1616!",
     welcomeGuideLead: "Chúng tôi là những người hướng dẫn chuyển server của bạn:",
     about1616JourneyLabel: "Hành trình của chúng ta qua các mùa",
-    about1616Title: "Câu chuyện 1616",
+    about1616Title: "LỊCH SỬ 1616",
     about1616Intro: "Các cột mốc dưới đây đi theo hành trình mùa của game. Mỗi thẻ đều có phần Câu chuyện 1616 để sau này chúng ta bổ sung những gì thực sự đã xảy ra trên server.",
     seasonLabel: "Mùa",
     about1616StoryLabel: "Câu chuyện 1616",
     about1616StoryPlaceholder: "[ Thêm những gì đã xảy ra trên Server 1616 trong mùa này. ]",
-    aboutSeason0Title: "Tiền mùa giải (Mùa 0)",
+    aboutSeason0Title: "TIỀN MÙA GIẢI",
     aboutSeason0Copy: "Giai đoạn nền tảng kéo dài khoảng 120 ngày. Trọng tâm là phát triển lên HQ 30, mở các sự kiện ban đầu như Capitol Conquest và hình thành meta tank đầu tiên.",
-    aboutSeason1Title: "Mùa 1: The Crimson Plague",
+    aboutSeason1Title: "The Crimson Plague",
     aboutSeason1Copy: "Giới thiệu cơ chế virus, Immune Protein Farms, vũ khí độc quyền cho hero bắt đầu với Kimberly và sự cạnh tranh lớn hơn để kiểm soát lãnh thổ trên bản đồ mở rộng.",
-    aboutSeason2Title: "Mùa 2: Polar World / Polar Storm",
+    aboutSeason2Title: "Polar World / Polar Storm",
     aboutSeason2Copy: "Chuyển chiến trường sang vùng băng giá, nơi các liên minh phải quản lý nhiệt độ và cạnh tranh bảng xếp hạng rare soil.",
-    aboutSeason3Title: "Mùa 3: Golden Realm",
+    aboutSeason3Title: "Golden Realm",
     aboutSeason3Copy: "Mang đến cơ chế sa mạc, kháng lời nguyền và Goldust Conquest.",
-    aboutSeason4Title: "Mùa 4: Evernight Isle",
+    aboutSeason4Title: "Evernight Isle",
     aboutSeason4Copy: "Có các cơ chế bóng tối, hải đăng, thẻ chiến thuật và sự xuất hiện của quân T11.",
-    aboutSeason5Title: "Mùa 5: Wild West",
+    aboutSeason5Title: "Wild West",
     aboutSeason5Copy: "Tập trung vào các bank stronghold và nền kinh tế crystal-gold.",
     milestoneLabel: "Cột mốc",
     aboutMilestoneTitlePlaceholder: "[ Thêm tiêu đề cột mốc ]",
@@ -11048,8 +11097,14 @@ const I18N = {
     navWorld: "세계",
     navCharacters: "인물",
     navMedia: "미디어",
-    storyEyebrow: "갈림길에 선 하나의 국가",
-    storySubtitle: "여섯 시즌. 역사의 한 전환점.",
+    storyEyebrow: "성공을 향해 나아가는 서버",
+    storySubtitle: "네 번의 시즌. 이제 당신도 역사의 일부가 될 기회입니다.",
+    storySeason5Label: "시즌 5",
+    storySeason4Label: "시즌 4",
+    storySeason3Label: "시즌 3",
+    storySeason2Label: "시즌 2",
+    storySeason1Label: "시즌 1",
+    storySeason0Label: "시즌 0",
     tapToExpand: "눌러서 펼치기",
     storyDetailPeople: "사람들",
     storyDetailMoments: "순간들",
@@ -11071,22 +11126,22 @@ const I18N = {
     welcomeThanksTitle: "1616에 합류하는 데 관심을 가져주셔서 감사합니다!",
     welcomeGuideLead: "저희는 여러분의 서버 이동 가이드입니다:",
     about1616JourneyLabel: "시즌을 따라가는 우리의 여정",
-    about1616Title: "1616 이야기",
+    about1616Title: "1616의 역사",
     about1616Intro: "아래 이정표는 게임의 시즌 흐름을 따라갑니다. 각 카드에는 나중에 우리 서버에서 실제로 있었던 일을 추가할 수 있도록 1616 이야기 자리표시자가 있습니다.",
     seasonLabel: "시즌",
     about1616StoryLabel: "1616 이야기",
     about1616StoryPlaceholder: "[ 이 시즌에 서버 1616에서 있었던 일을 추가하세요. ]",
-    aboutSeason0Title: "프리시즌 (시즌 0)",
+    aboutSeason0Title: "프리시즌",
     aboutSeason0Copy: "약 120일 동안 이어지는 기반 단계입니다. HQ 30을 향해 성장하고 Capitol Conquest 같은 초기 이벤트를 열며 초기 탱크 메타를 구축하는 데 초점을 둡니다.",
-    aboutSeason1Title: "시즌 1: The Crimson Plague",
+    aboutSeason1Title: "The Crimson Plague",
     aboutSeason1Copy: "바이러스 메커니즘, Immune Protein Farms, Kimberly부터 시작되는 전용 영웅 무기, 확장된 맵에서의 영토 경쟁을 도입합니다.",
-    aboutSeason2Title: "시즌 2: Polar World / Polar Storm",
+    aboutSeason2Title: "Polar World / Polar Storm",
     aboutSeason2Copy: "전장을 얼어붙은 황무지로 옮기며, 연맹은 온도 메커니즘을 관리하고 rare soil 순위를 두고 경쟁합니다.",
-    aboutSeason3Title: "시즌 3: Golden Realm",
+    aboutSeason3Title: "Golden Realm",
     aboutSeason3Copy: "사막 메커니즘, 저주 저항, Goldust Conquest를 도입합니다.",
-    aboutSeason4Title: "시즌 4: Evernight Isle",
+    aboutSeason4Title: "Evernight Isle",
     aboutSeason4Copy: "어둠 관련 메커니즘, 등대, 전술 카드, T11 병력의 도입이 특징입니다.",
-    aboutSeason5Title: "시즌 5: Wild West",
+    aboutSeason5Title: "Wild West",
     aboutSeason5Copy: "은행 거점과 crystal-gold 경제에 초점을 둡니다.",
     milestoneLabel: "이정표",
     aboutMilestoneTitlePlaceholder: "[ 이정표 제목 추가 ]",
@@ -11237,8 +11292,14 @@ const I18N = {
     navWorld: "Welt",
     navCharacters: "Charaktere",
     navMedia: "Medien",
-    storyEyebrow: "EINE NATION AM SCHEIDEWEG",
-    storySubtitle: "Sechs Saisons. Ein Wendepunkt der Geschichte.",
+    storyEyebrow: "EIN SERVER AUF ERFOLGSKURS",
+    storySubtitle: "Vier Saisons. Jetzt ist deine Chance, Teil der Geschichte zu werden.",
+    storySeason5Label: "SAISON 5",
+    storySeason4Label: "SAISON 4",
+    storySeason3Label: "SAISON 3",
+    storySeason2Label: "SAISON 2",
+    storySeason1Label: "SAISON 1",
+    storySeason0Label: "SAISON 0",
     tapToExpand: "Zum Öffnen tippen",
     storyDetailPeople: "Menschen",
     storyDetailMoments: "Momente",
@@ -11260,22 +11321,22 @@ const I18N = {
     welcomeThanksTitle: "Danke für dein Interesse, 1616 beizutreten!",
     welcomeGuideLead: "Wir sind deine Transfer-Guides:",
     about1616JourneyLabel: "Unsere Reise durch die Saisons",
-    about1616Title: "1616-Geschichte",
+    about1616Title: "DIE GESCHICHTE VON 1616",
     about1616Intro: "Die Meilensteine unten folgen der Saisonreise des Spiels. Jede Karte enthält einen Platzhalter für die 1616-Geschichte, damit wir später ergänzen können, was auf unserem Server tatsächlich passiert ist.",
     seasonLabel: "Saison",
     about1616StoryLabel: "1616-Geschichte",
     about1616StoryPlaceholder: "[ Ergänze, was während dieser Saison auf Server 1616 passiert ist. ]",
-    aboutSeason0Title: "Vorsaison (Saison 0)",
+    aboutSeason0Title: "VORSAISON",
     aboutSeason0Copy: "Die grundlegende Phase dauert etwa 120 Tage. Im Mittelpunkt stehen der Aufbau Richtung HQ 30, frühe Events wie Capitol Conquest und die Entwicklung des ersten Tank-Metas.",
-    aboutSeason1Title: "Saison 1: The Crimson Plague",
+    aboutSeason1Title: "The Crimson Plague",
     aboutSeason1Copy: "Führt Virus-Mechaniken, Immune Protein Farms, exklusive Heldenwaffen beginnend mit Kimberly und stärkere Kämpfe um Landkontrolle auf einer erweiterten Karte ein.",
-    aboutSeason2Title: "Saison 2: Polar World / Polar Storm",
+    aboutSeason2Title: "Polar World / Polar Storm",
     aboutSeason2Copy: "Verlegt das Schlachtfeld in eine gefrorene Einöde, in der Allianzen Temperaturmechaniken verwalten und um rare-soil-Ranglisten konkurrieren.",
-    aboutSeason3Title: "Saison 3: Golden Realm",
+    aboutSeason3Title: "Golden Realm",
     aboutSeason3Copy: "Bringt Wüstenmechaniken, Fluchresistenz und Goldust Conquest.",
-    aboutSeason4Title: "Saison 4: Evernight Isle",
+    aboutSeason4Title: "Evernight Isle",
     aboutSeason4Copy: "Bietet Dunkelheitsmechaniken, Leuchttürme, Taktikkarten und die Einführung von T11-Truppen.",
-    aboutSeason5Title: "Saison 5: Wild West",
+    aboutSeason5Title: "Wild West",
     aboutSeason5Copy: "Konzentriert sich auf Bank-Festungen und eine Kristall-Gold-Wirtschaft.",
     milestoneLabel: "Meilenstein",
     aboutMilestoneTitlePlaceholder: "[ Meilenstein-Titel einfügen ]",

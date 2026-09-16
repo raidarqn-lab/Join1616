@@ -680,3 +680,13 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 - Added a smooth fade-and-lift transition when switching between Application and 1616 History.
 - Removed the World, Characters, and Media placeholder pages from the navigation.
 
+## v91 — History page copy hierarchy
+- Updated the History hero to:
+  - **A SERVER BOUND FOR SUCCESS**
+  - **1616's STORY**
+  - **Four Seasons. Now is Your Chance to Be A Part of History.**
+- Removed repeated season naming inside every timeline card.
+- Each card now uses a small red **Season X** label and a larger season-name heading.
+- Example: **SEASON 0** → **PRE-SEASON**.
+- Updated the same hierarchy across all supported languages.
+
