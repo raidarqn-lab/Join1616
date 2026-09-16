@@ -205,6 +205,15 @@ function validatePayload_(p) {
   const required = ['applicationId','confirmationCode','language','currentServer','username','alliance','professionLevel','killCount','heroPower','transferWithGroup'];
   required.forEach(k => { if (p[k] === undefined || p[k] === null || String(p[k]).trim() === '') throw new Error(`Missing required field: ${k}`); });
   ['currentServer','professionLevel','killCount','heroPower'].forEach(k => { if (!/^\d+$/.test(String(p[k]))) throw new Error(`${k} must contain digits only.`); });
+  const alliance = clean_(p.alliance);
+  if (alliance.length > 4) throw new Error('alliance must be 4 characters or fewer.');
+
+  const professionLevelNum = Number(p.professionLevel);
+  if (!Number.isInteger(professionLevelNum) || professionLevelNum > 100) throw new Error('professionLevel cannot be greater than 100.');
+
+  const killDigits = digits_(p.killCount);
+  if (killDigits.length > 9) throw new Error('killCount cannot be more than 9 digits.');
+
   const currentServerNum = Number(p.currentServer);
   if (!Number.isInteger(currentServerNum) || currentServerNum < 1573 || currentServerNum > 1636) throw new Error('currentServer must be between 1573 and 1636.');
   ['buildingPower','technologyPower','dronePower','unitPower','overlordPower','decorationPower','reportedTransferScore'].forEach(k => {
@@ -216,8 +225,10 @@ function validatePayload_(p) {
   if (!['yes','no','unsure'].includes(String(p.transferWithGroup))) throw new Error('Invalid transfer group answer.');
   if (p.transferWithGroup === 'yes') {
     if (!p.transferGroupName || !String(p.transferGroupName).trim()) throw new Error('Missing transfer group name.');
-    if (p.expectedAdditionalPlayers !== undefined && p.expectedAdditionalPlayers !== null && String(p.expectedAdditionalPlayers).trim() !== '' && !/^\d+$/.test(String(p.expectedAdditionalPlayers))) {
-      throw new Error('expectedAdditionalPlayers must contain digits only.');
+    if (p.expectedAdditionalPlayers !== undefined && p.expectedAdditionalPlayers !== null && String(p.expectedAdditionalPlayers).trim() !== '') {
+      if (!/^\d+$/.test(String(p.expectedAdditionalPlayers))) throw new Error('expectedAdditionalPlayers must contain digits only.');
+      const expectedAdditional = Number(p.expectedAdditionalPlayers);
+      if (!Number.isInteger(expectedAdditional) || expectedAdditional > 99) throw new Error('Total group size cannot exceed 100 including the applicant.');
     }
     if (!Array.isArray(p.groupMembers)) p.groupMembers = [];
     p.groupMembers.forEach((m, i) => {

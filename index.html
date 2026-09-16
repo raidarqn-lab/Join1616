@@ -4237,6 +4237,308 @@ body.transfer-group-reminder-open { overflow: hidden; }
   border-color: rgba(255, 193, 104, .16);
 }
 
+
+/* ================================================================
+   v61 — Transfer Group section hierarchy
+   Same family of warm neutral cards; stronger separation from page.
+   ================================================================ */
+.form-step[data-step="3"] .group-lead-card,
+.form-step[data-step="3"] .group-contact-card,
+.form-step[data-step="3"] .group-summary-card,
+.form-step[data-step="3"] .group-member-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(238, 173, 137, .26) !important;
+  background:
+    radial-gradient(circle at 94% 7%, rgba(255, 205, 125, .055), transparent 32%),
+    linear-gradient(180deg, rgba(58, 31, 31, .72), rgba(29, 18, 20, .88)) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.018) inset,
+    0 12px 28px rgba(0,0,0,.20),
+    0 0 22px rgba(255, 176, 94, .035) !important;
+}
+
+.form-step[data-step="3"] .group-lead-card::before,
+.form-step[data-step="3"] .group-contact-card::before,
+.form-step[data-step="3"] .group-summary-card::before,
+.form-step[data-step="3"] .group-member-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  border-radius: 14px 0 0 14px;
+  background:
+    linear-gradient(180deg, rgba(245, 149, 169, .96), rgba(215, 77, 101, .92) 52%, rgba(232, 172, 84, .88));
+  box-shadow:
+    0 0 12px rgba(232, 105, 121, .20);
+  opacity: .95;
+}
+
+.form-step[data-step="3"] .group-lead-card .subsection-heading h2,
+.form-step[data-step="3"] .group-contact-card .subsection-heading h2,
+.form-step[data-step="3"] .group-summary-card .subsection-heading h2,
+.form-step[data-step="3"] .group-member-card .subsection-heading h2 {
+  color: #f7ded7 !important;
+}
+
+.form-step[data-step="3"] .group-contact-card p,
+.form-step[data-step="3"] .group-summary-card span,
+.form-step[data-step="3"] .group-summary-card small {
+  color: #cfaaa3 !important;
+}
+
+.form-step[data-step="3"] .group-summary-card strong {
+  color: #fff0e8 !important;
+}
+
+.form-step[data-step="3"] .group-name-caps-note {
+  background: rgba(93, 49, 39, .18);
+  border-color: rgba(238, 173, 137, .18);
+  color: #e3b8aa;
+}
+
+/* Validation hints */
+.validation-limit-help {
+  margin-top: 6px;
+  color: #cda89e;
+  font-size: .72rem;
+  line-height: 1.45;
+}
+
+
+.stats-guide-open { overflow: hidden; }
+.visual-guide-callout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 14px 16px;
+  margin: 14px 0 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 203, 122, 0.26);
+  background: linear-gradient(135deg, rgba(73, 18, 20, 0.82), rgba(117, 42, 33, 0.62));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 10px 24px rgba(0,0,0,.22);
+}
+.visual-guide-note {
+  margin: 0;
+  flex: 1 1 240px;
+  color: rgba(255, 241, 224, 0.9);
+  font-size: .88rem;
+  line-height: 1.45;
+}
+.visual-guide-trigger {
+  appearance: none;
+  border: 1px solid rgba(255, 210, 149, 0.38);
+  background: linear-gradient(180deg, rgba(255, 213, 149, 0.18), rgba(204, 71, 93, 0.18));
+  color: #fff7ee;
+  border-radius: 999px;
+  padding: 11px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font: inherit;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(255, 172, 111, 0.1), 0 0 18px rgba(255, 141, 96, 0.18);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+}
+.visual-guide-trigger:hover,
+.visual-guide-trigger:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(255, 226, 184, 0.56);
+  box-shadow: 0 0 0 1px rgba(255, 172, 111, 0.16), 0 0 24px rgba(255, 149, 120, 0.28);
+}
+.visual-guide-trigger-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: rgba(255, 236, 213, 0.12);
+  color: #ffd7c6;
+  font-size: 1rem;
+  line-height: 1;
+}
+.stats-guide-inline {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 14px 0 10px;
+}
+.stats-guide-inline p {
+  margin: 0;
+  color: rgba(255, 240, 225, 0.88);
+  font-size: .86rem;
+  line-height: 1.45;
+}
+.mini-info-button {
+  appearance: none;
+  border: 1px solid rgba(255, 204, 149, 0.34);
+  background: rgba(255, 214, 149, 0.12);
+  color: #ffe2c9;
+  border-radius: 999px;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 0 16px rgba(255, 132, 112, 0.15);
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+.mini-info-button:hover,
+.mini-info-button:focus-visible {
+  transform: translateY(-1px) scale(1.02);
+  background: rgba(255, 214, 149, 0.18);
+  border-color: rgba(255, 230, 196, 0.52);
+}
+.label-inline-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.stats-guide-modal[hidden] { display: none !important; }
+.stats-guide-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1250;
+  background: rgba(11, 5, 8, 0.76);
+  backdrop-filter: blur(6px);
+  padding: 24px;
+  overflow-y: auto;
+}
+.stats-guide-dialog {
+  width: min(1080px, 100%);
+  margin: 0 auto;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 206, 157, 0.16);
+  background: radial-gradient(circle at top, rgba(86, 19, 26, 0.92), rgba(26, 8, 16, 0.96));
+  box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(255, 150, 120, 0.06);
+  overflow: hidden;
+  position: relative;
+}
+.stats-guide-topbar {
+  padding: 20px 22px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.stats-guide-close {
+  appearance: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 223, 184, .18);
+  background: rgba(255,255,255,.06);
+  color: #fff7ec;
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+.stats-guide-header {
+  padding: 0 26px 18px;
+}
+.stats-guide-eyebrow {
+  margin: 0 0 8px;
+  color: #ffcc87;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: .74rem;
+  font-weight: 800;
+}
+.stats-guide-header h2 {
+  margin: 0;
+  color: #fff7ee;
+  font-size: clamp(1.7rem, 4vw, 2.45rem);
+  line-height: 1.05;
+}
+.stats-guide-header p {
+  margin: 10px 0 0;
+  color: rgba(255, 244, 232, 0.9);
+  max-width: 62ch;
+  line-height: 1.55;
+}
+.stats-guide-figure-wrap {
+  padding: 0 26px;
+}
+.stats-guide-image {
+  display: block;
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 217, 182, 0.18);
+  box-shadow: 0 16px 34px rgba(0,0,0,.32);
+}
+.stats-guide-caption-grid {
+  padding: 22px 26px 0;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.stats-guide-caption-item {
+  border-radius: 18px;
+  padding: 16px 16px 15px;
+  background: rgba(255, 243, 229, 0.06);
+  border: 1px solid rgba(255, 219, 186, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.stats-guide-caption-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.stats-guide-caption-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(255, 204, 132, 0.16);
+  border: 1px solid rgba(255, 219, 176, 0.25);
+  color: #ffe9c7;
+  font-weight: 900;
+}
+.stats-guide-caption-item h3 {
+  margin: 0;
+  color: #fff8ed;
+  font-size: .98rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.stats-guide-caption-item p {
+  margin: 0;
+  color: rgba(255, 243, 229, 0.88);
+  line-height: 1.52;
+  font-size: .91rem;
+}
+.stats-guide-footnote {
+  padding: 16px 26px 0;
+  margin: 0;
+  color: rgba(255, 226, 189, 0.88);
+  font-size: .88rem;
+}
+.stats-guide-actions {
+  padding: 20px 26px 26px;
+  display: flex;
+  justify-content: flex-end;
+}
+@media (max-width: 720px) {
+  .stats-guide-modal { padding: 14px; }
+  .stats-guide-dialog { border-radius: 18px; }
+  .stats-guide-header, .stats-guide-figure-wrap, .stats-guide-caption-grid, .stats-guide-footnote, .stats-guide-actions { padding-left: 16px; padding-right: 16px; }
+  .stats-guide-topbar { padding: 14px 16px 0; }
+  .visual-guide-callout { padding: 13px 14px; }
+  .visual-guide-trigger { width: 100%; justify-content: center; }
+  .stats-guide-caption-grid { grid-template-columns: 1fr; }
+}
+
 </style>
 </head>
 <body>
@@ -4498,7 +4800,8 @@ body.transfer-group-reminder-open { overflow: hidden; }
             </div>
             <div class="field-block full-span">
               <label for="alliance"><span data-i18n="allianceTag">What is your current alliance name / tag?</span> <em>*</em></label>
-              <input id="alliance" name="alliance" type="text" maxlength="80" autocomplete="off" data-required="true" placeholder="[NvSP]" />
+              <input id="alliance" name="alliance" type="text" maxlength="4" autocomplete="off" data-required="true" data-max-chars="4" data-max-error-key="allianceTagMaxError" placeholder="NvSP" />
+              <p class="validation-limit-help" data-i18n="allianceTagMaxHelp">Enter the alliance tag only, without brackets. Maximum 4 characters.</p>
               <p class="field-error" data-error-for="alliance"></p>
             </div>
           </div>
@@ -4510,22 +4813,40 @@ body.transfer-group-reminder-open { overflow: hidden; }
           <h1 id="game-details-title">Game Details</h1>
           <p class="step-intro" data-i18n="gameDetailsIntro">Enter the current values shown in your game profile.</p>
 
+          <div class="visual-guide-callout">
+            <button class="visual-guide-trigger" type="button" data-open-stats-guide>
+              <span class="visual-guide-trigger-icon" aria-hidden="true">✿</span>
+              <span data-i18n="statsGuideButton">Open visual guide</span>
+            </button>
+            <p class="visual-guide-note" data-i18n="statsGuideHint">Uses a sample profile with fake data so it works in every language.</p>
+          </div>
+
           <div class="field-grid two-col">
             <div class="field-block">
-              <label for="profession-level"><span data-i18n="professionLevel">What is your profession level?</span> <em>*</em></label>
-              <input id="profession-level" name="professionLevel" type="text" inputmode="numeric" data-numeric="integer" data-required="true" placeholder="93" />
+              <div class="label-inline-wrap">
+                <label for="profession-level"><span data-i18n="professionLevel">What is your profession level?</span> <em>*</em></label>
+                <button class="mini-info-button" type="button" data-open-stats-guide aria-label="Open visual guide">i</button>
+              </div>
+              <input id="profession-level" name="professionLevel" type="text" inputmode="numeric" data-numeric="integer" data-required="true" data-max="100" data-max-error-key="professionMaxError" maxlength="3" placeholder="93" />
+              <p class="validation-limit-help" data-i18n="professionMaxHelp">Maximum profession level: 100.</p>
               <p class="field-error" data-error-for="profession-level"></p>
             </div>
             <div class="field-block">
-              <label for="kill-count"><span data-i18n="killCount">What is your current kill count?</span> <em>*</em></label>
-              <input id="kill-count" name="killCount" type="text" inputmode="numeric" data-numeric="full" data-required="true" placeholder="26,000,000" />
-              <p class="field-help" data-i18n="fullNumberHelp">Enter the full number. Do not use M, K, or abbreviations.</p>
+              <div class="label-inline-wrap">
+                <label for="kill-count"><span data-i18n="killCount">What is your current kill count?</span> <em>*</em></label>
+                <button class="mini-info-button" type="button" data-open-stats-guide aria-label="Open visual guide">i</button>
+              </div>
+              <input id="kill-count" name="killCount" type="text" inputmode="numeric" data-numeric="full" data-required="true" data-max-digits="9" data-max-error-key="killCountMaxError" placeholder="26,000,000" />
+              <p class="field-help" data-i18n="fullNumberHelp">Enter the full number. Do not use M, K, or abbreviations. Maximum 9 digits.</p>
               <p class="field-error" data-error-for="kill-count"></p>
             </div>
             <div class="field-block full-span">
               <div class="label-row">
                 <label for="hero-power"><span data-i18n="heroPower">What is your total HERO power?</span> <em>*</em></label>
-                <button class="help-toggle" type="button" data-help-toggle="hero-help" data-i18n="howToFind">How to find this</button>
+                <div style="display:flex; gap:8px; align-items:center;">
+                  <button class="mini-info-button" type="button" data-open-stats-guide aria-label="Open visual guide">i</button>
+                  <button class="help-toggle" type="button" data-help-toggle="hero-help" data-i18n="howToFind">How to find this</button>
+                </div>
               </div>
               <input id="hero-power" name="heroPower" type="text" inputmode="numeric" data-numeric="full" data-required="true" placeholder="113,246,715" />
               <p class="field-help" data-i18n="heroPowerHelp">Enter HERO Power only, not Total Power.</p>
@@ -4557,6 +4878,14 @@ body.transfer-group-reminder-open { overflow: hidden; }
 <div class="transfer-planning-reason">
               <strong data-i18n="transferPlanningWhyTitle">Why are we asking for this?</strong>
               <p data-i18n="transferPlanningWhy">At the time you apply, your confirmed seat colour or Transfer Score may not yet be available. Collecting these account-development values gives the 1616 transfer team the information we need to estimate your likely transfer classification later, once the transfer window and thresholds are clearer. This application will not calculate or display an estimated score or colour.</p>
+            </div>
+
+            <div class="stats-guide-inline">
+              <button class="visual-guide-trigger" type="button" data-open-stats-guide>
+                <span class="visual-guide-trigger-icon" aria-hidden="true">✿</span>
+                <span data-i18n="statsGuideButton">Open visual guide</span>
+              </button>
+              <p data-i18n="statsGuideInlineHelp">See a sample screen that shows where Total Power, Kill Count, Profession Level, and Power Details are located.</p>
             </div>
 
             <details class="transfer-location-guide">
@@ -4741,8 +5070,8 @@ body.transfer-group-reminder-open { overflow: hidden; }
               <p data-i18n="estimatedGroupSizeIntro">If you know roughly how many additional players may come with you, enter that number. An estimate is fine.</p>
               <div class="field-block" style="margin-top:14px">
                 <label for="expected-additional-players"><span data-i18n="expectedAdditionalPlayers">Expected additional players</span> <span class="optional-label" data-i18n="optional">(Optional)</span></label>
-                <input id="expected-additional-players" name="expectedAdditionalPlayers" type="text" inputmode="numeric" data-numeric="integer" placeholder="3" />
-                <p class="field-help" data-i18n="expectedAdditionalHelp">Leave this blank if you do not know yet.</p>
+                <input id="expected-additional-players" name="expectedAdditionalPlayers" type="text" inputmode="numeric" data-numeric="integer" data-max="99" data-max-error-key="groupSizeMaxError" maxlength="3" placeholder="3" />
+                <p class="field-help" data-i18n="expectedAdditionalHelp">Leave this blank if you do not know yet. Maximum total group size is 100, including you.</p>
                 <p class="field-error" data-error-for="expected-additional-players"></p>
               </div>
             </div>
@@ -5008,6 +5337,49 @@ body.transfer-group-reminder-open { overflow: hidden; }
     </div>
   </div>
 
+
+  <section class="stats-guide-modal" id="stats-guide-modal" hidden role="dialog" aria-modal="true" aria-labelledby="stats-guide-title">
+    <div class="stats-guide-dialog">
+      <div class="stats-guide-topbar">
+        <button class="stats-guide-close" id="stats-guide-close" type="button" aria-label="Close">×</button>
+      </div>
+      <div class="stats-guide-header">
+        <p class="stats-guide-eyebrow" data-i18n="statsGuideEyebrow">Sample visual guide</p>
+        <h2 id="stats-guide-title" data-i18n="statsGuideTitle">Where to find your stats</h2>
+        <p data-i18n="statsGuideIntro">This example uses a fake player name, fake avatar, and fake values, so you can use it safely in any language.</p>
+      </div>
+      <div class="stats-guide-figure-wrap">
+        <img class="stats-guide-image" src="stats-visual-guide-sample.png" alt="" />
+      </div>
+      <div class="stats-guide-caption-grid">
+        <div class="stats-guide-caption-item">
+          <div class="stats-guide-caption-head"><span class="stats-guide-caption-number">1</span><h3 data-i18n="statsGuideItem1Title">Total Power</h3></div>
+          <p data-i18n="statsGuideItem1Text">The gold badge on the profile screen is your Total Power. This includes troops in base, so do not use this number for Hero Power.</p>
+        </div>
+        <div class="stats-guide-caption-item">
+          <div class="stats-guide-caption-head"><span class="stats-guide-caption-number">2</span><h3 data-i18n="statsGuideItem2Title">Kill Count</h3></div>
+          <p data-i18n="statsGuideItem2Text">The crossed-weapons number on the top-right shows your current Kill Count.</p>
+        </div>
+        <div class="stats-guide-caption-item">
+          <div class="stats-guide-caption-head"><span class="stats-guide-caption-number">3</span><h3 data-i18n="statsGuideItem3Title">Profession Level</h3></div>
+          <p data-i18n="statsGuideItem3Text">The helmet icon shows your current Profession Level.</p>
+        </div>
+        <div class="stats-guide-caption-item">
+          <div class="stats-guide-caption-head"><span class="stats-guide-caption-number">4</span><h3 data-i18n="statsGuideItem4Title">Tap for details</h3></div>
+          <p data-i18n="statsGuideItem4Text">Tap the gray details box under the profile stats to open the next screen.</p>
+        </div>
+        <div class="stats-guide-caption-item">
+          <div class="stats-guide-caption-head"><span class="stats-guide-caption-number">5</span><h3 data-i18n="statsGuideItem5Title">Power breakdown</h3></div>
+          <p data-i18n="statsGuideItem5Text">On the Power Details screen, copy the values for Hero, Building, Technology, Drone, and Decoration Power.</p>
+        </div>
+      </div>
+      <p class="stats-guide-footnote" data-i18n="statsGuideFootnote">The guide image stays the same, but the notes below it change with your selected language.</p>
+      <div class="stats-guide-actions">
+        <button class="button button-primary" id="stats-guide-done" type="button" data-i18n="closeGuide">Close</button>
+      </div>
+    </div>
+  </section>
+
 <script>
 'use strict';
 
@@ -5030,11 +5402,17 @@ const I18N = {
     buildingPower: 'Building Power', technologyPower: 'Technology Power', dronePower: 'Drone Power', unitPowerTop3: 'Unit Power', overlordPower: 'Overlord Power', t11Unlocked: 'T11 unlocked?', highestKnownHelp: 'Enter the full highest known number, without M or K.', reportedTransferScore: 'Known in-game Transfer Score', reportedTransferScoreHelp: 'Only enter this if your transfer screen already shows a score.',
     estimatedSeatColour: 'Estimated S4 seat colour', estimatedTransferScoreBand: 'Experimental transfer-score band', contributingPowerProfile: 'Entered contributing power', contributingPowerHelp: 'This is a simple total of the power fields you entered, not the game’s official score.', scoreBandLowConfidence: 'Low-confidence community reference only.', estimateWarningLead: 'Important:', estimateWarning: ' Last War does not publish a universal transfer-score formula. Seat cutoffs vary by transfer group, and historical power may be used. This estimate is for planning only.',
     seatWhite: 'White', seatBlue: 'Blue', seatPurple: 'Purple', seatGold: 'Gold', seatBorderline: 'Borderline', confidenceLow: 'Low confidence', confidenceMedium: 'Medium confidence', confidenceHigher: 'Higher confidence',
- professionLevel: 'What is your profession level?', killCount: 'What is your current kill count?', fullNumberHelp: 'Enter the full number. Do not use M, K, or abbreviations.', heroPower: 'What is your total HERO power?', howToFind: 'How to find this', heroPowerHelp: 'Enter HERO Power only, not Total Power.', heroHelp1: 'Open your profile.', heroHelp2: 'Tap your Total Power badge.', heroHelp3: 'Open Power Details and find Hero Power.', heroHelp4: 'Report the full Hero Power number only.', seatColour: 'What seat colour are you?', gold: 'Gold', purple: 'Purple', blue: 'Blue', white: 'White', howToFindSeat: 'How to find your seat colour', seatHelp1: 'Tap the map icon on the right side of your game screen.', seatHelp2: 'Open Transfer Surge and check “Your Status”.', seatHelp3: 'Your seat colour is shown at the bottom of that screen.',
-    transferGroup: 'Transfer Group', transferGroupIntro: 'Let us know if you are transferring with other players. If so, add each player so we can keep your group connected during review.', transferWithGroup: 'Are you hoping to transfer with a group of people from your server?', yes: 'Yes', no: 'No', unsure: 'Unsure', yesGroupSub: 'I am bringing other player(s)', noGroupSub: 'I am transferring on my own', unsureGroupSub: 'I am not sure yet', yourTransferGroup: 'Your Transfer Group', groupBuilderIntro: "You do not need to know every player yet. Add any players you know now, or leave the player list blank and continue.", addAnotherPlayer: "Add a player you know", groupContact: 'Group Contact', groupContactIntro: "Who should we contact if we need to reach your group? If you do not choose someone else, we will use you as the group contact.", selectGroupContact: 'Select a group contact', totalPlayersInGroup: "Expected group size", additionalPlayers: 'Additional players', includingYou: 'Including you', playerName: 'Player Name', memberServer: 'Current Server', memberAlliance: 'Alliance Name / Tag', memberSeatColour: 'Seat Colour', selectSeatColour: 'Select seat colour', knownPlayersListed: "Known players listed", estimatedGroupSize: "Estimated Group Size", estimatedGroupSizeIntro: "If you know roughly how many additional players may come with you, enter that number. An estimate is fine.", expectedAdditionalPlayers: "Expected additional players", expectedAdditionalHelp: "Leave this blank if you do not know yet.", optional: "(Optional)", transferGroupIdTitle: "Transfer Group ID", transferGroupIdIntro: "If you are transferring as a group, share this ID with anyone applying with you. They can enter the same ID so your applications stay grouped together.", activeTransferGroupId: "Active Transfer Group ID", groupIdAuto: "Using NEW group ID", groupIdUsingExisting: "Using an existing shared Transfer Group ID", copyGroupId: "Copy ID", copiedGroupId: "Copied!", existingGroupId: "Already have a Transfer Group ID?", existingGroupIdHelp: "If someone in your group already created an ID, paste that shared ID here. Entering a shared ID will use that ID for your application instead of the new ID shown above. If you leave this blank, your application will use the new ID generated above.", reviewTransferGroupId: "Transfer Group ID",
+ professionLevel: 'What is your profession level?', killCount: 'What is your current kill count?', fullNumberHelp: 'Enter the full number. Do not use M, K, or abbreviations. Maximum 9 digits.', heroPower: 'What is your total HERO power?', howToFind: 'How to find this', heroPowerHelp: 'Enter HERO Power only, not Total Power.', heroHelp1: 'Open your profile.', heroHelp2: 'Tap your Total Power badge.', heroHelp3: 'Open Power Details and find Hero Power.', heroHelp4: 'Report the full Hero Power number only.', seatColour: 'What seat colour are you?', gold: 'Gold', purple: 'Purple', blue: 'Blue', white: 'White', howToFindSeat: 'How to find your seat colour', seatHelp1: 'Tap the map icon on the right side of your game screen.', seatHelp2: 'Open Transfer Surge and check “Your Status”.', seatHelp3: 'Your seat colour is shown at the bottom of that screen.',
+    transferGroup: 'Transfer Group', transferGroupIntro: 'Let us know if you are transferring with other players. If so, add each player so we can keep your group connected during review.', transferWithGroup: 'Are you hoping to transfer with a group of people from your server?', yes: 'Yes', no: 'No', unsure: 'Unsure', yesGroupSub: 'I am bringing other player(s)', noGroupSub: 'I am transferring on my own', unsureGroupSub: 'I am not sure yet', yourTransferGroup: 'Your Transfer Group', groupBuilderIntro: "You do not need to know every player yet. Add any players you know now, or leave the player list blank and continue.", addAnotherPlayer: "Add a player you know", groupContact: 'Group Contact', groupContactIntro: "Who should we contact if we need to reach your group? If you do not choose someone else, we will use you as the group contact.", selectGroupContact: 'Select a group contact', totalPlayersInGroup: "Expected group size", additionalPlayers: 'Additional players', includingYou: 'Including you', playerName: 'Player Name', memberServer: 'Current Server', memberAlliance: 'Alliance Name / Tag', memberSeatColour: 'Seat Colour', selectSeatColour: 'Select seat colour', knownPlayersListed: "Known players listed", estimatedGroupSize: "Estimated Group Size", estimatedGroupSizeIntro: "If you know roughly how many additional players may come with you, enter that number. An estimate is fine.", expectedAdditionalPlayers: "Expected additional players", expectedAdditionalHelp: "Leave this blank if you do not know yet. Maximum total group size is 100, including you.", optional: "(Optional)", transferGroupIdTitle: "Transfer Group ID", transferGroupIdIntro: "If you are transferring as a group, share this ID with anyone applying with you. They can enter the same ID so your applications stay grouped together.", activeTransferGroupId: "Active Transfer Group ID", groupIdAuto: "Using NEW group ID", groupIdUsingExisting: "Using an existing shared Transfer Group ID", copyGroupId: "Copy ID", copiedGroupId: "Copied!", existingGroupId: "Already have a Transfer Group ID?", existingGroupIdHelp: "If someone in your group already created an ID, paste that shared ID here. Entering a shared ID will use that ID for your application instead of the new ID shown above. If you leave this blank, your application will use the new ID generated above.", reviewTransferGroupId: "Transfer Group ID",
     additionalInfo: 'Additional Information', additionalInfoIntro: 'Add anything else that would help the 1616 team review your transfer request.', additionalComments: 'Do you have any additional comments or questions?', beforeContinue: 'Before you continue', waitlistReminder: 'Remember: this application adds you to the Server 1616 waitlist. It does not guarantee a transfer spot.',
     reviewSubmit: 'Review & Submit', reviewIntro: 'Review your information before submitting. You can go back to any section to make changes.', submitNote: 'Your application will be sent to the 1616 review spreadsheet. Your language choice is stored with your submission.', edit: 'Edit',
     back: 'Back', continue: 'Continue', submitApplication: 'Submit Application',
+    allianceTagMaxError: 'Alliance tag must be 4 characters or fewer.',
+    allianceTagMaxHelp: 'Enter the alliance tag only, without brackets. Maximum 4 characters.',
+    professionMaxError: 'Profession level cannot be greater than 100.',
+    professionMaxHelp: 'Maximum profession level: 100.',
+    killCountMaxError: 'Kill count cannot be more than 9 digits.',
+    groupSizeMaxError: 'Maximum total group size is 100, including you.',
     requiredError: 'This field is required.', missedSomethingTitle: 'Hi {username}, it looks like you missed something.', missedSomethingFallback: 'there', numberError: 'Please enter numbers only.', fullNumberError: 'Enter the full number using digits only (for example 26000000).', chooseError: 'Please select an option.', groupMemberError: "Please complete all three fields for this player: username, alliance name, and server number.", groupContactError: 'Please choose a group contact.', backendMissing: 'The form is ready, but the Google Apps Script URL has not been added yet. Paste your Web App /exec URL into the HTML CONFIG block.', submitting: 'Submitting your application…', submitted: 'Application submitted. Your reference is', submitFailed: 'We could not send your application. Please check your connection and try again.',
     reviewApplicant: 'Applicant', reviewGame: 'Game Details', reviewGroup: 'Transfer Group', reviewAdditional: 'Additional Information', transferAnswer: 'Transferring with group', groupMembers: 'Linked players', comments: 'Comments', none: 'None', notProvided: 'Not provided', groupLead: 'Group contact', totalGroup: 'Total group size',
     player: 'Player', removePlayer: 'Remove player', stepOf: 'Step {step} of 6',
@@ -5133,6 +5511,24 @@ const I18N = {
     otherNotListed: "Other / not listed",
     transferGroupNameCaps: "This field automatically converts the group name to ALL CAPS.",
     serverRangeError: "Please select a server from 1573 to 1636.",
+    statsGuideButton: "Open visual guide",
+    statsGuideHint: "Uses a sample profile with fake data so it works in every language.",
+    statsGuideEyebrow: "Sample visual guide",
+    statsGuideTitle: "Where to find your stats",
+    statsGuideIntro: "This example uses a fake player name, fake avatar, and fake values, so you can use it safely in any language.",
+    statsGuideInlineHelp: "See a sample screen that shows where Total Power, Kill Count, Profession Level, and Power Details are located.",
+    statsGuideItem1Title: "Total Power",
+    statsGuideItem1Text: "The gold badge on the profile screen is your Total Power. This includes troops in base, so do not use this number for Hero Power.",
+    statsGuideItem2Title: "Kill Count",
+    statsGuideItem2Text: "The crossed-weapons number on the top-right shows your current Kill Count.",
+    statsGuideItem3Title: "Profession Level",
+    statsGuideItem3Text: "The helmet icon shows your current Profession Level.",
+    statsGuideItem4Title: "Tap for details",
+    statsGuideItem4Text: "Tap the gray details box under the profile stats to open the next screen.",
+    statsGuideItem5Title: "Power breakdown",
+    statsGuideItem5Text: "On the Power Details screen, copy the values for Hero, Building, Technology, Drone, and Decoration Power.",
+    statsGuideFootnote: "The guide image stays the same, but the notes below it change with your selected language.",
+    closeGuide: "Close",
   },
   es: {
     serverTransferApplication: 'SOLICITUD DE TRANSFERENCIA', strongerTogether: 'UN MAÑANA MÁS FUERTE',
@@ -5218,6 +5614,24 @@ const I18N = {
     otherNotListed: "Otra / no aparece",
     transferGroupNameCaps: "Este campo convierte automáticamente el nombre del grupo a MAYÚSCULAS.",
     serverRangeError: "Selecciona un servidor entre 1573 y 1636.",
+    statsGuideButton: "Abrir guía visual",
+    statsGuideHint: "Usa un perfil de ejemplo con datos falsos para que funcione en cualquier idioma.",
+    statsGuideEyebrow: "Guía visual de ejemplo",
+    statsGuideTitle: "Dónde encontrar tus estadísticas",
+    statsGuideIntro: "Este ejemplo usa un nombre, avatar y valores falsos, así que puedes usarlo con seguridad en cualquier idioma.",
+    statsGuideInlineHelp: "Consulta una pantalla de ejemplo que muestra dónde se encuentran el Poder Total, las Bajas, el Nivel de Profesión y los Detalles de Poder.",
+    statsGuideItem1Title: "Poder total",
+    statsGuideItem1Text: "La insignia dorada en la pantalla del perfil es tu Poder Total. Incluye tropas en base, así que no uses este número como Poder de Héroes.",
+    statsGuideItem2Title: "Bajas",
+    statsGuideItem2Text: "El número con las armas cruzadas en la parte superior derecha muestra tu conteo actual de bajas.",
+    statsGuideItem3Title: "Nivel de profesión",
+    statsGuideItem3Text: "El icono del casco muestra tu nivel actual de profesión.",
+    statsGuideItem4Title: "Toca para ver detalles",
+    statsGuideItem4Text: "Toca la caja gris de detalles debajo de las estadísticas del perfil para abrir la siguiente pantalla.",
+    statsGuideItem5Title: "Desglose de poder",
+    statsGuideItem5Text: "En la pantalla Detalles de Poder, copia los valores de Poder de Héroes, Construcción, Tecnología, Dron y Decoración.",
+    statsGuideFootnote: "La imagen guía permanece igual, pero las notas cambian según el idioma seleccionado.",
+    closeGuide: "Cerrar",
   },
   pt: {
     serverTransferApplication: 'INSCRIÇÃO DE TRANSFERÊNCIA', strongerTogether: 'UM AMANHÃ MAIS FORTE',
@@ -5303,6 +5717,24 @@ const I18N = {
     otherNotListed: "Outra / não listada",
     transferGroupNameCaps: "Este campo converte automaticamente o nome do grupo para LETRAS MAIÚSCULAS.",
     serverRangeError: "Selecione um servidor entre 1573 e 1636.",
+    statsGuideButton: "Abrir guia visual",
+    statsGuideHint: "Usa um perfil de exemplo com dados falsos para funcionar em qualquer idioma.",
+    statsGuideEyebrow: "Guia visual de exemplo",
+    statsGuideTitle: "Onde encontrar seus dados",
+    statsGuideIntro: "Este exemplo usa nome, avatar e valores falsos, então pode ser usado com segurança em qualquer idioma.",
+    statsGuideInlineHelp: "Veja uma tela de exemplo que mostra onde ficam o Poder Total, Abates, Nível de Profissão e Detalhes de Poder.",
+    statsGuideItem1Title: "Poder total",
+    statsGuideItem1Text: "O selo dourado na tela do perfil é o seu Poder Total. Ele inclui tropas na base, então não use esse número como Poder de Heróis.",
+    statsGuideItem2Title: "Abates",
+    statsGuideItem2Text: "O número com armas cruzadas no canto superior direito mostra sua contagem atual de abates.",
+    statsGuideItem3Title: "Nível de profissão",
+    statsGuideItem3Text: "O ícone de capacete mostra seu nível atual de profissão.",
+    statsGuideItem4Title: "Toque para ver detalhes",
+    statsGuideItem4Text: "Toque na caixa cinza de detalhes abaixo das estatísticas do perfil para abrir a próxima tela.",
+    statsGuideItem5Title: "Detalhamento de poder",
+    statsGuideItem5Text: "Na tela Detalhes de Poder, copie os valores de Poder de Heróis, Construções, Tecnologia, Drone e Decoração.",
+    statsGuideFootnote: "A imagem permanece a mesma, mas as notas mudam conforme o idioma selecionado.",
+    closeGuide: "Fechar",
   },
   fr: {
     serverTransferApplication: 'DEMANDE DE TRANSFERT', strongerTogether: 'UN AVENIR PLUS FORT',
@@ -5388,6 +5820,24 @@ const I18N = {
     otherNotListed: "Autre / non répertoriée",
     transferGroupNameCaps: "Ce champ convertit automatiquement le nom du groupe en MAJUSCULES.",
     serverRangeError: "Veuillez sélectionner un serveur entre 1573 et 1636.",
+    statsGuideButton: "Ouvrir le guide visuel",
+    statsGuideHint: "Utilise un profil d’exemple avec de fausses données afin de fonctionner dans toutes les langues.",
+    statsGuideEyebrow: "Guide visuel d’exemple",
+    statsGuideTitle: "Où trouver vos statistiques",
+    statsGuideIntro: "Cet exemple utilise un faux nom, un faux avatar et de fausses valeurs, vous pouvez donc l’utiliser sans risque dans n’importe quelle langue.",
+    statsGuideInlineHelp: "Consultez un écran d’exemple montrant où se trouvent la Puissance totale, le Nombre de kills, le Niveau de profession et les Détails de puissance.",
+    statsGuideItem1Title: "Puissance totale",
+    statsGuideItem1Text: "L’insigne doré sur l’écran du profil correspond à votre Puissance totale. Elle inclut les troupes dans la base, donc n’utilisez pas ce nombre pour la Puissance des héros.",
+    statsGuideItem2Title: "Nombre de kills",
+    statsGuideItem2Text: "Le nombre avec les armes croisées en haut à droite indique votre nombre actuel de kills.",
+    statsGuideItem3Title: "Niveau de profession",
+    statsGuideItem3Text: "L’icône de casque indique votre niveau de profession actuel.",
+    statsGuideItem4Title: "Touchez pour voir les détails",
+    statsGuideItem4Text: "Touchez la zone grise sous les statistiques du profil pour ouvrir l’écran suivant.",
+    statsGuideItem5Title: "Répartition de puissance",
+    statsGuideItem5Text: "Dans l’écran Détails de puissance, copiez les valeurs de Puissance des héros, Bâtiments, Technologie, Drone et Décoration.",
+    statsGuideFootnote: "L’image reste la même, mais les notes changent selon la langue choisie.",
+    closeGuide: "Fermer",
   },
   ar: {
     serverTransferApplication: 'طلب الانتقال إلى السيرفر', strongerTogether: 'غدٌ أقوى معًا',
@@ -5473,6 +5923,24 @@ const I18N = {
     otherNotListed: "أخرى / غير مدرجة",
     transferGroupNameCaps: "يحوّل هذا الحقل اسم المجموعة تلقائيًا إلى أحرف كبيرة حيثما ينطبق.",
     serverRangeError: "يرجى اختيار سيرفر من 1573 إلى 1636.",
+    statsGuideButton: "افتح الدليل المرئي",
+    statsGuideHint: "يستخدم ملفًا شخصيًا تجريبيًا ببيانات وهمية، لذلك يصلح لكل اللغات.",
+    statsGuideEyebrow: "دليل مرئي تجريبي",
+    statsGuideTitle: "أين تجد إحصاءاتك",
+    statsGuideIntro: "يستخدم هذا المثال اسم لاعب وصورة رمزية وقيمًا وهمية، لذلك يمكنك استخدامه بأمان بأي لغة.",
+    statsGuideInlineHelp: "شاهد شاشة نموذجية توضّح مكان القوة الإجمالية وعدد القتلات ومستوى المهنة وتفاصيل القوة.",
+    statsGuideItem1Title: "القوة الإجمالية",
+    statsGuideItem1Text: "الشارة الذهبية في شاشة الملف الشخصي هي القوة الإجمالية. وهي تشمل القوات داخل القاعدة، لذلك لا تستخدم هذا الرقم لقوة الأبطال.",
+    statsGuideItem2Title: "عدد القتلات",
+    statsGuideItem2Text: "الرقم بجانب رمز الأسلحة المتقاطعة في أعلى اليمين هو عدد القتلات الحالي.",
+    statsGuideItem3Title: "مستوى المهنة",
+    statsGuideItem3Text: "أيقونة الخوذة تعرض مستوى مهنتك الحالي.",
+    statsGuideItem4Title: "اضغط للتفاصيل",
+    statsGuideItem4Text: "اضغط على المربع الرمادي أسفل إحصاءات الملف الشخصي لفتح الشاشة التالية.",
+    statsGuideItem5Title: "تفصيل القوة",
+    statsGuideItem5Text: "في شاشة تفاصيل القوة، انسخ قيم قوة الأبطال والمباني والتقنية والطائرة المسيّرة والزينة.",
+    statsGuideFootnote: "تبقى صورة الدليل كما هي، لكن الملاحظات تتغيّر حسب اللغة التي اخترتها.",
+    closeGuide: "إغلاق",
   },
   vi: {
     serverTransferApplication: 'ĐƠN CHUYỂN SERVER', strongerTogether: 'MỘT NGÀY MAI MẠNH MẼ HƠN',
@@ -5558,6 +6026,24 @@ const I18N = {
     otherNotListed: "Khác / không có trong danh sách",
     transferGroupNameCaps: "Trường này tự động chuyển tên nhóm thành CHỮ IN HOA.",
     serverRangeError: "Vui lòng chọn server từ 1573 đến 1636.",
+    statsGuideButton: "Mở hướng dẫn hình ảnh",
+    statsGuideHint: "Sử dụng hồ sơ mẫu với dữ liệu giả để dùng được cho mọi ngôn ngữ.",
+    statsGuideEyebrow: "Hướng dẫn hình ảnh mẫu",
+    statsGuideTitle: "Tìm chỉ số của bạn ở đâu",
+    statsGuideIntro: "Ví dụ này dùng tên người chơi, ảnh đại diện và số liệu giả nên bạn có thể dùng an toàn với mọi ngôn ngữ.",
+    statsGuideInlineHelp: "Xem màn hình mẫu cho biết vị trí của Tổng Sức Mạnh, Số Kill, Cấp Nghề và Chi Tiết Sức Mạnh.",
+    statsGuideItem1Title: "Tổng sức mạnh",
+    statsGuideItem1Text: "Huy hiệu vàng trên màn hình hồ sơ là Tổng Sức Mạnh. Nó bao gồm quân trong căn cứ, vì vậy không dùng số này cho Sức Mạnh Tướng.",
+    statsGuideItem2Title: "Số kill",
+    statsGuideItem2Text: "Con số cạnh biểu tượng vũ khí chéo ở góc trên bên phải là Số Kill hiện tại của bạn.",
+    statsGuideItem3Title: "Cấp nghề",
+    statsGuideItem3Text: "Biểu tượng mũ bảo hiểm hiển thị Cấp Nghề hiện tại của bạn.",
+    statsGuideItem4Title: "Nhấn để xem chi tiết",
+    statsGuideItem4Text: "Nhấn vào ô chi tiết màu xám bên dưới phần chỉ số hồ sơ để mở màn hình tiếp theo.",
+    statsGuideItem5Title: "Chi tiết sức mạnh",
+    statsGuideItem5Text: "Trong màn hình Chi Tiết Sức Mạnh, sao chép các giá trị Sức Mạnh Tướng, Xây Dựng, Công Nghệ, Drone và Trang Trí.",
+    statsGuideFootnote: "Hình minh họa giữ nguyên, nhưng phần ghi chú sẽ đổi theo ngôn ngữ bạn chọn.",
+    closeGuide: "Đóng",
   },
   ko: {
     serverTransferApplication: '서버 이전 신청서', strongerTogether: '더 강한 내일',
@@ -5643,6 +6129,24 @@ const I18N = {
     otherNotListed: "기타 / 목록에 없음",
     transferGroupNameCaps: "이 필드는 그룹 이름을 자동으로 대문자로 변환합니다.",
     serverRangeError: "1573~1636 사이의 서버를 선택하세요.",
+    statsGuideButton: "비주얼 가이드 열기",
+    statsGuideHint: "가짜 데이터가 들어간 예시 프로필을 사용하므로 모든 언어에서 사용할 수 있습니다.",
+    statsGuideEyebrow: "예시 비주얼 가이드",
+    statsGuideTitle: "내 수치를 찾는 위치",
+    statsGuideIntro: "이 예시는 가짜 플레이어 이름, 가짜 아바타, 가짜 수치를 사용하므로 어떤 언어에서도 안전하게 사용할 수 있습니다.",
+    statsGuideInlineHelp: "총 전투력, 처치 수, 직업 레벨, 전투력 세부정보의 위치를 보여주는 예시 화면을 확인하세요.",
+    statsGuideItem1Title: "총 전투력",
+    statsGuideItem1Text: "프로필 화면의 금색 배지는 총 전투력입니다. 기지 내 병력이 포함되므로 영웅 전투력으로 사용하지 마세요.",
+    statsGuideItem2Title: "처치 수",
+    statsGuideItem2Text: "오른쪽 위의 교차 무기 숫자가 현재 처치 수입니다.",
+    statsGuideItem3Title: "직업 레벨",
+    statsGuideItem3Text: "헬멧 아이콘이 현재 직업 레벨을 보여줍니다.",
+    statsGuideItem4Title: "자세히 보려면 탭",
+    statsGuideItem4Text: "프로필 수치 아래의 회색 상세 상자를 탭하면 다음 화면이 열립니다.",
+    statsGuideItem5Title: "전투력 세부내역",
+    statsGuideItem5Text: "전투력 세부정보 화면에서 영웅, 건물, 기술, 드론, 장식 전투력을 복사하세요.",
+    statsGuideFootnote: "가이드 이미지는 그대로 유지되지만, 설명 문구는 선택한 언어에 맞게 바뀝니다.",
+    closeGuide: "닫기",
   },
   de: {
     serverTransferApplication: 'SERVER-TRANSFER-BEWERBUNG', strongerTogether: 'EINE STÄRKERE ZUKUNFT',
@@ -5728,6 +6232,24 @@ const I18N = {
     otherNotListed: "Andere / nicht aufgeführt",
     transferGroupNameCaps: "Dieses Feld wandelt den Gruppennamen automatisch in GROSSBUCHSTABEN um.",
     serverRangeError: "Bitte wähle einen Server zwischen 1573 und 1636.",
+    statsGuideButton: "Visuelle Anleitung öffnen",
+    statsGuideHint: "Verwendet ein Beispielprofil mit fiktiven Daten und funktioniert daher in jeder Sprache.",
+    statsGuideEyebrow: "Visuelle Beispielanleitung",
+    statsGuideTitle: "Wo du deine Werte findest",
+    statsGuideIntro: "Dieses Beispiel verwendet einen falschen Spielernamen, einen Beispiel-Avatar und erfundene Werte, daher kann es in jeder Sprache sicher genutzt werden.",
+    statsGuideInlineHelp: "Sieh dir einen Beispielbildschirm an, der zeigt, wo Gesamtstärke, Kills, Berufslevel und Kraftdetails zu finden sind.",
+    statsGuideItem1Title: "Gesamtstärke",
+    statsGuideItem1Text: "Das goldene Abzeichen im Profilbildschirm ist deine Gesamtstärke. Darin sind Truppen in der Basis enthalten, also nutze diese Zahl nicht für Heldenstärke.",
+    statsGuideItem2Title: "Kills",
+    statsGuideItem2Text: "Die Zahl mit den gekreuzten Waffen oben rechts zeigt deinen aktuellen Kill-Wert.",
+    statsGuideItem3Title: "Berufslevel",
+    statsGuideItem3Text: "Das Helm-Symbol zeigt dein aktuelles Berufslevel.",
+    statsGuideItem4Title: "Tippen für Details",
+    statsGuideItem4Text: "Tippe auf das graue Detailfeld unter den Profilwerten, um den nächsten Bildschirm zu öffnen.",
+    statsGuideItem5Title: "Kraftaufschlüsselung",
+    statsGuideItem5Text: "Kopiere im Bildschirm Kraftdetails die Werte für Helden-, Gebäude-, Technologie-, Drohnen- und Dekorationskraft.",
+    statsGuideFootnote: "Das Leitbild bleibt gleich, aber die Hinweise darunter wechseln mit deiner gewählten Sprache.",
+    closeGuide: "Schließen"
   }
 };
 
@@ -6019,6 +6541,41 @@ function goToStep(step) {
   saveDraft();
 }
 
+
+function getConstraintError(input) {
+  if (!input) return '';
+  const rawText = String(input.value || '').trim();
+
+  if (input.dataset.maxChars && rawText.length > Number(input.dataset.maxChars)) {
+    return t(input.dataset.maxErrorKey || 'numberError');
+  }
+
+  if (input.dataset.numeric) {
+    const digits = digitsOnly(input.value);
+    if (!digits) return '';
+
+    if (input.dataset.maxDigits && digits.length > Number(input.dataset.maxDigits)) {
+      return t(input.dataset.maxErrorKey || 'numberError');
+    }
+
+    if (input.dataset.max && Number(digits) > Number(input.dataset.max)) {
+      return t(input.dataset.maxErrorKey || 'numberError');
+    }
+  }
+
+  return '';
+}
+
+function applyConstraintValidation(input) {
+  const message = getConstraintError(input);
+  if (message) {
+    setFieldError(input, message);
+    return false;
+  }
+  clearFieldError(input);
+  return true;
+}
+
 function digitsOnly(value) { return String(value || '').replace(/[^0-9]/g, ''); }
 function formatNumber(value) {
   const digits = digitsOnly(value);
@@ -6034,13 +6591,13 @@ function setupNumericInputs(root = document) {
       const mode = input.dataset.numeric;
       if (mode === 'integer') {
         input.value = digitsOnly(input.value);
-        clearFieldError(input);
+        applyConstraintValidation(input);
       } else {
         // Full-number fields may contain visual thousands separators, but never M/K/text.
         const validCharacters = /^[0-9,]*$/.test(input.value);
         input.dataset.numericInvalid = validCharacters ? '' : '1';
         if (!validCharacters) setFieldError(input, t('fullNumberError'));
-        else clearFieldError(input);
+        else applyConstraintValidation(input);
       }
       saveDraft();
     });
@@ -6052,13 +6609,14 @@ function setupNumericInputs(root = document) {
         if (/^[0-9,]+$/.test(input.value)) {
           input.dataset.numericInvalid = '';
           input.value = formatNumber(input.value);
-          clearFieldError(input);
+          applyConstraintValidation(input);
         } else if (input.value) {
           input.dataset.numericInvalid = '1';
           setFieldError(input, t('fullNumberError'));
         }
       } else {
         input.value = digitsOnly(input.value);
+        applyConstraintValidation(input);
       }
       saveDraft();
     });
@@ -6126,6 +6684,10 @@ function collectMissingQuestions() {
   current.querySelectorAll('[data-required="true"]').forEach(input => {
     const raw = input.dataset.numeric ? digitsOnly(input.value) : String(input.value || '').trim();
     if (!raw || input.classList.contains('invalid')) add(getQuestionForInput(input));
+  });
+
+  current.querySelectorAll('input.invalid, select.invalid, textarea.invalid').forEach(input => {
+    add(getQuestionForInput(input));
   });
 
   if (state.step === 1) {
@@ -6218,6 +6780,11 @@ function validateCurrentStep() {
     if (!raw) { setFieldError(input, t('requiredError')); ok = false; }
     else if (input.dataset.numeric === 'full' && (input.dataset.numericInvalid || !/^[0-9,]+$/.test(input.value))) { setFieldError(input, t('fullNumberError')); ok = false; }
     else if (input.dataset.numeric && !/^\d+$/.test(raw)) { setFieldError(input, t('numberError')); ok = false; }
+  });
+
+  current.querySelectorAll('[data-max], [data-max-digits], [data-max-chars]').forEach(input => {
+    const raw = input.dataset.numeric ? digitsOnly(input.value) : String(input.value || '').trim();
+    if (raw && !applyConstraintValidation(input)) ok = false;
   });
 
 
@@ -6566,6 +7133,21 @@ async function submitApplication(event) {
 }
 
 
+function openStatsGuideModal() {
+  const modal = document.getElementById('stats-guide-modal');
+  if (modal) {
+    modal.hidden = false;
+    document.body.classList.add('stats-guide-open');
+  }
+}
+function closeStatsGuideModal() {
+  const modal = document.getElementById('stats-guide-modal');
+  if (modal) {
+    modal.hidden = true;
+    document.body.classList.remove('stats-guide-open');
+  }
+}
+
 function openClearFormModal() {
   const modal = document.getElementById('clear-modal');
   if (modal) modal.hidden = false;
@@ -6848,7 +7430,7 @@ document.getElementById('username').addEventListener('input', () => {
   updateGroupSummary();
   saveDraft();
 });
-document.getElementById('alliance').addEventListener('input', () => { updateGroupContactOptions(); saveDraft(); });
+document.getElementById('alliance').addEventListener('input', e => { applyConstraintValidation(e.target); updateGroupContactOptions(); saveDraft(); });
 document.getElementById('expected-additional-players').addEventListener('input', () => { updateGroupSummary(); saveDraft(); });
 
 document.getElementById('clear-form-button').addEventListener('click', openClearFormModal);
@@ -6863,6 +7445,14 @@ document.querySelectorAll('[data-help-toggle]').forEach(btn => btn.addEventListe
 }));
 form.addEventListener('change', saveDraft);
 form.addEventListener('input', e => { if (!e.target.classList.contains('member-name') && !e.target.classList.contains('member-alliance')) saveDraft(); });
+
+document.querySelectorAll('[data-open-stats-guide]').forEach(btn => btn.addEventListener('click', openStatsGuideModal));
+document.getElementById('stats-guide-close').addEventListener('click', closeStatsGuideModal);
+document.getElementById('stats-guide-done').addEventListener('click', closeStatsGuideModal);
+document.getElementById('stats-guide-modal').addEventListener('click', e => { if (e.target.id === 'stats-guide-modal') closeStatsGuideModal(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !document.getElementById('stats-guide-modal')?.hidden) closeStatsGuideModal();
+});
 
 restoreDraft();
 renderGroupMembers();

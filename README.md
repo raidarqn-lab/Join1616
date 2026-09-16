@@ -469,3 +469,17 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
   - Summary area: plum-violet
   - Dynamically added player cards: cool plum-slate
 - Added subtle left accent bars and heading tint differences to help each section read as a separate block more clearly.
+
+
+## v61
+- Reworked Transfer Group section styling again:
+  - removed the different card colours from v60
+  - all cards now use one consistent warm charcoal/burgundy shade
+  - retained the stronger left-edge accent bar because it improves section separation
+  - increased contrast between cards and the main application background
+- Added validation:
+  - applicant alliance tag: maximum 4 characters, without brackets
+  - maximum total transfer group size: 100 including the applicant (so additional players max at 99)
+  - profession level: maximum 100
+  - total kill count: maximum 9 digits
+- Added matching backend validation in `Code.gs` so invalid values cannot bypass the frontend.
