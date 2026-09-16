@@ -641,3 +641,8 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 - The language selector remains available while viewing either page.
 - Language selection now proceeds directly to the transfer-team welcome screen, then into the application.
 
+## v86 Story page fix
+- Renamed the English page/navigation label to **1616's Story**.
+- Fixed the standalone Story page so the transfer application is completely removed from the layout while Story is open.
+- Added both CSS and JavaScript safeguards so the application cannot appear underneath the Story timeline.
+

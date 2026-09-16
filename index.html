@@ -7482,6 +7482,22 @@ body.story-page-open .question-fab {
   }
 }
 
+
+/* v86 — keep application completely hidden while 1616's Story is open */
+.app-shell[hidden] {
+  display: none !important;
+}
+body.story-page-open .app-shell {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+body.story-page-open #validation-banner,
+body.story-page-open .stats-guide-modal,
+body.story-page-open .transfer-group-reminder-modal {
+  display: none !important;
+}
+
 </style>
 </head>
 <body>
@@ -7607,7 +7623,7 @@ body.story-page-open .question-fab {
       </button>
       <button type="button" class="site-nav-button" id="nav-story" data-page-target="story">
         <span class="site-nav-mark story-mark" aria-hidden="true">◉</span>
-        <span data-i18n="navStory">1616 Story</span>
+        <span data-i18n="navStory">1616&#39;s Story</span>
       </button>
     </nav>
 
@@ -7633,7 +7649,7 @@ body.story-page-open .question-fab {
     <section class="story-page-panel">
         <div class="about-1616-hero">
           <span class="about-1616-kicker" data-i18n="about1616JourneyLabel">A visual journey</span>
-          <h1 class="welcome-title" data-i18n="about1616Title">About 1616</h1>
+          <h1 class="welcome-title" data-i18n="about1616Title">1616&#39;s Story</h1>
           <p class="welcome-subtitle about-1616-copy" data-i18n="about1616Intro">Use this page to tell the story of 1616 through a visual journey of milestones. Replace the placeholder titles and text later with your real timeline.</p>
         </div>
 
@@ -7661,7 +7677,7 @@ body.story-page-open .question-fab {
                 </div>
               </div>
               <p data-i18n="aboutSeason0Copy">The foundational phase lasts around 120 days. It focuses on building toward HQ 30, unlocking early events such as Capitol Conquest, and establishing the initial tank meta.</p>
-              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616 Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
+              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616&#39;s Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
             </article>
             <div class="journey-marker"><div class="journey-marker-dot">S0</div></div>
             <div class="journey-card-empty"></div>
@@ -7679,7 +7695,7 @@ body.story-page-open .question-fab {
                 </div>
               </div>
               <p data-i18n="aboutSeason1Copy">Introduces virus mechanics, Immune Protein Farms, exclusive hero weapons beginning with Kimberly, and a larger focus on fighting for land control across the expanded map.</p>
-              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616 Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
+              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616&#39;s Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
             </article>
           </div>
 
@@ -7693,7 +7709,7 @@ body.story-page-open .question-fab {
                 </div>
               </div>
               <p data-i18n="aboutSeason2Copy">Moves the battlefield into a frozen wasteland where alliances manage temperature mechanics and compete for rare soil rankings.</p>
-              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616 Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
+              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616&#39;s Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
             </article>
             <div class="journey-marker"><div class="journey-marker-dot">S2</div></div>
             <div class="journey-card-empty"></div>
@@ -7711,7 +7727,7 @@ body.story-page-open .question-fab {
                 </div>
               </div>
               <p data-i18n="aboutSeason3Copy">Brings desert mechanics, curse resistance, and the Goldust Conquest.</p>
-              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616 Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
+              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616&#39;s Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
             </article>
           </div>
 
@@ -7725,7 +7741,7 @@ body.story-page-open .question-fab {
                 </div>
               </div>
               <p data-i18n="aboutSeason4Copy">Features darkness-themed mechanics, lighthouses, tactics cards, and the introduction of T11 troops.</p>
-              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616 Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
+              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616&#39;s Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
             </article>
             <div class="journey-marker"><div class="journey-marker-dot">S4</div></div>
             <div class="journey-card-empty"></div>
@@ -7743,7 +7759,7 @@ body.story-page-open .question-fab {
                 </div>
               </div>
               <p data-i18n="aboutSeason5Copy">Focuses on bank strongholds and a crystal-gold economy.</p>
-              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616 Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
+              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616&#39;s Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
             </article>
           </div>
         </div>
@@ -8678,7 +8694,7 @@ const I18N = {
   en: {
     serverTransferApplication: 'SERVER TRANSFER APPLICATION', strongerTogether: 'A STRONGER TOMORROW',
     navApplication: "Application",
-    navStory: "1616 Story",
+    navStory: "1616\'s Story",
     stepLanguage: 'Language', stepYourInfo: 'Your Information', stepGameDetails: 'Game Details', stepTransferGroup: 'Transfer Group', stepAdditional: 'Additional Information', stepReview: 'Review & Submit',
     step1Kicker: 'STEP 1 OF 6', step2Kicker: 'STEP 2 OF 6', step3Kicker: 'STEP 3 OF 6', step4Kicker: 'STEP 4 OF 6', step5Kicker: 'STEP 5 OF 6', step6Kicker: 'STEP 6 OF 6',
     chooseLanguage: 'Choose your language', languageIntro: 'Choose the language you would like to use. You can change it at any time.',
@@ -8724,10 +8740,10 @@ const I18N = {
     welcomeThanksTitle: "Thank you for your interest in joining 1616!",
     welcomeGuideLead: "We are your chaotic 1616 transfer team",
     about1616JourneyLabel: "Our journey through the seasons",
-    about1616Title: "1616 Story",
+    about1616Title: "1616\'s Story",
     about1616Intro: "The milestones below follow the game’s season journey. Each card includes a 1616 Story placeholder so we can later add what actually happened on our server.",
     seasonLabel: "Season",
-    about1616StoryLabel: "1616 Story",
+    about1616StoryLabel: "1616\'s Story",
     about1616StoryPlaceholder: "[ Add what happened on Server 1616 during this season. ]",
     aboutSeason0Title: "Pre-Season (Season 0)",
     aboutSeason0Copy: "The foundational phase lasts around 120 days. It focuses on building toward HQ 30, unlocking early events such as Capitol Conquest, and establishing the initial tank meta.",
@@ -11382,6 +11398,12 @@ function showTopPage(page) {
   const story = page === 'story';
   appShell.hidden = story;
   storyPage.hidden = !story;
+
+  // Explicitly control display as well as the hidden attribute because
+  // .app-shell uses display:grid elsewhere in the stylesheet.
+  appShell.style.display = story ? 'none' : '';
+  storyPage.style.display = story ? '' : 'none';
+
   appButton.classList.toggle('active', !story);
   storyButton.classList.toggle('active', story);
   appButton.setAttribute('aria-current', story ? 'false' : 'page');
