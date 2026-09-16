@@ -454,3 +454,8 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - The Continue button is available immediately.
 - Copy Group Name remains available and still changes to “Copied!” when used.
 - Updated the reminder copy so copying is encouraged rather than required.
+
+
+## v59
+- Replaced the `◎` icon beside “Transfer Group Name” with the sakura-style `✿` symbol.
+- Added a subtle pink/lantern-gold glow so it fits the existing visual theme.
