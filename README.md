@@ -432,3 +432,18 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - The site was still displaying an old embedded base64 copy of the logo, so replacing `wordmark-1616-only.png` alone did not affect what appeared on screen.
 - Both header and sidebar wordmarks now reference the transparent `wordmark-1616-only.png` file directly.
 - Added explicit transparent background rules to the wordmark image and its immediate containers.
+
+
+## v56
+- Fixed the stubborn 1616 logo background by changing the asset filename entirely.
+- The transparent PNG is now `wordmark-1616-transparent-v56.png`, which prevents browsers/GitHub Pages from reusing a cached older logo with a dark background.
+- Both the header and sidebar use the new filename.
+- Removed the old `wordmark-1616-only.png` from the package to prevent accidental reuse.
+- Added explicit `background: none` / transparent rendering safeguards to the logo and immediate wrappers.
+
+
+## v57
+- Standardized every optional marker to use parentheses and italics.
+- English now displays `(Optional)` everywhere instead of `Optional` / `OPTIONAL`.
+- Applied the equivalent parenthesized treatment to all supported languages.
+- Updated the Transfer Planning explanatory note so its optional designation also appears in parentheses and italics.
