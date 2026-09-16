@@ -6523,6 +6523,231 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
   .form-step[data-step="3"] .group-member-card .field-grid { grid-template-columns: 1fr !important; }
 }
 
+
+
+/* ================================================================
+   v77 — Transfer Group readability refresh with exported icons
+   Option 2-inspired pink/plum panels, centered icon rail, helmet player tags,
+   and overflow fixes for member server dropdown menus.
+   ================================================================ */
+.form-step[data-step="3"] {
+  --tg-bg-top: rgba(69, 26, 52, .88);
+  --tg-bg-bottom: rgba(26, 13, 24, .97);
+  --tg-bg-accent: rgba(120, 39, 86, .28);
+  --tg-border: rgba(248, 132, 190, .42);
+  --tg-border-strong: rgba(255, 168, 210, .58);
+  --tg-text-soft: #ead2db;
+  --tg-text-body: #fff0f4;
+  --tg-panel-shadow: rgba(0,0,0,.24);
+  --tg-gold: #ffd35f;
+  --tg-gold-deep: #e2a72f;
+  --tg-dark-gold: #342006;
+}
+.form-step[data-step="3"] .group-builder,
+.form-step[data-step="3"] .group-members-shell,
+.form-step[data-step="3"] .group-members-shell .group-option-main,
+.form-step[data-step="3"] .group-members-shell #group-members,
+.form-step[data-step="3"] .group-member-card,
+.form-step[data-step="3"] .group-member-card .field-grid,
+.form-step[data-step="3"] .group-member-card .field-block,
+.form-step[data-step="3"] .custom-select {
+  overflow: visible !important;
+}
+.form-step[data-step="3"] .group-builder-banner .subsection-icon {
+  background: rgba(255, 180, 221, .14);
+  border-color: rgba(255, 168, 210, .3);
+  color: #ffcade;
+}
+.form-step[data-step="3"] .group-option-card {
+  background:
+    radial-gradient(circle at 88% 10%, rgba(255, 200, 233, .09), transparent 28%),
+    linear-gradient(180deg, var(--tg-bg-top), var(--tg-bg-bottom)) !important;
+  border: 1px solid var(--tg-border) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    0 18px 34px var(--tg-panel-shadow),
+    0 0 0 1px rgba(255, 182, 220, .04) !important;
+  overflow: visible !important;
+}
+.form-step[data-step="3"] .section-name-card {
+  background:
+    radial-gradient(circle at 90% 14%, rgba(255, 211, 126, .08), transparent 22%),
+    linear-gradient(180deg, rgba(82, 28, 57, .9), rgba(34, 14, 26, .98)) !important;
+}
+.form-step[data-step="3"] .section-size-card {
+  background:
+    radial-gradient(circle at 90% 14%, rgba(255, 166, 210, .09), transparent 24%),
+    linear-gradient(180deg, rgba(72, 24, 56, .92), rgba(30, 13, 27, .98)) !important;
+}
+.form-step[data-step="3"] .section-members-card {
+  background:
+    radial-gradient(circle at 90% 14%, rgba(255, 224, 173, .07), transparent 24%),
+    linear-gradient(180deg, rgba(78, 28, 53, .92), rgba(28, 13, 24, .98)) !important;
+}
+.form-step[data-step="3"] .group-option-card::before {
+  background: linear-gradient(180deg, #ff96c5 0%, #ff6fa5 52%, #ef4f83 100%);
+  box-shadow: 0 0 22px rgba(255, 112, 167, .22);
+}
+.form-step[data-step="3"] .group-option-rail {
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding-top: 0;
+}
+.form-step[data-step="3"] .group-option-number {
+  width: 58px;
+  height: 58px;
+  background: linear-gradient(180deg, rgba(50,20,34,.95), rgba(33,14,23,.95));
+  border-color: var(--tg-border-strong);
+  box-shadow: 0 0 0 5px rgba(255,255,255,.02), 0 0 20px rgba(255, 124, 173, .14);
+}
+.form-step[data-step="3"] .group-option-icon {
+  width: 74px;
+  height: 74px;
+  padding: 10px;
+  border-radius: 18px;
+  border: 1px solid rgba(248, 132, 190, .38);
+  background: linear-gradient(180deg, rgba(91, 32, 59, .82), rgba(46, 21, 36, .96));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 10px 20px rgba(0,0,0,.18);
+}
+.form-step[data-step="3"] .group-option-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(255, 102, 170, .22));
+}
+.form-step[data-step="3"] .group-option-icon-hash {
+  font-size: 0;
+}
+.form-step[data-step="3"] .group-option-header h2,
+.form-step[data-step="3"] .estimated-group-heading h2 {
+  font-size: clamp(1.16rem, 1.34vw, 1.42rem);
+}
+.form-step[data-step="3"] .group-option-header p,
+.form-step[data-step="3"] .estimated-group-heading p,
+.form-step[data-step="3"] .field-help,
+.form-step[data-step="3"] .group-name-caps-note,
+.form-step[data-step="3"] .group-inline-note {
+  color: var(--tg-text-soft) !important;
+}
+.form-step[data-step="3"] .group-name-field input,
+.form-step[data-step="3"] .group-estimate-field input,
+.form-step[data-step="3"] .group-member-card input,
+.form-step[data-step="3"] .group-member-card select,
+.form-step[data-step="3"] .custom-select-trigger {
+  border-color: rgba(255, 167, 211, .28) !important;
+  background: linear-gradient(180deg, rgba(16,10,18,.96), rgba(8,6,10,.99)) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 178, 217, .03), 0 0 0 rgba(0,0,0,0) !important;
+}
+.form-step[data-step="3"] .group-name-field input:focus,
+.form-step[data-step="3"] .group-estimate-field input:focus,
+.form-step[data-step="3"] .group-member-card input:focus,
+.form-step[data-step="3"] .custom-select.open .custom-select-trigger,
+.form-step[data-step="3"] .custom-select-trigger:focus-visible {
+  border-color: rgba(255, 193, 227, .62) !important;
+  box-shadow: 0 0 0 3px rgba(255, 116, 188, .12), 0 0 20px rgba(255, 103, 176, .11) !important;
+}
+.form-step[data-step="3"] .group-name-critical-alert {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 214, 96, .2), transparent 38%),
+    linear-gradient(180deg, rgba(114, 76, 22, .55), rgba(56, 34, 19, .9)) !important;
+}
+.form-step[data-step="3"] .group-member-card {
+  padding: 18px 18px 18px !important;
+  border-color: rgba(255, 176, 216, .22) !important;
+  background: linear-gradient(180deg, rgba(33, 17, 26, .96), rgba(17, 10, 16, .98)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.03), 0 8px 18px rgba(0,0,0,.18);
+}
+.form-step[data-step="3"] .member-heading {
+  margin-bottom: 16px;
+}
+.form-step[data-step="3"] .member-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 16px 8px 13px;
+  background: linear-gradient(180deg, #ffd75f, #f1b640) !important;
+  border-color: rgba(255, 236, 179, .92) !important;
+  color: #241605 !important;
+  box-shadow: 0 10px 18px rgba(0,0,0,.14);
+}
+.form-step[data-step="3"] .member-title-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.14));
+}
+.form-step[data-step="3"] .group-member-card .field-grid.three-col {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) minmax(210px, .9fr);
+}
+.form-step[data-step="3"] .custom-select-menu {
+  z-index: 5000 !important;
+}
+.form-step[data-step="3"] .field-error {
+  margin-top: 7px;
+}
+.form-step[data-step="3"] .add-player-button {
+  background: linear-gradient(180deg, rgba(45, 21, 36, .72), rgba(22, 13, 19, .82));
+  border-color: rgba(255, 186, 220, .36);
+}
+.form-step[data-step="3"] .add-player-button:hover,
+.form-step[data-step="3"] .add-player-button:focus-visible {
+  border-color: rgba(255, 211, 232, .6);
+  box-shadow: 0 0 0 3px rgba(255, 121, 190, .08);
+}
+@media (max-width: 1024px) {
+  .form-step[data-step="3"] .section-name-card { grid-template-columns: 118px minmax(0, 1fr); }
+  .form-step[data-step="3"] .group-option-aside { grid-column: 2; }
+  .form-step[data-step="3"] .group-member-card .field-grid.three-col { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .form-step[data-step="3"] .group-option-card { grid-template-columns: 1fr; padding: 18px 16px 18px 16px !important; }
+  .form-step[data-step="3"] .group-option-card::before { width: 100%; height: 5px; top: 0; left: 0; right: 0; bottom: auto; border-radius: 22px 22px 0 0; }
+  .form-step[data-step="3"] .group-option-rail { flex-direction: row; justify-content: flex-start; }
+  .form-step[data-step="3"] .group-option-number { width: 50px; height: 50px; font-size: 1.3rem; }
+  .form-step[data-step="3"] .group-option-icon { width: 62px; height: 62px; }
+}
+
+
+/* ================================================================
+   v78 — visible native player-server dropdowns
+   Native menus are used for repeated player cards so they cannot be
+   hidden behind surrounding panels or clipped by card boundaries.
+   ================================================================ */
+.form-step[data-step="3"] select.member-server-native {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0;
+  height: 50px;
+  padding: 0 42px 0 14px !important;
+  border: 1px solid rgba(255, 167, 211, .34) !important;
+  border-radius: 12px !important;
+  background:
+    linear-gradient(45deg, transparent 50%, #ffd56a 50%) calc(100% - 18px) 21px / 6px 6px no-repeat,
+    linear-gradient(135deg, #ffd56a 50%, transparent 50%) calc(100% - 12px) 21px / 6px 6px no-repeat,
+    linear-gradient(180deg, rgba(16,10,18,.98), rgba(8,6,10,.99)) !important;
+  color: #fff7f2 !important;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 5;
+}
+.form-step[data-step="3"] select.member-server-native:hover {
+  border-color: rgba(255, 193, 227, .54) !important;
+}
+.form-step[data-step="3"] select.member-server-native:focus {
+  outline: none;
+  border-color: rgba(255, 211, 95, .82) !important;
+  box-shadow: 0 0 0 3px rgba(255, 211, 95, .10), 0 0 18px rgba(255, 181, 75, .12) !important;
+}
+.form-step[data-step="3"] select.member-server-native option {
+  background: #171017;
+  color: #fff7f2;
+}
+
 </style>
 </head>
 <body>
@@ -7029,7 +7254,7 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
             <div class="group-lead-card transfer-group-name-card group-option-card section-name-card">
               <div class="group-option-rail">
                 <span class="group-option-number">01</span>
-                <span class="group-option-icon" aria-hidden="true">✿</span>
+                <span class="group-option-icon" aria-hidden="true"><img src="transfer-group-icon.png" alt="" /></span>
               </div>
               <div class="group-option-main">
                 <div class="group-option-header">
@@ -7063,7 +7288,7 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
             <div class="group-contact-card estimated-group-card group-option-card section-size-card" style="margin-top:16px">
               <div class="group-option-rail">
                 <span class="group-option-number">02</span>
-                <span class="group-option-icon group-option-icon-hash" aria-hidden="true">#</span>
+                <span class="group-option-icon group-option-icon-hash" aria-hidden="true"><img src="group-size-icon.png" alt="" /></span>
               </div>
               <div class="group-option-main">
                 <div class="group-option-header estimated-group-heading standalone">
@@ -7084,7 +7309,7 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
             <div class="group-contact-card group-members-shell group-option-card section-members-card" style="margin-top:16px">
               <div class="group-option-rail">
                 <span class="group-option-number">03</span>
-                <span class="group-option-icon" aria-hidden="true">◉</span>
+                <span class="group-option-icon" aria-hidden="true"><img src="player-helmet-icon.png" alt="" /></span>
               </div>
               <div class="group-option-main">
                 <div class="group-option-header">
@@ -7208,7 +7433,7 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
   <template id="group-member-template">
     <article class="group-member-card">
       <div class="member-heading">
-        <strong class="member-title">Player</strong>
+        <strong class="member-title"><img class="member-title-icon" src="player-helmet-icon.png" alt="" aria-hidden="true" /><span class="member-title-text">Player</span></strong>
         <button type="button" class="remove-member" aria-label="Remove player">×</button>
       </div>
       <div class="field-grid three-col">
@@ -8818,11 +9043,18 @@ function renderCustomSelectOptions(select) {
 }
 
 function enhanceSelect(select) {
-  if (!select || select.dataset.customSelectReady === 'true') {
-    if (select) {
-      renderCustomSelectOptions(select);
-      syncCustomSelect(select);
-    }
+  if (!select) return;
+
+  // Player server selectors remain native so the browser renders their
+  // dropdown menu above the surrounding player cards without clipping.
+  if (select.classList.contains('member-server')) {
+    select.classList.add('member-server-native');
+    return;
+  }
+
+  if (select.dataset.customSelectReady === 'true') {
+    renderCustomSelectOptions(select);
+    syncCustomSelect(select);
     return;
   }
 
@@ -9322,7 +9554,9 @@ function renderGroupMembers() {
   state.groupMembers.forEach((member, idx) => {
     const node = memberTemplate.content.firstElementChild.cloneNode(true);
     node.dataset.memberId = member.id;
-    node.querySelector('.member-title').textContent = `${t('player')} ${idx + 1}`;
+    const memberTitleText = node.querySelector('.member-title-text');
+    if (memberTitleText) memberTitleText.textContent = `${t('player')} ${idx + 1}`;
+    else node.querySelector('.member-title').textContent = `${t('player')} ${idx + 1}`;
     const removeBtn = node.querySelector('.remove-member');
     removeBtn.setAttribute('aria-label', t('removePlayer'));
     removeBtn.addEventListener('click', () => removeGroupMember(member.id));
@@ -9337,7 +9571,7 @@ function renderGroupMembers() {
     server.addEventListener('change', () => { member.server = server.value; saveDraft(); });
     alliance.addEventListener('input', () => { member.alliance = alliance.value; updateGroupContactOptions(); saveDraft(); });
     groupMembersEl.appendChild(node);
-    enhanceSelect(server);
+    server.classList.add('member-server-native');
   });
 }
 

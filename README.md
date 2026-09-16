@@ -586,3 +586,11 @@ If the webhook is not configured, questions are still saved to the **Questions**
 
 ## v75 support widget asset
 - `dolphy-support-agent.png` — transparent Dolphy support-agent badge used by the floating Questions widget and confirmation state.
+
+## v78 Step 3 assets and server dropdowns
+The Transfer Group page includes three exported PNG assets that are used directly by the website:
+- `transfer-group-icon.png` — group / army icon
+- `group-size-icon.png` — crossed swords arranged as a hashtag
+- `player-helmet-icon.png` — samurai helmet used for the Group Members section and beside each Player badge
+
+Each player card keeps Username, Alliance name, and Server number. Server number uses a native dropdown (1573–1636) so the option list remains visible above surrounding cards.
