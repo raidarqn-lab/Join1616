@@ -7000,6 +7000,349 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
   min-height: 72px;
 }
 
+
+
+/* v83 — About 1616 milestone journey page */
+.welcome-about-stage {
+  position: relative;
+  isolation: isolate;
+}
+.welcome-about-stage::before {
+  content: "";
+  position: absolute;
+  inset: -18px -24px -18px;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(241,109,134,.10), transparent 26%),
+    radial-gradient(circle at 84% 10%, rgba(255,210,122,.10), transparent 22%),
+    linear-gradient(180deg, rgba(10,23,35,.10), rgba(10,23,35,0));
+  z-index: -1;
+}
+.about-1616-hero {
+  display: grid;
+  gap: 10px;
+  width: min(920px, 100%);
+  margin: 0 auto 22px;
+  text-align: center;
+}
+.about-1616-kicker {
+  margin: 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,184,198,.24);
+  background: rgba(95,20,39,.34);
+  color: #ffd27a;
+  font-size: .72rem;
+  letter-spacing: .16em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.about-1616-kicker::before,
+.about-1616-kicker::after {
+  content: "✦";
+  color: #ef8ea2;
+  font-size: .78rem;
+}
+.about-1616-copy {
+  margin: 0 auto;
+  max-width: 760px;
+  color: #d5c2c0;
+  font-size: .92rem;
+  line-height: 1.75;
+}
+.about-journey-map {
+  position: relative;
+  width: min(980px, 100%);
+  margin: 26px auto 0;
+  display: grid;
+  gap: 18px;
+  padding: 4px 0 10px;
+}
+.about-journey-map::before {
+  content: "";
+  position: absolute;
+  top: 54px;
+  bottom: 54px;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(255,210,122,.18), rgba(240,107,129,.54), rgba(255,210,122,.18));
+  box-shadow: 0 0 22px rgba(240,107,129,.12);
+}
+.journey-footprints {
+  position: absolute;
+  left: 50%;
+  top: 86px;
+  bottom: 90px;
+  width: 82px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 1;
+}
+.journey-footstep {
+  position: absolute;
+  width: 28px;
+  height: 56px;
+  opacity: .9;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.18));
+}
+.journey-footstep::before,
+.journey-footstep::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(180deg, rgba(255,209,122,.94), rgba(239,128,154,.88));
+  box-shadow: 0 0 0 1px rgba(255,255,255,.05) inset;
+}
+.journey-footstep::before {
+  left: 8px;
+  top: 0;
+  width: 14px;
+  height: 18px;
+  border-radius: 50%;
+}
+.journey-footstep::after {
+  left: 4px;
+  bottom: 0;
+  width: 20px;
+  height: 34px;
+  border-radius: 56% 56% 46% 46%;
+}
+.journey-footstep.left { transform: rotate(-18deg); }
+.journey-footstep.right { transform: rotate(18deg); }
+.journey-footstep.p1 { top: 2%; left: 4px; }
+.journey-footstep.p2 { top: 12%; right: 4px; }
+.journey-footstep.p3 { top: 24%; left: 8px; }
+.journey-footstep.p4 { top: 37%; right: 8px; }
+.journey-footstep.p5 { top: 50%; left: 4px; }
+.journey-footstep.p6 { top: 63%; right: 10px; }
+.journey-footstep.p7 { top: 76%; left: 8px; }
+.journey-footstep.p8 { top: 88%; right: 6px; }
+.journey-milestone {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+}
+.journey-card {
+  position: relative;
+  min-height: 230px;
+  padding: 22px 22px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,179,193,.26);
+  background:
+    radial-gradient(circle at 88% 12%, rgba(255,210,122,.10), transparent 26%),
+    linear-gradient(180deg, rgba(81,17,35,.94), rgba(40,11,20,.96));
+  box-shadow:
+    0 18px 38px rgba(0,0,0,.26),
+    0 0 0 1px rgba(255,255,255,.03) inset,
+    0 0 24px rgba(240,110,133,.10);
+  overflow: hidden;
+}
+.journey-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,255,255,.05), transparent 35%);
+}
+.journey-card.left { grid-column: 1; }
+.journey-card.right { grid-column: 3; }
+.journey-card-empty { min-height: 1px; }
+.journey-marker {
+  grid-column: 2;
+  display: grid;
+  place-items: center;
+}
+.journey-marker-dot {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: "Bungee", var(--font);
+  font-size: 1.05rem;
+  letter-spacing: .08em;
+  color: #fff6f8;
+  border: 1px solid rgba(255,176,190,.38);
+  background:
+    radial-gradient(circle at 50% 45%, rgba(240,113,134,.98), rgba(152,24,50,.98));
+  box-shadow: 0 0 24px rgba(240,113,134,.18), 0 0 0 7px rgba(255,255,255,.018);
+}
+.journey-card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.journey-card-icon {
+  width: 80px;
+  height: 80px;
+  flex: 0 0 80px;
+  border-radius: 18px;
+  padding: 8px;
+  border: 1px solid rgba(255,200,210,.16);
+  background: linear-gradient(180deg, rgba(37,8,17,.9), rgba(25,8,13,.92));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
+}
+.journey-card-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.journey-card-meta {
+  min-width: 0;
+}
+.journey-card-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255,210,122,.12);
+  color: #ffd27a;
+  font-size: .68rem;
+  letter-spacing: .15em;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+.journey-card-kicker .num {
+  color: #fff7f8;
+  font-family: "Bungee", var(--font);
+  font-size: .8rem;
+  letter-spacing: .06em;
+}
+.journey-card h3 {
+  margin: 10px 0 8px;
+  color: #fff8fb;
+  font-size: 1.22rem;
+  line-height: 1.2;
+}
+.journey-card p {
+  margin: 0;
+  color: #dcc6c6;
+  font-size: .87rem;
+  line-height: 1.7;
+}
+.journey-card-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.journey-card-prompts span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,182,196,.16);
+  background: rgba(255,255,255,.04);
+  color: #efbac2;
+  font-size: .72rem;
+}
+.journey-card-prompts span::before {
+  content: "✦";
+  color: #ffd27a;
+  font-size: .74rem;
+}
+.about-journey-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.welcome-secondary-button {
+  min-width: 180px;
+  border: 1px solid rgba(255,182,196,.24);
+  border-radius: 11px;
+  padding: 14px 18px;
+  background: rgba(17,35,49,.56);
+  color: #f7f0f2;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.welcome-secondary-button:hover {
+  transform: translateY(-1px);
+  background: rgba(49,17,28,.62);
+  border-color: rgba(255,182,196,.42);
+}
+@media (max-width: 930px) {
+  .about-journey-map::before,
+  .journey-footprints {
+    left: 35px;
+    transform: none;
+  }
+  .journey-milestone {
+    grid-template-columns: 70px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .journey-marker {
+    grid-column: 1;
+  }
+  .journey-card.left,
+  .journey-card.right {
+    grid-column: 2;
+  }
+  .journey-card-empty {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .journey-card {
+    min-height: auto;
+    padding: 18px;
+  }
+  .journey-card-head {
+    align-items: flex-start;
+  }
+  .journey-card-icon {
+    width: 64px;
+    height: 64px;
+    flex-basis: 64px;
+  }
+  .journey-marker-dot {
+    width: 62px;
+    height: 62px;
+    font-size: .92rem;
+  }
+  .about-1616-copy {
+    font-size: .86rem;
+  }
+}
+
+
+/* v84 — season milestone content */
+.journey-server-note {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px dashed rgba(255, 210, 122, .34);
+  background: rgba(255, 210, 122, .06);
+  color: #efd8c4;
+  font-size: .79rem;
+  line-height: 1.55;
+}
+.journey-server-note strong {
+  display: inline-block;
+  margin-right: 6px;
+  color: #ffd27a;
+  font-size: .72rem;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+}
+.journey-footstep.p9 { top: 93%; left: 8px; }
+.journey-footstep.p10 { top: 98%; right: 5px; }
+
 </style>
 </head>
 <body>
@@ -7071,6 +7414,131 @@ html[dir="rtl"] .question-meta-grid { direction: rtl; }
           <button type="button" class="welcome-language-choice" data-welcome-language="vi"><span>VI</span><strong>Tiếng Việt</strong></button>
           <button type="button" class="welcome-language-choice" data-welcome-language="ko"><span>KO</span><strong>한국어</strong></button>
           <button type="button" class="welcome-language-choice" data-welcome-language="de"><span>DE</span><strong>Deutsch</strong></button>
+        </div>
+      </div>
+
+      <div class="welcome-stage welcome-about-stage" id="welcome-about-stage" hidden>
+        <p class="welcome-kicker" data-i18n="serverTransferApplication">SERVER TRANSFER APPLICATION</p>
+        <div class="about-1616-hero">
+          <span class="about-1616-kicker" data-i18n="about1616JourneyLabel">A visual journey</span>
+          <h1 class="welcome-title" data-i18n="about1616Title">About 1616</h1>
+          <p class="welcome-subtitle about-1616-copy" data-i18n="about1616Intro">Use this page to tell the story of 1616 through a visual journey of milestones. Replace the placeholder titles and text later with your real timeline.</p>
+        </div>
+
+        <div class="about-journey-map" aria-label="About 1616 season journey">
+          <div class="journey-footprints" aria-hidden="true">
+            <span class="journey-footstep left p1"></span>
+            <span class="journey-footstep right p2"></span>
+            <span class="journey-footstep left p3"></span>
+            <span class="journey-footstep right p4"></span>
+            <span class="journey-footstep left p5"></span>
+            <span class="journey-footstep right p6"></span>
+            <span class="journey-footstep left p7"></span>
+            <span class="journey-footstep right p8"></span>
+            <span class="journey-footstep left p9"></span>
+            <span class="journey-footstep right p10"></span>
+          </div>
+
+          <div class="journey-milestone">
+            <article class="journey-card left">
+              <div class="journey-card-head">
+                <div class="journey-card-icon"><img src="about-journey-torii.png" alt="" /></div>
+                <div class="journey-card-meta">
+                  <span class="journey-card-kicker"><span data-i18n="seasonLabel">Season</span><span class="num">S0</span></span>
+                  <h3 data-i18n="aboutSeason0Title">Pre-Season (Season 0)</h3>
+                </div>
+              </div>
+              <p data-i18n="aboutSeason0Copy">The foundational phase lasts around 120 days. It focuses on building toward HQ 30, unlocking early events such as Capitol Conquest, and establishing the initial tank meta.</p>
+              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616 Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
+            </article>
+            <div class="journey-marker"><div class="journey-marker-dot">S0</div></div>
+            <div class="journey-card-empty"></div>
+          </div>
+
+          <div class="journey-milestone">
+            <div class="journey-card-empty"></div>
+            <div class="journey-marker"><div class="journey-marker-dot">S1</div></div>
+            <article class="journey-card right">
+              <div class="journey-card-head">
+                <div class="journey-card-icon"><img src="about-journey-moon.png" alt="" /></div>
+                <div class="journey-card-meta">
+                  <span class="journey-card-kicker"><span data-i18n="seasonLabel">Season</span><span class="num">S1</span></span>
+                  <h3 data-i18n="aboutSeason1Title">Season 1: The Crimson Plague</h3>
+                </div>
+              </div>
+              <p data-i18n="aboutSeason1Copy">Introduces virus mechanics, Immune Protein Farms, exclusive hero weapons beginning with Kimberly, and a larger focus on fighting for land control across the expanded map.</p>
+              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616 Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
+            </article>
+          </div>
+
+          <div class="journey-milestone">
+            <article class="journey-card left">
+              <div class="journey-card-head">
+                <div class="journey-card-icon"><img src="transfer-group-army.png" alt="" /></div>
+                <div class="journey-card-meta">
+                  <span class="journey-card-kicker"><span data-i18n="seasonLabel">Season</span><span class="num">S2</span></span>
+                  <h3 data-i18n="aboutSeason2Title">Season 2: Polar World / Polar Storm</h3>
+                </div>
+              </div>
+              <p data-i18n="aboutSeason2Copy">Moves the battlefield into a frozen wasteland where alliances manage temperature mechanics and compete for rare soil rankings.</p>
+              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616 Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
+            </article>
+            <div class="journey-marker"><div class="journey-marker-dot">S2</div></div>
+            <div class="journey-card-empty"></div>
+          </div>
+
+          <div class="journey-milestone">
+            <div class="journey-card-empty"></div>
+            <div class="journey-marker"><div class="journey-marker-dot">S3</div></div>
+            <article class="journey-card right">
+              <div class="journey-card-head">
+                <div class="journey-card-icon"><img src="about-journey-sakura.png" alt="" /></div>
+                <div class="journey-card-meta">
+                  <span class="journey-card-kicker"><span data-i18n="seasonLabel">Season</span><span class="num">S3</span></span>
+                  <h3 data-i18n="aboutSeason3Title">Season 3: Golden Realm</h3>
+                </div>
+              </div>
+              <p data-i18n="aboutSeason3Copy">Brings desert mechanics, curse resistance, and the Goldust Conquest.</p>
+              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616 Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
+            </article>
+          </div>
+
+          <div class="journey-milestone">
+            <article class="journey-card left">
+              <div class="journey-card-head">
+                <div class="journey-card-icon"><img src="about-journey-katanas.png" alt="" /></div>
+                <div class="journey-card-meta">
+                  <span class="journey-card-kicker"><span data-i18n="seasonLabel">Season</span><span class="num">S4</span></span>
+                  <h3 data-i18n="aboutSeason4Title">Season 4: Evernight Isle</h3>
+                </div>
+              </div>
+              <p data-i18n="aboutSeason4Copy">Features darkness-themed mechanics, lighthouses, tactics cards, and the introduction of T11 troops.</p>
+              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616 Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
+            </article>
+            <div class="journey-marker"><div class="journey-marker-dot">S4</div></div>
+            <div class="journey-card-empty"></div>
+          </div>
+
+          <div class="journey-milestone">
+            <div class="journey-card-empty"></div>
+            <div class="journey-marker"><div class="journey-marker-dot">S5</div></div>
+            <article class="journey-card right">
+              <div class="journey-card-head">
+                <div class="journey-card-icon"><img src="about-journey-castle.png" alt="" /></div>
+                <div class="journey-card-meta">
+                  <span class="journey-card-kicker"><span data-i18n="seasonLabel">Season</span><span class="num">S5</span></span>
+                  <h3 data-i18n="aboutSeason5Title">Season 5: Wild West</h3>
+                </div>
+              </div>
+              <p data-i18n="aboutSeason5Copy">Focuses on bank strongholds and a crystal-gold economy.</p>
+              <div class="journey-server-note"><strong data-i18n="about1616StoryLabel">1616 Story</strong><span data-i18n="about1616StoryPlaceholder">[ Add what happened on Server 1616 during this season. ]</span></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="about-journey-actions">
+          <button type="button" class="welcome-secondary-button" id="about-back" data-i18n="aboutBack">Back</button>
+          <button type="button" class="welcome-enter" id="about-continue"><span data-i18n="aboutContinue">Continue to Welcome</span> →</button>
         </div>
       </div>
 
@@ -8106,6 +8574,39 @@ const I18N = {
     welcomeChooseLanguageIntro: "Choose the language you would like to use for the transfer application.",
     welcomeThanksTitle: "Thank you for your interest in joining 1616!",
     welcomeGuideLead: "We are your chaotic 1616 transfer team",
+    about1616JourneyLabel: "A visual journey",
+    about1616Title: "About 1616",
+    about1616Intro: "The milestones below follow the game’s season journey. Each card includes a 1616 Story placeholder so we can later add what actually happened on our server.",
+    seasonLabel: "Season",
+    about1616StoryLabel: "1616 Story",
+    about1616StoryPlaceholder: "[ Add what happened on Server 1616 during this season. ]",
+    aboutSeason0Title: "Pre-Season (Season 0)",
+    aboutSeason0Copy: "The foundational phase lasts around 120 days. It focuses on building toward HQ 30, unlocking early events such as Capitol Conquest, and establishing the initial tank meta.",
+    aboutSeason1Title: "Season 1: The Crimson Plague",
+    aboutSeason1Copy: "Introduces virus mechanics, Immune Protein Farms, exclusive hero weapons beginning with Kimberly, and a larger focus on fighting for land control across the expanded map.",
+    aboutSeason2Title: "Season 2: Polar World / Polar Storm",
+    aboutSeason2Copy: "Moves the battlefield into a frozen wasteland where alliances manage temperature mechanics and compete for rare soil rankings.",
+    aboutSeason3Title: "Season 3: Golden Realm",
+    aboutSeason3Copy: "Brings desert mechanics, curse resistance, and the Goldust Conquest.",
+    aboutSeason4Title: "Season 4: Evernight Isle",
+    aboutSeason4Copy: "Features darkness-themed mechanics, lighthouses, tactics cards, and the introduction of T11 troops.",
+    aboutSeason5Title: "Season 5: Wild West",
+    aboutSeason5Copy: "Focuses on bank strongholds and a crystal-gold economy.",
+    milestoneLabel: "Milestone",
+    aboutMilestoneTitlePlaceholder: "[ Add milestone title ]",
+    aboutMilestoneCopyPlaceholder: "Add 2–4 sentences about this moment in 1616 history. This placeholder can later become your real story, date, and milestone summary.",
+    aboutPromptDate: "Add date / era",
+    aboutPromptHighlight: "Key highlight",
+    aboutPromptPeople: "Key people",
+    aboutPromptOutcome: "Outcome",
+    aboutPromptGrowth: "Growth moment",
+    aboutPromptContext: "Context",
+    aboutPromptBattle: "Big moment",
+    aboutPromptStory: "Story note",
+    aboutPromptLegacy: "Legacy / impact",
+    aboutPromptNext: "Next chapter",
+    aboutBack: "Back",
+    aboutContinue: "Continue to Welcome",
     welcomeAnd: "and",
     welcomeGuideHelp: "",
     beginApplication: "Begin Application",
@@ -8258,6 +8759,39 @@ const I18N = {
     welcomeChooseLanguageIntro: "Elige el idioma que quieres usar para la solicitud de transferencia.",
     welcomeThanksTitle: "¡Gracias por tu interés en unirte a 1616!",
     welcomeGuideLead: "Somos tus guías de transferencia:",
+    about1616JourneyLabel: "Un recorrido visual",
+    about1616Title: "Sobre 1616",
+    about1616Intro: "Los hitos de abajo siguen el recorrido de temporadas del juego. Cada tarjeta incluye un espacio de Historia de 1616 para que más adelante podamos añadir lo que realmente ocurrió en nuestro servidor.",
+    seasonLabel: "Temporada",
+    about1616StoryLabel: "Historia de 1616",
+    about1616StoryPlaceholder: "[ Añade lo que ocurrió en el servidor 1616 durante esta temporada. ]",
+    aboutSeason0Title: "Pretemporada (Temporada 0)",
+    aboutSeason0Copy: "La fase fundacional dura alrededor de 120 días. Se centra en avanzar hacia HQ 30, desbloquear eventos iniciales como Capitol Conquest y establecer el meta inicial de tanques.",
+    aboutSeason1Title: "Temporada 1: The Crimson Plague",
+    aboutSeason1Copy: "Introduce mecánicas de virus, Immune Protein Farms, armas exclusivas de héroes empezando por Kimberly y una mayor lucha por el control territorial en un mapa ampliado.",
+    aboutSeason2Title: "Temporada 2: Polar World / Polar Storm",
+    aboutSeason2Copy: "Traslada el campo de batalla a un páramo helado donde las alianzas gestionan la temperatura y compiten por las clasificaciones de rare soil.",
+    aboutSeason3Title: "Temporada 3: Golden Realm",
+    aboutSeason3Copy: "Introduce mecánicas del desierto, resistencia a maldiciones y Goldust Conquest.",
+    aboutSeason4Title: "Temporada 4: Evernight Isle",
+    aboutSeason4Copy: "Incluye mecánicas de oscuridad, faros, cartas tácticas y la introducción de las tropas T11.",
+    aboutSeason5Title: "Temporada 5: Wild West",
+    aboutSeason5Copy: "Se centra en fortalezas bancarias y una economía de cristal y oro.",
+    milestoneLabel: "Hito",
+    aboutMilestoneTitlePlaceholder: "[ Agrega un título del hito ]",
+    aboutMilestoneCopyPlaceholder: "Añade de 2 a 4 frases sobre este momento de la historia de 1616. Más adelante este texto de ejemplo puede convertirse en tu historia, fecha y resumen reales.",
+    aboutPromptDate: "Agregar fecha / era",
+    aboutPromptHighlight: "Punto destacado",
+    aboutPromptPeople: "Personas clave",
+    aboutPromptOutcome: "Resultado",
+    aboutPromptGrowth: "Momento de crecimiento",
+    aboutPromptContext: "Contexto",
+    aboutPromptBattle: "Gran momento",
+    aboutPromptStory: "Nota de historia",
+    aboutPromptLegacy: "Legado / impacto",
+    aboutPromptNext: "Próximo capítulo",
+    aboutBack: "Atrás",
+    aboutContinue: "Continuar al Bienvenido",
     welcomeAnd: "y",
     welcomeGuideHelp: "Estamos aquí para apoyar el proceso de solicitud de transferencia del servidor.",
     beginApplication: "Comenzar solicitud",
@@ -8402,6 +8936,39 @@ const I18N = {
     welcomeChooseLanguageIntro: "Escolha o idioma que deseja usar na inscrição de transferência.",
     welcomeThanksTitle: "Obrigado pelo seu interesse em entrar no 1616!",
     welcomeGuideLead: "Somos seus guias de transferência:",
+    about1616JourneyLabel: "Uma jornada visual",
+    about1616Title: "Sobre o 1616",
+    about1616Intro: "Os marcos abaixo seguem a jornada de temporadas do jogo. Cada cartão inclui um espaço de História do 1616 para adicionarmos depois o que realmente aconteceu no nosso servidor.",
+    seasonLabel: "Temporada",
+    about1616StoryLabel: "História do 1616",
+    about1616StoryPlaceholder: "[ Adicione o que aconteceu no servidor 1616 durante esta temporada. ]",
+    aboutSeason0Title: "Pré-temporada (Temporada 0)",
+    aboutSeason0Copy: "A fase de fundação dura cerca de 120 dias. O foco é evoluir rumo ao HQ 30, desbloquear eventos iniciais como Capitol Conquest e estabelecer o meta inicial de tanques.",
+    aboutSeason1Title: "Temporada 1: The Crimson Plague",
+    aboutSeason1Copy: "Introduz mecânicas de vírus, Immune Protein Farms, armas exclusivas de heróis começando por Kimberly e uma disputa maior por controle de território em um mapa ampliado.",
+    aboutSeason2Title: "Temporada 2: Polar World / Polar Storm",
+    aboutSeason2Copy: "Leva o campo de batalha para um deserto congelado onde as alianças administram temperatura e competem pelos rankings de rare soil.",
+    aboutSeason3Title: "Temporada 3: Golden Realm",
+    aboutSeason3Copy: "Traz mecânicas de deserto, resistência a maldições e Goldust Conquest.",
+    aboutSeason4Title: "Temporada 4: Evernight Isle",
+    aboutSeason4Copy: "Apresenta mecânicas de escuridão, faróis, cartas táticas e a introdução das tropas T11.",
+    aboutSeason5Title: "Temporada 5: Wild West",
+    aboutSeason5Copy: "Foca em fortalezas bancárias e em uma economia de cristal e ouro.",
+    milestoneLabel: "Marco",
+    aboutMilestoneTitlePlaceholder: "[ Adicione o título do marco ]",
+    aboutMilestoneCopyPlaceholder: "Adicione de 2 a 4 frases sobre este momento da história do 1616. Depois, este texto provisório pode se tornar sua história, data e resumo reais.",
+    aboutPromptDate: "Adicionar data / era",
+    aboutPromptHighlight: "Destaque principal",
+    aboutPromptPeople: "Pessoas-chave",
+    aboutPromptOutcome: "Resultado",
+    aboutPromptGrowth: "Momento de crescimento",
+    aboutPromptContext: "Contexto",
+    aboutPromptBattle: "Grande momento",
+    aboutPromptStory: "Nota da história",
+    aboutPromptLegacy: "Legado / impacto",
+    aboutPromptNext: "Próximo capítulo",
+    aboutBack: "Voltar",
+    aboutContinue: "Continuar para Boas-vindas",
     welcomeAnd: "e",
     welcomeGuideHelp: "Estamos aqui para apoiar o processo de inscrição de transferência do servidor.",
     beginApplication: "Iniciar inscrição",
@@ -8546,6 +9113,39 @@ const I18N = {
     welcomeChooseLanguageIntro: "Choisissez la langue que vous souhaitez utiliser pour la demande de transfert.",
     welcomeThanksTitle: "Merci de votre intérêt pour rejoindre 1616 !",
     welcomeGuideLead: "Nous sommes vos guides de transfert :",
+    about1616JourneyLabel: "Un parcours visuel",
+    about1616Title: "À propos de 1616",
+    about1616Intro: "Les jalons ci-dessous suivent le parcours des saisons du jeu. Chaque carte comprend un emplacement Histoire de 1616 afin que nous puissions ajouter plus tard ce qui s’est réellement passé sur notre serveur.",
+    seasonLabel: "Saison",
+    about1616StoryLabel: "Histoire de 1616",
+    about1616StoryPlaceholder: "[ Ajoutez ce qui s’est passé sur le serveur 1616 pendant cette saison. ]",
+    aboutSeason0Title: "Pré-saison (Saison 0)",
+    aboutSeason0Copy: "La phase fondatrice dure environ 120 jours. Elle met l’accent sur la progression vers le QG 30, le déblocage d’événements initiaux comme Capitol Conquest et l’établissement du premier méta des chars.",
+    aboutSeason1Title: "Saison 1 : The Crimson Plague",
+    aboutSeason1Copy: "Introduit les mécaniques de virus, les Immune Protein Farms, les armes exclusives de héros à commencer par Kimberly, ainsi qu’une lutte accrue pour le contrôle territorial sur une carte élargie.",
+    aboutSeason2Title: "Saison 2 : Polar World / Polar Storm",
+    aboutSeason2Copy: "Déplace le champ de bataille vers un désert glacé où les alliances gèrent la température et concourent pour les classements de rare soil.",
+    aboutSeason3Title: "Saison 3 : Golden Realm",
+    aboutSeason3Copy: "Apporte des mécaniques de désert, de résistance aux malédictions et le Goldust Conquest.",
+    aboutSeason4Title: "Saison 4 : Evernight Isle",
+    aboutSeason4Copy: "Comprend des mécaniques liées à l’obscurité, des phares, des cartes tactiques et l’introduction des troupes T11.",
+    aboutSeason5Title: "Saison 5 : Wild West",
+    aboutSeason5Copy: "Se concentre sur les forteresses bancaires et une économie de cristal et d’or.",
+    milestoneLabel: "Jalon",
+    aboutMilestoneTitlePlaceholder: "[ Ajouter un titre de jalon ]",
+    aboutMilestoneCopyPlaceholder: "Ajoutez 2 à 4 phrases sur ce moment de l’histoire de 1616. Plus tard, ce texte temporaire pourra devenir votre véritable histoire, date et résumé.",
+    aboutPromptDate: "Ajouter une date / époque",
+    aboutPromptHighlight: "Point fort",
+    aboutPromptPeople: "Personnes clés",
+    aboutPromptOutcome: "Résultat",
+    aboutPromptGrowth: "Moment de croissance",
+    aboutPromptContext: "Contexte",
+    aboutPromptBattle: "Grand moment",
+    aboutPromptStory: "Note d’histoire",
+    aboutPromptLegacy: "Héritage / impact",
+    aboutPromptNext: "Prochain chapitre",
+    aboutBack: "Retour",
+    aboutContinue: "Continuer vers l’accueil",
     welcomeAnd: "et",
     welcomeGuideHelp: "Nous sommes là pour soutenir le processus de demande de transfert du serveur.",
     beginApplication: "Commencer la demande",
@@ -8690,6 +9290,39 @@ const I18N = {
     welcomeChooseLanguageIntro: "اختر اللغة التي تريد استخدامها في طلب الانتقال.",
     welcomeThanksTitle: "شكرًا لاهتمامك بالانضمام إلى 1616!",
     welcomeGuideLead: "نحن مرشدو الانتقال الخاصون بك:",
+    about1616JourneyLabel: "رحلة بصرية",
+    about1616Title: "حول 1616",
+    about1616Intro: "تتبع المحطات أدناه رحلة مواسم اللعبة. تتضمن كل بطاقة مساحة لقصة 1616 حتى نضيف لاحقًا ما حدث فعليًا على سيرفرنا.",
+    seasonLabel: "الموسم",
+    about1616StoryLabel: "قصة 1616",
+    about1616StoryPlaceholder: "[ أضف ما حدث على سيرفر 1616 خلال هذا الموسم. ]",
+    aboutSeason0Title: "ما قبل الموسم (الموسم 0)",
+    aboutSeason0Copy: "تستمر المرحلة التأسيسية نحو 120 يومًا. تركز على التطور نحو HQ 30، وفتح الفعاليات المبكرة مثل Capitol Conquest، وترسيخ الميتا الأولى للدبابات.",
+    aboutSeason1Title: "الموسم 1: The Crimson Plague",
+    aboutSeason1Copy: "يقدم آليات الفيروس، وImmune Protein Farms، والأسلحة الحصرية للأبطال بدءًا من Kimberly، مع تركيز أكبر على القتال للسيطرة على الأراضي في خريطة موسعة.",
+    aboutSeason2Title: "الموسم 2: Polar World / Polar Storm",
+    aboutSeason2Copy: "ينقل ساحة القتال إلى عالم جليدي حيث تدير التحالفات آليات الحرارة وتتنافس على تصنيفات rare soil.",
+    aboutSeason3Title: "الموسم 3: Golden Realm",
+    aboutSeason3Copy: "يقدم آليات الصحراء، ومقاومة اللعنات، وGoldust Conquest.",
+    aboutSeason4Title: "الموسم 4: Evernight Isle",
+    aboutSeason4Copy: "يتضمن آليات مرتبطة بالظلام، والمنارات، وبطاقات التكتيك، وإدخال قوات T11.",
+    aboutSeason5Title: "الموسم 5: Wild West",
+    aboutSeason5Copy: "يركز على الحصون البنكية واقتصاد البلورات والذهب.",
+    milestoneLabel: "محطة",
+    aboutMilestoneTitlePlaceholder: "[ أضف عنوان المحطة ]",
+    aboutMilestoneCopyPlaceholder: "أضف من جملتين إلى أربع جمل عن هذه اللحظة في تاريخ 1616. يمكن لهذا النص المؤقت لاحقًا أن يصبح قصتك الحقيقية وتاريخك وملخصك.",
+    aboutPromptDate: "أضف التاريخ / الحقبة",
+    aboutPromptHighlight: "أبرز نقطة",
+    aboutPromptPeople: "الأشخاص الرئيسيون",
+    aboutPromptOutcome: "النتيجة",
+    aboutPromptGrowth: "لحظة نمو",
+    aboutPromptContext: "السياق",
+    aboutPromptBattle: "لحظة كبيرة",
+    aboutPromptStory: "ملاحظة قصصية",
+    aboutPromptLegacy: "الإرث / الأثر",
+    aboutPromptNext: "الفصل التالي",
+    aboutBack: "رجوع",
+    aboutContinue: "المتابعة إلى الترحيب",
     welcomeAnd: "و",
     welcomeGuideHelp: "نحن هنا لدعم عملية طلب الانتقال الخاصة بالسيرفر.",
     beginApplication: "بدء الطلب",
@@ -8834,6 +9467,39 @@ const I18N = {
     welcomeChooseLanguageIntro: "Chọn ngôn ngữ bạn muốn sử dụng cho đơn chuyển server.",
     welcomeThanksTitle: "Cảm ơn bạn đã quan tâm đến việc tham gia 1616!",
     welcomeGuideLead: "Chúng tôi là những người hướng dẫn chuyển server của bạn:",
+    about1616JourneyLabel: "Hành trình trực quan",
+    about1616Title: "Về 1616",
+    about1616Intro: "Các cột mốc dưới đây đi theo hành trình mùa của game. Mỗi thẻ đều có phần Câu chuyện 1616 để sau này chúng ta bổ sung những gì thực sự đã xảy ra trên server.",
+    seasonLabel: "Mùa",
+    about1616StoryLabel: "Câu chuyện 1616",
+    about1616StoryPlaceholder: "[ Thêm những gì đã xảy ra trên Server 1616 trong mùa này. ]",
+    aboutSeason0Title: "Tiền mùa giải (Mùa 0)",
+    aboutSeason0Copy: "Giai đoạn nền tảng kéo dài khoảng 120 ngày. Trọng tâm là phát triển lên HQ 30, mở các sự kiện ban đầu như Capitol Conquest và hình thành meta tank đầu tiên.",
+    aboutSeason1Title: "Mùa 1: The Crimson Plague",
+    aboutSeason1Copy: "Giới thiệu cơ chế virus, Immune Protein Farms, vũ khí độc quyền cho hero bắt đầu với Kimberly và sự cạnh tranh lớn hơn để kiểm soát lãnh thổ trên bản đồ mở rộng.",
+    aboutSeason2Title: "Mùa 2: Polar World / Polar Storm",
+    aboutSeason2Copy: "Chuyển chiến trường sang vùng băng giá, nơi các liên minh phải quản lý nhiệt độ và cạnh tranh bảng xếp hạng rare soil.",
+    aboutSeason3Title: "Mùa 3: Golden Realm",
+    aboutSeason3Copy: "Mang đến cơ chế sa mạc, kháng lời nguyền và Goldust Conquest.",
+    aboutSeason4Title: "Mùa 4: Evernight Isle",
+    aboutSeason4Copy: "Có các cơ chế bóng tối, hải đăng, thẻ chiến thuật và sự xuất hiện của quân T11.",
+    aboutSeason5Title: "Mùa 5: Wild West",
+    aboutSeason5Copy: "Tập trung vào các bank stronghold và nền kinh tế crystal-gold.",
+    milestoneLabel: "Cột mốc",
+    aboutMilestoneTitlePlaceholder: "[ Thêm tiêu đề cột mốc ]",
+    aboutMilestoneCopyPlaceholder: "Thêm 2–4 câu về thời điểm này trong lịch sử 1616. Sau này phần giữ chỗ này có thể trở thành câu chuyện, ngày tháng và phần tóm tắt thật của bạn.",
+    aboutPromptDate: "Thêm ngày / giai đoạn",
+    aboutPromptHighlight: "Điểm nổi bật",
+    aboutPromptPeople: "Nhân vật chính",
+    aboutPromptOutcome: "Kết quả",
+    aboutPromptGrowth: "Khoảnh khắc phát triển",
+    aboutPromptContext: "Bối cảnh",
+    aboutPromptBattle: "Khoảnh khắc lớn",
+    aboutPromptStory: "Ghi chú câu chuyện",
+    aboutPromptLegacy: "Di sản / tác động",
+    aboutPromptNext: "Chương tiếp theo",
+    aboutBack: "Quay lại",
+    aboutContinue: "Tiếp tục đến phần chào mừng",
     welcomeAnd: "và",
     welcomeGuideHelp: "Chúng tôi ở đây để hỗ trợ quy trình đăng ký chuyển server.",
     beginApplication: "Bắt đầu đăng ký",
@@ -8978,6 +9644,39 @@ const I18N = {
     welcomeChooseLanguageIntro: "서버 이동 신청에 사용할 언어를 선택하세요.",
     welcomeThanksTitle: "1616에 합류하는 데 관심을 가져주셔서 감사합니다!",
     welcomeGuideLead: "저희는 여러분의 서버 이동 가이드입니다:",
+    about1616JourneyLabel: "시각적 여정",
+    about1616Title: "1616 소개",
+    about1616Intro: "아래 이정표는 게임의 시즌 흐름을 따라갑니다. 각 카드에는 나중에 우리 서버에서 실제로 있었던 일을 추가할 수 있도록 1616 이야기 자리표시자가 있습니다.",
+    seasonLabel: "시즌",
+    about1616StoryLabel: "1616 이야기",
+    about1616StoryPlaceholder: "[ 이 시즌에 서버 1616에서 있었던 일을 추가하세요. ]",
+    aboutSeason0Title: "프리시즌 (시즌 0)",
+    aboutSeason0Copy: "약 120일 동안 이어지는 기반 단계입니다. HQ 30을 향해 성장하고 Capitol Conquest 같은 초기 이벤트를 열며 초기 탱크 메타를 구축하는 데 초점을 둡니다.",
+    aboutSeason1Title: "시즌 1: The Crimson Plague",
+    aboutSeason1Copy: "바이러스 메커니즘, Immune Protein Farms, Kimberly부터 시작되는 전용 영웅 무기, 확장된 맵에서의 영토 경쟁을 도입합니다.",
+    aboutSeason2Title: "시즌 2: Polar World / Polar Storm",
+    aboutSeason2Copy: "전장을 얼어붙은 황무지로 옮기며, 연맹은 온도 메커니즘을 관리하고 rare soil 순위를 두고 경쟁합니다.",
+    aboutSeason3Title: "시즌 3: Golden Realm",
+    aboutSeason3Copy: "사막 메커니즘, 저주 저항, Goldust Conquest를 도입합니다.",
+    aboutSeason4Title: "시즌 4: Evernight Isle",
+    aboutSeason4Copy: "어둠 관련 메커니즘, 등대, 전술 카드, T11 병력의 도입이 특징입니다.",
+    aboutSeason5Title: "시즌 5: Wild West",
+    aboutSeason5Copy: "은행 거점과 crystal-gold 경제에 초점을 둡니다.",
+    milestoneLabel: "이정표",
+    aboutMilestoneTitlePlaceholder: "[ 이정표 제목 추가 ]",
+    aboutMilestoneCopyPlaceholder: "1616 역사 속 이 순간에 대해 2~4문장 정도를 추가하세요. 나중에는 이 자리표시자가 실제 이야기, 날짜, 요약으로 바뀔 수 있습니다.",
+    aboutPromptDate: "날짜 / 시대 추가",
+    aboutPromptHighlight: "핵심 하이라이트",
+    aboutPromptPeople: "핵심 인물",
+    aboutPromptOutcome: "결과",
+    aboutPromptGrowth: "성장 순간",
+    aboutPromptContext: "배경",
+    aboutPromptBattle: "큰 순간",
+    aboutPromptStory: "스토리 메모",
+    aboutPromptLegacy: "유산 / 영향",
+    aboutPromptNext: "다음 장",
+    aboutBack: "뒤로",
+    aboutContinue: "환영 화면으로 계속",
     welcomeAnd: "그리고",
     welcomeGuideHelp: "서버의 이동 신청 절차를 지원하기 위해 함께하고 있습니다.",
     beginApplication: "신청 시작",
@@ -9122,6 +9821,39 @@ const I18N = {
     welcomeChooseLanguageIntro: "Wähle die Sprache, die du für die Transfer-Bewerbung verwenden möchtest.",
     welcomeThanksTitle: "Danke für dein Interesse, 1616 beizutreten!",
     welcomeGuideLead: "Wir sind deine Transfer-Guides:",
+    about1616JourneyLabel: "Eine visuelle Reise",
+    about1616Title: "Über 1616",
+    about1616Intro: "Die Meilensteine unten folgen der Saisonreise des Spiels. Jede Karte enthält einen Platzhalter für die 1616-Geschichte, damit wir später ergänzen können, was auf unserem Server tatsächlich passiert ist.",
+    seasonLabel: "Saison",
+    about1616StoryLabel: "1616-Geschichte",
+    about1616StoryPlaceholder: "[ Ergänze, was während dieser Saison auf Server 1616 passiert ist. ]",
+    aboutSeason0Title: "Vorsaison (Saison 0)",
+    aboutSeason0Copy: "Die grundlegende Phase dauert etwa 120 Tage. Im Mittelpunkt stehen der Aufbau Richtung HQ 30, frühe Events wie Capitol Conquest und die Entwicklung des ersten Tank-Metas.",
+    aboutSeason1Title: "Saison 1: The Crimson Plague",
+    aboutSeason1Copy: "Führt Virus-Mechaniken, Immune Protein Farms, exklusive Heldenwaffen beginnend mit Kimberly und stärkere Kämpfe um Landkontrolle auf einer erweiterten Karte ein.",
+    aboutSeason2Title: "Saison 2: Polar World / Polar Storm",
+    aboutSeason2Copy: "Verlegt das Schlachtfeld in eine gefrorene Einöde, in der Allianzen Temperaturmechaniken verwalten und um rare-soil-Ranglisten konkurrieren.",
+    aboutSeason3Title: "Saison 3: Golden Realm",
+    aboutSeason3Copy: "Bringt Wüstenmechaniken, Fluchresistenz und Goldust Conquest.",
+    aboutSeason4Title: "Saison 4: Evernight Isle",
+    aboutSeason4Copy: "Bietet Dunkelheitsmechaniken, Leuchttürme, Taktikkarten und die Einführung von T11-Truppen.",
+    aboutSeason5Title: "Saison 5: Wild West",
+    aboutSeason5Copy: "Konzentriert sich auf Bank-Festungen und eine Kristall-Gold-Wirtschaft.",
+    milestoneLabel: "Meilenstein",
+    aboutMilestoneTitlePlaceholder: "[ Meilenstein-Titel einfügen ]",
+    aboutMilestoneCopyPlaceholder: "Füge 2–4 Sätze zu diesem Moment in der Geschichte von 1616 hinzu. Später kann dieser Platzhalter zu deiner echten Geschichte, deinem Datum und deiner Zusammenfassung werden.",
+    aboutPromptDate: "Datum / Ära hinzufügen",
+    aboutPromptHighlight: "Höhepunkt",
+    aboutPromptPeople: "Wichtige Personen",
+    aboutPromptOutcome: "Ergebnis",
+    aboutPromptGrowth: "Wachstumsmoment",
+    aboutPromptContext: "Kontext",
+    aboutPromptBattle: "Großer Moment",
+    aboutPromptStory: "Story-Notiz",
+    aboutPromptLegacy: "Vermächtnis / Wirkung",
+    aboutPromptNext: "Nächstes Kapitel",
+    aboutBack: "Zurück",
+    aboutContinue: "Weiter zur Begrüßung",
     welcomeAnd: "und",
     welcomeGuideHelp: "Wir unterstützen den Transfer-Bewerbungsprozess für den Server.",
     beginApplication: "Bewerbung starten",
@@ -10479,27 +11211,38 @@ function initPetals() {
 function initWelcomeScreen() {
   const welcome = document.getElementById('welcome-screen');
   const languageStage = document.getElementById('welcome-language-stage');
+  const aboutStage = document.getElementById('welcome-about-stage');
   const guideStage = document.getElementById('welcome-guide-stage');
   const enter = document.getElementById('welcome-enter');
+  const aboutBack = document.getElementById('about-back');
+  const aboutContinue = document.getElementById('about-continue');
   const languageChoices = [...document.querySelectorAll('[data-welcome-language]')];
-  if (!welcome || !languageStage || !guideStage || !enter) return;
+  if (!welcome || !languageStage || !aboutStage || !guideStage || !enter || !aboutBack || !aboutContinue) return;
+
+  const showStage = stage => {
+    languageStage.hidden = stage !== 'language';
+    aboutStage.hidden = stage !== 'about';
+    guideStage.hidden = stage !== 'guide';
+    const stageEl = stage === 'about' ? aboutStage : stage === 'guide' ? guideStage : languageStage;
+    stageEl.classList.remove('stage-enter');
+    void stageEl.offsetWidth;
+    stageEl.classList.add('stage-enter');
+    clearTimeout(stageEl._stageEnterTimer);
+    stageEl._stageEnterTimer = setTimeout(() => stageEl.classList.remove('stage-enter'), 1200);
+  };
 
   document.body.classList.add('welcome-open');
-  languageStage.hidden = false;
-  guideStage.hidden = true;
+  showStage('language');
 
   languageChoices.forEach(btn => {
     btn.addEventListener('click', () => {
       setLanguage(btn.dataset.welcomeLanguage);
-      languageStage.hidden = true;
-      guideStage.hidden = false;
-      guideStage.classList.remove('stage-enter');
-      void guideStage.offsetWidth;
-      guideStage.classList.add('stage-enter');
-      clearTimeout(guideStage._stageEnterTimer);
-      guideStage._stageEnterTimer = setTimeout(() => guideStage.classList.remove('stage-enter'), 1700);
+      showStage('about');
     });
   });
+
+  aboutBack.addEventListener('click', () => showStage('language'));
+  aboutContinue.addEventListener('click', () => showStage('guide'));
 
   enter.addEventListener('click', () => {
     welcome.hidden = true;

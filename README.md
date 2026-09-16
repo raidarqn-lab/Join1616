@@ -617,3 +617,20 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 - Added a conditional Yes / No / Unsure question for group applicants asking whether all group members need to be in the same alliance.
 - The new answer is included in the application payload and Review & Submit screen.
 
+## v83 About 1616 page
+- Added a new welcome-flow page called **About 1616** between language selection and the welcome/team page.
+- Built a milestone-style journey layout with footprint path visuals and five placeholder milestone cards.
+- Added five new root-level visual assets for the milestone journey:
+  - about-journey-torii.png
+  - about-journey-moon.png
+  - about-journey-castle.png
+  - about-journey-katanas.png
+  - about-journey-sakura.png
+- Added translation keys for the About 1616 page across all supported languages.
+
+## v84 About 1616 season milestones
+- Replaced the generic milestone placeholders with Pre-Season through Season 5.
+- Added the season mechanics provided for each milestone.
+- Added a separate 1616 Story placeholder on every card for server-specific history to be filled in later.
+- Updated the About page content across all eight supported languages.
+
