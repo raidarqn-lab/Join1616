@@ -267,3 +267,12 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - The Bungee Tint title now reveals rapidly like an ink/blade cut, followed by a red katana slash and a small travelling spark.
 - Animation plays only on actual step changes, not ordinary language refreshes.
 - Added reduced-motion support for accessibility.
+
+
+## v36
+- Replaced the numbered/slashed left-side progress indicators with five Blood Moon phases.
+- The phases progress from a thin red crescent at Step 1 to a full Blood Moon at Step 5.
+- The current step receives a subtle red halo and a short “moon awakening” animation when it becomes active.
+- Future moons are dimmed; completed moons remain visible but restrained.
+- Added a subtle vertical red progression line behind the moons.
+- Existing step labels, fonts, typography, and form layout were left unchanged.

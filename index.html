@@ -141,120 +141,160 @@ button { color: inherit; }
   display: flex; flex-direction: column;
 }
 .progress-title { margin-bottom: 8px; }
-.progress-panel nav { display: grid; gap: 7px; }
-.step-link { display: flex; gap: 12px; align-items: center; width: 100%; border: 0; background: transparent; color: var(--muted); text-align: left; padding: 10px 8px; border-radius: 9px; cursor: pointer; }
+.progress-panel nav {
+  position: relative;
+  display: grid;
+  gap: 7px;
+}
+.progress-panel nav::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 23px;
+  top: 27px;
+  bottom: 27px;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(215,63,88,.18),
+    rgba(239,92,112,.56) 48%,
+    rgba(215,63,88,.16)
+  );
+  box-shadow: 0 0 8px rgba(222,65,92,.12);
+}
+.step-link { position: relative; z-index: 1; display: flex; gap: 12px; align-items: center; width: 100%; border: 0; background: transparent; color: var(--muted); text-align: left; padding: 10px 8px; border-radius: 9px; cursor: pointer; }
 .step-link:hover { background: rgba(30,58,76,.34); color: var(--text); }
 .step-link.active { color: var(--text); background: rgba(33,63,79,.42); }
 .step-link.complete { color: #c9d8df; }
 .step-dot {
+  --moon-shadow-shift: -4px;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   isolation: isolate;
   width: 32px;
-  height: 28px;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
+  height: 32px;
+  border: 1px solid rgba(218,80,103,.40);
+  border-radius: 50%;
+  background: #07121d;
   display: grid;
   place-items: center;
   flex: 0 0 32px;
-  color: #819aaa;
-  font-size: .88rem;
-  font-weight: 800;
+  color: transparent;
+  font-size: 0;
   line-height: 1;
-  transition: color .16s ease, text-shadow .16s ease;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.025),
+    0 0 0 rgba(216,65,92,0);
+  transition:
+    transform .20s ease,
+    border-color .20s ease,
+    box-shadow .20s ease,
+    filter .20s ease,
+    opacity .20s ease;
 }
-.step-dot::before,
+
+/* The red lunar surface. */
+.step-dot::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255,189,190,.54) 0 5%, transparent 6%),
+    radial-gradient(circle at 67% 66%, rgba(103,9,29,.34) 0 8%, transparent 9%),
+    radial-gradient(circle at 54% 39%, rgba(123,13,32,.22) 0 5%, transparent 6%),
+    radial-gradient(circle at 37% 72%, rgba(255,124,133,.20) 0 7%, transparent 8%),
+    radial-gradient(circle at 50% 50%, #f06a79 0%, #d8425e 55%, #7e152d 100%);
+  box-shadow:
+    inset -4px -4px 9px rgba(65,4,20,.28),
+    inset 3px 3px 7px rgba(255,180,187,.12);
+  z-index: 1;
+}
+
+/* The eclipse shadow moves farther left on each successive step,
+   gradually revealing more of the Blood Moon. */
 .step-dot::after {
   content: "";
   position: absolute;
-  pointer-events: none;
-  opacity: 0;
+  z-index: 2;
+  inset: 1px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 65% 42%, rgba(15,32,44,.98) 0 64%, rgba(8,22,34,.99) 76%, #07121d 100%);
+  transform: translateX(var(--moon-shadow-shift));
+  box-shadow: 4px 0 8px rgba(0,0,0,.16);
+  transition: transform .28s cubic-bezier(.2,.8,.2,1), opacity .24s ease;
 }
-.step-link.active .step-dot {
-  background: transparent;
-  border: 0;
-  color: #f3a0b1;
-  font-weight: 900;
-  text-shadow: 0 0 12px rgba(240,105,130,.28);
-  box-shadow: none;
+
+/* Five distinct phases: crescent → fuller crescent → half → gibbous → full Blood Moon. */
+.progress-panel nav .step-link:nth-child(1) .step-dot { --moon-shadow-shift: -4px; }
+.progress-panel nav .step-link:nth-child(2) .step-dot { --moon-shadow-shift: -9px; }
+.progress-panel nav .step-link:nth-child(3) .step-dot { --moon-shadow-shift: -15px; }
+.progress-panel nav .step-link:nth-child(4) .step-dot { --moon-shadow-shift: -22px; }
+.progress-panel nav .step-link:nth-child(5) .step-dot::after { opacity: 0; }
+
+/* Future phases stay restrained. */
+.step-link:not(.active):not(.complete) .step-dot {
+  opacity: .58;
+  filter: saturate(.70) brightness(.84);
 }
+
+/* Completed phases remain visible but quiet. */
 .step-link.complete .step-dot {
-  background: transparent;
-  border: 0;
-  color: #b8c8d0;
-  box-shadow: none;
+  opacity: .84;
+  border-color: rgba(221,79,103,.56);
+  filter: saturate(.90);
+  box-shadow: 0 0 9px rgba(209,54,82,.13);
 }
-.step-link.complete .step-dot::before {
-  left: -5px;
-  top: 13px;
-  width: 42px;
-  height: 4px;
-  border-radius: 999px;
-  background: linear-gradient(90deg,
-    rgba(124,8,30,.25) 0%,
-    rgba(197,24,54,.92) 13%,
-    rgba(255,74,100,1) 48%,
-    rgba(255,135,151,.98) 70%,
-    rgba(163,15,43,.62) 100%);
-  transform: rotate(-18deg);
-  transform-origin: center;
-  box-shadow: 0 0 6px rgba(255,57,88,.64), 0 0 13px rgba(196,25,55,.36);
+
+/* Current step gets the Blood Moon halo. */
+.step-link.active .step-dot {
   opacity: 1;
-  z-index: 3;
+  border-color: #ff8297;
+  filter: saturate(1.10) brightness(1.06);
+  transform: scale(1.08);
+  box-shadow:
+    0 0 0 3px rgba(246,93,120,.10),
+    0 0 10px rgba(255,97,123,.46),
+    0 0 22px rgba(210,47,78,.28);
+  animation: bloodMoonAwaken .54s cubic-bezier(.18,.82,.2,1) both;
 }
-.step-link.complete .step-dot::after {
-  right: -9px;
-  top: 9px;
-  width: 13px;
-  height: 3px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #fff7f8, #ff718d 46%, rgba(255,65,95,0));
-  transform: rotate(-18deg);
-  filter: drop-shadow(0 0 4px rgba(255,100,125,.92));
-  opacity: 0;
-  z-index: 4;
+
+.step-link:hover .step-dot {
+  border-color: rgba(244,126,145,.76);
+  filter: saturate(1.04) brightness(1.03);
 }
-.step-link.fresh-slash .step-dot::before {
-  animation: samuraiSlashSweep 330ms cubic-bezier(.16,.78,.12,1) both;
-}
-.step-link.fresh-slash .step-dot::after {
-  animation: samuraiSlashSpark 430ms cubic-bezier(.16,.78,.12,1) both;
-}
-@keyframes samuraiSlashSweep {
+
+@keyframes bloodMoonAwaken {
   0% {
-    transform: translateX(-42px) rotate(-18deg) scaleX(.12);
-    opacity: 0;
+    transform: scale(.78);
+    opacity: .30;
+    box-shadow: 0 0 0 rgba(255,97,123,0);
   }
-  14% { opacity: 1; }
-  66% {
-    transform: translateX(4px) rotate(-18deg) scaleX(1.12);
+  58% {
+    transform: scale(1.16);
     opacity: 1;
-    box-shadow: 0 0 10px rgba(255,57,88,.90), 0 0 19px rgba(196,25,55,.54);
+    box-shadow:
+      0 0 0 5px rgba(246,93,120,.12),
+      0 0 15px rgba(255,97,123,.62),
+      0 0 31px rgba(210,47,78,.34);
   }
   100% {
-    transform: translateX(0) rotate(-18deg) scaleX(1);
+    transform: scale(1.08);
     opacity: 1;
+    box-shadow:
+      0 0 0 3px rgba(246,93,120,.10),
+      0 0 10px rgba(255,97,123,.46),
+      0 0 22px rgba(210,47,78,.28);
   }
 }
-@keyframes samuraiSlashSpark {
-  0%, 55% {
-    transform: translateX(-18px) rotate(-18deg) scaleX(.2);
-    opacity: 0;
-  }
-  69% {
-    transform: translateX(-1px) rotate(-18deg) scaleX(.7);
-    opacity: .35;
-  }
-  80% {
-    transform: translateX(6px) rotate(-18deg) scaleX(1.25);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(14px) rotate(-18deg) scaleX(.55);
-    opacity: 0;
+
+@media (prefers-reduced-motion: reduce) {
+  .step-link.active .step-dot {
+    animation: none;
   }
 }
+
 .progress-quote { margin-top: auto; padding: 20px 8px 0; color: #819bac; text-transform: uppercase; letter-spacing: .24em; font-size: .66rem; line-height: 1.8; }
 .brush-rule { display: block; width: 32px; height: 2px; background: var(--gold); margin-bottom: 14px; }
 
@@ -3622,22 +3662,9 @@ function updateProgress() {
     const n = index + 1;
     const isActive = n === state.step;
     const isComplete = n < state.step;
-    const wasComplete = link.classList.contains('complete');
-
     link.classList.toggle('active', isActive);
     link.classList.toggle('complete', isComplete);
     link.querySelector('.step-dot').textContent = String(n);
-
-    if (isComplete && !wasComplete) {
-      link.classList.remove('fresh-slash');
-      void link.offsetWidth;
-      link.classList.add('fresh-slash');
-      clearTimeout(link._slashTimer);
-      link._slashTimer = setTimeout(() => link.classList.remove('fresh-slash'), 900);
-    } else if (!isComplete) {
-      link.classList.remove('fresh-slash');
-      if (link._slashTimer) clearTimeout(link._slashTimer);
-    }
   });
   backButton.hidden = state.step === 1;
   nextButton.hidden = state.step === 5;
