@@ -347,3 +347,26 @@ The three guide images are embedded directly into `index.html`, so GitHub Pages 
 - Changed the welcome copy to: "We are your chaotic 1616 transfer team Yabadabadoo [WaE], Dolphy RN [NvEM], and RaidARQN [NvSP]."
 - Removed the name labels from underneath the welcome images so the screen no longer looks like users need to choose a guide.
 - Kept the welcome-screen trio images and animation intact.
+
+
+## v46
+- Reworked the welcome-screen guide images on mobile so they no longer stack vertically.
+- Yabadabadoo and Raid now sit lower left/right with Dolphy centered above them in a compact triangular composition.
+- Reduced guide image sizes and mobile glow sizes.
+- Added an extra-small-phone layout so the welcome screen requires substantially less scrolling.
+
+
+## v47
+- Replaced visible native dropdown controls with fully custom dropdown components.
+- This fixes the stock grey expanded menu that some browsers/operating systems force on native `<select>` elements.
+- The new open menus are dark navy/crimson with pink/red borders, glow, selected-state accents, and themed scrollbars.
+- The original selects remain in the DOM so existing application values, validation, translations, and Google Sheet submission logic continue to work.
+- Custom dropdowns also support dynamically added transfer-group player server selectors and changing group-contact options.
+
+
+## v48
+- Personalized the Step 2 heading using the username entered on Step 1.
+- English example: “Hi, RaidARQN. Tell us more about yourself!”
+- Added localized personalized versions for all eight supported languages.
+- The heading updates automatically if the username or language changes.
+- Reduced only this longer Step 2 title slightly so it wraps cleanly while keeping the existing Bungee Tint step-title styling and samurai animation.

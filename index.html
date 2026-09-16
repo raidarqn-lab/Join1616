@@ -316,6 +316,13 @@ h1 { margin: 0; font-size: clamp(1.8rem, 3vw, 2.65rem); font-weight: 650; letter
   line-height: 1.08;
   isolation: isolate;
 }
+#game-details-title {
+  max-width: 980px;
+  font-size: clamp(1.55rem, 2.7vw, 2.35rem);
+  line-height: 1.16;
+  text-wrap: balance;
+}
+
 
 /* Samurai step-title entrance: quick ink reveal + katana slash. */
 .form-step > h1.samurai-title-enter {
@@ -1439,6 +1446,221 @@ textarea:hover {
   border-color: rgba(221,91,116,.68);
 }
 
+
+/* v47 — fully custom dropdown UI.
+   The native select stays in the DOM for values/form logic, but the visible
+   trigger and opened menu are ours, so browsers cannot replace them with a
+   stock grey popup. */
+.custom-select {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.custom-select .native-select-proxy {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  min-width: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+.custom-select-trigger {
+  position: relative;
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 44px 11px 13px;
+  border: 1px solid rgba(210,72,101,.62);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(80,27,45,.46), rgba(10,24,35,.96));
+  color: #f7edf0;
+  text-align: left;
+  cursor: pointer;
+  box-shadow:
+    0 0 0 1px rgba(255,160,179,.025) inset,
+    0 0 15px rgba(209,48,79,.055);
+  transition:
+    border-color .16s ease,
+    box-shadow .16s ease,
+    background .16s ease,
+    transform .16s ease;
+}
+
+.custom-select-trigger:hover {
+  border-color: rgba(239,111,136,.84);
+  background:
+    linear-gradient(180deg, rgba(98,33,53,.56), rgba(10,25,36,.98));
+  box-shadow:
+    0 0 0 1px rgba(255,173,190,.04) inset,
+    0 0 18px rgba(211,49,80,.12);
+}
+
+.custom-select.open .custom-select-trigger,
+.custom-select-trigger:focus-visible {
+  outline: none;
+  border-color: #ed7890;
+  box-shadow:
+    0 0 0 3px rgba(237,120,144,.11),
+    0 0 20px rgba(211,49,80,.16);
+}
+
+.custom-select-value {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-select-trigger::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #f5a0b1;
+  border-bottom: 2px solid #f5a0b1;
+  transform: translateY(-65%) rotate(45deg);
+  transform-origin: center;
+  transition: transform .18s ease, border-color .18s ease;
+  filter: drop-shadow(0 0 5px rgba(237,120,144,.25));
+}
+
+.custom-select.open .custom-select-trigger::after {
+  transform: translateY(-35%) rotate(225deg);
+  border-color: #ffd0d9;
+}
+
+.custom-select-menu {
+  position: absolute;
+  z-index: 300;
+  left: 0;
+  right: 0;
+  top: calc(100% + 7px);
+  max-height: 280px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 7px;
+  border: 1px solid rgba(226,88,115,.72);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 90% 0%, rgba(159,27,54,.18), transparent 34%),
+    linear-gradient(180deg, #101a25, #0a141e);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.48),
+    0 0 0 1px rgba(255,150,170,.035) inset,
+    0 0 24px rgba(204,45,77,.14);
+  backdrop-filter: blur(18px);
+}
+
+.custom-select-menu[hidden] {
+  display: none !important;
+}
+
+.custom-select-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 9px 11px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #e9dfe3;
+  text-align: left;
+  cursor: pointer;
+  transition: background .13s ease, color .13s ease, box-shadow .13s ease;
+}
+
+.custom-select-option:hover,
+.custom-select-option:focus-visible {
+  outline: none;
+  background:
+    linear-gradient(90deg, rgba(151,35,61,.56), rgba(89,26,44,.42));
+  color: #ffffff;
+  box-shadow: inset 3px 0 0 #ed7890;
+}
+
+.custom-select-option.selected {
+  background:
+    linear-gradient(90deg, rgba(188,43,72,.68), rgba(96,27,48,.48));
+  color: #ffffff;
+  box-shadow:
+    inset 3px 0 0 #ff9bad,
+    0 0 12px rgba(215,55,87,.08);
+}
+
+.custom-select-option:disabled {
+  opacity: .42;
+  cursor: not-allowed;
+}
+
+.custom-select-menu::-webkit-scrollbar {
+  width: 9px;
+}
+.custom-select-menu::-webkit-scrollbar-track {
+  background: rgba(5,14,21,.60);
+  border-radius: 999px;
+}
+.custom-select-menu::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c6405d, #7d2038);
+  border: 2px solid #0c1720;
+  border-radius: 999px;
+}
+
+.custom-select.invalid .custom-select-trigger {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(255,132,141,.08);
+}
+
+/* Header language selector: wrapper supplies the visible themed control. */
+.language-compact .custom-select {
+  width: 190px;
+}
+.language-compact .custom-select-trigger {
+  min-height: 39px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+.language-compact .custom-select.open .custom-select-trigger,
+.language-compact .custom-select-trigger:focus-visible {
+  box-shadow: none;
+}
+.language-compact .custom-select-menu {
+  min-width: 210px;
+  right: 0;
+  left: auto;
+}
+
+@media (max-width: 620px) {
+  .custom-select-menu {
+    max-height: 230px;
+  }
+  .language-compact .custom-select {
+    width: 150px;
+  }
+  .language-compact .custom-select-menu {
+    min-width: 190px;
+  }
+}
+
+
 /* v44 — themed dropdowns */
 select {
   appearance: none;
@@ -2045,36 +2267,99 @@ html[dir="rtl"] .review-item, html[dir="rtl"] .field-block { text-align: right; 
 }
 
 @media (max-width: 560px) {
+  /* Keep the three guides in one compact composition on phones
+     instead of stacking them vertically and creating a long scroll. */
   .guide-meme-stage {
-    height: auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 8px;
-    width: min(300px, 100%);
-    margin-top: 18px;
-  }
-  .meme-figure {
     position: relative;
-    left: auto !important;
+    display: block;
+    width: min(360px, 100%);
+    height: 235px;
+    margin: 12px auto 0;
+  }
+
+  .meme-figure {
+    position: absolute;
+    width: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,.24));
+  }
+
+  .meme-yaba {
+    left: -2px !important;
     right: auto !important;
     top: auto !important;
-    bottom: auto !important;
+    bottom: 0 !important;
+    height: 172px !important;
     transform: none !important;
-    justify-self: center;
-    height: auto !important;
-    width: auto;
   }
+
+  .meme-dolph {
+    left: 50% !important;
+    right: auto !important;
+    top: 0 !important;
+    bottom: auto !important;
+    height: 138px !important;
+    transform: translateX(-50%) !important;
+    z-index: 3;
+  }
+
+  .meme-raid {
+    left: auto !important;
+    right: -2px !important;
+    top: auto !important;
+    bottom: 0 !important;
+    height: 172px !important;
+    transform: none !important;
+  }
+
   .meme-cutout {
-    height: auto;
-    width: min(220px, 80vw);
+    width: auto;
+    height: 100%;
+    max-width: none;
   }
-  .meme-dolph .meme-cutout {
-    width: min(190px, 72vw);
-  }
+
   .meme-glow {
-    width: 150px !important;
-    height: 150px !important;
-    top: 48%;
+    width: 112px !important;
+    height: 112px !important;
+    top: 46%;
+    filter: blur(6px);
+  }
+
+  .meme-dolph .meme-glow {
+    width: 96px !important;
+    height: 96px !important;
+  }
+
+  .welcome-action {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 410px) {
+  .guide-meme-stage {
+    width: 100%;
+    height: 205px;
+  }
+
+  .meme-yaba,
+  .meme-raid {
+    height: 148px !important;
+  }
+
+  .meme-dolph {
+    height: 118px !important;
+  }
+
+  .meme-yaba { left: -8px !important; }
+  .meme-raid { right: -8px !important; }
+
+  .meme-glow {
+    width: 96px !important;
+    height: 96px !important;
+  }
+
+  .meme-dolph .meme-glow {
+    width: 82px !important;
+    height: 82px !important;
   }
 }
 
@@ -3220,7 +3505,7 @@ body.welcome-open { overflow: hidden; }
         <!-- STEP 2 -->
         <section class="form-step" data-step="2">
           <div class="step-kicker" data-step-kicker></div>
-          <h1 data-i18n="gameDetails">Game Details</h1>
+          <h1 id="game-details-title">Game Details</h1>
           <p class="step-intro" data-i18n="gameDetailsIntro">Enter the current values shown in your game profile.</p>
 
           <div class="field-grid two-col">
@@ -3718,7 +4003,7 @@ const I18N = {
     chooseLanguage: 'Choose your language', languageIntro: 'Choose the language you would like to use. You can change it at any time.',
     welcomeTitle: '1616 Server Transfer Application', welcomeBody1: 'Thank you for your interest in transferring to 1616. Please take a few minutes to complete this application so we can evaluate applicants.', waitlistLead: 'Important:', welcomeBody2: 'Submitting this application places you on a waitlist and does not guarantee a spot on Server 1616.', welcomeBody3: 'Questions about this form or transfers can be directed to RaidARQN [NvSP].',
     yourInformation: 'Your Information', yourInfoIntro: 'Tell us who you are and where you are currently playing.', currentServer: 'What server are you currently on?', username: 'What is your full in-game username?', allianceTag: 'What is your current alliance name / tag?',
-    gameDetails: 'Game Details', gameDetailsIntro: 'Enter the current values shown in your game profile.',
+    gameDetails: 'Game Details', gameDetailsPersonalized: 'Hi, {username}. Tell us more about yourself!', gameDetailsIntro: 'Enter the current values shown in your game profile.',
     transferEstimateTitle: 'End-of-S4 Transfer Estimate', transferEstimateIntro: 'These fields help us estimate your post-Season 4 transfer classification. Use your highest known power values where possible.',
     buildingPower: 'Building Power', technologyPower: 'Technology Power', dronePower: 'Drone Power', unitPowerTop3: 'Unit Power', overlordPower: 'Overlord Power', t11Unlocked: 'T11 unlocked?', highestKnownHelp: 'Enter the full highest known number, without M or K.', reportedTransferScore: 'Known in-game Transfer Score', reportedTransferScoreHelp: 'Only enter this if your transfer screen already shows a score.',
     estimatedSeatColour: 'Estimated S4 seat colour', estimatedTransferScoreBand: 'Experimental transfer-score band', contributingPowerProfile: 'Entered contributing power', contributingPowerHelp: 'This is a simple total of the power fields you entered, not the game’s official score.', scoreBandLowConfidence: 'Low-confidence community reference only.', estimateWarningLead: 'Important:', estimateWarning: ' Last War does not publish a universal transfer-score formula. Seat cutoffs vary by transfer group, and historical power may be used. This estimate is for planning only.',
@@ -3826,7 +4111,7 @@ const I18N = {
     chooseLanguage: 'Elige tu idioma', languageIntro: 'Elige el idioma que quieres usar. Puedes cambiarlo en cualquier momento.',
     welcomeTitle: 'Solicitud de transferencia al Servidor 1616', welcomeBody1: 'Gracias por tu interés en transferirte a 1616. Tómate unos minutos para completar esta solicitud para que podamos evaluar a los solicitantes.', waitlistLead: 'Importante:', welcomeBody2: 'Enviar esta solicitud te coloca en una lista de espera y no garantiza un lugar en el Servidor 1616.', welcomeBody3: 'Las preguntas sobre este formulario o las transferencias pueden dirigirse a RaidARQN [NvSP].',
     yourInformation: 'Tu información', yourInfoIntro: 'Cuéntanos quién eres y dónde juegas actualmente.', currentServer: '¿En qué servidor estás actualmente?', username: '¿Cuál es tu nombre de usuario completo en el juego?', allianceTag: '¿Cuál es el nombre o etiqueta de tu alianza actual?',
-    gameDetails: 'Datos del juego', gameDetailsIntro: 'Introduce los valores actuales que aparecen en tu perfil del juego.', transferEstimateTitle: "Estimación de transferencia al final de S4", transferEstimateIntro: "Estos campos nos ayudan a estimar tu clasificación de transferencia después de la Temporada 4. Usa los valores máximos conocidos cuando sea posible.", buildingPower: "Poder de edificios", technologyPower: "Poder de tecnología", dronePower: "Poder del dron", unitPowerTop3: "Poder de unidades — 3 escuadrones principales desplegados", overlordPower: "Poder del Overlord", t11Unlocked: "¿T11 desbloqueado?", highestKnownHelp: "Introduce el número completo más alto que conozcas, sin M ni K.", reportedTransferScore: "Puntuación de transferencia conocida", reportedTransferScoreHelp: "Solo introdúcela si tu pantalla de transferencia ya muestra una puntuación.", estimatedSeatColour: "Color de asiento S4 estimado", estimatedTransferScoreBand: "Rango experimental de puntuación", contributingPowerProfile: "Poder contribuyente introducido", contributingPowerHelp: "Es una suma simple de los campos introducidos, no la puntuación oficial del juego.", scoreBandLowConfidence: "Referencia comunitaria de baja confianza.", estimateWarningLead: "Importante:", estimateWarning: " Last War no publica una fórmula universal. Los límites varían según el grupo de transferencia y puede usarse poder histórico. Esta estimación es solo para planificación.", seatWhite: "Blanco", seatBlue: "Azul", seatPurple: "Morado", seatGold: "Dorado", seatBorderline: "Límite", confidenceLow: "Confianza baja", confidenceMedium: "Confianza media", confidenceHigher: "Confianza mayor", professionLevel: '¿Cuál es tu nivel de profesión?', killCount: '¿Cuál es tu número actual de bajas?', fullNumberHelp: 'Introduce el número completo. No uses M, K ni abreviaturas.', heroPower: '¿Cuál es tu poder total de HÉROES?', howToFind: 'Cómo encontrarlo', heroPowerHelp: 'Introduce solo el Poder de Héroes, no el Poder Total.', heroHelp1: 'Abre tu perfil.', heroHelp2: 'Toca la insignia de Poder Total.', heroHelp3: 'Abre Detalles de Poder y busca Poder de Héroes.', heroHelp4: 'Introduce solo el número completo de Poder de Héroes.', seatColour: '¿Cuál es el color de tu asiento?', gold: 'Dorado', purple: 'Morado', blue: 'Azul', white: 'Blanco', howToFindSeat: 'Cómo encontrar el color del asiento', seatHelp1: 'Toca el icono del mapa en el lado derecho de la pantalla.', seatHelp2: 'Abre Transfer Surge y revisa “Your Status”.', seatHelp3: 'El color de tu asiento aparece en la parte inferior.',
+    gameDetails: 'Datos del juego', gameDetailsPersonalized: 'Hola, {username}. ¡Cuéntanos más sobre ti!', gameDetailsIntro: 'Introduce los valores actuales que aparecen en tu perfil del juego.', transferEstimateTitle: "Estimación de transferencia al final de S4", transferEstimateIntro: "Estos campos nos ayudan a estimar tu clasificación de transferencia después de la Temporada 4. Usa los valores máximos conocidos cuando sea posible.", buildingPower: "Poder de edificios", technologyPower: "Poder de tecnología", dronePower: "Poder del dron", unitPowerTop3: "Poder de unidades — 3 escuadrones principales desplegados", overlordPower: "Poder del Overlord", t11Unlocked: "¿T11 desbloqueado?", highestKnownHelp: "Introduce el número completo más alto que conozcas, sin M ni K.", reportedTransferScore: "Puntuación de transferencia conocida", reportedTransferScoreHelp: "Solo introdúcela si tu pantalla de transferencia ya muestra una puntuación.", estimatedSeatColour: "Color de asiento S4 estimado", estimatedTransferScoreBand: "Rango experimental de puntuación", contributingPowerProfile: "Poder contribuyente introducido", contributingPowerHelp: "Es una suma simple de los campos introducidos, no la puntuación oficial del juego.", scoreBandLowConfidence: "Referencia comunitaria de baja confianza.", estimateWarningLead: "Importante:", estimateWarning: " Last War no publica una fórmula universal. Los límites varían según el grupo de transferencia y puede usarse poder histórico. Esta estimación es solo para planificación.", seatWhite: "Blanco", seatBlue: "Azul", seatPurple: "Morado", seatGold: "Dorado", seatBorderline: "Límite", confidenceLow: "Confianza baja", confidenceMedium: "Confianza media", confidenceHigher: "Confianza mayor", professionLevel: '¿Cuál es tu nivel de profesión?', killCount: '¿Cuál es tu número actual de bajas?', fullNumberHelp: 'Introduce el número completo. No uses M, K ni abreviaturas.', heroPower: '¿Cuál es tu poder total de HÉROES?', howToFind: 'Cómo encontrarlo', heroPowerHelp: 'Introduce solo el Poder de Héroes, no el Poder Total.', heroHelp1: 'Abre tu perfil.', heroHelp2: 'Toca la insignia de Poder Total.', heroHelp3: 'Abre Detalles de Poder y busca Poder de Héroes.', heroHelp4: 'Introduce solo el número completo de Poder de Héroes.', seatColour: '¿Cuál es el color de tu asiento?', gold: 'Dorado', purple: 'Morado', blue: 'Azul', white: 'Blanco', howToFindSeat: 'Cómo encontrar el color del asiento', seatHelp1: 'Toca el icono del mapa en el lado derecho de la pantalla.', seatHelp2: 'Abre Transfer Surge y revisa “Your Status”.', seatHelp3: 'El color de tu asiento aparece en la parte inferior.',
     transferGroup: 'Grupo de transferencia', transferGroupIntro: 'Dinos si te transfieres con otras personas. Si es así, añade a cada jugador para mantener el grupo conectado durante la revisión.', transferWithGroup: '¿Esperas transferirte con un grupo de personas de tu servidor?', yes: 'Sí', no: 'No', unsure: 'No estoy seguro/a', yesGroupSub: 'Voy con otros jugadores', noGroupSub: 'Voy por mi cuenta', unsureGroupSub: 'Todavía no lo sé', yourTransferGroup: 'Tu grupo de transferencia', groupBuilderIntro: "No necesitas conocer todavía a todos los jugadores. Añade a los que conozcas o deja la lista vacía y continúa.", addAnotherPlayer: "Añadir un jugador conocido", groupContact: 'Contacto del grupo', groupContactIntro: "¿A quién debemos contactar si necesitamos hablar con tu grupo? Si no eliges a otra persona, te usaremos a ti como contacto.", selectGroupContact: 'Selecciona un contacto', totalPlayersInGroup: "Tamaño estimado del grupo", additionalPlayers: 'Jugadores adicionales', includingYou: 'Incluyéndote', playerName: 'Nombre del jugador', memberServer: 'Servidor actual', memberAlliance: 'Nombre / etiqueta de alianza', knownPlayersListed: "Jugadores conocidos añadidos", estimatedGroupSize: "Tamaño estimado del grupo", estimatedGroupSizeIntro: "Si sabes aproximadamente cuántos jugadores adicionales podrían venir contigo, introduce el número. Una estimación está bien.", expectedAdditionalPlayers: "Jugadores adicionales esperados", expectedAdditionalHelp: "Déjalo en blanco si todavía no lo sabes.", optional: "Opcional", transferGroupIdTitle: "ID del grupo de traslado", transferGroupIdIntro: "Si se transfieren como grupo, comparte este ID con cualquier persona que vaya a solicitar contigo. Pueden introducir el mismo ID para que sus solicitudes queden agrupadas.", activeTransferGroupId: "ID activo del grupo de traslado", groupIdAuto: "Usando ID NUEVO", groupIdUsingExisting: "Usando un ID de grupo de traslado compartido", copyGroupId: "Copiar ID", copiedGroupId: "¡Copiado!", existingGroupId: "¿Ya tienes un ID de grupo de traslado?", existingGroupIdHelp: "Si alguien de tu grupo ya creó un ID, pégalo aquí. Al introducirlo, tu solicitud usará ese ID en lugar del nuevo ID mostrado arriba. Si lo dejas en blanco, se usará el nuevo ID generado arriba.", reviewTransferGroupId: "ID del grupo de traslado",
     additionalInfo: 'Información adicional', additionalInfoIntro: 'Añade cualquier dato que pueda ayudar al equipo de 1616 a revisar tu solicitud.', additionalComments: '¿Tienes algún comentario o pregunta adicional?', beforeContinue: 'Antes de continuar', waitlistReminder: 'Recuerda: esta solicitud te añade a la lista de espera de 1616. No garantiza un lugar de transferencia.',
     reviewSubmit: 'Revisar y enviar', reviewIntro: 'Revisa tu información antes de enviarla. Puedes volver a cualquier sección para hacer cambios.', submitNote: 'Tu solicitud se enviará a la hoja de revisión de 1616. Guardaremos también el idioma elegido.', edit: 'Editar', back: 'Atrás', continue: 'Continuar', submitApplication: 'Enviar solicitud',
@@ -3911,7 +4196,7 @@ const I18N = {
     chooseLanguage: 'Escolha seu idioma', languageIntro: 'Escolha o idioma que deseja usar. Você pode alterá-lo a qualquer momento.',
     welcomeTitle: 'Inscrição de transferência para o Servidor 1616', welcomeBody1: 'Obrigado pelo interesse em se transferir para 1616. Reserve alguns minutos para preencher esta inscrição para que possamos avaliar os candidatos.', waitlistLead: 'Importante:', welcomeBody2: 'Enviar esta inscrição coloca você em uma lista de espera e não garante uma vaga no Servidor 1616.', welcomeBody3: 'Dúvidas sobre este formulário ou transferências podem ser direcionadas para RaidARQN [NvSP].',
     yourInformation: 'Suas informações', yourInfoIntro: 'Conte quem você é e onde joga atualmente.', currentServer: 'Em qual servidor você está atualmente?', username: 'Qual é o seu nome de usuário completo no jogo?', allianceTag: 'Qual é o nome ou a tag da sua aliança atual?',
-    gameDetails: 'Dados do jogo', gameDetailsIntro: 'Insira os valores atuais mostrados no seu perfil do jogo.', transferEstimateTitle: "Estimativa de transferência no fim da S4", transferEstimateIntro: "Estes campos ajudam a estimar sua classificação após a Temporada 4. Use os maiores valores conhecidos quando possível.", buildingPower: "Poder de construções", technologyPower: "Poder de tecnologia", dronePower: "Poder do drone", unitPowerTop3: "Poder de unidades — 3 principais esquadrões implantados", overlordPower: "Poder do Overlord", t11Unlocked: "T11 desbloqueado?", highestKnownHelp: "Digite o maior número completo conhecido, sem M ou K.", reportedTransferScore: "Pontuação de transferência conhecida", reportedTransferScoreHelp: "Digite apenas se a tela de transferência já mostrar uma pontuação.", estimatedSeatColour: "Cor de assento S4 estimada", estimatedTransferScoreBand: "Faixa experimental da pontuação", contributingPowerProfile: "Poder contribuinte informado", contributingPowerHelp: "É uma soma simples dos campos informados, não a pontuação oficial do jogo.", scoreBandLowConfidence: "Referência comunitária de baixa confiança.", estimateWarningLead: "Importante:", estimateWarning: " Last War não publica uma fórmula universal. Os limites variam por grupo e pode ser usado poder histórico. Esta estimativa é apenas para planejamento.", seatWhite: "Branco", seatBlue: "Azul", seatPurple: "Roxo", seatGold: "Dourado", seatBorderline: "Limite", confidenceLow: "Baixa confiança", confidenceMedium: "Confiança média", confidenceHigher: "Maior confiança", professionLevel: 'Qual é o seu nível de profissão?', killCount: 'Qual é o seu número atual de eliminações?', fullNumberHelp: 'Digite o número completo. Não use M, K ou abreviações.', heroPower: 'Qual é o seu poder total de HERÓIS?', howToFind: 'Como encontrar', heroPowerHelp: 'Digite apenas o Poder de Heróis, não o Poder Total.', heroHelp1: 'Abra seu perfil.', heroHelp2: 'Toque no selo de Poder Total.', heroHelp3: 'Abra Detalhes de Poder e encontre Poder de Heróis.', heroHelp4: 'Informe somente o número completo do Poder de Heróis.', seatColour: 'Qual é a cor do seu assento?', gold: 'Dourado', purple: 'Roxo', blue: 'Azul', white: 'Branco', howToFindSeat: 'Como encontrar a cor do assento', seatHelp1: 'Toque no ícone do mapa no lado direito da tela do jogo.', seatHelp2: 'Abra Transfer Surge e verifique “Your Status”.', seatHelp3: 'A cor do seu assento aparece na parte inferior.',
+    gameDetails: 'Dados do jogo', gameDetailsPersonalized: 'Olá, {username}. Conte-nos mais sobre você!', gameDetailsIntro: 'Insira os valores atuais mostrados no seu perfil do jogo.', transferEstimateTitle: "Estimativa de transferência no fim da S4", transferEstimateIntro: "Estes campos ajudam a estimar sua classificação após a Temporada 4. Use os maiores valores conhecidos quando possível.", buildingPower: "Poder de construções", technologyPower: "Poder de tecnologia", dronePower: "Poder do drone", unitPowerTop3: "Poder de unidades — 3 principais esquadrões implantados", overlordPower: "Poder do Overlord", t11Unlocked: "T11 desbloqueado?", highestKnownHelp: "Digite o maior número completo conhecido, sem M ou K.", reportedTransferScore: "Pontuação de transferência conhecida", reportedTransferScoreHelp: "Digite apenas se a tela de transferência já mostrar uma pontuação.", estimatedSeatColour: "Cor de assento S4 estimada", estimatedTransferScoreBand: "Faixa experimental da pontuação", contributingPowerProfile: "Poder contribuinte informado", contributingPowerHelp: "É uma soma simples dos campos informados, não a pontuação oficial do jogo.", scoreBandLowConfidence: "Referência comunitária de baixa confiança.", estimateWarningLead: "Importante:", estimateWarning: " Last War não publica uma fórmula universal. Os limites variam por grupo e pode ser usado poder histórico. Esta estimativa é apenas para planejamento.", seatWhite: "Branco", seatBlue: "Azul", seatPurple: "Roxo", seatGold: "Dourado", seatBorderline: "Limite", confidenceLow: "Baixa confiança", confidenceMedium: "Confiança média", confidenceHigher: "Maior confiança", professionLevel: 'Qual é o seu nível de profissão?', killCount: 'Qual é o seu número atual de eliminações?', fullNumberHelp: 'Digite o número completo. Não use M, K ou abreviações.', heroPower: 'Qual é o seu poder total de HERÓIS?', howToFind: 'Como encontrar', heroPowerHelp: 'Digite apenas o Poder de Heróis, não o Poder Total.', heroHelp1: 'Abra seu perfil.', heroHelp2: 'Toque no selo de Poder Total.', heroHelp3: 'Abra Detalhes de Poder e encontre Poder de Heróis.', heroHelp4: 'Informe somente o número completo do Poder de Heróis.', seatColour: 'Qual é a cor do seu assento?', gold: 'Dourado', purple: 'Roxo', blue: 'Azul', white: 'Branco', howToFindSeat: 'Como encontrar a cor do assento', seatHelp1: 'Toque no ícone do mapa no lado direito da tela do jogo.', seatHelp2: 'Abra Transfer Surge e verifique “Your Status”.', seatHelp3: 'A cor do seu assento aparece na parte inferior.',
     transferGroup: 'Grupo de transferência', transferGroupIntro: 'Informe se você está se transferindo com outros jogadores. Se sim, adicione cada pessoa para mantermos o grupo conectado durante a análise.', transferWithGroup: 'Você espera se transferir com um grupo de pessoas do seu servidor?', yes: 'Sim', no: 'Não', unsure: 'Não tenho certeza', yesGroupSub: 'Estou levando outros jogadores', noGroupSub: 'Estou indo sozinho(a)', unsureGroupSub: 'Ainda não tenho certeza', yourTransferGroup: 'Seu grupo de transferência', groupBuilderIntro: "Você não precisa saber ainda todos os jogadores. Adicione os que você conhece ou deixe a lista vazia e continue.", addAnotherPlayer: "Adicionar jogador conhecido", groupContact: 'Contato do grupo', groupContactIntro: "Quem devemos contatar se precisarmos falar com seu grupo? Se você não escolher outra pessoa, usaremos você como contato.", selectGroupContact: 'Selecione um contato', totalPlayersInGroup: "Tamanho estimado do grupo", additionalPlayers: 'Jogadores adicionais', includingYou: 'Incluindo você', playerName: 'Nome do jogador', memberServer: 'Servidor atual', memberAlliance: 'Nome / tag da aliança', knownPlayersListed: "Jogadores conhecidos adicionados", estimatedGroupSize: "Tamanho estimado do grupo", estimatedGroupSizeIntro: "Se você souber aproximadamente quantos jogadores adicionais podem vir com você, informe o número. Uma estimativa está bem.", expectedAdditionalPlayers: "Jogadores adicionais esperados", expectedAdditionalHelp: "Deixe em branco se ainda não souber.", optional: "Opcional", transferGroupIdTitle: "ID do grupo de transferência", transferGroupIdIntro: "Se vocês estão se transferindo em grupo, compartilhe este ID com qualquer pessoa que vai se inscrever com você. Eles podem inserir o mesmo ID para que as inscrições fiquem agrupadas.", activeTransferGroupId: "ID ativo do grupo de transferência", groupIdAuto: "Usando ID NOVO", groupIdUsingExisting: "Usando um ID de grupo de transferência compartilhado", copyGroupId: "Copiar ID", copiedGroupId: "Copiado!", existingGroupId: "Já tem um ID de grupo de transferência?", existingGroupIdHelp: "Se alguém do seu grupo já criou um ID, cole-o aqui. Ao inserir um ID compartilhado, sua inscrição usará esse ID no lugar do novo ID mostrado acima. Se deixar em branco, usaremos o novo ID gerado acima.", reviewTransferGroupId: "ID do grupo de transferência",
     additionalInfo: 'Informações adicionais', additionalInfoIntro: 'Adicione qualquer informação que possa ajudar a equipe 1616 a avaliar sua solicitação.', additionalComments: 'Você tem algum comentário ou pergunta adicional?', beforeContinue: 'Antes de continuar', waitlistReminder: 'Lembre-se: esta inscrição coloca você na lista de espera do Servidor 1616. Ela não garante uma vaga.',
     reviewSubmit: 'Revisar e enviar', reviewIntro: 'Revise suas informações antes de enviar. Você pode voltar a qualquer seção para fazer alterações.', submitNote: 'Sua inscrição será enviada para a planilha de análise de 1616. O idioma escolhido também será salvo.', edit: 'Editar', back: 'Voltar', continue: 'Continuar', submitApplication: 'Enviar inscrição',
@@ -3996,7 +4281,7 @@ const I18N = {
     chooseLanguage: 'Choisissez votre langue', languageIntro: 'Choisissez la langue que vous souhaitez utiliser. Vous pourrez la modifier à tout moment.',
     welcomeTitle: 'Demande de transfert vers le serveur 1616', welcomeBody1: 'Merci de votre intérêt pour un transfert vers 1616. Prenez quelques minutes pour remplir cette demande afin que nous puissions évaluer les candidatures.', waitlistLead: 'Important :', welcomeBody2: 'L’envoi de cette demande vous place sur une liste d’attente et ne garantit pas une place sur le serveur 1616.', welcomeBody3: 'Les questions concernant ce formulaire ou les transferts peuvent être adressées à RaidARQN [NvSP].',
     yourInformation: 'Vos informations', yourInfoIntro: 'Indiquez-nous qui vous êtes et où vous jouez actuellement.', currentServer: 'Sur quel serveur êtes-vous actuellement ?', username: 'Quel est votre nom d’utilisateur complet dans le jeu ?', allianceTag: 'Quel est le nom ou le tag de votre alliance actuelle ?',
-    gameDetails: 'Données du jeu', gameDetailsIntro: 'Saisissez les valeurs actuelles affichées dans votre profil de jeu.', transferEstimateTitle: "Estimation de transfert de fin de S4", transferEstimateIntro: "Ces champs nous aident à estimer votre catégorie après la Saison 4. Utilisez les valeurs maximales connues si possible.", buildingPower: "Puissance des bâtiments", technologyPower: "Puissance technologique", dronePower: "Puissance du drone", unitPowerTop3: "Puissance des unités — 3 meilleures escouades déployées", overlordPower: "Puissance Overlord", t11Unlocked: "T11 débloqué ?", highestKnownHelp: "Saisissez le nombre complet le plus élevé connu, sans M ni K.", reportedTransferScore: "Score de transfert connu", reportedTransferScoreHelp: "À remplir uniquement si votre écran de transfert affiche déjà un score.", estimatedSeatColour: "Couleur de siège S4 estimée", estimatedTransferScoreBand: "Plage expérimentale du score", contributingPowerProfile: "Puissance contributive saisie", contributingPowerHelp: "Il s’agit d’une simple somme des champs saisis, pas du score officiel du jeu.", scoreBandLowConfidence: "Référence communautaire à faible confiance.", estimateWarningLead: "Important :", estimateWarning: " Last War ne publie pas de formule universelle. Les seuils varient selon le groupe et la puissance historique peut être utilisée. Estimation à titre indicatif seulement.", seatWhite: "Blanc", seatBlue: "Bleu", seatPurple: "Violet", seatGold: "Or", seatBorderline: "Limite", confidenceLow: "Faible confiance", confidenceMedium: "Confiance moyenne", confidenceHigher: "Confiance plus élevée", professionLevel: 'Quel est votre niveau de profession ?', killCount: 'Quel est votre nombre actuel d’éliminations ?', fullNumberHelp: 'Saisissez le nombre complet. N’utilisez pas M, K ni d’abréviations.', heroPower: 'Quelle est votre puissance totale de HÉROS ?', howToFind: 'Comment la trouver', heroPowerHelp: 'Saisissez uniquement la puissance des HÉROS, pas la puissance totale.', heroHelp1: 'Ouvrez votre profil.', heroHelp2: 'Touchez votre badge de puissance totale.', heroHelp3: 'Ouvrez les détails de puissance et trouvez la puissance des héros.', heroHelp4: 'Indiquez uniquement le nombre complet de puissance des héros.', seatColour: 'Quelle est la couleur de votre siège ?', gold: 'Or', purple: 'Violet', blue: 'Bleu', white: 'Blanc', howToFindSeat: 'Comment trouver la couleur du siège', seatHelp1: 'Touchez l’icône de carte à droite de l’écran.', seatHelp2: 'Ouvrez Transfer Surge et consultez “Your Status”.', seatHelp3: 'La couleur de votre siège apparaît en bas de cet écran.',
+    gameDetails: 'Données du jeu', gameDetailsPersonalized: 'Bonjour, {username}. Parlez-nous un peu plus de vous !', gameDetailsIntro: 'Saisissez les valeurs actuelles affichées dans votre profil de jeu.', transferEstimateTitle: "Estimation de transfert de fin de S4", transferEstimateIntro: "Ces champs nous aident à estimer votre catégorie après la Saison 4. Utilisez les valeurs maximales connues si possible.", buildingPower: "Puissance des bâtiments", technologyPower: "Puissance technologique", dronePower: "Puissance du drone", unitPowerTop3: "Puissance des unités — 3 meilleures escouades déployées", overlordPower: "Puissance Overlord", t11Unlocked: "T11 débloqué ?", highestKnownHelp: "Saisissez le nombre complet le plus élevé connu, sans M ni K.", reportedTransferScore: "Score de transfert connu", reportedTransferScoreHelp: "À remplir uniquement si votre écran de transfert affiche déjà un score.", estimatedSeatColour: "Couleur de siège S4 estimée", estimatedTransferScoreBand: "Plage expérimentale du score", contributingPowerProfile: "Puissance contributive saisie", contributingPowerHelp: "Il s’agit d’une simple somme des champs saisis, pas du score officiel du jeu.", scoreBandLowConfidence: "Référence communautaire à faible confiance.", estimateWarningLead: "Important :", estimateWarning: " Last War ne publie pas de formule universelle. Les seuils varient selon le groupe et la puissance historique peut être utilisée. Estimation à titre indicatif seulement.", seatWhite: "Blanc", seatBlue: "Bleu", seatPurple: "Violet", seatGold: "Or", seatBorderline: "Limite", confidenceLow: "Faible confiance", confidenceMedium: "Confiance moyenne", confidenceHigher: "Confiance plus élevée", professionLevel: 'Quel est votre niveau de profession ?', killCount: 'Quel est votre nombre actuel d’éliminations ?', fullNumberHelp: 'Saisissez le nombre complet. N’utilisez pas M, K ni d’abréviations.', heroPower: 'Quelle est votre puissance totale de HÉROS ?', howToFind: 'Comment la trouver', heroPowerHelp: 'Saisissez uniquement la puissance des HÉROS, pas la puissance totale.', heroHelp1: 'Ouvrez votre profil.', heroHelp2: 'Touchez votre badge de puissance totale.', heroHelp3: 'Ouvrez les détails de puissance et trouvez la puissance des héros.', heroHelp4: 'Indiquez uniquement le nombre complet de puissance des héros.', seatColour: 'Quelle est la couleur de votre siège ?', gold: 'Or', purple: 'Violet', blue: 'Bleu', white: 'Blanc', howToFindSeat: 'Comment trouver la couleur du siège', seatHelp1: 'Touchez l’icône de carte à droite de l’écran.', seatHelp2: 'Ouvrez Transfer Surge et consultez “Your Status”.', seatHelp3: 'La couleur de votre siège apparaît en bas de cet écran.',
     transferGroup: 'Groupe de transfert', transferGroupIntro: 'Indiquez si vous vous transférez avec d’autres joueurs. Si oui, ajoutez chaque joueur afin que nous puissions garder le groupe lié pendant l’examen.', transferWithGroup: 'Souhaitez-vous vous transférer avec un groupe de joueurs de votre serveur ?', yes: 'Oui', no: 'Non', unsure: 'Incertain', yesGroupSub: 'Je viens avec d’autres joueurs', noGroupSub: 'Je viens seul(e)', unsureGroupSub: 'Je ne sais pas encore', yourTransferGroup: 'Votre groupe de transfert', groupBuilderIntro: "Vous n’avez pas besoin de connaître tous les joueurs pour le moment. Ajoutez ceux que vous connaissez ou laissez la liste vide et continuez.", addAnotherPlayer: "Ajouter un joueur connu", groupContact: 'Contact du groupe', groupContactIntro: "Qui devons-nous contacter si nous devons joindre votre groupe ? Si vous ne choisissez personne d’autre, nous vous utiliserons comme contact.", selectGroupContact: 'Sélectionnez un contact', totalPlayersInGroup: "Taille estimée du groupe", additionalPlayers: 'Joueurs supplémentaires', includingYou: 'Vous compris(e)', playerName: 'Nom du joueur', memberServer: 'Serveur actuel', memberAlliance: 'Nom / tag de l’alliance', knownPlayersListed: "Joueurs connus ajoutés", estimatedGroupSize: "Taille estimée du groupe", estimatedGroupSizeIntro: "Si vous savez approximativement combien de joueurs supplémentaires pourraient venir avec vous, indiquez ce nombre. Une estimation suffit.", expectedAdditionalPlayers: "Joueurs supplémentaires prévus", expectedAdditionalHelp: "Laissez vide si vous ne le savez pas encore.", optional: "Facultatif", transferGroupIdTitle: "ID du groupe de transfert", transferGroupIdIntro: "Si vous transférez en groupe, partagez cet identifiant avec toute personne qui postule avec vous. Elle pourra saisir le même identifiant afin que vos candidatures restent regroupées.", activeTransferGroupId: "ID actif du groupe de transfert", groupIdAuto: "Utilisation du NOUVEL ID", groupIdUsingExisting: "Utilisation d’un ID de groupe de transfert partagé", copyGroupId: "Copier l’ID", copiedGroupId: "Copié !", existingGroupId: "Vous avez déjà un ID de groupe de transfert ?", existingGroupIdHelp: "Si quelqu’un de votre groupe a déjà créé un ID, collez-le ici. Cet ID partagé sera utilisé pour votre demande à la place du nouvel ID affiché ci-dessus. Si vous laissez ce champ vide, le nouvel ID sera utilisé.", reviewTransferGroupId: "ID du groupe de transfert",
     additionalInfo: 'Informations supplémentaires', additionalInfoIntro: 'Ajoutez tout renseignement pouvant aider l’équipe 1616 à examiner votre demande.', additionalComments: 'Avez-vous des commentaires ou des questions supplémentaires ?', beforeContinue: 'Avant de continuer', waitlistReminder: 'Rappel : cette demande vous ajoute à la liste d’attente du serveur 1616. Elle ne garantit pas une place.',
     reviewSubmit: 'Vérifier et envoyer', reviewIntro: 'Vérifiez vos informations avant l’envoi. Vous pouvez revenir à n’importe quelle section pour les modifier.', submitNote: 'Votre demande sera envoyée dans la feuille de suivi 1616. La langue choisie sera également enregistrée.', edit: 'Modifier', back: 'Retour', continue: 'Continuer', submitApplication: 'Envoyer la demande',
@@ -4081,7 +4366,7 @@ const I18N = {
     chooseLanguage: 'اختر لغتك', languageIntro: 'اختر اللغة التي تريد استخدامها. يمكنك تغييرها في أي وقت.',
     welcomeTitle: 'طلب الانتقال إلى السيرفر 1616', welcomeBody1: 'شكرًا لاهتمامك بالانتقال إلى 1616. يرجى تخصيص بضع دقائق لإكمال هذا الطلب حتى نتمكن من تقييم المتقدمين.', waitlistLead: 'مهم:', welcomeBody2: 'إرسال هذا الطلب يضعك على قائمة انتظار ولا يضمن لك مكانًا في السيرفر 1616.', welcomeBody3: 'يمكن توجيه الأسئلة حول هذا النموذج أو عمليات الانتقال إلى RaidARQN [NvSP].',
     yourInformation: 'معلوماتك', yourInfoIntro: 'أخبرنا من أنت وأين تلعب حاليًا.', currentServer: 'ما هو السيرفر الذي تتواجد عليه حاليًا؟', username: 'ما هو اسم المستخدم الكامل داخل اللعبة؟', allianceTag: 'ما اسم أو وسم التحالف الحالي؟',
-    gameDetails: 'تفاصيل اللعبة', gameDetailsIntro: 'أدخل القيم الحالية الظاهرة في ملفك داخل اللعبة.', transferEstimateTitle: "تقدير الانتقال في نهاية الموسم 4", transferEstimateIntro: "تساعدنا هذه الحقول في تقدير تصنيف انتقالك بعد الموسم 4. استخدم أعلى قيم قوة تعرفها إن أمكن.", buildingPower: "قوة المباني", technologyPower: "قوة التكنولوجيا", dronePower: "قوة الدرون", unitPowerTop3: "قوة الوحدات — أقوى 3 فرق منتشرة بالكامل", overlordPower: "قوة Overlord", t11Unlocked: "هل تم فتح T11؟", highestKnownHelp: "أدخل أعلى رقم كامل تعرفه بدون M أو K.", reportedTransferScore: "نقاط الانتقال المعروفة داخل اللعبة", reportedTransferScoreHelp: "أدخلها فقط إذا كانت شاشة الانتقال تعرض النقاط بالفعل.", estimatedSeatColour: "لون المقعد التقديري للموسم 4", estimatedTransferScoreBand: "نطاق تجريبي لنقاط الانتقال", contributingPowerProfile: "إجمالي القوة المدخلة", contributingPowerHelp: "هذا مجموع بسيط للحقول المدخلة وليس نقاط اللعبة الرسمية.", scoreBandLowConfidence: "مرجع مجتمعي منخفض الثقة فقط.", estimateWarningLead: "مهم:", estimateWarning: " لا تنشر Last War معادلة موحدة لنقاط الانتقال. تختلف الحدود حسب مجموعة الانتقال وقد تُستخدم أعلى قوة تاريخية. هذا التقدير للتخطيط فقط.", seatWhite: "أبيض", seatBlue: "أزرق", seatPurple: "بنفسجي", seatGold: "ذهبي", seatBorderline: "حدّي", confidenceLow: "ثقة منخفضة", confidenceMedium: "ثقة متوسطة", confidenceHigher: "ثقة أعلى", professionLevel: 'ما هو مستوى مهنتك؟', killCount: 'ما هو عدد القتلى الحالي لديك؟', fullNumberHelp: 'أدخل الرقم كاملًا. لا تستخدم M أو K أو الاختصارات.', heroPower: 'ما هو إجمالي قوة الأبطال لديك؟', howToFind: 'كيفية العثور عليه', heroPowerHelp: 'أدخل قوة الأبطال فقط، وليس القوة الإجمالية.', heroHelp1: 'افتح ملفك الشخصي.', heroHelp2: 'اضغط على شارة القوة الإجمالية.', heroHelp3: 'افتح تفاصيل القوة وابحث عن قوة الأبطال.', heroHelp4: 'أدخل رقم قوة الأبطال كاملًا فقط.', seatColour: 'ما لون مقعدك؟', gold: 'ذهبي', purple: 'بنفسجي', blue: 'أزرق', white: 'أبيض', howToFindSeat: 'كيفية معرفة لون المقعد', seatHelp1: 'اضغط على أيقونة الخريطة في الجانب الأيمن من شاشة اللعبة.', seatHelp2: 'افتح Transfer Surge وتحقق من “Your Status”.', seatHelp3: 'يظهر لون مقعدك في أسفل الشاشة.',
+    gameDetails: 'تفاصيل اللعبة', gameDetailsPersonalized: 'مرحبًا، {username}. أخبرنا المزيد عن نفسك!', gameDetailsIntro: 'أدخل القيم الحالية الظاهرة في ملفك داخل اللعبة.', transferEstimateTitle: "تقدير الانتقال في نهاية الموسم 4", transferEstimateIntro: "تساعدنا هذه الحقول في تقدير تصنيف انتقالك بعد الموسم 4. استخدم أعلى قيم قوة تعرفها إن أمكن.", buildingPower: "قوة المباني", technologyPower: "قوة التكنولوجيا", dronePower: "قوة الدرون", unitPowerTop3: "قوة الوحدات — أقوى 3 فرق منتشرة بالكامل", overlordPower: "قوة Overlord", t11Unlocked: "هل تم فتح T11؟", highestKnownHelp: "أدخل أعلى رقم كامل تعرفه بدون M أو K.", reportedTransferScore: "نقاط الانتقال المعروفة داخل اللعبة", reportedTransferScoreHelp: "أدخلها فقط إذا كانت شاشة الانتقال تعرض النقاط بالفعل.", estimatedSeatColour: "لون المقعد التقديري للموسم 4", estimatedTransferScoreBand: "نطاق تجريبي لنقاط الانتقال", contributingPowerProfile: "إجمالي القوة المدخلة", contributingPowerHelp: "هذا مجموع بسيط للحقول المدخلة وليس نقاط اللعبة الرسمية.", scoreBandLowConfidence: "مرجع مجتمعي منخفض الثقة فقط.", estimateWarningLead: "مهم:", estimateWarning: " لا تنشر Last War معادلة موحدة لنقاط الانتقال. تختلف الحدود حسب مجموعة الانتقال وقد تُستخدم أعلى قوة تاريخية. هذا التقدير للتخطيط فقط.", seatWhite: "أبيض", seatBlue: "أزرق", seatPurple: "بنفسجي", seatGold: "ذهبي", seatBorderline: "حدّي", confidenceLow: "ثقة منخفضة", confidenceMedium: "ثقة متوسطة", confidenceHigher: "ثقة أعلى", professionLevel: 'ما هو مستوى مهنتك؟', killCount: 'ما هو عدد القتلى الحالي لديك؟', fullNumberHelp: 'أدخل الرقم كاملًا. لا تستخدم M أو K أو الاختصارات.', heroPower: 'ما هو إجمالي قوة الأبطال لديك؟', howToFind: 'كيفية العثور عليه', heroPowerHelp: 'أدخل قوة الأبطال فقط، وليس القوة الإجمالية.', heroHelp1: 'افتح ملفك الشخصي.', heroHelp2: 'اضغط على شارة القوة الإجمالية.', heroHelp3: 'افتح تفاصيل القوة وابحث عن قوة الأبطال.', heroHelp4: 'أدخل رقم قوة الأبطال كاملًا فقط.', seatColour: 'ما لون مقعدك؟', gold: 'ذهبي', purple: 'بنفسجي', blue: 'أزرق', white: 'أبيض', howToFindSeat: 'كيفية معرفة لون المقعد', seatHelp1: 'اضغط على أيقونة الخريطة في الجانب الأيمن من شاشة اللعبة.', seatHelp2: 'افتح Transfer Surge وتحقق من “Your Status”.', seatHelp3: 'يظهر لون مقعدك في أسفل الشاشة.',
     transferGroup: 'مجموعة الانتقال', transferGroupIntro: 'أخبرنا إذا كنت ستنتقل مع لاعبين آخرين. إذا نعم، أضف كل لاعب حتى نبقي مجموعتك مرتبطة أثناء المراجعة.', transferWithGroup: 'هل تأمل في الانتقال مع مجموعة من الأشخاص من سيرفرك؟', yes: 'نعم', no: 'لا', unsure: 'غير متأكد', yesGroupSub: 'سأنتقل مع لاعبين آخرين', noGroupSub: 'سأنتقل بمفردي', unsureGroupSub: 'لست متأكدًا بعد', yourTransferGroup: 'مجموعة انتقالك', groupBuilderIntro: "لا تحتاج إلى معرفة جميع اللاعبين الآن. أضف أي لاعبين تعرفهم، أو اترك القائمة فارغة وتابع.", addAnotherPlayer: "إضافة لاعب تعرفه", groupContact: 'جهة اتصال المجموعة', groupContactIntro: "بمن نتواصل إذا احتجنا إلى الوصول إلى مجموعتك؟ إذا لم تختر شخصًا آخر، فسنعتبرك جهة اتصال المجموعة.", selectGroupContact: 'اختر جهة اتصال', totalPlayersInGroup: "الحجم المتوقع للمجموعة", additionalPlayers: 'اللاعبون الإضافيون', includingYou: 'بما فيهم أنت', playerName: 'اسم اللاعب', memberServer: 'السيرفر الحالي', memberAlliance: 'اسم / وسم التحالف', knownPlayersListed: "اللاعبون المعروفون المدرجون", estimatedGroupSize: "الحجم المتوقع للمجموعة", estimatedGroupSizeIntro: "إذا كنت تعرف تقريبًا عدد اللاعبين الإضافيين الذين قد ينتقلون معك، فأدخل العدد. التقدير مقبول.", expectedAdditionalPlayers: "عدد اللاعبين الإضافيين المتوقع", expectedAdditionalHelp: "اتركه فارغًا إذا كنت لا تعرف بعد.", optional: "اختياري", transferGroupIdTitle: "معرّف مجموعة الانتقال", transferGroupIdIntro: "إذا كنتم تنتقلون كمجموعة، شارك هذا المعرّف مع أي شخص سيتقدّم معك. يمكنهم إدخال نفس المعرّف حتى تبقى الطلبات مجمّعة معًا.", activeTransferGroupId: "معرّف مجموعة الانتقال النشط", groupIdAuto: "يتم استخدام معرّف جديد", groupIdUsingExisting: "يتم استخدام معرّف مجموعة انتقال مشترك", copyGroupId: "نسخ المعرّف", copiedGroupId: "تم النسخ!", existingGroupId: "هل لديك بالفعل معرّف مجموعة انتقال؟", existingGroupIdHelp: "إذا أنشأ شخص في مجموعتك معرّفًا بالفعل، الصقه هنا. سيستخدم طلبك هذا المعرّف المشترك بدلًا من المعرّف الجديد أعلاه. إذا تركته فارغًا، سيستخدم الطلب المعرّف الجديد.", reviewTransferGroupId: "معرّف مجموعة الانتقال",
     additionalInfo: 'معلومات إضافية', additionalInfoIntro: 'أضف أي معلومات أخرى قد تساعد فريق 1616 في مراجعة طلبك.', additionalComments: 'هل لديك أي تعليقات أو أسئلة إضافية؟', beforeContinue: 'قبل المتابعة', waitlistReminder: 'تذكير: هذا الطلب يضيفك إلى قائمة انتظار السيرفر 1616 ولا يضمن مكانًا للانتقال.',
     reviewSubmit: 'المراجعة والإرسال', reviewIntro: 'راجع معلوماتك قبل الإرسال. يمكنك العودة إلى أي قسم لإجراء تغييرات.', submitNote: 'سيتم إرسال طلبك إلى جدول مراجعة 1616، وسيتم حفظ اللغة التي اخترتها مع الطلب.', edit: 'تعديل', back: 'رجوع', continue: 'متابعة', submitApplication: 'إرسال الطلب',
@@ -4166,7 +4451,7 @@ const I18N = {
     chooseLanguage: 'Chọn ngôn ngữ', languageIntro: 'Chọn ngôn ngữ bạn muốn sử dụng. Bạn có thể thay đổi bất cứ lúc nào.',
     welcomeTitle: 'Đơn chuyển đến Server 1616', welcomeBody1: 'Cảm ơn bạn đã quan tâm đến việc chuyển sang 1616. Vui lòng dành vài phút để hoàn thành đơn này để chúng tôi có thể đánh giá ứng viên.', waitlistLead: 'Quan trọng:', welcomeBody2: 'Gửi đơn này sẽ đưa bạn vào danh sách chờ và không đảm bảo bạn sẽ có một suất ở Server 1616.', welcomeBody3: 'Các câu hỏi về biểu mẫu hoặc việc chuyển server có thể được gửi đến RaidARQN [NvSP].',
     yourInformation: 'Thông tin của bạn', yourInfoIntro: 'Hãy cho chúng tôi biết bạn là ai và hiện đang chơi ở đâu.', currentServer: 'Bạn hiện đang ở server nào?', username: 'Tên người dùng đầy đủ trong game của bạn là gì?', allianceTag: 'Tên hoặc tag liên minh hiện tại của bạn là gì?',
-    gameDetails: 'Thông tin game', gameDetailsIntro: 'Nhập các giá trị hiện tại hiển thị trong hồ sơ game của bạn.', transferEstimateTitle: "Ước tính chuyển server cuối S4", transferEstimateIntro: "Các trường này giúp ước tính phân loại chuyển server sau Mùa 4. Hãy dùng mức sức mạnh cao nhất bạn biết nếu có thể.", buildingPower: "Sức mạnh công trình", technologyPower: "Sức mạnh công nghệ", dronePower: "Sức mạnh Drone", unitPowerTop3: "Sức mạnh đơn vị — 3 đội mạnh nhất triển khai đầy đủ", overlordPower: "Sức mạnh Overlord", t11Unlocked: "Đã mở T11?", highestKnownHelp: "Nhập số đầy đủ cao nhất bạn biết, không dùng M hoặc K.", reportedTransferScore: "Điểm chuyển server đã biết", reportedTransferScoreHelp: "Chỉ nhập nếu màn hình chuyển server đã hiển thị điểm.", estimatedSeatColour: "Màu ghế S4 ước tính", estimatedTransferScoreBand: "Khoảng điểm chuyển server thử nghiệm", contributingPowerProfile: "Tổng sức mạnh đã nhập", contributingPowerHelp: "Đây chỉ là tổng đơn giản của các trường đã nhập, không phải điểm chính thức của game.", scoreBandLowConfidence: "Chỉ là tham chiếu cộng đồng độ tin cậy thấp.", estimateWarningLead: "Quan trọng:", estimateWarning: " Last War không công bố công thức chung. Ngưỡng thay đổi theo nhóm chuyển server và có thể dùng sức mạnh cao nhất trong lịch sử. Chỉ dùng để lập kế hoạch.", seatWhite: "Trắng", seatBlue: "Xanh dương", seatPurple: "Tím", seatGold: "Vàng", seatBorderline: "Sát ngưỡng", confidenceLow: "Độ tin cậy thấp", confidenceMedium: "Độ tin cậy trung bình", confidenceHigher: "Độ tin cậy cao hơn", professionLevel: 'Cấp độ nghề nghiệp của bạn là bao nhiêu?', killCount: 'Số lượng tiêu diệt hiện tại của bạn là bao nhiêu?', fullNumberHelp: 'Nhập đầy đủ con số. Không dùng M, K hoặc viết tắt.', heroPower: 'Tổng sức mạnh ANH HÙNG của bạn là bao nhiêu?', howToFind: 'Cách tìm', heroPowerHelp: 'Chỉ nhập Hero Power, không phải Total Power.', heroHelp1: 'Mở hồ sơ của bạn.', heroHelp2: 'Nhấn vào huy hiệu Total Power.', heroHelp3: 'Mở Power Details và tìm Hero Power.', heroHelp4: 'Chỉ báo cáo đầy đủ số Hero Power.', seatColour: 'Màu ghế của bạn là gì?', gold: 'Vàng', purple: 'Tím', blue: 'Xanh dương', white: 'Trắng', howToFindSeat: 'Cách tìm màu ghế', seatHelp1: 'Nhấn biểu tượng bản đồ ở bên phải màn hình game.', seatHelp2: 'Mở Transfer Surge và xem “Your Status”.', seatHelp3: 'Màu ghế của bạn hiển thị ở phía dưới màn hình đó.',
+    gameDetails: 'Thông tin game', gameDetailsPersonalized: 'Chào {username}. Hãy cho chúng tôi biết thêm về bạn!', gameDetailsIntro: 'Nhập các giá trị hiện tại hiển thị trong hồ sơ game của bạn.', transferEstimateTitle: "Ước tính chuyển server cuối S4", transferEstimateIntro: "Các trường này giúp ước tính phân loại chuyển server sau Mùa 4. Hãy dùng mức sức mạnh cao nhất bạn biết nếu có thể.", buildingPower: "Sức mạnh công trình", technologyPower: "Sức mạnh công nghệ", dronePower: "Sức mạnh Drone", unitPowerTop3: "Sức mạnh đơn vị — 3 đội mạnh nhất triển khai đầy đủ", overlordPower: "Sức mạnh Overlord", t11Unlocked: "Đã mở T11?", highestKnownHelp: "Nhập số đầy đủ cao nhất bạn biết, không dùng M hoặc K.", reportedTransferScore: "Điểm chuyển server đã biết", reportedTransferScoreHelp: "Chỉ nhập nếu màn hình chuyển server đã hiển thị điểm.", estimatedSeatColour: "Màu ghế S4 ước tính", estimatedTransferScoreBand: "Khoảng điểm chuyển server thử nghiệm", contributingPowerProfile: "Tổng sức mạnh đã nhập", contributingPowerHelp: "Đây chỉ là tổng đơn giản của các trường đã nhập, không phải điểm chính thức của game.", scoreBandLowConfidence: "Chỉ là tham chiếu cộng đồng độ tin cậy thấp.", estimateWarningLead: "Quan trọng:", estimateWarning: " Last War không công bố công thức chung. Ngưỡng thay đổi theo nhóm chuyển server và có thể dùng sức mạnh cao nhất trong lịch sử. Chỉ dùng để lập kế hoạch.", seatWhite: "Trắng", seatBlue: "Xanh dương", seatPurple: "Tím", seatGold: "Vàng", seatBorderline: "Sát ngưỡng", confidenceLow: "Độ tin cậy thấp", confidenceMedium: "Độ tin cậy trung bình", confidenceHigher: "Độ tin cậy cao hơn", professionLevel: 'Cấp độ nghề nghiệp của bạn là bao nhiêu?', killCount: 'Số lượng tiêu diệt hiện tại của bạn là bao nhiêu?', fullNumberHelp: 'Nhập đầy đủ con số. Không dùng M, K hoặc viết tắt.', heroPower: 'Tổng sức mạnh ANH HÙNG của bạn là bao nhiêu?', howToFind: 'Cách tìm', heroPowerHelp: 'Chỉ nhập Hero Power, không phải Total Power.', heroHelp1: 'Mở hồ sơ của bạn.', heroHelp2: 'Nhấn vào huy hiệu Total Power.', heroHelp3: 'Mở Power Details và tìm Hero Power.', heroHelp4: 'Chỉ báo cáo đầy đủ số Hero Power.', seatColour: 'Màu ghế của bạn là gì?', gold: 'Vàng', purple: 'Tím', blue: 'Xanh dương', white: 'Trắng', howToFindSeat: 'Cách tìm màu ghế', seatHelp1: 'Nhấn biểu tượng bản đồ ở bên phải màn hình game.', seatHelp2: 'Mở Transfer Surge và xem “Your Status”.', seatHelp3: 'Màu ghế của bạn hiển thị ở phía dưới màn hình đó.',
     transferGroup: 'Nhóm chuyển server', transferGroupIntro: 'Cho chúng tôi biết bạn có chuyển cùng người chơi khác không. Nếu có, hãy thêm từng người để chúng tôi có thể giữ nhóm của bạn được liên kết khi xét duyệt.', transferWithGroup: 'Bạn có muốn chuyển cùng một nhóm người từ server của bạn không?', yes: 'Có', no: 'Không', unsure: 'Không chắc', yesGroupSub: 'Tôi đi cùng người chơi khác', noGroupSub: 'Tôi chuyển một mình', unsureGroupSub: 'Tôi chưa chắc', yourTransferGroup: 'Nhóm chuyển của bạn', groupBuilderIntro: "Bạn chưa cần biết tất cả người chơi. Hãy thêm những người bạn biết, hoặc để trống danh sách và tiếp tục.", addAnotherPlayer: "Thêm người chơi đã biết", groupContact: 'Người liên hệ của nhóm', groupContactIntro: "Chúng tôi nên liên hệ ai nếu cần trao đổi với nhóm của bạn? Nếu bạn không chọn người khác, chúng tôi sẽ dùng bạn làm người liên hệ.", selectGroupContact: 'Chọn người liên hệ', totalPlayersInGroup: "Quy mô nhóm dự kiến", additionalPlayers: 'Người chơi bổ sung', includingYou: 'Bao gồm bạn', playerName: 'Tên người chơi', memberServer: 'Server hiện tại', memberAlliance: 'Tên / tag liên minh', knownPlayersListed: "Người chơi đã biết được thêm", estimatedGroupSize: "Quy mô nhóm dự kiến", estimatedGroupSizeIntro: "Nếu bạn biết khoảng bao nhiêu người chơi bổ sung có thể đi cùng, hãy nhập con số. Ước tính là được.", expectedAdditionalPlayers: "Số người chơi bổ sung dự kiến", expectedAdditionalHelp: "Để trống nếu bạn chưa biết.", optional: "Không bắt buộc", transferGroupIdTitle: "Mã nhóm chuyển server", transferGroupIdIntro: "Nếu bạn chuyển cùng một nhóm, hãy chia sẻ mã này với bất kỳ ai nộp đơn cùng bạn. Họ có thể nhập cùng một mã để các đơn được nhóm lại với nhau.", activeTransferGroupId: "Mã nhóm chuyển server đang dùng", groupIdAuto: "Đang dùng MÃ MỚI", groupIdUsingExisting: "Đang dùng mã nhóm chuyển server đã được chia sẻ", copyGroupId: "Sao chép mã", copiedGroupId: "Đã sao chép!", existingGroupId: "Bạn đã có mã nhóm chuyển server chưa?", existingGroupIdHelp: "Nếu ai đó trong nhóm đã tạo mã, hãy dán mã đó vào đây. Khi nhập mã được chia sẻ, đơn của bạn sẽ dùng mã đó thay cho mã mới phía trên. Nếu để trống, đơn sẽ dùng mã mới được tạo.", reviewTransferGroupId: "Mã nhóm chuyển server",
     additionalInfo: 'Thông tin bổ sung', additionalInfoIntro: 'Thêm bất kỳ thông tin nào có thể giúp đội 1616 xem xét yêu cầu chuyển của bạn.', additionalComments: 'Bạn có thêm nhận xét hoặc câu hỏi nào không?', beforeContinue: 'Trước khi tiếp tục', waitlistReminder: 'Hãy nhớ: đơn này đưa bạn vào danh sách chờ của Server 1616 và không đảm bảo một suất chuyển.',
     reviewSubmit: 'Kiểm tra & gửi', reviewIntro: 'Kiểm tra thông tin trước khi gửi. Bạn có thể quay lại bất kỳ phần nào để chỉnh sửa.', submitNote: 'Đơn của bạn sẽ được gửi vào bảng tính xét duyệt 1616. Ngôn ngữ bạn chọn cũng sẽ được lưu.', edit: 'Sửa', back: 'Quay lại', continue: 'Tiếp tục', submitApplication: 'Gửi đơn',
@@ -4251,7 +4536,7 @@ const I18N = {
     chooseLanguage: '언어 선택', languageIntro: '사용할 언어를 선택하세요. 언제든지 변경할 수 있습니다.',
     welcomeTitle: '1616 서버 이전 신청서', welcomeBody1: '1616으로 이동에 관심을 가져주셔서 감사합니다. 지원자를 평가할 수 있도록 몇 분 동안 이 신청서를 작성해 주세요.', waitlistLead: '중요:', welcomeBody2: '이 신청서를 제출하면 대기자 명단에 올라가며 1616의 자리가 보장되는 것은 아닙니다.', welcomeBody3: '이 양식이나 이동에 대한 질문은 RaidARQN [NvSP]에게 문의해 주세요.',
     yourInformation: '내 정보', yourInfoIntro: '현재 누구이며 어디에서 플레이하고 있는지 알려주세요.', currentServer: '현재 어느 서버에 계신가요?', username: '게임 내 전체 사용자 이름은 무엇인가요?', allianceTag: '현재 연합 이름 / 태그는 무엇인가요?',
-    gameDetails: '게임 정보', gameDetailsIntro: '게임 프로필에 표시된 현재 수치를 입력하세요.', transferEstimateTitle: "S4 종료 후 이동 추정", transferEstimateIntro: "이 항목들은 시즌 4 종료 후 이동 분류를 추정하는 데 사용됩니다. 가능하면 알고 있는 최고 수치를 입력하세요.", buildingPower: "건물 전투력", technologyPower: "기술 전투력", dronePower: "드론 전투력", unitPowerTop3: "유닛 전투력 — 완전 배치된 상위 3개 부대", overlordPower: "Overlord 전투력", t11Unlocked: "T11 해금?", highestKnownHelp: "M이나 K 없이 알고 있는 가장 높은 전체 숫자를 입력하세요.", reportedTransferScore: "게임 내 이동 점수", reportedTransferScoreHelp: "이동 화면에 이미 점수가 표시될 때만 입력하세요.", estimatedSeatColour: "예상 S4 좌석 색상", estimatedTransferScoreBand: "실험적 이동 점수 범위", contributingPowerProfile: "입력된 기여 전투력", contributingPowerHelp: "입력한 전투력의 단순 합계이며 게임의 공식 점수가 아닙니다.", scoreBandLowConfidence: "신뢰도가 낮은 커뮤니티 참고값입니다.", estimateWarningLead: "중요:", estimateWarning: " Last War는 보편적인 이동 점수 공식을 공개하지 않습니다. 기준은 이동 그룹에 따라 달라지고 역사적 최고 전투력이 사용될 수 있습니다. 이 추정치는 계획용입니다.", seatWhite: "흰색", seatBlue: "파란색", seatPurple: "보라색", seatGold: "금색", seatBorderline: "경계", confidenceLow: "낮은 신뢰도", confidenceMedium: "중간 신뢰도", confidenceHigher: "더 높은 신뢰도", professionLevel: '직업 레벨은 얼마인가요?', killCount: '현재 처치 수는 얼마인가요?', fullNumberHelp: '전체 숫자를 입력하세요. M, K 또는 약어를 사용하지 마세요.', heroPower: '총 영웅 전투력은 얼마인가요?', howToFind: '확인 방법', heroPowerHelp: 'Total Power가 아니라 HERO Power만 입력하세요.', heroHelp1: '프로필을 엽니다.', heroHelp2: 'Total Power 배지를 누릅니다.', heroHelp3: 'Power Details를 열고 Hero Power를 찾습니다.', heroHelp4: 'Hero Power 전체 숫자만 입력합니다.', seatColour: '좌석 색상은 무엇인가요?', gold: '골드', purple: '보라색', blue: '파란색', white: '흰색', howToFindSeat: '좌석 색상 확인 방법', seatHelp1: '게임 화면 오른쪽의 지도 아이콘을 누릅니다.', seatHelp2: 'Transfer Surge를 열고 “Your Status”를 확인합니다.', seatHelp3: '화면 하단에 좌석 색상이 표시됩니다.',
+    gameDetails: '게임 정보', gameDetailsPersonalized: '안녕하세요, {username}님. 자신에 대해 더 알려주세요!', gameDetailsIntro: '게임 프로필에 표시된 현재 수치를 입력하세요.', transferEstimateTitle: "S4 종료 후 이동 추정", transferEstimateIntro: "이 항목들은 시즌 4 종료 후 이동 분류를 추정하는 데 사용됩니다. 가능하면 알고 있는 최고 수치를 입력하세요.", buildingPower: "건물 전투력", technologyPower: "기술 전투력", dronePower: "드론 전투력", unitPowerTop3: "유닛 전투력 — 완전 배치된 상위 3개 부대", overlordPower: "Overlord 전투력", t11Unlocked: "T11 해금?", highestKnownHelp: "M이나 K 없이 알고 있는 가장 높은 전체 숫자를 입력하세요.", reportedTransferScore: "게임 내 이동 점수", reportedTransferScoreHelp: "이동 화면에 이미 점수가 표시될 때만 입력하세요.", estimatedSeatColour: "예상 S4 좌석 색상", estimatedTransferScoreBand: "실험적 이동 점수 범위", contributingPowerProfile: "입력된 기여 전투력", contributingPowerHelp: "입력한 전투력의 단순 합계이며 게임의 공식 점수가 아닙니다.", scoreBandLowConfidence: "신뢰도가 낮은 커뮤니티 참고값입니다.", estimateWarningLead: "중요:", estimateWarning: " Last War는 보편적인 이동 점수 공식을 공개하지 않습니다. 기준은 이동 그룹에 따라 달라지고 역사적 최고 전투력이 사용될 수 있습니다. 이 추정치는 계획용입니다.", seatWhite: "흰색", seatBlue: "파란색", seatPurple: "보라색", seatGold: "금색", seatBorderline: "경계", confidenceLow: "낮은 신뢰도", confidenceMedium: "중간 신뢰도", confidenceHigher: "더 높은 신뢰도", professionLevel: '직업 레벨은 얼마인가요?', killCount: '현재 처치 수는 얼마인가요?', fullNumberHelp: '전체 숫자를 입력하세요. M, K 또는 약어를 사용하지 마세요.', heroPower: '총 영웅 전투력은 얼마인가요?', howToFind: '확인 방법', heroPowerHelp: 'Total Power가 아니라 HERO Power만 입력하세요.', heroHelp1: '프로필을 엽니다.', heroHelp2: 'Total Power 배지를 누릅니다.', heroHelp3: 'Power Details를 열고 Hero Power를 찾습니다.', heroHelp4: 'Hero Power 전체 숫자만 입력합니다.', seatColour: '좌석 색상은 무엇인가요?', gold: '골드', purple: '보라색', blue: '파란색', white: '흰색', howToFindSeat: '좌석 색상 확인 방법', seatHelp1: '게임 화면 오른쪽의 지도 아이콘을 누릅니다.', seatHelp2: 'Transfer Surge를 열고 “Your Status”를 확인합니다.', seatHelp3: '화면 하단에 좌석 색상이 표시됩니다.',
     transferGroup: '이전 그룹', transferGroupIntro: '다른 플레이어와 함께 이동하는지 알려주세요. 함께 이동한다면 각 플레이어를 추가하여 검토 중에도 그룹을 연결해 두겠습니다.', transferWithGroup: '서버의 다른 사람들과 함께 이동하시기를 원하시나요?', yes: '예', no: '아니요', unsure: '불확실', yesGroupSub: '다른 플레이어와 함께 이동합니다', noGroupSub: '혼자 이동합니다', unsureGroupSub: '아직 확실하지 않습니다', yourTransferGroup: '이전 그룹', groupBuilderIntro: "아직 모든 플레이어를 알 필요는 없습니다. 알고 있는 플레이어만 추가하거나 목록을 비워 둔 채 계속할 수 있습니다.", addAnotherPlayer: "아는 플레이어 추가", groupContact: '그룹 연락 담당자', groupContactIntro: "그룹에 연락해야 할 경우 누구에게 연락하면 되나요? 다른 사람을 선택하지 않으면 신청자를 그룹 연락 담당자로 사용합니다.", selectGroupContact: '연락 담당자 선택', totalPlayersInGroup: "예상 그룹 규모", additionalPlayers: '추가 플레이어', includingYou: '본인 포함', playerName: '플레이어 이름', memberServer: '현재 서버', memberAlliance: '연합 이름 / 태그', knownPlayersListed: "등록된 알려진 플레이어", estimatedGroupSize: "예상 그룹 규모", estimatedGroupSizeIntro: "함께 올 추가 플레이어 수를 대략 알고 있다면 입력해 주세요. 예상치여도 괜찮습니다.", expectedAdditionalPlayers: "예상 추가 플레이어 수", expectedAdditionalHelp: "아직 모르면 비워 두세요.", optional: "선택 사항", transferGroupIdTitle: "이동 그룹 ID", transferGroupIdIntro: "여러 명이 함께 이동한다면 이 ID를 함께 신청하는 사람들에게 공유하세요. 같은 ID를 입력하면 신청서가 하나의 그룹으로 묶입니다.", activeTransferGroupId: "현재 이동 그룹 ID", groupIdAuto: "새 ID 사용 중", groupIdUsingExisting: "공유된 기존 이동 그룹 ID 사용 중", copyGroupId: "ID 복사", copiedGroupId: "복사됨!", existingGroupId: "이미 이동 그룹 ID가 있나요?", existingGroupIdHelp: "그룹원이 이미 ID를 만들었다면 여기에 붙여넣으세요. 공유 ID를 입력하면 위의 새 ID 대신 그 ID가 이 신청서에 사용됩니다. 비워두면 새로 생성된 ID가 사용됩니다.", reviewTransferGroupId: "이동 그룹 ID",
     additionalInfo: '추가 정보', additionalInfoIntro: '1616 팀이 이전 요청을 검토하는 데 도움이 될 정보를 추가해 주세요.', additionalComments: '추가로 남기고 싶은 의견이나 질문이 있나요?', beforeContinue: '계속하기 전에', waitlistReminder: '이 신청서는 1616 대기자 명단에 추가하는 것이며 이전 자리를 보장하지 않습니다.',
     reviewSubmit: '검토 및 제출', reviewIntro: '제출 전에 정보를 확인하세요. 변경하려면 어느 섹션으로든 돌아갈 수 있습니다.', submitNote: '신청서는 1616 검토 스프레드시트로 전송되며 선택한 언어도 함께 저장됩니다.', edit: '수정', back: '뒤로', continue: '계속', submitApplication: '신청서 제출',
@@ -4336,7 +4621,7 @@ const I18N = {
     chooseLanguage: 'Wähle deine Sprache', languageIntro: 'Wähle die Sprache, die du verwenden möchtest. Du kannst sie jederzeit ändern.',
     welcomeTitle: '1616 Server-Transfer-Bewerbung', welcomeBody1: 'Vielen Dank für dein Interesse an einem Transfer zu 1616. Bitte nimm dir ein paar Minuten Zeit, um diese Bewerbung auszufüllen, damit wir die Bewerber bewerten können.', waitlistLead: 'Wichtig:', welcomeBody2: 'Mit dem Absenden dieser Bewerbung kommst du auf eine Warteliste. Dies garantiert dir keinen Platz auf Server 1616.', welcomeBody3: 'Fragen zu diesem Formular oder zu Transfers können an RaidARQN [NvSP] gerichtet werden.',
     yourInformation: 'Deine Informationen', yourInfoIntro: 'Sag uns, wer du bist und wo du aktuell spielst.', currentServer: 'Auf welchem Server bist du derzeit?', username: 'Wie lautet dein vollständiger In-Game-Benutzername?', allianceTag: 'Wie lautet dein aktueller Allianzname / Tag?',
-    gameDetails: 'Spieldaten', gameDetailsIntro: 'Trage die aktuellen Werte aus deinem Spielprofil ein.', transferEstimateTitle: "Transfer-Schätzung nach S4", transferEstimateIntro: "Diese Felder helfen, deine Transfer-Einstufung nach Saison 4 zu schätzen. Nutze möglichst deine höchsten bekannten Werte.", buildingPower: "Gebäudestärke", technologyPower: "Technologiestärke", dronePower: "Drohnenstärke", unitPowerTop3: "Einheitenstärke — Top 3 vollständig eingesetzte Trupps", overlordPower: "Overlord-Stärke", t11Unlocked: "T11 freigeschaltet?", highestKnownHelp: "Gib die höchste bekannte vollständige Zahl ohne M oder K ein.", reportedTransferScore: "Bekannter Transfer-Score im Spiel", reportedTransferScoreHelp: "Nur eintragen, wenn der Transfer-Bildschirm bereits einen Score anzeigt.", estimatedSeatColour: "Geschätzte S4-Sitzfarbe", estimatedTransferScoreBand: "Experimenteller Transfer-Score-Bereich", contributingPowerProfile: "Eingegebene beitragende Stärke", contributingPowerHelp: "Dies ist nur die Summe der eingegebenen Felder, nicht der offizielle Spiel-Score.", scoreBandLowConfidence: "Community-Referenz mit geringer Sicherheit.", estimateWarningLead: "Wichtig:", estimateWarning: " Last War veröffentlicht keine universelle Formel. Grenzwerte unterscheiden sich je Transfergruppe, und historische Höchstwerte können zählen. Diese Schätzung dient nur der Planung.", seatWhite: "Weiß", seatBlue: "Blau", seatPurple: "Lila", seatGold: "Gold", seatBorderline: "Grenzbereich", confidenceLow: "Geringe Sicherheit", confidenceMedium: "Mittlere Sicherheit", confidenceHigher: "Höhere Sicherheit", professionLevel: 'Was ist dein Berufslevel?', killCount: 'Wie hoch ist deine aktuelle Abschusszahl?', fullNumberHelp: 'Gib die vollständige Zahl ein. Verwende kein M, K oder Abkürzungen.', heroPower: 'Wie hoch ist deine gesamte HELDENSTÄRKE?', howToFind: 'So findest du es', heroPowerHelp: 'Gib nur die HELDENSTÄRKE ein, nicht die Gesamtstärke.', heroHelp1: 'Öffne dein Profil.', heroHelp2: 'Tippe auf dein Gesamtstärke-Abzeichen.', heroHelp3: 'Öffne Power Details und suche Hero Power.', heroHelp4: 'Gib nur die vollständige Zahl der Heldenstärke ein.', seatColour: 'Welche Sitzfarbe hast du?', gold: 'Gold', purple: 'Lila', blue: 'Blau', white: 'Weiß', howToFindSeat: 'So findest du deine Sitzfarbe', seatHelp1: 'Tippe rechts im Spiel auf das Kartensymbol.', seatHelp2: 'Öffne Transfer Surge und prüfe „Your Status“.', seatHelp3: 'Deine Sitzfarbe wird unten auf dem Bildschirm angezeigt.',
+    gameDetails: 'Spieldaten', gameDetailsPersonalized: 'Hi, {username}. Erzähl uns mehr über dich!', gameDetailsIntro: 'Trage die aktuellen Werte aus deinem Spielprofil ein.', transferEstimateTitle: "Transfer-Schätzung nach S4", transferEstimateIntro: "Diese Felder helfen, deine Transfer-Einstufung nach Saison 4 zu schätzen. Nutze möglichst deine höchsten bekannten Werte.", buildingPower: "Gebäudestärke", technologyPower: "Technologiestärke", dronePower: "Drohnenstärke", unitPowerTop3: "Einheitenstärke — Top 3 vollständig eingesetzte Trupps", overlordPower: "Overlord-Stärke", t11Unlocked: "T11 freigeschaltet?", highestKnownHelp: "Gib die höchste bekannte vollständige Zahl ohne M oder K ein.", reportedTransferScore: "Bekannter Transfer-Score im Spiel", reportedTransferScoreHelp: "Nur eintragen, wenn der Transfer-Bildschirm bereits einen Score anzeigt.", estimatedSeatColour: "Geschätzte S4-Sitzfarbe", estimatedTransferScoreBand: "Experimenteller Transfer-Score-Bereich", contributingPowerProfile: "Eingegebene beitragende Stärke", contributingPowerHelp: "Dies ist nur die Summe der eingegebenen Felder, nicht der offizielle Spiel-Score.", scoreBandLowConfidence: "Community-Referenz mit geringer Sicherheit.", estimateWarningLead: "Wichtig:", estimateWarning: " Last War veröffentlicht keine universelle Formel. Grenzwerte unterscheiden sich je Transfergruppe, und historische Höchstwerte können zählen. Diese Schätzung dient nur der Planung.", seatWhite: "Weiß", seatBlue: "Blau", seatPurple: "Lila", seatGold: "Gold", seatBorderline: "Grenzbereich", confidenceLow: "Geringe Sicherheit", confidenceMedium: "Mittlere Sicherheit", confidenceHigher: "Höhere Sicherheit", professionLevel: 'Was ist dein Berufslevel?', killCount: 'Wie hoch ist deine aktuelle Abschusszahl?', fullNumberHelp: 'Gib die vollständige Zahl ein. Verwende kein M, K oder Abkürzungen.', heroPower: 'Wie hoch ist deine gesamte HELDENSTÄRKE?', howToFind: 'So findest du es', heroPowerHelp: 'Gib nur die HELDENSTÄRKE ein, nicht die Gesamtstärke.', heroHelp1: 'Öffne dein Profil.', heroHelp2: 'Tippe auf dein Gesamtstärke-Abzeichen.', heroHelp3: 'Öffne Power Details und suche Hero Power.', heroHelp4: 'Gib nur die vollständige Zahl der Heldenstärke ein.', seatColour: 'Welche Sitzfarbe hast du?', gold: 'Gold', purple: 'Lila', blue: 'Blau', white: 'Weiß', howToFindSeat: 'So findest du deine Sitzfarbe', seatHelp1: 'Tippe rechts im Spiel auf das Kartensymbol.', seatHelp2: 'Öffne Transfer Surge und prüfe „Your Status“.', seatHelp3: 'Deine Sitzfarbe wird unten auf dem Bildschirm angezeigt.',
     transferGroup: 'Transfergruppe', transferGroupIntro: 'Sag uns, ob du mit anderen Spielern wechselst. Wenn ja, füge jeden Spieler hinzu, damit wir eure Gruppe bei der Prüfung zusammenhalten können.', transferWithGroup: 'Möchtest du dich mit einer Gruppe von Personen von deinem Server transferieren?', yes: 'Ja', no: 'Nein', unsure: 'Unsicher', yesGroupSub: 'Ich bringe andere Spieler mit', noGroupSub: 'Ich transferiere allein', unsureGroupSub: 'Ich bin noch nicht sicher', yourTransferGroup: 'Deine Transfergruppe', groupBuilderIntro: "Du musst noch nicht alle Spielernamen kennen. Füge bekannte Spieler hinzu oder lasse die Liste leer und fahre fort.", addAnotherPlayer: "Bekannten Spieler hinzufügen", groupContact: 'Gruppenkontakt', groupContactIntro: "Wen sollen wir kontaktieren, wenn wir eure Gruppe erreichen müssen? Wenn du niemand anderen auswählst, verwenden wir dich als Gruppenkontakt.", selectGroupContact: 'Gruppenkontakt auswählen', totalPlayersInGroup: "Geschätzte Gruppengröße", additionalPlayers: 'Zusätzliche Spieler', includingYou: 'Einschließlich dir', playerName: 'Spielername', memberServer: 'Aktueller Server', memberAlliance: 'Allianzname / Tag', knownPlayersListed: "Bekannte Spieler eingetragen", estimatedGroupSize: "Geschätzte Gruppengröße", estimatedGroupSizeIntro: "Wenn du ungefähr weißt, wie viele zusätzliche Spieler mitkommen könnten, gib die Zahl ein. Eine Schätzung reicht.", expectedAdditionalPlayers: "Erwartete zusätzliche Spieler", expectedAdditionalHelp: "Lass das Feld leer, wenn du es noch nicht weißt.", optional: "Optional", transferGroupIdTitle: "Transfergruppen-ID", transferGroupIdIntro: "Wenn ihr als Gruppe wechselt, teile diese ID mit allen, die sich zusammen mit dir bewerben. Sie können dieselbe ID eingeben, damit eure Bewerbungen zusammengefasst werden.", activeTransferGroupId: "Aktive Transfergruppen-ID", groupIdAuto: "NEUE ID wird verwendet", groupIdUsingExisting: "Es wird eine vorhandene gemeinsame Transfergruppen-ID verwendet", copyGroupId: "ID kopieren", copiedGroupId: "Kopiert!", existingGroupId: "Hast du bereits eine Transfergruppen-ID?", existingGroupIdHelp: "Wenn jemand aus deiner Gruppe bereits eine ID erstellt hat, füge sie hier ein. Dann verwendet deine Bewerbung diese gemeinsame ID anstelle der neuen ID oben. Wenn du das Feld leer lässt, wird die neue ID verwendet.", reviewTransferGroupId: "Transfergruppen-ID",
     additionalInfo: 'Zusätzliche Informationen', additionalInfoIntro: 'Füge alles hinzu, was dem 1616-Team bei der Prüfung deiner Transferanfrage helfen könnte.', additionalComments: 'Hast du noch weitere Kommentare oder Fragen?', beforeContinue: 'Bevor du fortfährst', waitlistReminder: 'Denke daran: Diese Bewerbung setzt dich auf die Warteliste von Server 1616. Sie garantiert keinen Transferplatz.',
     reviewSubmit: 'Prüfen & senden', reviewIntro: 'Prüfe deine Angaben vor dem Absenden. Du kannst jederzeit zu einem Abschnitt zurückkehren und Änderungen vornehmen.', submitNote: 'Deine Bewerbung wird an die 1616-Prüftabelle gesendet. Deine gewählte Sprache wird mitgespeichert.', edit: 'Bearbeiten', back: 'Zurück', continue: 'Weiter', submitApplication: 'Bewerbung absenden',
@@ -4458,6 +4743,173 @@ function normalizeTransferGroupName(value) {
 }
 
 
+
+function closeAllCustomSelects(except = null) {
+  document.querySelectorAll('.custom-select.open').forEach(wrapper => {
+    if (wrapper === except) return;
+    wrapper.classList.remove('open');
+    const menu = wrapper.querySelector('.custom-select-menu');
+    const trigger = wrapper.querySelector('.custom-select-trigger');
+    if (menu) menu.hidden = true;
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+  });
+}
+
+function syncCustomSelect(select) {
+  if (!select) return;
+  const wrapper = select.closest('.custom-select');
+  if (!wrapper) return;
+  const triggerValue = wrapper.querySelector('.custom-select-value');
+  const selected = select.options[select.selectedIndex] || select.options[0];
+  if (triggerValue) triggerValue.textContent = selected ? selected.textContent : '';
+  wrapper.classList.toggle('invalid', select.classList.contains('invalid'));
+
+  wrapper.querySelectorAll('.custom-select-option').forEach(btn => {
+    const selectedNow = btn.dataset.value === String(select.value);
+    btn.classList.toggle('selected', selectedNow);
+    btn.setAttribute('aria-selected', selectedNow ? 'true' : 'false');
+  });
+}
+
+function renderCustomSelectOptions(select) {
+  const wrapper = select.closest('.custom-select');
+  if (!wrapper) return;
+  const menu = wrapper.querySelector('.custom-select-menu');
+  if (!menu) return;
+
+  menu.innerHTML = '';
+  [...select.options].forEach((option, index) => {
+    const item = document.createElement('button');
+    item.type = 'button';
+    item.className = 'custom-select-option';
+    item.setAttribute('role', 'option');
+    item.dataset.value = option.value;
+    item.textContent = option.textContent;
+    item.disabled = option.disabled;
+    if (option.hidden) item.hidden = true;
+
+    item.addEventListener('click', () => {
+      if (item.disabled) return;
+      select.selectedIndex = index;
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+      syncCustomSelect(select);
+      closeAllCustomSelects();
+      wrapper.querySelector('.custom-select-trigger')?.focus();
+    });
+
+    menu.appendChild(item);
+  });
+
+  syncCustomSelect(select);
+}
+
+function enhanceSelect(select) {
+  if (!select || select.dataset.customSelectReady === 'true') {
+    if (select) {
+      renderCustomSelectOptions(select);
+      syncCustomSelect(select);
+    }
+    return;
+  }
+
+  select.dataset.customSelectReady = 'true';
+  select.classList.add('native-select-proxy');
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'custom-select';
+
+  const trigger = document.createElement('button');
+  trigger.type = 'button';
+  trigger.className = 'custom-select-trigger';
+  trigger.setAttribute('aria-haspopup', 'listbox');
+  trigger.setAttribute('aria-expanded', 'false');
+
+  const value = document.createElement('span');
+  value.className = 'custom-select-value';
+  trigger.appendChild(value);
+
+  const menu = document.createElement('div');
+  menu.className = 'custom-select-menu';
+  menu.setAttribute('role', 'listbox');
+  menu.hidden = true;
+
+  select.parentNode.insertBefore(wrapper, select);
+  wrapper.appendChild(select);
+  wrapper.appendChild(trigger);
+  wrapper.appendChild(menu);
+
+  trigger.addEventListener('click', () => {
+    const willOpen = !wrapper.classList.contains('open');
+    closeAllCustomSelects(wrapper);
+    wrapper.classList.toggle('open', willOpen);
+    menu.hidden = !willOpen;
+    trigger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    if (willOpen) {
+      const selectedItem = menu.querySelector('.custom-select-option.selected');
+      selectedItem?.scrollIntoView({ block: 'nearest' });
+    }
+  });
+
+  trigger.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      closeAllCustomSelects();
+      trigger.focus();
+      return;
+    }
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (!wrapper.classList.contains('open')) trigger.click();
+      const options = [...menu.querySelectorAll('.custom-select-option:not([disabled])')].filter(el => !el.hidden);
+      if (!options.length) return;
+      const active = document.activeElement;
+      let idx = options.indexOf(active);
+      if (idx < 0) idx = options.findIndex(el => el.classList.contains('selected'));
+      idx = event.key === 'ArrowDown'
+        ? Math.min(options.length - 1, idx + 1)
+        : Math.max(0, idx <= 0 ? 0 : idx - 1);
+      options[idx]?.focus();
+    }
+  });
+
+  menu.addEventListener('keydown', event => {
+    const options = [...menu.querySelectorAll('.custom-select-option:not([disabled])')].filter(el => !el.hidden);
+    const idx = options.indexOf(document.activeElement);
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeAllCustomSelects();
+      trigger.focus();
+    } else if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      options[Math.min(options.length - 1, idx + 1)]?.focus();
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      options[Math.max(0, idx - 1)]?.focus();
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      options[0]?.focus();
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      options[options.length - 1]?.focus();
+    }
+  });
+
+  select.addEventListener('change', () => syncCustomSelect(select));
+
+  const observer = new MutationObserver(() => renderCustomSelectOptions(select));
+  observer.observe(select, { childList: true, subtree: true, characterData: true });
+
+  renderCustomSelectOptions(select);
+}
+
+function initCustomSelects(root = document) {
+  root.querySelectorAll('select').forEach(enhanceSelect);
+}
+
+document.addEventListener('click', event => {
+  if (!event.target.closest('.custom-select')) closeAllCustomSelects();
+});
+
+
 function setLanguage(lang) {
   if (!I18N[lang]) lang = 'en';
   state.language = lang;
@@ -4473,10 +4925,25 @@ function setLanguage(lang) {
   
   updateTransferEstimate();
   if (state.step === 5) renderReview();
+  initCustomSelects();
+  document.querySelectorAll('select').forEach(syncCustomSelect);
   saveDraft();
 }
 
+
+function updatePersonalizedGameDetailsTitle() {
+  const title = document.getElementById('game-details-title');
+  if (!title) return;
+  const username = document.getElementById('username')?.value.trim() || '';
+  if (!username) {
+    title.textContent = t('gameDetails');
+    return;
+  }
+  title.textContent = t('gameDetailsPersonalized').replace('{username}', username);
+}
+
 function updateProgress() {
+  updatePersonalizedGameDetailsTitle();
   steps.forEach(step => step.classList.toggle('active', Number(step.dataset.step) === state.step));
   stepLinks.forEach((link, index) => {
     const n = index + 1;
@@ -4680,6 +5147,7 @@ function renderGroupMembers() {
     server.addEventListener('change', () => { member.server = server.value; saveDraft(); });
     alliance.addEventListener('input', () => { member.alliance = alliance.value; updateGroupContactOptions(); saveDraft(); });
     groupMembersEl.appendChild(node);
+    enhanceSelect(server);
   });
 }
 
@@ -4704,6 +5172,8 @@ function updateGroupContactOptions() {
   if ([...select.options].some(o => o.value === existing)) select.value = existing;
   else if ([...select.options].some(o => o.value === 'primary')) select.value = 'primary';
   select.onchange = () => { updateGroupSummary(); saveDraft(); };
+  enhanceSelect(select);
+  renderCustomSelectOptions(select);
 }
 
 function updateGroupSummary() {
@@ -5082,7 +5552,12 @@ document.getElementById('transfer-group-name').addEventListener('input', e => {
   clearFieldError(e.target);
   saveDraft();
 });
-document.getElementById('username').addEventListener('input', () => { updateGroupContactOptions(); updateGroupSummary(); saveDraft(); });
+document.getElementById('username').addEventListener('input', () => {
+  updatePersonalizedGameDetailsTitle();
+  updateGroupContactOptions();
+  updateGroupSummary();
+  saveDraft();
+});
 document.getElementById('alliance').addEventListener('input', () => { updateGroupContactOptions(); saveDraft(); });
 document.getElementById('expected-additional-players').addEventListener('input', () => { updateGroupSummary(); saveDraft(); });
 
@@ -5108,6 +5583,8 @@ groupBuilder.hidden = groupAnswer !== 'yes';
 updateGroupContactOptions(); updateGroupSummary();  updateTransferEstimate(); updateProgress();
 document.getElementById('comments-count').textContent = document.getElementById('comments').value.length;
 initPetals();
+initCustomSelects();
+document.querySelectorAll('select').forEach(syncCustomSelect);
 initWelcomeScreen();
 
   </script>
