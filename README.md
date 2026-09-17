@@ -716,3 +716,8 @@ Each player card keeps Username, Alliance name, and Server number. Server number
   - uppercase
   - `1.6` line height
 
+## v95
+- Updated the support-question popup close control.
+- Removed the pill-shaped close button.
+- It now displays plain **Close** text with a separate circular **×** control, as requested.
+
