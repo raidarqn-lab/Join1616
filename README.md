@@ -12,7 +12,7 @@ This version includes the full visual treatment in the HTML itself:
 
 - Japanese-inspired hand-brushed **1616** vector wordmark (no font dependency)
 - Samurai / sakura / blood-moon background illustration
-- Six-stage application flow
+- Five-stage application flow
 - 8 languages: English, Spanish, Portuguese, French, Arabic, Vietnamese, Korean, German
 - Arabic RTL layout
 - Numeric validation for Kill Count and Hero Power
@@ -20,7 +20,7 @@ This version includes the full visual treatment in the HTML itself:
 - Google Apps Script backend for Google Sheets
 
 ## 1. Test the design
-Open `index.html` in a browser. The background illustration and 1616 wordmark are embedded directly in the file, so they should appear even when the file is opened locally.
+Open `index.html` in a browser to test the application. Open `story.html` to test the standalone 1616 History page. Keep the HTML, CSS, JavaScript, and image files together in the same folder.
 
 ## 2. Create the Google Sheet
 Create a new Google Sheet for the applications. The Apps Script can create the required tabs/headers.
@@ -40,10 +40,10 @@ In the Sheet:
 Open `index.html` and find the `APPS_SCRIPT_URL` constant near the JavaScript section. Replace the placeholder with the `/exec` URL from Google Apps Script.
 
 ## 5. Host on GitHub Pages
-Upload `index.html` to your GitHub repository, then enable GitHub Pages under:
+Upload the complete folder, including `index.html`, `story.html`, `styles.css`, `story.js`, `story-translations.js`, and the image assets, then enable GitHub Pages under:
 Settings → Pages → Deploy from a branch.
 
-The site is fully self-contained, so you do not need to upload fonts or background image files.
+The application and Story page use relative links, so both work from the same GitHub Pages directory.
 
 ## Transfer groups
 Group member names are optional. If an applicant is transferring with others but does not know all names yet, they can select **Yes** and continue without adding players.
@@ -721,3 +721,10 @@ Each player card keeps Username, Alliance name, and Server number. Server number
 - Removed the pill-shaped close button.
 - It now displays plain **Close** text with a separate circular **×** control, as requested.
 
+## v96 — separate Application and Story pages
+- Moved 1616 History to the standalone `story.html` page.
+- Kept the five-step transfer application in `index.html`.
+- Extracted the shared visual styles to `styles.css`.
+- The application force-saves its draft before opening History.
+- Form fields, radio choices, select values, group members, language, and current step restore when the applicant returns.
+- Changing the language on the Story page updates only the saved language and leaves all application data intact.
