@@ -1074,7 +1074,7 @@
 
 const CONFIG = {
   // After deploying Code.gs as a Google Apps Script Web App, paste the /exec URL here.
-  appsScriptUrl: 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE',
+  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbzI42srLuRCvqGToYYSNjFEkLty8vt6OEGJmf4-mLk31QjXE9mnTSAi_dnfw35R8URiDA/exec',
   maxGroupMembers: 40,
   draftKey: 'server1616-transfer-application-draft-v17'};
 
@@ -3663,6 +3663,27 @@ function restoreDraft() {
 
 function clearDraft() { try { localStorage.removeItem(CONFIG.draftKey); } catch (_) {} }
 
+async function sendToGoogleSheets(payload) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 45000);
+  try {
+    const response = await fetch(CONFIG.appsScriptUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+      credentials: 'omit',
+      redirect: 'follow'
+    });
+    if (!response.ok) throw new Error('Google Sheets request failed');
+    const result = await response.json();
+    if (result.ok !== true) throw new Error(result.error || 'Application was not saved');
+    return result;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 async function submitApplication(event) {
   event.preventDefault();
   for (let s = 1; s <= 3; s++) {
@@ -3679,12 +3700,7 @@ async function submitApplication(event) {
   showSubmission(t('submitting'), false);
   submitButton.disabled = true;
   try {
-    await fetch(CONFIG.appsScriptUrl, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(payload)
-    });
+    await sendToGoogleSheets(payload);
     showSubmission(t('submitted'), false);
     clearDraft();
     submitButton.disabled = true;
@@ -3813,12 +3829,7 @@ async function submitQuestion() {
   submit.textContent = t('questionSending');
 
   try {
-    await fetch(CONFIG.appsScriptUrl, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(payload)
-    });
+    await sendToGoogleSheets(payload);
     document.getElementById('question-form-view').hidden = true;
     document.getElementById('question-confirmation').hidden = false;
   } catch (err) {
