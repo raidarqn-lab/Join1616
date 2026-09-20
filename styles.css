@@ -8747,3 +8747,17 @@ body.welcome-open .question-panel{z-index:6000!important;bottom:20px!important}
 
 /* Quiet samurai contact icons: person, alliance banner and server castle. */
 .question-panel .question-prefill-icon{background:transparent!important;border:0!important;box-shadow:none!important;color:#f3c38b!important;width:28px!important;height:32px!important;min-width:28px!important;display:grid!important;place-items:center!important}.question-prefill-icon svg{display:block;width:22px;height:22px}
+
+/* A focused return-to-edit screen, instead of extending the welcome card. */
+.welcome-screen.lookup-open .welcome-panel{width:min(580px,100%)!important;padding:24px!important;scrollbar-gutter:auto}
+.lookup-open .welcome-guide-stage> :not(#application-lookup){display:none!important}
+.lookup-open #application-lookup{margin:0;max-width:none}
+#application-lookup h2{font-size:24px;line-height:1.2;margin:16px 0 20px;color:#fff4e7}
+.lookup-back{border:0;background:transparent;color:#ffced7;padding:4px 0;font:inherit;cursor:pointer}
+#lookup-help{margin:12px 0 16px}#lookup-error:empty{display:none}
+#lookup-application{width:100%;min-height:44px}
+body.welcome-open .question-fab{display:flex!important;z-index:6001!important}
+body.welcome-open.question-panel-open .question-fab{display:none!important}
+body.welcome-open.question-panel-open .welcome-screen{visibility:hidden}
+body.welcome-open .question-panel{max-height:calc(100dvh - 32px)!important;bottom:16px!important}
+@media(max-width:600px){.welcome-screen.lookup-open .welcome-panel{padding:20px!important}.welcome-screen.lookup-open{padding-bottom:84px!important}}

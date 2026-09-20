@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Tint&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=contact-icons-3" />
+  <link rel="stylesheet" href="styles.css?v=compact-code-entry-1" />
 <style>#nav-story{display:none!important}</style></head>
 <body>
 
@@ -117,7 +117,7 @@
           <button type="button" class="welcome-enter" id="welcome-enter"><span data-i18n="startNewApplication">Start new application</span> →</button>
         <button type="button" class="welcome-enter secondary" id="welcome-edit" data-i18n="editMyApplication">Edit my application</button>
         </div>
-        <div id="application-lookup" hidden><label for="application-code-input" data-i18n="editCodeLabel">Application confirmation code</label><input id="application-code-input" autocomplete="off" spellcheck="false" autocapitalize="characters" maxlength="80" aria-describedby="lookup-help"><p id="lookup-help"><span data-i18n="editCodeHelp"></span> <button type="button" id="lost-code-help" aria-controls="question-panel" data-i18n="lostCodeHelp">Lost your code? Contact the transfer team.</button></p><button type="button" class="button submit" id="lookup-application" data-i18n="retrieveApplication">Open my application</button><p id="lookup-error" role="alert"></p></div>
+        <div id="application-lookup" hidden><button type="button" id="lookup-back" class="lookup-back">← <span data-i18n="back">Back</span></button><h2 data-i18n="editMyApplication">Edit my application</h2><label for="application-code-input" data-i18n="editCodeLabel">Application confirmation code</label><input id="application-code-input" autocomplete="off" spellcheck="false" autocapitalize="characters" maxlength="80" aria-describedby="lookup-help"><p id="lookup-help"><span data-i18n="editCodeHelp"></span> <button type="button" id="lost-code-help" aria-controls="question-panel" data-i18n="lostCodeHelp">Lost your code? Contact the transfer team.</button></p><button type="button" class="button submit" id="lookup-application" data-i18n="retrieveApplication">Open my application</button><p id="lookup-error" role="alert"></p></div>
       </div>
     </div>
   </section>
@@ -5468,7 +5468,8 @@ function initWelcomeScreen() {
   });
 
   document.getElementById('lost-code-help').onclick=()=>openQuestionPanel();
-  document.getElementById('welcome-edit').onclick=()=>{document.getElementById('application-lookup').hidden=false;document.getElementById('application-code-input').focus();};
+  document.getElementById('welcome-edit').onclick=()=>{document.getElementById('welcome-screen').classList.add('lookup-open');document.getElementById('application-lookup').hidden=false;document.querySelector('.welcome-panel').scrollTop=0;document.getElementById('application-code-input').focus({preventScroll:true});};
+  document.getElementById('lookup-back').onclick=()=>{document.getElementById('application-lookup').hidden=true;document.getElementById('welcome-screen').classList.remove('lookup-open');document.getElementById('welcome-edit').focus({preventScroll:true});};
   document.getElementById('lookup-application').onclick=loadExistingApplication;
   document.getElementById('application-code-input').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();loadExistingApplication();}});
   enter.addEventListener('click', () => {
