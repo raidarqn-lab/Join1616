@@ -5006,7 +5006,7 @@ async function submitApplication(event) {
     showSubmission(t('backendMissing'), true); return;
   }
   const payload = collectPayload();
-  if(state.editing){payload.requestType='application.update';payload.editRevision=state.editRevision;const fingerprint=JSON.stringify({...payload,clientTimestamp:''});if(state.editFingerprint!==fingerprint){state.editRequestId=crypto.randomUUID();state.editFingerprint=fingerprint;}payload.editRequestId=state.editRequestId;}
+  if(state.editing){payload.requestType='application.update';payload.editRevision=state.editRevision;const fingerprint=JSON.stringify({...payload,clientTimestamp:''});if(!state.editRequestId||state.editFingerprint!==fingerprint){state.editRequestId=crypto.randomUUID();state.editFingerprint=fingerprint;}payload.editRequestId=state.editRequestId;}
   showSubmission(t(state.editing?'savingChanges':'submitting'), false);
   submitButton.disabled = true;
   try {
