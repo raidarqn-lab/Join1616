@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Tint&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=application-edit-1" />
 <style>#nav-story{display:none!important}</style></head>
 <body>
 
@@ -114,8 +114,10 @@
         </div>
 
 <div class="welcome-action">
-          <button type="button" class="welcome-enter" id="welcome-enter"><span data-i18n="beginApplication">Begin Application</span> →</button>
+          <button type="button" class="welcome-enter" id="welcome-enter"><span data-i18n="startNewApplication">Start new application</span> →</button>
+        <button type="button" class="welcome-enter secondary" id="welcome-edit" data-i18n="editMyApplication">Edit my application</button>
         </div>
+        <div id="application-lookup" hidden><label for="application-code-input" data-i18n="editCodeLabel">Application confirmation code</label><input id="application-code-input" autocomplete="off" spellcheck="false" autocapitalize="characters" maxlength="80" aria-describedby="lookup-help"><p id="lookup-help" data-i18n="editCodeHelp"></p><button type="button" class="button submit" id="lookup-application" data-i18n="retrieveApplication">Open my application</button><p id="lookup-error" role="alert"></p></div>
       </div>
     </div>
   </section>
@@ -850,28 +852,16 @@
 
   <section class="confirmation-screen" id="confirmation-screen" hidden aria-labelledby="confirmation-title">
     <div class="confirmation-card" id="confirmation-card">
-      <div class="confirmation-mark">1616</div>
-      <p class="confirmation-kicker" data-i18n="confirmationReceived">APPLICATION RECEIVED</p>
-      <h1 id="confirmation-title" data-i18n="confirmationThankYou">Thank you. Your application has been submitted.</h1>
-      <p class="confirmation-copy" data-i18n="confirmationKeepCode">Keep this confirmation code for your records. It is also stored with your application in the 1616 review sheet.</p>
+      <img class="confirmation-art" src="confirmation-celebration.png" alt="" aria-hidden="true">
+      <p class="confirmation-cheer" data-i18n="yeeHaw">Yee haw!</p>
+      <h1 id="confirmation-title" data-i18n="confirmationThankYou">Your application is submitted!</h1>
+      <div class="confirmation-details"><div><span data-i18n="usernameShort">Player</span><strong id="confirmation-player">—</strong></div><div><span data-i18n="serverShort">Server</span><strong id="confirmation-server">—</strong></div></div>
+      <div class="confirmation-code-grid"><div class="confirmation-code-wrap"><span data-i18n="confirmationCodeLabel">Confirmation code</span><strong id="confirmation-code" dir="ltr">—</strong></div><div class="confirmation-code-wrap" id="confirmation-group-name-row"><span data-i18n="groupCodeLabel">Transfer group code</span><strong id="confirmation-group-name" dir="auto">—</strong></div></div>
+      <section class="confirmation-return"><h2 data-i18n="returnHeading"></h2><ol><li data-i18n="returnStep1"></li><li data-i18n="returnStep2"></li><li data-i18n="returnStep3"></li></ol><p data-i18n="confirmationKeepCode"></p></section>
+      <div class="confirmation-actions"><button type="button" class="confirmation-button primary" id="copy-confirmation-code" data-i18n="copyBothCodes">Copy both codes</button><button type="button" class="confirmation-button secondary" id="save-confirmation-png" data-i18n="saveConfirmationPng">Save confirmation PNG</button></div>
+      <p class="confirmation-screenshot-note" data-i18n="pngPrivate"></p>
+      <a class="confirmation-button discord-invite" href="https://discord.gg/Qkbr9SGD52" target="_blank" rel="noopener noreferrer"><span data-i18n="joinDiscord"></span> ↗</a><p class="confirmation-screenshot-note" data-i18n="discordPrivacy"></p>
 
-      <div class="confirmation-code-wrap">
-        <span data-i18n="confirmationCodeLabel">Confirmation Code</span>
-        <strong id="confirmation-code">—</strong>
-      </div>
-
-      <div class="confirmation-details">
-        <div><span data-i18n="usernameShort">Player</span><strong id="confirmation-player">—</strong></div>
-        <div><span data-i18n="serverShort">Server</span><strong id="confirmation-server">—</strong></div>
-        <div id="confirmation-group-name-row" hidden><span data-i18n="transferGroupNameShort">Transfer Group Name</span><strong id="confirmation-group-name">—</strong></div>
-      </div>
-
-      <div class="confirmation-actions">
-        <button type="button" class="confirmation-button primary" id="copy-confirmation-code" data-i18n="copyConfirmationCode">Copy Code</button>
-        <button type="button" class="confirmation-button secondary" id="save-confirmation-png" data-i18n="saveConfirmationPng">Save Confirmation PNG</button>
-      </div>
-
-      <p class="confirmation-screenshot-note" data-i18n="confirmationScreenshot">You can also screenshot this page.</p>
     </div>
   </section>
 
@@ -4113,6 +4103,8 @@ const I18N = {
   }
 };
 
+const APPLICATION_EDIT_I18N={"en": {"startNewApplication": "Start new application", "editMyApplication": "Edit my application", "retrieveApplication": "Open my application", "editCodeLabel": "Application confirmation code", "editCodeHelp": "Enter the private code from your confirmation. If you lost it, contact the transfer team.", "lookupFailed": "We could not open your application. Check the code and try again, or contact the transfer team.", "editConflict": "This application changed elsewhere. Reopen it with your code before saving again.", "savingChanges": "Saving your changes…", "saveApplicationChanges": "Save application changes", "applicationUpdated": "Your application has been updated!", "yeeHaw": "Yee haw!", "confirmationThankYou": "Your application is submitted!", "confirmationKeepCode": "Save both codes. Keep your application confirmation code private—it gives access to edit your application.", "returnHeading": "Want to update your application?", "returnStep1": "Visit join1616.com at any time.", "returnStep2": "Choose your language, then Edit my application.", "returnStep3": "Enter your application confirmation code to review and edit your saved details.", "groupCodeLabel": "Transfer group code", "copyBothCodes": "Copy both codes", "joinDiscord": "Join our Discord", "discordPrivacy": "Information you share in Discord may be visible to other applicants.", "pngPrivate": "Keep this image private. Your application code allows access to edit your application.", "noGroupCode": "No transfer group", "pngFailed": "Could not save the image. Please try again."}, "de": {"startNewApplication": "Neue Bewerbung starten", "editMyApplication": "Meine Bewerbung bearbeiten", "retrieveApplication": "Meine Bewerbung öffnen", "editCodeLabel": "Bestätigungscode der Bewerbung", "editCodeHelp": "Gib den privaten Code deiner Bestätigung ein. Bei Verlust kontaktiere das Transferteam.", "lookupFailed": "Die Bewerbung konnte nicht geöffnet werden. Prüfe den Code oder kontaktiere das Transferteam.", "editConflict": "Diese Bewerbung wurde inzwischen geändert. Öffne sie erneut mit deinem Code, bevor du speicherst.", "savingChanges": "Änderungen werden gespeichert…", "saveApplicationChanges": "Änderungen speichern", "applicationUpdated": "Deine Bewerbung wurde aktualisiert!", "yeeHaw": "Juhu!", "confirmationThankYou": "Deine Bewerbung wurde eingereicht!", "confirmationKeepCode": "Speichere beide Codes. Halte deinen Bewerbungscode geheim – damit kann deine Bewerbung bearbeitet werden.", "returnHeading": "Möchtest du deine Bewerbung aktualisieren?", "returnStep1": "Besuche jederzeit join1616.com.", "returnStep2": "Wähle deine Sprache und dann Meine Bewerbung bearbeiten.", "returnStep3": "Gib deinen Bestätigungscode ein, um deine gespeicherten Angaben zu prüfen und zu bearbeiten.", "groupCodeLabel": "Transfergruppencode", "copyBothCodes": "Beide Codes kopieren", "joinDiscord": "Unserem Discord beitreten", "discordPrivacy": "Informationen, die du auf Discord teilst, können für andere Bewerber sichtbar sein.", "pngPrivate": "Bewahre dieses Bild privat auf. Dein Bewerbungscode ermöglicht den Zugriff auf deine Bewerbung.", "noGroupCode": "Keine Transfergruppe", "pngFailed": "Das Bild konnte nicht gespeichert werden. Bitte versuche es erneut."}, "fr": {"startNewApplication": "Commencer une nouvelle candidature", "editMyApplication": "Modifier ma candidature", "retrieveApplication": "Ouvrir ma candidature", "editCodeLabel": "Code de confirmation de candidature", "editCodeHelp": "Saisissez le code privé de votre confirmation. Si vous l’avez perdu, contactez l’équipe de transfert.", "lookupFailed": "Impossible d’ouvrir votre candidature. Vérifiez le code ou contactez l’équipe de transfert.", "editConflict": "Cette candidature a été modifiée ailleurs. Rouvrez-la avec votre code avant d’enregistrer.", "savingChanges": "Enregistrement des modifications…", "saveApplicationChanges": "Enregistrer les modifications", "applicationUpdated": "Votre candidature a été mise à jour !", "yeeHaw": "Youpi !", "confirmationThankYou": "Votre candidature a été envoyée !", "confirmationKeepCode": "Conservez les deux codes. Gardez votre code de candidature privé : il permet de modifier votre candidature.", "returnHeading": "Vous souhaitez modifier votre candidature ?", "returnStep1": "Rendez-vous sur join1616.com à tout moment.", "returnStep2": "Choisissez votre langue, puis Modifier ma candidature.", "returnStep3": "Saisissez votre code de confirmation pour consulter et modifier vos informations enregistrées.", "groupCodeLabel": "Code du groupe de transfert", "copyBothCodes": "Copier les deux codes", "joinDiscord": "Rejoindre notre Discord", "discordPrivacy": "Les informations que vous partagez sur Discord peuvent être visibles par les autres candidats.", "pngPrivate": "Gardez cette image privée. Votre code permet d’accéder à votre candidature pour la modifier.", "noGroupCode": "Aucun groupe de transfert", "pngFailed": "Impossible d’enregistrer l’image. Veuillez réessayer."}, "es": {"startNewApplication": "Iniciar nueva solicitud", "editMyApplication": "Editar mi solicitud", "retrieveApplication": "Abrir mi solicitud", "editCodeLabel": "Código de confirmación de la solicitud", "editCodeHelp": "Introduce el código privado de tu confirmación. Si lo perdiste, contacta con el equipo de transferencia.", "lookupFailed": "No pudimos abrir tu solicitud. Revisa el código o contacta con el equipo de transferencia.", "editConflict": "Esta solicitud se modificó en otro lugar. Vuelve a abrirla con tu código antes de guardar.", "savingChanges": "Guardando cambios…", "saveApplicationChanges": "Guardar cambios", "applicationUpdated": "¡Tu solicitud se ha actualizado!", "yeeHaw": "¡Yuju!", "confirmationThankYou": "¡Tu solicitud se ha enviado!", "confirmationKeepCode": "Guarda ambos códigos. Mantén privado el código de tu solicitud: permite editarla.", "returnHeading": "¿Quieres actualizar tu solicitud?", "returnStep1": "Visita join1616.com en cualquier momento.", "returnStep2": "Elige tu idioma y luego Editar mi solicitud.", "returnStep3": "Introduce tu código de confirmación para revisar y editar los datos guardados.", "groupCodeLabel": "Código del grupo de transferencia", "copyBothCodes": "Copiar ambos códigos", "joinDiscord": "Únete a nuestro Discord", "discordPrivacy": "La información que compartas en Discord puede ser visible para otros solicitantes.", "pngPrivate": "Mantén esta imagen privada. Tu código permite acceder a tu solicitud para editarla.", "noGroupCode": "Sin grupo de transferencia", "pngFailed": "No se pudo guardar la imagen. Inténtalo de nuevo."}, "pt": {"startNewApplication": "Iniciar nova candidatura", "editMyApplication": "Editar minha candidatura", "retrieveApplication": "Abrir minha candidatura", "editCodeLabel": "Código de confirmação da candidatura", "editCodeHelp": "Digite o código privado da sua confirmação. Se o perdeu, contacte a equipa de transferência.", "lookupFailed": "Não foi possível abrir a candidatura. Verifique o código ou contacte a equipa de transferência.", "editConflict": "Esta candidatura foi alterada noutro lugar. Abra-a novamente com o código antes de guardar.", "savingChanges": "A guardar alterações…", "saveApplicationChanges": "Guardar alterações", "applicationUpdated": "A sua candidatura foi atualizada!", "yeeHaw": "Viva!", "confirmationThankYou": "A sua candidatura foi enviada!", "confirmationKeepCode": "Guarde os dois códigos. Mantenha o código da candidatura privado: ele permite editá-la.", "returnHeading": "Quer atualizar a sua candidatura?", "returnStep1": "Visite join1616.com a qualquer momento.", "returnStep2": "Escolha o idioma e depois Editar minha candidatura.", "returnStep3": "Digite o código de confirmação para rever e editar os dados guardados.", "groupCodeLabel": "Código do grupo de transferência", "copyBothCodes": "Copiar os dois códigos", "joinDiscord": "Entre no nosso Discord", "discordPrivacy": "As informações que partilhar no Discord podem ser visíveis para outros candidatos.", "pngPrivate": "Mantenha esta imagem privada. O seu código permite aceder à candidatura para editá-la.", "noGroupCode": "Sem grupo de transferência", "pngFailed": "Não foi possível guardar a imagem. Tente novamente."}, "ko": {"startNewApplication": "새 신청서 작성", "editMyApplication": "내 신청서 수정", "retrieveApplication": "내 신청서 열기", "editCodeLabel": "신청 확인 코드", "editCodeHelp": "신청 확인 화면의 비공개 코드를 입력하세요. 코드를 잃어버렸다면 이전 담당 팀에 문의하세요.", "lookupFailed": "신청서를 열 수 없습니다. 코드를 확인하거나 이전 담당 팀에 문의하세요.", "editConflict": "다른 곳에서 신청서가 수정되었습니다. 저장하기 전에 코드로 다시 열어 주세요.", "savingChanges": "변경 사항 저장 중…", "saveApplicationChanges": "변경 사항 저장", "applicationUpdated": "신청서가 수정되었습니다!", "yeeHaw": "야호!", "confirmationThankYou": "신청서가 제출되었습니다!", "confirmationKeepCode": "두 코드를 저장하세요. 신청 확인 코드로 신청서를 수정할 수 있으므로 다른 사람에게 공유하지 마세요.", "returnHeading": "신청서를 수정하고 싶으신가요?", "returnStep1": "언제든지 join1616.com을 방문하세요.", "returnStep2": "언어를 선택한 다음 내 신청서 수정을 선택하세요.", "returnStep3": "신청 확인 코드를 입력하여 저장된 정보를 확인하고 수정하세요.", "groupCodeLabel": "이전 그룹 코드", "copyBothCodes": "두 코드 복사", "joinDiscord": "Discord 참여하기", "discordPrivacy": "Discord에서 공유한 정보는 다른 신청자에게 보일 수 있습니다.", "pngPrivate": "이 이미지를 비공개로 보관하세요. 신청 코드로 신청서에 접근하여 수정할 수 있습니다.", "noGroupCode": "이전 그룹 없음", "pngFailed": "이미지를 저장하지 못했습니다. 다시 시도하세요."}, "vi": {"startNewApplication": "Bắt đầu đơn mới", "editMyApplication": "Chỉnh sửa đơn của tôi", "retrieveApplication": "Mở đơn của tôi", "editCodeLabel": "Mã xác nhận đơn đăng ký", "editCodeHelp": "Nhập mã riêng tư trên xác nhận của bạn. Nếu mất mã, hãy liên hệ đội phụ trách chuyển máy chủ.", "lookupFailed": "Không thể mở đơn. Hãy kiểm tra mã hoặc liên hệ đội phụ trách chuyển máy chủ.", "editConflict": "Đơn này đã được chỉnh sửa ở nơi khác. Hãy mở lại bằng mã trước khi lưu.", "savingChanges": "Đang lưu thay đổi…", "saveApplicationChanges": "Lưu thay đổi", "applicationUpdated": "Đơn của bạn đã được cập nhật!", "yeeHaw": "Hoan hô!", "confirmationThankYou": "Đơn của bạn đã được gửi!", "confirmationKeepCode": "Lưu cả hai mã. Giữ bí mật mã xác nhận đơn vì mã này cho phép chỉnh sửa đơn của bạn.", "returnHeading": "Bạn muốn cập nhật đơn đăng ký?", "returnStep1": "Truy cập join1616.com bất cứ lúc nào.", "returnStep2": "Chọn ngôn ngữ rồi chọn Chỉnh sửa đơn của tôi.", "returnStep3": "Nhập mã xác nhận để xem lại và chỉnh sửa thông tin đã lưu.", "groupCodeLabel": "Mã nhóm chuyển máy chủ", "copyBothCodes": "Sao chép cả hai mã", "joinDiscord": "Tham gia Discord của chúng tôi", "discordPrivacy": "Thông tin bạn chia sẻ trên Discord có thể hiển thị với những người đăng ký khác.", "pngPrivate": "Giữ hình ảnh này riêng tư. Mã của bạn cho phép truy cập và chỉnh sửa đơn.", "noGroupCode": "Không có nhóm chuyển máy chủ", "pngFailed": "Không thể lưu hình ảnh. Vui lòng thử lại."}, "ar": {"startNewApplication": "بدء طلب جديد", "editMyApplication": "تعديل طلبي", "retrieveApplication": "فتح طلبي", "editCodeLabel": "رمز تأكيد الطلب", "editCodeHelp": "أدخل الرمز الخاص من تأكيد طلبك. إذا فقدته، تواصل مع فريق النقل.", "lookupFailed": "تعذر فتح طلبك. تحقق من الرمز أو تواصل مع فريق النقل.", "editConflict": "تم تعديل هذا الطلب في مكان آخر. افتحه مجدداً باستخدام الرمز قبل الحفظ.", "savingChanges": "جارٍ حفظ التغييرات…", "saveApplicationChanges": "حفظ تغييرات الطلب", "applicationUpdated": "تم تحديث طلبك!", "yeeHaw": "مرحى!", "confirmationThankYou": "تم إرسال طلبك!", "confirmationKeepCode": "احفظ الرمزين. احتفظ برمز تأكيد طلبك بسرية لأنه يتيح تعديل طلبك.", "returnHeading": "هل تريد تحديث طلبك؟", "returnStep1": "زر join1616.com في أي وقت.", "returnStep2": "اختر لغتك ثم تعديل طلبي.", "returnStep3": "أدخل رمز تأكيد الطلب لمراجعة بياناتك المحفوظة وتعديلها.", "groupCodeLabel": "رمز مجموعة النقل", "copyBothCodes": "نسخ الرمزين", "joinDiscord": "انضم إلى Discord الخاص بنا", "discordPrivacy": "قد تكون المعلومات التي تشاركها على Discord مرئية للمتقدمين الآخرين.", "pngPrivate": "احتفظ بهذه الصورة بسرية. يتيح رمز الطلب الوصول إلى طلبك وتعديله.", "noGroupCode": "لا توجد مجموعة نقل", "pngFailed": "تعذر حفظ الصورة. يرجى المحاولة مرة أخرى."}};
+for(const [lang,words] of Object.entries(APPLICATION_EDIT_I18N))Object.assign(I18N[lang],words);
 const state = { step: 1, language: 'en', groupMembers: [], applicationId: '', confirmationCode: '', pendingStepDestination: null, transferGroupReminderAcknowledgedFor: '', transferGroupReminderCopied: false };
 const form = document.getElementById('application-form');
 const steps = [...document.querySelectorAll('.form-step')];
@@ -4138,7 +4130,7 @@ function getApplicationId() {
   return state.applicationId;
 }
 function generateConfirmationCode() {
-  return `1616-${randomGroupChunk(4)}-${randomGroupChunk(4)}`;
+  return '1616-'+crypto.randomUUID().replace(/-/g,'').toUpperCase().match(/.{8}/g).join('-');
 }
 function getConfirmationCode() {
   if (!state.confirmationCode) state.confirmationCode = generateConfirmationCode();
@@ -4925,6 +4917,7 @@ function reviewSection(title, step, body) {
 }
 
 function renderReview() {
+  submitButton.textContent=t(state.editing?'saveApplicationChanges':'submitApplication');
   const p = collectPayload();
   const seatLabel = p.seatColour ? t(p.seatColour) : t('notProvided');
   const transferLabel = p.transferWithGroup ? t(p.transferWithGroup) : t('notProvided');
@@ -4948,6 +4941,7 @@ function saveDraft() {
     groupMembers: state.groupMembers,
     applicationId: state.applicationId,
     confirmationCode: state.confirmationCode,
+    editing:!!state.editing,editRevision:state.editRevision||0,
     values: Object.fromEntries([...new FormData(form).entries()].filter(([k]) => k !== 'website'))
   };
   try { localStorage.setItem(CONFIG.draftKey, JSON.stringify(data)); } catch (_) {}
@@ -4961,7 +4955,7 @@ function restoreDraft() {
     if (data.language) state.language = data.language;
     if (Array.isArray(data.groupMembers)) state.groupMembers = data.groupMembers;
     if (data.applicationId) state.applicationId = data.applicationId;
-    if (data.confirmationCode) state.confirmationCode = data.confirmationCode;
+    if (data.confirmationCode) state.confirmationCode = data.confirmationCode;state.editing=!!data.editing;state.editRevision=data.editRevision||0;
     const v = data.values || {};
     Object.entries(v).forEach(([name, value]) => {
       const elements = form.querySelectorAll(`[name="${CSS.escape(name)}"]`);
@@ -4992,7 +4986,7 @@ async function sendToGoogleSheets(payload) {
     });
     if (!response.ok) throw new Error('Google Sheets request failed');
     const result = await response.json();
-    if (result.ok !== true) throw new Error(result.error || 'Application was not saved');
+    if (result.ok !== true) {const error=new Error(result.error||'Application was not saved');error.code=result.errorCode;throw error;}
     return result;
   } finally {
     clearTimeout(timeout);
@@ -5012,17 +5006,19 @@ async function submitApplication(event) {
     showSubmission(t('backendMissing'), true); return;
   }
   const payload = collectPayload();
-  showSubmission(t('submitting'), false);
+  if(state.editing){payload.requestType='application.update';payload.editRevision=state.editRevision;const fingerprint=JSON.stringify({...payload,clientTimestamp:''});if(state.editFingerprint!==fingerprint){state.editRequestId=crypto.randomUUID();state.editFingerprint=fingerprint;}payload.editRequestId=state.editRequestId;}
+  showSubmission(t(state.editing?'savingChanges':'submitting'), false);
   submitButton.disabled = true;
   try {
-    await sendToGoogleSheets(payload);
+    const result=await sendToGoogleSheets(payload);
+    state.editRevision=result.editRevision||0;state.editRequestId='';
     showSubmission(t('submitted'), false);
     clearDraft();
     submitButton.disabled = true;
     showConfirmation(payload);
   } catch (error) {
     console.error(error);
-    showSubmission(t('submitFailed'), true);
+    showSubmission(t(error.code==='conflict'?'editConflict':'submitFailed'), true);
     submitButton.disabled = false;
   }
 }
@@ -5190,7 +5186,7 @@ function clearEntireForm() {
   state.step = 1;
   state.groupMembers = [];
   state.applicationId = '';
-  state.confirmationCode = '';
+  state.confirmationCode = '';state.editing=false;state.editRevision=0;state.editRequestId='';
   state.language = preservedLanguage;
 
   clearDraft();
@@ -5238,11 +5234,12 @@ function showConfirmation(payload) {
   document.getElementById('confirmation-server').textContent = payload.currentServer || '—';
 
   const groupNameRow = document.getElementById('confirmation-group-name-row');
+  document.getElementById('confirmation-title').textContent=t(state.editing?'applicationUpdated':'confirmationThankYou');
   if (payload.transferGroupName) {
     groupNameRow.hidden = false;
     document.getElementById('confirmation-group-name').textContent = payload.transferGroupName;
   } else {
-    groupNameRow.hidden = true;
+    groupNameRow.hidden = false;document.getElementById('confirmation-group-name').textContent=t('noGroupCode');
   }
 
 
@@ -5254,82 +5251,32 @@ async function copyConfirmationCode() {
   const code = document.getElementById('confirmation-code')?.textContent || '';
   if (!code || code === '—') return;
   try {
-    await navigator.clipboard.writeText(code);
+    await navigator.clipboard.writeText(t('confirmationCodeLabel')+': '+code+'\n'+t('groupCodeLabel')+': '+document.getElementById('confirmation-group-name').textContent);
     const btn = document.getElementById('copy-confirmation-code');
     const original = btn.textContent;
     btn.textContent = t('copiedGroupId');
-    setTimeout(() => { btn.textContent = t('copyConfirmationCode'); }, 1600);
+    setTimeout(() => { btn.textContent = t('copyBothCodes'); }, 1600);
   } catch (_) {}
 }
 
-function saveConfirmationPng() {
-  const confirmationCode = document.getElementById('confirmation-code')?.textContent || '';
-  const player = document.getElementById('confirmation-player')?.textContent || '';
-  const server = document.getElementById('confirmation-server')?.textContent || '';
-  const groupNameRow = document.getElementById('confirmation-group-name-row');
-  const groupName = groupNameRow && !groupNameRow.hidden ? document.getElementById('confirmation-group-name')?.textContent || '' : '';
-
-  const canvas = document.createElement('canvas');
-  canvas.width = 1400;
-  canvas.height = 900;
-  const ctx = canvas.getContext('2d');
-
-  const gradient = ctx.createLinearGradient(0,0,1400,900);
-  gradient.addColorStop(0, '#081522');
-  gradient.addColorStop(1, '#160b13');
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-
-  ctx.strokeStyle = '#d74766';
-  ctx.lineWidth = 4;
-  ctx.strokeRect(58,58,1284,784);
-
-  const glow = ctx.createRadialGradient(1110,170,10,1110,170,280);
-  glow.addColorStop(0,'rgba(211,50,82,.35)');
-  glow.addColorStop(1,'rgba(211,50,82,0)');
-  ctx.fillStyle = glow;
-  ctx.fillRect(800,0,600,500);
-
-  ctx.fillStyle = '#f5f7f8';
-  ctx.font = 'italic 900 92px Arial, sans-serif';
-  ctx.fillText('1616', 100, 170);
-
-  ctx.fillStyle = '#ef7891';
-  ctx.font = '700 26px Arial, sans-serif';
-  ctx.fillText(t('confirmationReceived').toUpperCase(), 105, 224);
-
-  ctx.fillStyle = '#f3f6f7';
-  ctx.font = '700 48px Arial, sans-serif';
-  ctx.fillText(t('confirmationThankYou'), 105, 310);
-
-  ctx.fillStyle = '#93aab6';
-  ctx.font = '28px Arial, sans-serif';
-  ctx.fillText(`${t('usernameShort')}: ${player}`, 105, 390);
-  ctx.fillText(`${t('serverShort')}: ${server}`, 105, 438);
-  if (groupName) ctx.fillText(`${t('transferGroupNameShort')}: ${groupName}`, 105, 486);
-
-  ctx.fillStyle = 'rgba(94,28,48,.74)';
-  ctx.fillRect(105, 555, 1190, 150);
-  ctx.strokeStyle = '#e05a77';
-  ctx.lineWidth = 2;
-  ctx.strokeRect(105, 555, 1190, 150);
-
-  ctx.fillStyle = '#d9a2ae';
-  ctx.font = '700 24px Arial, sans-serif';
-  ctx.fillText(t('confirmationCodeLabel').toUpperCase(), 145, 610);
-
-  ctx.fillStyle = '#fff6f8';
-  ctx.font = '900 58px Arial, sans-serif';
-  ctx.fillText(confirmationCode, 145, 675);
-
-  ctx.fillStyle = '#718c9a';
-  ctx.font = '22px Arial, sans-serif';
-  ctx.fillText('Server 1616 Transfer Application', 105, 790);
-
-  const link = document.createElement('a');
-  link.download = `1616-transfer-confirmation-${confirmationCode}.png`;
-  link.href = canvas.toDataURL('image/png');
-  link.click();
+async function loadExistingApplication(){
+ const button=document.getElementById('lookup-application'),error=document.getElementById('lookup-error');if(button.disabled)return;error.textContent='';button.disabled=true;
+ try{const result=await sendToGoogleSheets({requestType:'application.lookup',confirmationCode:document.getElementById('application-code-input').value.trim(),website:''}),p=result.application;if(!p||!p.applicationId)throw Error('Unavailable');
+ form.reset();state.applicationId=p.applicationId;state.confirmationCode=p.confirmationCode;state.editing=true;state.editRevision=result.editRevision||0;state.editRequestId='';state.groupMembers=Array.isArray(p.groupMembers)?p.groupMembers:[];
+ for(const [key,value]of Object.entries(p)){for(const el of form.querySelectorAll('[name="'+CSS.escape(key)+'"]')){if(el.type==='radio'||el.type==='checkbox')el.checked=el.value===String(value);else el.value=value==null?'':String(value);}}
+ groupBuilder.hidden=currentGroupAnswer()!=='yes';renderGroupMembers();syncGroupSameAllianceQuestion();updateGroupContactOptions();updateGroupSummary();document.querySelectorAll('select').forEach(syncCustomSelect);state.transferGroupReminderAcknowledgedFor=p.transferGroupName||'';submitButton.disabled=false;document.getElementById('welcome-screen').hidden=true;document.body.classList.remove('welcome-open');showTopPage('application');goToStep(5);renderReview();window.scrollTo({top:0,behavior:'smooth'});
+ }catch(_){error.textContent=t('lookupFailed');}finally{button.disabled=false;}
+}
+async function saveConfirmationPng(){
+ const button=document.getElementById('save-confirmation-png');button.disabled=true;
+ try{await document.fonts.ready;const art=document.querySelector('.confirmation-art');await art.decode();const c=document.createElement('canvas');c.width=1200;c.height=5000;const x=c.getContext('2d');x.fillStyle='#fffaf2';x.fillRect(0,0,c.width,c.height);x.drawImage(art,0,0,1200,800);let y=815;const rtl=state.language==='ar';x.direction=rtl?'rtl':'ltr';
+ function text(value,size=27,bold=false,color='#302e2a',center=false){x.font=(bold?'700 ':'400 ')+size+'px Arial, sans-serif';x.fillStyle=color;x.textAlign=center?'center':rtl?'right':'left';const max=1040,lines=[];let line='';for(const char of String(value)){if(char==='\n'){lines.push(line);line='';}else if(x.measureText(line+char).width>max){const cut=line.lastIndexOf(' ');if(cut>line.length/2){lines.push(line.slice(0,cut));line=line.slice(cut+1)+char;}else{lines.push(line);line=char;}}else line+=char;}if(line)lines.push(line);for(const part of lines){x.fillText(part,center?600:rtl?1120:80,y);y+=size*1.4;}y+=14;}
+ text(t('yeeHaw'),70,true,'#b50c32',true);text(document.getElementById('confirmation-title').textContent,38,true,'#24252b',true);
+ text(t('usernameShort')+': '+document.getElementById('confirmation-player').textContent,29,true);text(t('serverShort')+': '+document.getElementById('confirmation-server').textContent,27);
+ for(const [label,id]of [['confirmationCodeLabel','confirmation-code'],['groupCodeLabel','confirmation-group-name']]){const start=y-14;y+=20;text(t(label),23,false,'#795c49');text(document.getElementById(id).textContent,28,true,'#a82332');y+=12;x.save();x.globalCompositeOperation='destination-over';x.fillStyle='#f7ece0';x.fillRect(60,start,1080,y-start);x.restore();x.strokeStyle='#dfcdbc';x.strokeRect(60,start,1080,y-start);y+=46;}
+ text(t('returnHeading'),32,true);for(const [i,key]of ['returnStep1','returnStep2','returnStep3'].entries())text((i+1)+'. '+t(key));text(t('confirmationKeepCode'),25,false,'#795c49');text(t('joinDiscord'),29,true,'#a82332',true);text('discord.gg/Qkbr9SGD52',25,false,'#a82332',true);text(t('discordPrivacy'),23,false,'#795c49');text(t('pngPrivate'),23,false,'#795c49');
+ const out=document.createElement('canvas');out.width=1200;out.height=Math.ceil(y+45);out.getContext('2d').drawImage(c,0,0);const ctx=out.getContext('2d');ctx.strokeStyle='#c9b49b';ctx.lineWidth=3;ctx.strokeRect(20,20,out.width-40,out.height-40);const link=document.createElement('a');link.download='Join1616-confirmation.png';link.href=out.toDataURL('image/png');link.click();
+ }catch(_){alert(t('pngFailed'));}finally{button.disabled=false;}
 }
 
 function initPetals() {
@@ -5519,7 +5466,11 @@ function initWelcomeScreen() {
     });
   });
 
+  document.getElementById('welcome-edit').onclick=()=>{document.getElementById('application-lookup').hidden=false;document.getElementById('application-code-input').focus();};
+  document.getElementById('lookup-application').onclick=loadExistingApplication;
+  document.getElementById('application-code-input').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();loadExistingApplication();}});
   enter.addEventListener('click', () => {
+    if(state.editing)clearEntireForm();
     welcome.hidden = true;
     document.body.classList.remove('welcome-open');
     showTopPage('application');
