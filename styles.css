@@ -8744,3 +8744,6 @@ body.page-transitioning .story-page:not([hidden]) {
 body.welcome-open .question-panel{z-index:6000!important;bottom:20px!important}
 
 .question-prefill-copy{min-width:0;width:100%}.question-prefill-value input{box-sizing:border-box;width:100%;min-width:0;border:0!important;border-bottom:1px solid #ce819780!important;border-radius:0!important;background:transparent!important;color:#fff4e9!important;padding:5px 0!important;font:inherit!important;box-shadow:none!important}.question-prefill-value input:focus{outline:0;border-bottom-color:#ffbdcc!important}.question-prefill-value input::placeholder{color:#dabdc3!important;opacity:1}
+
+/* Quiet samurai contact icons: person, alliance banner and server castle. */
+.question-panel .question-prefill-icon{background:transparent!important;border:0!important;box-shadow:none!important;color:#f3c38b!important;width:28px!important;height:32px!important;min-width:28px!important;display:grid!important;place-items:center!important}.question-prefill-icon svg{display:block;width:22px;height:22px}
