@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Tint&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=application-edit-2" />
+  <link rel="stylesheet" href="styles.css?v=contact-fields-1" />
 <style>#nav-story{display:none!important}</style></head>
 <body>
 
@@ -920,22 +920,22 @@
         <div class="question-prefill-row">
           <span class="question-prefill-icon" aria-hidden="true">●</span>
           <div class="question-prefill-copy">
-            <label data-i18n="questionUsername">Username</label>
-            <div class="question-prefill-value"><span id="question-prefill-username">—</span><span class="question-lock" aria-hidden="true">▣</span></div>
+            <label for="question-prefill-username" data-i18n="questionUsername">Username</label>
+            <div class="question-prefill-value"><input id="question-prefill-username" type="text" maxlength="100" autocomplete="off" data-i18n-placeholder="questionNotEntered" placeholder="Not entered yet"></div>
           </div>
         </div>
         <div class="question-prefill-row">
           <span class="question-prefill-icon" aria-hidden="true">✦</span>
           <div class="question-prefill-copy">
-            <label data-i18n="questionAlliance">Alliance</label>
-            <div class="question-prefill-value"><span id="question-prefill-alliance">—</span><span class="question-lock" aria-hidden="true">▣</span></div>
+            <label for="question-prefill-alliance" data-i18n="questionAlliance">Alliance</label>
+            <div class="question-prefill-value"><input id="question-prefill-alliance" type="text" maxlength="100" autocomplete="off" data-i18n-placeholder="questionNotEntered" placeholder="Not entered yet"></div>
           </div>
         </div>
         <div class="question-prefill-row">
           <span class="question-prefill-icon" aria-hidden="true">#</span>
           <div class="question-prefill-copy">
-            <label data-i18n="questionServer">Server</label>
-            <div class="question-prefill-value"><span id="question-prefill-server">—</span><span class="question-lock" aria-hidden="true">▣</span></div>
+            <label for="question-prefill-server" data-i18n="questionServer">Server</label>
+            <div class="question-prefill-value"><input id="question-prefill-server" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off" data-i18n-placeholder="questionNotEntered" placeholder="Not entered yet"></div>
           </div>
         </div>
       </div>
@@ -5039,9 +5039,10 @@ function updateQuestionPrefill() {
   const usernameEl = document.getElementById('question-prefill-username');
   const serverEl = document.getElementById('question-prefill-server');
   const allianceEl = document.getElementById('question-prefill-alliance');
-  if (usernameEl) usernameEl.textContent = ctx.username || fallback;
-  if (serverEl) serverEl.textContent = ctx.server || fallback;
-  if (allianceEl) allianceEl.textContent = ctx.alliance || fallback;
+  for (const [el,value] of [[usernameEl,ctx.username],[serverEl,ctx.server],[allianceEl,ctx.alliance]]) {
+    if (el && !el.dataset.userEdited) el.value=value;
+    if(el)el.placeholder=fallback;
+  }
 }
 
 function openQuestionPanel() {
@@ -5119,7 +5120,7 @@ async function submitQuestion() {
     return;
   }
 
-  const ctx = getQuestionApplicantContext();
+  const ctx = {username:document.getElementById('question-prefill-username').value.trim(),server:digitsOnly(document.getElementById('question-prefill-server').value),alliance:document.getElementById('question-prefill-alliance').value.trim()};
   const payload = {
     requestType: 'question',
     username: ctx.username,
@@ -5583,6 +5584,7 @@ form.addEventListener('change', saveDraft);
 form.addEventListener('input', e => { if (!e.target.classList.contains('member-name') && !e.target.classList.contains('member-alliance')) saveDraft(); });
 
 
+for(const field of ['username','server','alliance'])document.getElementById('question-prefill-'+field).addEventListener('input',event=>{event.target.dataset.userEdited='true';if(field==='server')event.target.value=digitsOnly(event.target.value);});
 document.getElementById('question-fab').addEventListener('click', () => {
   const panel = document.getElementById('question-panel');
   if (panel?.hidden) openQuestionPanel(); else closeQuestionPanel();
