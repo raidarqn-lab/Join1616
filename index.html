@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Tint&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=two-way-chat-1" />
-<link rel="stylesheet" href="application-edit.css?v=2" />
+<link rel="stylesheet" href="application-edit.css?v=3" />
 <style>#nav-story{display:none!important}</style></head>
 <body>
 
@@ -858,6 +858,7 @@
 
   <section class="confirmation-screen" id="confirmation-screen" hidden role="dialog" aria-modal="true" aria-labelledby="confirmation-title">
     <div class="confirmation-card" id="confirmation-card">
+      <button type="button" id="close-confirmation" class="confirmation-close" aria-label="Close"><span aria-hidden="true">×</span></button>
       <img class="confirmation-art" src="confirmation-celebration.png" alt="" aria-hidden="true">
       <p class="confirmation-cheer" data-i18n="yeeHaw">Yee haw!</p>
       <h1 id="confirmation-title" data-i18n="confirmationThankYou">Your application is submitted!</h1>
@@ -5274,12 +5275,33 @@ function showConfirmation(payload) {
 
   closeApplicationEditor();
   screen.hidden = false;
+  document.getElementById('close-confirmation').setAttribute('aria-label', t('closeGuide'));
   document.querySelector('.site-header').inert = true;
   document.querySelector('.app-shell').inert = true;
   screen.scrollTop = 0;
   document.querySelector('.confirmation-return').open = false;
   document.body.style.overflow = 'hidden';
   document.getElementById('copy-confirmation-code').focus({preventScroll:true});
+}
+
+function closeConfirmation() {
+  const screen = document.getElementById('confirmation-screen');
+  if (screen.hidden) return;
+  const savedCode = document.getElementById('confirmation-code').textContent;
+  screen.hidden = true;
+  document.querySelector('.site-header').inert = false;
+  document.querySelector('.app-shell').inert = false;
+  document.body.style.overflow = '';
+  clearEntireForm();
+  const welcome = document.getElementById('welcome-screen');
+  welcome.hidden = false;
+  welcome.classList.remove('lookup-open');
+  document.getElementById('welcome-language-stage').hidden = true;
+  document.getElementById('welcome-guide-stage').hidden = false;
+  document.getElementById('application-lookup').hidden = true;
+  document.getElementById('application-code-input').value = savedCode;
+  document.body.classList.add('welcome-open');
+  document.getElementById('welcome-edit').focus({preventScroll:true});
 }
 
 async function copyConfirmationCode() {
@@ -5689,6 +5711,8 @@ document.getElementById('clear-form-button').addEventListener('click', openClear
 document.getElementById('clear-form-cancel').addEventListener('click', closeClearFormModal);
 document.getElementById('clear-form-confirm').addEventListener('click', clearEntireForm);
 document.getElementById('clear-modal').addEventListener('click', e => { if (e.target.id === 'clear-modal') closeClearFormModal(); });
+document.getElementById('close-confirmation').addEventListener('click', closeConfirmation);
+document.addEventListener('keydown', event => { if (event.key === 'Escape' && !document.getElementById('confirmation-screen').hidden) closeConfirmation(); });
 document.getElementById('copy-confirmation-code').addEventListener('click', copyConfirmationCode);
 document.getElementById('save-confirmation-png').addEventListener('click', saveConfirmationPng);
 document.getElementById('comments').addEventListener('input', e => { document.getElementById('comments-count').textContent = e.target.value.length; saveDraft(); });

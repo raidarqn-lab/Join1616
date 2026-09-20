@@ -78,3 +78,9 @@ body.application-editor-open { overflow: hidden; }
   .confirmation-code-wrap strong { margin-top: 2px !important; }
   .confirmation-actions .confirmation-button { font-size: 12px !important; }
 }
+
+.confirmation-card { position: relative; }
+.confirmation-card h1 { padding-inline: 22px; }
+.confirmation-close { position: absolute; top: 6px; inset-inline-end: 6px; width: 32px; height: 32px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 50%; background: transparent; color: #795c49; font: 26px/1 sans-serif; cursor: pointer; }
+.confirmation-close:hover { background: #f1e5d8; color: #ae1836; }
+.confirmation-close:focus-visible { outline: 2px solid #ae1836; outline-offset: 1px; }
