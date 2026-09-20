@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Tint&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=two-way-chat-1" />
+<link rel="stylesheet" href="application-edit.css?v=1" />
 <style>#nav-story{display:none!important}</style></head>
 <body>
 
@@ -850,14 +851,19 @@
     </div>
   </section>
 
-  <section class="confirmation-screen" id="confirmation-screen" hidden aria-labelledby="confirmation-title">
+  <dialog id="application-editor" aria-labelledby="application-editor-title">
+    <header class="editor-header"><div><h2 id="application-editor-title" data-i18n="editMyApplication"></h2><p data-i18n="editorIntro"></p></div><button type="button" id="editor-cancel" class="button secondary" data-i18n="cancel"></button></header>
+    <div id="editor-form-host"></div>
+  </dialog>
+
+  <section class="confirmation-screen" id="confirmation-screen" hidden role="dialog" aria-modal="true" aria-labelledby="confirmation-title">
     <div class="confirmation-card" id="confirmation-card">
       <img class="confirmation-art" src="confirmation-celebration.png" alt="" aria-hidden="true">
       <p class="confirmation-cheer" data-i18n="yeeHaw">Yee haw!</p>
       <h1 id="confirmation-title" data-i18n="confirmationThankYou">Your application is submitted!</h1>
       <div class="confirmation-details"><div><span data-i18n="usernameShort">Player</span><strong id="confirmation-player">—</strong></div><div><span data-i18n="serverShort">Server</span><strong id="confirmation-server">—</strong></div></div>
       <div class="confirmation-code-grid"><div class="confirmation-code-wrap"><span data-i18n="confirmationCodeLabel">Confirmation code</span><strong id="confirmation-code" dir="ltr">—</strong></div><div class="confirmation-code-wrap" id="confirmation-group-name-row"><span data-i18n="groupCodeLabel">Transfer group code</span><strong id="confirmation-group-name" dir="auto">—</strong></div></div>
-      <section class="confirmation-return"><h2 data-i18n="returnHeading"></h2><ol><li data-i18n="returnStep1"></li><li data-i18n="returnStep2"></li><li data-i18n="returnStep3"></li></ol><p data-i18n="confirmationKeepCode"></p></section>
+      <details class="confirmation-return"><summary data-i18n="returnHeading"></summary><ol><li data-i18n="returnStep1"></li><li data-i18n="returnStep2"></li><li data-i18n="returnStep3"></li></ol><p data-i18n="confirmationKeepCode"></p></details>
       <div class="confirmation-actions"><button type="button" class="confirmation-button primary" id="copy-confirmation-code" data-i18n="copyBothCodes">Copy both codes</button><button type="button" class="confirmation-button secondary" id="save-confirmation-png" data-i18n="saveConfirmationPng">Save confirmation PNG</button></div>
       <p class="confirmation-screenshot-note" data-i18n="pngPrivate"></p>
       <a class="confirmation-button discord-invite" href="https://discord.gg/Qkbr9SGD52" target="_blank" rel="noopener noreferrer"><span data-i18n="joinDiscord"></span> ↗</a><p class="confirmation-screenshot-note" data-i18n="discordPrivacy"></p>
@@ -4358,6 +4364,12 @@ function updatePersonalizedGameDetailsTitle() {
 }
 
 function updateProgress() {
+  if (document.getElementById('application-editor').open) {
+    submitButton.hidden = false;
+    submitButton.textContent = t('saveApplicationChanges');
+    backButton.hidden = nextButton.hidden = true;
+    return;
+  }
   updatePersonalizedGameDetailsTitle();
   steps.forEach(step => step.classList.toggle('active', Number(step.dataset.step) === state.step));
   stepLinks.forEach((link, index) => {
@@ -4394,6 +4406,18 @@ function animateCurrentStepTitle() {
 }
 
 function goToStep(step) {
+  if (document.getElementById('application-editor').open) {
+    const section = steps.find(item => Number(item.dataset.step) === step);
+    const accordion = section?.closest('details');
+    if (accordion) {
+      accordion.open = true;
+      section.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      const invalid = section.querySelector('.invalid');
+      for (let parent = invalid?.closest('details'); parent; parent = parent.parentElement?.closest('details')) parent.open = true;
+      (invalid?.closest('.custom-select')?.querySelector('.custom-select-trigger') || invalid)?.focus({preventScroll:true});
+    }
+    return;
+  }
   if (step < 1 || step > 5) return;
   hideValidationBanner();
   const changed = step !== state.step;
@@ -4935,6 +4959,7 @@ function escapeHtml(value) { return String(value ?? '').replace(/[&<>"]/g, c => 
 function escapeAttr(value) { return escapeHtml(value).replace(/'/g, '&#39;'); }
 
 function saveDraft() {
+  if (state.submitted) return;
   const data = {
     language: state.language,
     step: state.step,
@@ -4995,7 +5020,8 @@ async function sendToGoogleSheets(payload) {
 
 async function submitApplication(event) {
   event.preventDefault();
-  for (let s = 1; s <= 3; s++) {
+  if (submitButton.disabled) return;
+  for (let s = 1; s <= 4; s++) {
     const previous = state.step; state.step = s;
     if (!validateCurrentStep()) { state.step = previous; goToStep(s); return; }
     state.step = previous;
@@ -5013,6 +5039,7 @@ async function submitApplication(event) {
     const result=await sendToGoogleSheets(payload);
     state.editRevision=result.editRevision||0;state.editRequestId='';
     showSubmission(t('submitted'), false);
+    state.submitted = true;
     clearDraft();
     submitButton.disabled = true;
     window.Join1616Chat?.linkApplication();
@@ -5188,7 +5215,7 @@ function clearEntireForm() {
   state.step = 1;
   state.groupMembers = [];
   state.applicationId = '';
-  state.confirmationCode = '';state.editing=false;state.editRevision=0;state.editRequestId='';
+  state.confirmationCode = '';state.submitted=false;state.editing=false;state.editRevision=0;state.editRequestId='';
   state.language = preservedLanguage;
 
   clearDraft();
@@ -5245,8 +5272,14 @@ function showConfirmation(payload) {
   }
 
 
+  closeApplicationEditor();
   screen.hidden = false;
+  document.querySelector('.site-header').inert = true;
+  document.querySelector('.app-shell').inert = true;
+  screen.scrollTop = 0;
+  document.querySelector('.confirmation-return').open = false;
   document.body.style.overflow = 'hidden';
+  document.getElementById('copy-confirmation-code').focus({preventScroll:true});
 }
 
 async function copyConfirmationCode() {
@@ -5264,14 +5297,17 @@ async function copyConfirmationCode() {
 async function loadExistingApplication(){
  const button=document.getElementById('lookup-application'),error=document.getElementById('lookup-error');if(button.disabled)return;error.textContent='';button.disabled=true;
  try{const result=await sendToGoogleSheets({requestType:'application.lookup',confirmationCode:document.getElementById('application-code-input').value.trim(),website:''}),p=result.application;if(!p||!p.applicationId)throw Error('Unavailable');
- form.reset();state.applicationId=p.applicationId;state.confirmationCode=p.confirmationCode;state.editing=true;state.editRevision=result.editRevision||0;state.editRequestId='';state.groupMembers=Array.isArray(p.groupMembers)?p.groupMembers:[];
+ form.reset();state.applicationId=p.applicationId;state.confirmationCode=p.confirmationCode;state.editing=true;state.submitted=false;state.editRevision=result.editRevision||0;state.editRequestId='';state.groupMembers=Array.isArray(p.groupMembers)?p.groupMembers.map(member=>({...member,id:member.id||crypto.randomUUID()})):[];
+ form.querySelectorAll('[data-numeric]').forEach(input=>{input.dataset.numericInvalid='';});
+ form.querySelectorAll('.invalid').forEach(input=>input.classList.remove('invalid'));
+ form.querySelectorAll('.field-error').forEach(error=>{error.textContent='';});
  for(const [key,value]of Object.entries(p)){for(const el of form.querySelectorAll('[name="'+CSS.escape(key)+'"]')){if(el.type==='radio'||el.type==='checkbox')el.checked=el.value===String(value);else el.value=value==null?'':String(value);}}
- groupBuilder.hidden=currentGroupAnswer()!=='yes';renderGroupMembers();syncGroupSameAllianceQuestion();updateGroupContactOptions();updateGroupSummary();document.querySelectorAll('select').forEach(syncCustomSelect);state.transferGroupReminderAcknowledgedFor=p.transferGroupName||'';submitButton.disabled=false;document.getElementById('welcome-screen').hidden=true;document.body.classList.remove('welcome-open');showTopPage('application');goToStep(5);renderReview();window.scrollTo({top:0,behavior:'smooth'});
+ groupBuilder.hidden=currentGroupAnswer()!=='yes';renderGroupMembers();syncGroupSameAllianceQuestion();updateGroupContactOptions();updateGroupSummary();document.querySelectorAll('select').forEach(syncCustomSelect);state.transferGroupReminderAcknowledgedFor=p.transferGroupName||'';submitButton.disabled=false;document.getElementById('welcome-screen').hidden=true;document.body.classList.remove('welcome-open');showTopPage('application');goToStep(5);renderReview();openApplicationEditor();
  }catch(_){error.textContent=t('lookupFailed');}finally{button.disabled=false;}
 }
 async function saveConfirmationPng(){
  const button=document.getElementById('save-confirmation-png');button.disabled=true;
- try{await document.fonts.ready;const art=document.querySelector('.confirmation-art');await art.decode();const c=document.createElement('canvas');c.width=1200;c.height=5000;const x=c.getContext('2d');x.fillStyle='#fffaf2';x.fillRect(0,0,c.width,c.height);x.drawImage(art,0,0,1200,800);let y=815;const rtl=state.language==='ar';x.direction=rtl?'rtl':'ltr';
+ try{await document.fonts.ready;const art=document.querySelector('.confirmation-art');await art.decode();const c=document.createElement('canvas');c.width=1200;c.height=5000;const x=c.getContext('2d');x.fillStyle='#fffaf2';x.fillRect(0,0,c.width,c.height);x.drawImage(art,420,24,360,240);let y=290;const rtl=state.language==='ar';x.direction=rtl?'rtl':'ltr';
  function text(value,size=27,bold=false,color='#302e2a',center=false){x.font=(bold?'700 ':'400 ')+size+'px Arial, sans-serif';x.fillStyle=color;x.textAlign=center?'center':rtl?'right':'left';const max=1040,lines=[];let line='';for(const char of String(value)){if(char==='\n'){lines.push(line);line='';}else if(x.measureText(line+char).width>max){const cut=line.lastIndexOf(' ');if(cut>line.length/2){lines.push(line.slice(0,cut));line=line.slice(cut+1)+char;}else{lines.push(line);line=char;}}else line+=char;}if(line)lines.push(line);for(const part of lines){x.fillText(part,center?600:rtl?1120:80,y);y+=size*1.4;}y+=14;}
  text(t('yeeHaw'),70,true,'#b50c32',true);text(document.getElementById('confirmation-title').textContent,38,true,'#24252b',true);
  text(t('usernameShort')+': '+document.getElementById('confirmation-player').textContent,29,true);text(t('serverShort')+': '+document.getElementById('confirmation-server').textContent,27);
@@ -5280,6 +5316,83 @@ async function saveConfirmationPng(){
  const out=document.createElement('canvas');out.width=1200;out.height=Math.ceil(y+45);out.getContext('2d').drawImage(c,0,0);const ctx=out.getContext('2d');ctx.strokeStyle='#c9b49b';ctx.lineWidth=3;ctx.strokeRect(20,20,out.width-40,out.height-40);const link=document.createElement('a');link.download='Join1616-confirmation.png';link.href=out.toDataURL('image/png');link.click();
  }catch(_){alert(t('pngFailed'));}finally{button.disabled=false;}
 }
+
+
+// Reuse the original controls and validation, without re-entering the new-application wizard.
+const EDITOR_COPY = {
+ en: ['Edit the sections you need, then save once. You do not need to apply again.', 'Discard your unsaved changes?'],
+ es: ['Edita las secciones necesarias y guarda una vez. No necesitas volver a solicitar.', '¿Descartar los cambios sin guardar?'],
+ pt: ['Edite as seções necessárias e salve uma vez. Não é preciso se inscrever novamente.', 'Descartar as alterações não salvas?'],
+ fr: ['Modifiez les sections souhaitées, puis enregistrez. Inutile de refaire une demande.', 'Abandonner les modifications non enregistrées ?'],
+ ar: ['عدّل الأقسام المطلوبة ثم احفظ مرة واحدة. لا تحتاج إلى تقديم طلب جديد.', 'هل تريد تجاهل التغييرات غير المحفوظة؟'],
+ vi: ['Chỉnh sửa các mục cần thiết rồi lưu một lần. Bạn không cần nộp đơn lại.', 'Bỏ các thay đổi chưa lưu?'],
+ ko: ['필요한 항목을 수정한 후 한 번만 저장하세요. 다시 신청할 필요가 없습니다.', '저장하지 않은 변경 사항을 취소할까요?'],
+ de: ['Bearbeite die gewünschten Bereiche und speichere einmal. Eine neue Bewerbung ist nicht nötig.', 'Ungespeicherte Änderungen verwerfen?']
+};
+for (const [lang, words] of Object.entries(EDITOR_COPY)) Object.assign(I18N[lang], {editorIntro:words[0], discardEdits:words[1]});
+let editorOriginalParent, editorOriginalSibling, editorStatusParent, editorSnapshot, editorGuideParent;
+function editorFingerprint() {
+  const {clientTimestamp, ...payload} = collectPayload();
+  return JSON.stringify(payload);
+}
+function openApplicationEditor() {
+  const dialog = document.getElementById('application-editor');
+  if (dialog.open) return;
+  editorOriginalParent = form.parentNode;
+  editorOriginalSibling = form.nextSibling;
+  editorStatusParent = submissionStatus.parentNode;
+  const sectionTitles = ['reviewApplicant','reviewGame','reviewGroup','reviewAdditional'];
+  steps.slice(0,4).forEach((section,index) => {
+    const accordion = document.createElement('details');
+    accordion.className = 'editor-section';
+    accordion.open = index === 0;
+    const summary = document.createElement('summary');
+    summary.textContent = t(sectionTitles[index]);
+    section.before(accordion);
+    accordion.append(summary, section);
+  });
+  document.getElementById('editor-form-host').append(form);
+  form.querySelector('.form-actions').before(submissionStatus);
+  submissionStatus.hidden = true;
+  document.getElementById('comments-count').textContent = document.getElementById('comments').value.length;
+  editorSnapshot = editorFingerprint();
+  const guide = document.getElementById('stats-guide-modal');
+  editorGuideParent = guide.parentNode;
+  dialog.append(guide);
+  closeAllCustomSelects();
+  dialog.showModal();
+  document.body.classList.add('application-editor-open');
+  updateProgress();
+  document.getElementById('editor-cancel').focus({preventScroll:true});
+}
+function closeApplicationEditor() {
+  const dialog = document.getElementById('application-editor');
+  if (!dialog.open) return;
+  closeStatsGuideModal();
+  editorGuideParent.append(document.getElementById('stats-guide-modal'));
+  dialog.close();
+  document.body.classList.remove('application-editor-open');
+  form.querySelectorAll('.editor-section').forEach(accordion => accordion.replaceWith(accordion.querySelector('.form-step')));
+  editorStatusParent.append(submissionStatus);
+  editorOriginalParent.insertBefore(form, editorOriginalSibling);
+  updateProgress();
+}
+function cancelApplicationEditor() {
+  if (submitButton.disabled) return;
+  if (editorFingerprint() !== editorSnapshot && !window.confirm(t('discardEdits'))) return;
+  closeApplicationEditor();
+  clearEntireForm();
+  const welcome = document.getElementById('welcome-screen');
+  welcome.hidden = false;
+  welcome.classList.add('lookup-open');
+  document.getElementById('welcome-language-stage').hidden = true;
+  document.getElementById('welcome-guide-stage').hidden = false;
+  document.getElementById('application-lookup').hidden = false;
+  document.body.classList.add('welcome-open');
+  document.getElementById('application-code-input').focus({preventScroll:true});
+}
+document.getElementById('editor-cancel').addEventListener('click', cancelApplicationEditor);
+document.getElementById('application-editor').addEventListener('cancel', event => {event.preventDefault();cancelApplicationEditor();});
 
 function initPetals() {
   const box = document.getElementById('petals');
