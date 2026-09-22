@@ -11,7 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Tint&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=two-way-chat-1" />
 <link rel="stylesheet" href="application-edit.css?v=3" />
-<style>#nav-story{display:none!important}</style></head>
+<style>#nav-story{display:none!important}</style>  <link rel="stylesheet" href="support.css?v=1" />
+</head>
 <body>
 
   <svg class="svg-defs" aria-hidden="true" focusable="false">
@@ -747,6 +748,17 @@
     </section>
   </main>
 
+  <footer class="coffee-footer">
+    <div class="coffee-support">
+      <span class="coffee-blossom" aria-hidden="true">🌸</span>
+      <p class="coffee-heading" data-i18n="supportHeading">Made with love &amp; questionable amounts of caffeine.</p>
+      <p class="coffee-copy" data-i18n="supportCopy">If our tools helped you, treat the humans behind them to a coffee.</p>
+      <a class="coffee-button" href="https://buymeacoffee.com/raidarqn" target="_blank" rel="noopener noreferrer"><span class="coffee-cup" aria-hidden="true">☕</span><span data-i18n="supportButton">Fuel the 1616 chaos</span><span aria-hidden="true">↗</span><span class="coffee-sr-only" data-i18n="supportNewTab"> (opens in a new tab)</span></a>
+      <p class="coffee-note" data-i18n="supportOptional">Always optional. Always appreciated.</p>
+    </div>
+  </footer>
+
+
   <template id="group-member-template">
     <article class="group-member-card">
       <div class="member-heading">
@@ -868,6 +880,8 @@
       <div class="confirmation-actions"><button type="button" class="confirmation-button primary" id="copy-confirmation-code" data-i18n="copyBothCodes">Copy both codes</button><button type="button" class="confirmation-button secondary" id="save-confirmation-png" data-i18n="saveConfirmationPng">Save confirmation PNG</button></div>
       <p class="confirmation-screenshot-note" data-i18n="pngPrivate"></p>
       <a class="confirmation-button discord-invite" href="https://discord.gg/Qkbr9SGD52" target="_blank" rel="noopener noreferrer"><span data-i18n="joinDiscord"></span> ↗</a><p class="confirmation-screenshot-note" data-i18n="discordPrivacy"></p>
+
+      <div class="coffee-confirmation"><p data-i18n="supportThanks">A little coffee for the crew? Totally optional. 🌸</p><a class="coffee-button" href="https://buymeacoffee.com/raidarqn" target="_blank" rel="noopener noreferrer"><span class="coffee-cup" aria-hidden="true">☕</span><span data-i18n="supportButton">Fuel the 1616 chaos</span><span aria-hidden="true">↗</span><span class="coffee-sr-only" data-i18n="supportNewTab"> (opens in a new tab)</span></a></div>
 
     </div>
   </section>
@@ -4112,6 +4126,74 @@ const I18N = {
 
 const APPLICATION_EDIT_I18N={"en": {"startNewApplication": "Start new application", "editMyApplication": "Edit my application", "retrieveApplication": "Open my application", "editCodeLabel": "Application confirmation code", "editCodeHelp": "Enter the private code from your confirmation.", "lookupFailed": "We could not open your application. Check the code and try again, or contact the transfer team.", "editConflict": "This application changed elsewhere. Reopen it with your code before saving again.", "savingChanges": "Saving your changes…", "saveApplicationChanges": "Save application changes", "applicationUpdated": "Your application has been updated!", "yeeHaw": "Yee haw!", "confirmationThankYou": "Your application is submitted!", "confirmationKeepCode": "Save both codes. Keep your application confirmation code private—it gives access to edit your application.", "returnHeading": "Want to update your application?", "returnStep1": "Visit join1616.com at any time.", "returnStep2": "Choose your language, then Edit my application.", "returnStep3": "Enter your application confirmation code to review and edit your saved details.", "groupCodeLabel": "Transfer group code", "copyBothCodes": "Copy both codes", "joinDiscord": "Join our Discord", "discordPrivacy": "Information you share in Discord may be visible to other applicants.", "pngPrivate": "Keep this image private. Your application code allows access to edit your application.", "noGroupCode": "No transfer group", "pngFailed": "Could not save the image. Please try again.", "lostCodeHelp": "Lost your code? Contact the transfer team."}, "de": {"startNewApplication": "Neue Bewerbung starten", "editMyApplication": "Meine Bewerbung bearbeiten", "retrieveApplication": "Meine Bewerbung öffnen", "editCodeLabel": "Bestätigungscode der Bewerbung", "editCodeHelp": "Gib den privaten Code deiner Bestätigung ein.", "lookupFailed": "Die Bewerbung konnte nicht geöffnet werden. Prüfe den Code oder kontaktiere das Transferteam.", "editConflict": "Diese Bewerbung wurde inzwischen geändert. Öffne sie erneut mit deinem Code, bevor du speicherst.", "savingChanges": "Änderungen werden gespeichert…", "saveApplicationChanges": "Änderungen speichern", "applicationUpdated": "Deine Bewerbung wurde aktualisiert!", "yeeHaw": "Juhu!", "confirmationThankYou": "Deine Bewerbung wurde eingereicht!", "confirmationKeepCode": "Speichere beide Codes. Halte deinen Bewerbungscode geheim – damit kann deine Bewerbung bearbeitet werden.", "returnHeading": "Möchtest du deine Bewerbung aktualisieren?", "returnStep1": "Besuche jederzeit join1616.com.", "returnStep2": "Wähle deine Sprache und dann Meine Bewerbung bearbeiten.", "returnStep3": "Gib deinen Bestätigungscode ein, um deine gespeicherten Angaben zu prüfen und zu bearbeiten.", "groupCodeLabel": "Transfergruppencode", "copyBothCodes": "Beide Codes kopieren", "joinDiscord": "Unserem Discord beitreten", "discordPrivacy": "Informationen, die du auf Discord teilst, können für andere Bewerber sichtbar sein.", "pngPrivate": "Bewahre dieses Bild privat auf. Dein Bewerbungscode ermöglicht den Zugriff auf deine Bewerbung.", "noGroupCode": "Keine Transfergruppe", "pngFailed": "Das Bild konnte nicht gespeichert werden. Bitte versuche es erneut.", "lostCodeHelp": "Code verloren? Kontaktiere das Transferteam."}, "fr": {"startNewApplication": "Commencer une nouvelle candidature", "editMyApplication": "Modifier ma candidature", "retrieveApplication": "Ouvrir ma candidature", "editCodeLabel": "Code de confirmation de candidature", "editCodeHelp": "Saisissez le code privé de votre confirmation.", "lookupFailed": "Impossible d’ouvrir votre candidature. Vérifiez le code ou contactez l’équipe de transfert.", "editConflict": "Cette candidature a été modifiée ailleurs. Rouvrez-la avec votre code avant d’enregistrer.", "savingChanges": "Enregistrement des modifications…", "saveApplicationChanges": "Enregistrer les modifications", "applicationUpdated": "Votre candidature a été mise à jour !", "yeeHaw": "Youpi !", "confirmationThankYou": "Votre candidature a été envoyée !", "confirmationKeepCode": "Conservez les deux codes. Gardez votre code de candidature privé : il permet de modifier votre candidature.", "returnHeading": "Vous souhaitez modifier votre candidature ?", "returnStep1": "Rendez-vous sur join1616.com à tout moment.", "returnStep2": "Choisissez votre langue, puis Modifier ma candidature.", "returnStep3": "Saisissez votre code de confirmation pour consulter et modifier vos informations enregistrées.", "groupCodeLabel": "Code du groupe de transfert", "copyBothCodes": "Copier les deux codes", "joinDiscord": "Rejoindre notre Discord", "discordPrivacy": "Les informations que vous partagez sur Discord peuvent être visibles par les autres candidats.", "pngPrivate": "Gardez cette image privée. Votre code permet d’accéder à votre candidature pour la modifier.", "noGroupCode": "Aucun groupe de transfert", "pngFailed": "Impossible d’enregistrer l’image. Veuillez réessayer.", "lostCodeHelp": "Code perdu ? Contactez l’équipe de transfert."}, "es": {"startNewApplication": "Iniciar nueva solicitud", "editMyApplication": "Editar mi solicitud", "retrieveApplication": "Abrir mi solicitud", "editCodeLabel": "Código de confirmación de la solicitud", "editCodeHelp": "Introduce el código privado de tu confirmación.", "lookupFailed": "No pudimos abrir tu solicitud. Revisa el código o contacta con el equipo de transferencia.", "editConflict": "Esta solicitud se modificó en otro lugar. Vuelve a abrirla con tu código antes de guardar.", "savingChanges": "Guardando cambios…", "saveApplicationChanges": "Guardar cambios", "applicationUpdated": "¡Tu solicitud se ha actualizado!", "yeeHaw": "¡Yuju!", "confirmationThankYou": "¡Tu solicitud se ha enviado!", "confirmationKeepCode": "Guarda ambos códigos. Mantén privado el código de tu solicitud: permite editarla.", "returnHeading": "¿Quieres actualizar tu solicitud?", "returnStep1": "Visita join1616.com en cualquier momento.", "returnStep2": "Elige tu idioma y luego Editar mi solicitud.", "returnStep3": "Introduce tu código de confirmación para revisar y editar los datos guardados.", "groupCodeLabel": "Código del grupo de transferencia", "copyBothCodes": "Copiar ambos códigos", "joinDiscord": "Únete a nuestro Discord", "discordPrivacy": "La información que compartas en Discord puede ser visible para otros solicitantes.", "pngPrivate": "Mantén esta imagen privada. Tu código permite acceder a tu solicitud para editarla.", "noGroupCode": "Sin grupo de transferencia", "pngFailed": "No se pudo guardar la imagen. Inténtalo de nuevo.", "lostCodeHelp": "¿Perdiste tu código? Contacta con el equipo de transferencia."}, "pt": {"startNewApplication": "Iniciar nova candidatura", "editMyApplication": "Editar minha candidatura", "retrieveApplication": "Abrir minha candidatura", "editCodeLabel": "Código de confirmação da candidatura", "editCodeHelp": "Digite o código privado da sua confirmação.", "lookupFailed": "Não foi possível abrir a candidatura. Verifique o código ou contacte a equipa de transferência.", "editConflict": "Esta candidatura foi alterada noutro lugar. Abra-a novamente com o código antes de guardar.", "savingChanges": "A guardar alterações…", "saveApplicationChanges": "Guardar alterações", "applicationUpdated": "A sua candidatura foi atualizada!", "yeeHaw": "Viva!", "confirmationThankYou": "A sua candidatura foi enviada!", "confirmationKeepCode": "Guarde os dois códigos. Mantenha o código da candidatura privado: ele permite editá-la.", "returnHeading": "Quer atualizar a sua candidatura?", "returnStep1": "Visite join1616.com a qualquer momento.", "returnStep2": "Escolha o idioma e depois Editar minha candidatura.", "returnStep3": "Digite o código de confirmação para rever e editar os dados guardados.", "groupCodeLabel": "Código do grupo de transferência", "copyBothCodes": "Copiar os dois códigos", "joinDiscord": "Entre no nosso Discord", "discordPrivacy": "As informações que partilhar no Discord podem ser visíveis para outros candidatos.", "pngPrivate": "Mantenha esta imagem privada. O seu código permite aceder à candidatura para editá-la.", "noGroupCode": "Sem grupo de transferência", "pngFailed": "Não foi possível guardar a imagem. Tente novamente.", "lostCodeHelp": "Perdeu o código? Contacte a equipa de transferência."}, "ko": {"startNewApplication": "새 신청서 작성", "editMyApplication": "내 신청서 수정", "retrieveApplication": "내 신청서 열기", "editCodeLabel": "신청 확인 코드", "editCodeHelp": "신청 확인 화면의 비공개 코드를 입력하세요.", "lookupFailed": "신청서를 열 수 없습니다. 코드를 확인하거나 이전 담당 팀에 문의하세요.", "editConflict": "다른 곳에서 신청서가 수정되었습니다. 저장하기 전에 코드로 다시 열어 주세요.", "savingChanges": "변경 사항 저장 중…", "saveApplicationChanges": "변경 사항 저장", "applicationUpdated": "신청서가 수정되었습니다!", "yeeHaw": "야호!", "confirmationThankYou": "신청서가 제출되었습니다!", "confirmationKeepCode": "두 코드를 저장하세요. 신청 확인 코드로 신청서를 수정할 수 있으므로 다른 사람에게 공유하지 마세요.", "returnHeading": "신청서를 수정하고 싶으신가요?", "returnStep1": "언제든지 join1616.com을 방문하세요.", "returnStep2": "언어를 선택한 다음 내 신청서 수정을 선택하세요.", "returnStep3": "신청 확인 코드를 입력하여 저장된 정보를 확인하고 수정하세요.", "groupCodeLabel": "이전 그룹 코드", "copyBothCodes": "두 코드 복사", "joinDiscord": "Discord 참여하기", "discordPrivacy": "Discord에서 공유한 정보는 다른 신청자에게 보일 수 있습니다.", "pngPrivate": "이 이미지를 비공개로 보관하세요. 신청 코드로 신청서에 접근하여 수정할 수 있습니다.", "noGroupCode": "이전 그룹 없음", "pngFailed": "이미지를 저장하지 못했습니다. 다시 시도하세요.", "lostCodeHelp": "코드를 잃어버렸나요? 이전 담당 팀에 문의하세요."}, "vi": {"startNewApplication": "Bắt đầu đơn mới", "editMyApplication": "Chỉnh sửa đơn của tôi", "retrieveApplication": "Mở đơn của tôi", "editCodeLabel": "Mã xác nhận đơn đăng ký", "editCodeHelp": "Nhập mã riêng tư trên xác nhận của bạn.", "lookupFailed": "Không thể mở đơn. Hãy kiểm tra mã hoặc liên hệ đội phụ trách chuyển máy chủ.", "editConflict": "Đơn này đã được chỉnh sửa ở nơi khác. Hãy mở lại bằng mã trước khi lưu.", "savingChanges": "Đang lưu thay đổi…", "saveApplicationChanges": "Lưu thay đổi", "applicationUpdated": "Đơn của bạn đã được cập nhật!", "yeeHaw": "Hoan hô!", "confirmationThankYou": "Đơn của bạn đã được gửi!", "confirmationKeepCode": "Lưu cả hai mã. Giữ bí mật mã xác nhận đơn vì mã này cho phép chỉnh sửa đơn của bạn.", "returnHeading": "Bạn muốn cập nhật đơn đăng ký?", "returnStep1": "Truy cập join1616.com bất cứ lúc nào.", "returnStep2": "Chọn ngôn ngữ rồi chọn Chỉnh sửa đơn của tôi.", "returnStep3": "Nhập mã xác nhận để xem lại và chỉnh sửa thông tin đã lưu.", "groupCodeLabel": "Mã nhóm chuyển máy chủ", "copyBothCodes": "Sao chép cả hai mã", "joinDiscord": "Tham gia Discord của chúng tôi", "discordPrivacy": "Thông tin bạn chia sẻ trên Discord có thể hiển thị với những người đăng ký khác.", "pngPrivate": "Giữ hình ảnh này riêng tư. Mã của bạn cho phép truy cập và chỉnh sửa đơn.", "noGroupCode": "Không có nhóm chuyển máy chủ", "pngFailed": "Không thể lưu hình ảnh. Vui lòng thử lại.", "lostCodeHelp": "Bạn mất mã? Liên hệ đội phụ trách chuyển máy chủ."}, "ar": {"startNewApplication": "بدء طلب جديد", "editMyApplication": "تعديل طلبي", "retrieveApplication": "فتح طلبي", "editCodeLabel": "رمز تأكيد الطلب", "editCodeHelp": "أدخل الرمز الخاص من تأكيد طلبك.", "lookupFailed": "تعذر فتح طلبك. تحقق من الرمز أو تواصل مع فريق النقل.", "editConflict": "تم تعديل هذا الطلب في مكان آخر. افتحه مجدداً باستخدام الرمز قبل الحفظ.", "savingChanges": "جارٍ حفظ التغييرات…", "saveApplicationChanges": "حفظ تغييرات الطلب", "applicationUpdated": "تم تحديث طلبك!", "yeeHaw": "مرحى!", "confirmationThankYou": "تم إرسال طلبك!", "confirmationKeepCode": "احفظ الرمزين. احتفظ برمز تأكيد طلبك بسرية لأنه يتيح تعديل طلبك.", "returnHeading": "هل تريد تحديث طلبك؟", "returnStep1": "زر join1616.com في أي وقت.", "returnStep2": "اختر لغتك ثم تعديل طلبي.", "returnStep3": "أدخل رمز تأكيد الطلب لمراجعة بياناتك المحفوظة وتعديلها.", "groupCodeLabel": "رمز مجموعة النقل", "copyBothCodes": "نسخ الرمزين", "joinDiscord": "انضم إلى Discord الخاص بنا", "discordPrivacy": "قد تكون المعلومات التي تشاركها على Discord مرئية للمتقدمين الآخرين.", "pngPrivate": "احتفظ بهذه الصورة بسرية. يتيح رمز الطلب الوصول إلى طلبك وتعديله.", "noGroupCode": "لا توجد مجموعة نقل", "pngFailed": "تعذر حفظ الصورة. يرجى المحاولة مرة أخرى.", "lostCodeHelp": "فقدت الرمز؟ تواصل مع فريق النقل."}};
 for(const [lang,words] of Object.entries(APPLICATION_EDIT_I18N))Object.assign(I18N[lang],words);
+const SUPPORT_I18N = {
+  "en": {
+    "supportHeading": "Made with love & questionable amounts of caffeine.",
+    "supportCopy": "If our tools helped you, treat the humans behind them to a coffee.",
+    "supportButton": "Fuel the 1616 chaos",
+    "supportOptional": "Always optional. Always appreciated.",
+    "supportThanks": "A little coffee for the crew? Totally optional. 🌸",
+    "supportNewTab": " (opens in a new tab)"
+  },
+  "es": {
+    "supportHeading": "Hecho con cariño y cantidades cuestionables de cafeína.",
+    "supportCopy": "Si nuestras herramientas te ayudaron, invita a un café a quienes las crearon.",
+    "supportButton": "Dale café al caos de 1616",
+    "supportOptional": "Siempre opcional. Siempre se agradece.",
+    "supportThanks": "¿Un cafecito para el equipo? Totalmente opcional. 🌸",
+    "supportNewTab": " (se abre en una pestaña nueva)"
+  },
+  "pt": {
+    "supportHeading": "Feito com carinho e quantidades questionáveis de cafeína.",
+    "supportCopy": "Se nossas ferramentas ajudaram, ofereça um café a quem está por trás delas.",
+    "supportButton": "Abasteça o caos do 1616",
+    "supportOptional": "Sempre opcional. Sempre bem-vindo.",
+    "supportThanks": "Um cafezinho para a equipe? Totalmente opcional. 🌸",
+    "supportNewTab": " (abre em uma nova aba)"
+  },
+  "fr": {
+    "supportHeading": "Créé avec amour et une quantité douteuse de caféine.",
+    "supportCopy": "Nos outils vous ont aidé ? Offrez un café aux personnes qui les ont créés.",
+    "supportButton": "Un café pour le chaos du 1616",
+    "supportOptional": "Toujours facultatif. Toujours apprécié.",
+    "supportThanks": "Un petit café pour l’équipe ? C’est entièrement facultatif. 🌸",
+    "supportNewTab": " (s’ouvre dans un nouvel onglet)"
+  },
+  "ar": {
+    "supportHeading": "صُنع بحب وبكميات مريبة من الكافيين.",
+    "supportCopy": "إذا ساعدتك أدواتنا، يمكنك إهداء قهوة للأشخاص الذين صنعوها.",
+    "supportButton": "قهوة لفوضى 1616",
+    "supportOptional": "اختياري دائمًا. ومحل تقدير دائمًا.",
+    "supportThanks": "قهوة صغيرة للفريق؟ الأمر اختياري تمامًا. 🌸",
+    "supportNewTab": " (يفتح في علامة تبويب جديدة)"
+  },
+  "vi": {
+    "supportHeading": "Được làm bằng tình yêu và một lượng caffeine đáng ngờ.",
+    "supportCopy": "Nếu các công cụ hữu ích với bạn, hãy mời những người tạo ra chúng một ly cà phê.",
+    "supportButton": "Tiếp cà phê cho đội 1616",
+    "supportOptional": "Luôn tự nguyện. Luôn được trân trọng.",
+    "supportThanks": "Mời cả đội chút cà phê nhé? Hoàn toàn tự nguyện. 🌸",
+    "supportNewTab": " (mở trong thẻ mới)"
+  },
+  "ko": {
+    "supportHeading": "사랑과 조금 과한 카페인으로 만들었어요.",
+    "supportCopy": "도구가 도움이 되었다면, 만든 사람들에게 커피 한 잔을 선물해 주세요.",
+    "supportButton": "1616의 우당탕탕에 커피 한 잔",
+    "supportOptional": "언제나 자유롭게. 언제나 감사하게.",
+    "supportThanks": "팀에게 커피 한 잔 어떠세요? 부담 없이 선택해 주세요. 🌸",
+    "supportNewTab": " (새 탭에서 열림)"
+  },
+  "de": {
+    "supportHeading": "Mit Liebe und fragwürdigen Mengen Koffein gemacht.",
+    "supportCopy": "Unsere Tools haben dir geholfen? Spendiere den Menschen dahinter einen Kaffee.",
+    "supportButton": "Kaffee fürs 1616-Chaos",
+    "supportOptional": "Immer freiwillig. Immer willkommen.",
+    "supportThanks": "Ein kleiner Kaffee fürs Team? Völlig freiwillig. 🌸",
+    "supportNewTab": " (öffnet in einem neuen Tab)"
+  }
+};
+for (const [lang, strings] of Object.entries(SUPPORT_I18N)) Object.assign(I18N[lang], strings);
+
 const state = { step: 1, language: 'en', groupMembers: [], applicationId: '', confirmationCode: '', pendingStepDestination: null, transferGroupReminderAcknowledgedFor: '', transferGroupReminderCopied: false };
 const form = document.getElementById('application-form');
 const steps = [...document.querySelectorAll('.form-step')];
