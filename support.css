@@ -24,7 +24,8 @@
 }
 .coffee-button:hover { background: #ffe4ed; transform: translateY(-2px); }
 .coffee-button:focus-visible { outline: 3px solid #c84776; outline-offset: 4px; }
-.coffee-cup { flex-shrink: 0; font-size: 22px; }
+.coffee-cup { display: block; flex-shrink: 0; width: 22px; height: 28px; }
+.coffee-header-link .coffee-cup { width: 18px; height: 23px; }
 .coffee-confirmation { margin-top: 24px; padding-top: 18px; border-top: 1px solid #dcc3c8; text-align: center; }
 .coffee-confirmation p { margin: 0 0 12px; color: #72505e; font-size: 13px; line-height: 1.5; }
 .coffee-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
