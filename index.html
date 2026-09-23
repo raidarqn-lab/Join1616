@@ -1079,6 +1079,10 @@
 const CONFIG = {
   // After deploying Code.gs as a Google Apps Script Web App, paste the /exec URL here.
   appsScriptUrl: 'https://script.google.com/macros/s/AKfycbzI42srLuRCvqGToYYSNjFEkLty8vt6OEGJmf4-mLk31QjXE9mnTSAi_dnfw35R8URiDA/exec',
+  // Release candidate: merge only during the approved coordinated cutover.
+  publicIntakeUrl: 'https://dycbjythqwumyzseskfh.supabase.co/functions/v1/intake-public',
+  turnstileSiteKey: '0x4AAAAAAE-fCGCUUZXY5vbJ',
+  publicGatewayKey: 'sb_publishable_DPRrMoxgV0zEFoH9SKNZFQ_jde16Nzk',
   maxGroupMembers: 40,
   draftKey: 'server1616-transfer-application-draft-v17'};
 
@@ -5074,6 +5078,7 @@ function restoreDraft() {
 function clearDraft() { try { localStorage.removeItem(CONFIG.draftKey); } catch (_) {} }
 
 async function sendToGoogleSheets(payload) {
+  if(CONFIG.publicIntakeUrl){const {sendPublicIntake}=await import('./public-intake.js');return sendPublicIntake(CONFIG.publicIntakeUrl,CONFIG.turnstileSiteKey,payload,CONFIG.publicGatewayKey);}
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 45000);
   try {
@@ -5201,6 +5206,7 @@ function questionStepLabel() {
   return t(key);
 }
 
+let pendingQuestionRequest=null;
 async function submitQuestion() {
   const category = String(document.getElementById('question-category')?.value || '').trim();
   const question = String(document.getElementById('question-message')?.value || '').trim();
@@ -5239,6 +5245,9 @@ async function submitQuestion() {
     website: ''
   };
 
+  const questionFingerprint=JSON.stringify(payload);
+  if(!pendingQuestionRequest||pendingQuestionRequest.fingerprint!==questionFingerprint)pendingQuestionRequest={fingerprint:questionFingerprint,id:crypto.randomUUID()};
+  payload.questionRequestId=pendingQuestionRequest.id;
   error.hidden = true;
   submit.disabled = true;
   const original = submit.textContent;
@@ -5246,6 +5255,7 @@ async function submitQuestion() {
 
   try {
     await sendToGoogleSheets(payload);
+    pendingQuestionRequest=null;
     document.getElementById('question-form-view').hidden = true;
     document.getElementById('question-confirmation').hidden = false;
   } catch (err) {
