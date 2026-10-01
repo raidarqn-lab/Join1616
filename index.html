@@ -4591,6 +4591,8 @@ function setupNumericInputs(root = document) {
 
 function setFieldError(input, message) {
   input.classList.add('invalid');
+  input.setAttribute('aria-invalid', 'true');
+  input.dataset.validationError = message;
   const id = input.id;
   if (id) {
     const err = document.querySelector(`[data-error-for="${id}"]`);
@@ -4599,6 +4601,8 @@ function setFieldError(input, message) {
 }
 function clearFieldError(input) {
   input.classList.remove('invalid');
+  input.removeAttribute('aria-invalid');
+  delete input.dataset.validationError;
   const id = input.id;
   if (id) {
     const err = document.querySelector(`[data-error-for="${id}"]`);
@@ -4642,6 +4646,11 @@ function collectMissingQuestions() {
   if (!current) return [];
 
   const questions = [];
+  const fieldSummary = input => {
+    const question = getQuestionForInput(input);
+    const message = input.dataset.validationError;
+    return message ? `${question} — ${message}` : question;
+  };
   const add = text => {
     const question = cleanQuestionText(text);
     if (question && !questions.includes(question)) questions.push(question);
@@ -4649,11 +4658,11 @@ function collectMissingQuestions() {
 
   current.querySelectorAll('[data-required="true"]').forEach(input => {
     const raw = input.dataset.numeric ? digitsOnly(input.value) : String(input.value || '').trim();
-    if (!raw || input.classList.contains('invalid')) add(getQuestionForInput(input));
+    if (!raw || input.classList.contains('invalid')) add(fieldSummary(input));
   });
 
   current.querySelectorAll('input.invalid, select.invalid, textarea.invalid').forEach(input => {
-    add(getQuestionForInput(input));
+    add(fieldSummary(input));
   });
 
   if (state.step === 1) {
@@ -4750,7 +4759,8 @@ function validateCurrentStep() {
 
   current.querySelectorAll('[data-max], [data-max-digits], [data-max-chars]').forEach(input => {
     const raw = input.dataset.numeric ? digitsOnly(input.value) : String(input.value || '').trim();
-    if (raw && !applyConstraintValidation(input)) ok = false;
+    // Preserve required/format errors from the first pass. A valid limit must not clear them.
+    if (raw && !input.classList.contains('invalid') && !applyConstraintValidation(input)) ok = false;
   });
 
 
