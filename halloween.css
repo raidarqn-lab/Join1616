@@ -1,0 +1,71 @@
+/* Seasonal welcome artwork. Keep translated copy in normal document flow. */
+.welcome-panel:has(.welcome-guide-stage:not([hidden])) {
+  background: #16090e;
+}
+.welcome-guide-stage::before { display: none; }
+.welcome-guide-stage > .welcome-kicker,
+.welcome-guide-stage > .welcome-title-hero,
+.welcome-guide-stage > .welcome-title-slash,
+.welcome-guide-stage > .welcome-guide-copy {
+  position: relative;
+  z-index: 1;
+}
+.welcome-guide-copy {
+  color: #eedbd8;
+  text-wrap: balance;
+}
+.halloween-art {
+  position: relative;
+  width: min(100%, calc(52dvh * 1.777));
+  margin: -5% auto 0;
+  pointer-events: none;
+  /* Blend the empty sky into the live text area without cropping the trio. */
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 94%, transparent);
+}
+.halloween-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.welcome-guide-stage .welcome-action {
+  margin-top: 8px !important;
+}
+.welcome-guide-stage .welcome-enter.secondary {
+  color: #ffe3db !important;
+  border-color: #b97978;
+  background: #32151e !important;
+}
+.welcome-guide-stage .welcome-enter:focus-visible {
+  outline: 3px solid #ffd36f;
+  outline-offset: 4px;
+}
+/* Script-appropriate fonts and wrapping also cover longer translated copy. */
+html[lang="ar"] .welcome-guide-stage .welcome-title {
+  font-family: "Noto Sans Arabic", sans-serif;
+  line-height: 1.55;
+  letter-spacing: normal;
+}
+html[lang="ko"] .welcome-guide-stage .welcome-title {
+  font-family: "Noto Sans KR", sans-serif;
+  line-height: 1.4;
+  word-break: keep-all;
+}
+.welcome-guide-stage .welcome-enter {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 620px) {
+  .halloween-art { width: calc(100% + 28px); margin: -3% -14px 0; }
+  .welcome-guide-stage .welcome-action { gap: 10px; }
+  .welcome-guide-stage .welcome-enter {
+    width: 100%;
+    min-width: 0;
+    padding: 13px 12px;
+    letter-spacing: .035em;
+  }
+}
+
+.welcome-guide-copy bdi { white-space: nowrap; }
+.welcome-next-arrow { display: inline-block; }
+html[dir="rtl"] .welcome-next-arrow { transform: rotate(180deg); }
