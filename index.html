@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="styles.css?v=two-way-chat-1" />
 <link rel="stylesheet" href="application-edit.css?v=3" />
 <style>#nav-story{display:none!important}</style>  <link rel="stylesheet" href="support.css?v=3" />
-  <link rel="stylesheet" href="halloween.css?v=1" />
+  <link rel="stylesheet" href="halloween.css?v=2" />
 </head>
 <body>
 
@@ -69,6 +69,17 @@
 
   <section class="welcome-screen" id="welcome-screen" aria-labelledby="welcome-language-title">
     <div class="welcome-panel">
+<div class="halloween-header"><strong class="halloween-brand">1616</strong><span data-i18n="serverTransferApplication">SERVER TRANSFER APPLICATION</span></div>
+<div class="halloween-languages" role="group" aria-label="Choose your language">
+          <button type="button" class="welcome-language-choice" data-welcome-language="en"><span>EN</span><strong>English</strong></button>
+          <button type="button" class="welcome-language-choice" data-welcome-language="es"><span>ES</span><strong>Español</strong></button>
+          <button type="button" class="welcome-language-choice" data-welcome-language="pt"><span>PT</span><strong>Português</strong></button>
+          <button type="button" class="welcome-language-choice" data-welcome-language="fr"><span>FR</span><strong>Français</strong></button>
+          <button type="button" class="welcome-language-choice" data-welcome-language="ar"><span>AR</span><strong>العربية</strong></button>
+          <button type="button" class="welcome-language-choice" data-welcome-language="vi"><span>VI</span><strong>Tiếng Việt</strong></button>
+          <button type="button" class="welcome-language-choice" data-welcome-language="ko"><span>KO</span><strong>한국어</strong></button>
+          <button type="button" class="welcome-language-choice" data-welcome-language="de"><span>DE</span><strong>Deutsch</strong></button>
+        </div>
       <div class="welcome-stage welcome-language-stage" id="welcome-language-stage">
         <p class="welcome-kicker" data-i18n="serverTransferApplication">SERVER TRANSFER APPLICATION</p>
         <h1 class="welcome-title" id="welcome-language-title" data-i18n="welcomeChooseLanguageTitle">Choose your language</h1>
@@ -87,22 +98,10 @@
       </div>
 
       <div class="welcome-stage welcome-guide-stage" id="welcome-guide-stage" hidden>
-        <p class="welcome-kicker" data-i18n="serverTransferApplication">SERVER TRANSFER APPLICATION</p>
-        <div class="welcome-title-hero">
-          <h1 class="welcome-title" id="welcome-title" data-i18n="welcomeThanksTitle">Thank you for your interest in joining 1616!</h1>
-          <span class="welcome-hanko-seal" aria-hidden="true"><span>1616</span></span>
+        <div class="halloween-copy">
+        <h1 class="welcome-title" id="welcome-title"><span data-i18n="halloweenGreeting">Happy Halloween!</span><br><span data-i18n="halloweenJoin">Join 1616!</span></h1>
+        <p class="welcome-subtitle" data-i18n="halloweenIntro">Your next chapter starts here.</p>
         </div>
-        <div class="welcome-title-slash" aria-hidden="true"></div>
-
-        <p class="welcome-subtitle welcome-guide-copy">
-          <span data-i18n="welcomeGuideLead">We are your chaotic 1616 transfer team</span> <strong><bdi>Yabadabadoo [WaE]</bdi></strong>, <strong><bdi>Dolphy RN [NvEM]</bdi></strong>, <span data-i18n="welcomeAnd">and</span> <strong><bdi>RaidARQN [NvSP]</bdi></strong>.
-        </p>
-
-        <!-- Decorative, text-free artwork; all copy stays in the translation system. -->
-        <div class="halloween-art" aria-hidden="true">
-          <img src="welcome-halloween.webp" width="1672" height="941" alt="" decoding="async">
-        </div>
-
         <div class="welcome-action">
           <button type="button" class="welcome-enter" id="welcome-enter"><span data-i18n="startNewApplication">Start new application</span> <span class="welcome-next-arrow" aria-hidden="true">→</span></button>
         <button type="button" class="welcome-enter secondary" id="welcome-edit" data-i18n="editMyApplication">Edit my application</button>
@@ -4395,12 +4394,18 @@ document.addEventListener('click', event => {
 });
 
 
+
+// Seasonal copy remains translatable; artwork contains no text.
+const halloweenCopy = {"en": ["Happy Halloween!", "Join 1616!", "Your next chapter starts here."], "es": ["¡Feliz Halloween!", "¡Únete a 1616!", "Tu próximo capítulo comienza aquí."], "pt": ["Feliz Halloween!", "Junte-se ao 1616!", "Seu próximo capítulo começa aqui."], "fr": ["Joyeux Halloween !", "Rejoignez 1616 !", "Votre prochain chapitre commence ici."], "ar": ["هالوين سعيد!", "انضم إلى 1616!", "فصلك القادم يبدأ هنا."], "vi": ["Halloween vui vẻ!", "Gia nhập 1616!", "Chương tiếp theo của bạn bắt đầu tại đây."], "ko": ["해피 할로윈!", "1616에 합류하세요!", "새로운 이야기가 여기서 시작됩니다."], "de": ["Fröhliches Halloween!", "Komm zu 1616!", "Dein nächstes Kapitel beginnt hier."]};
+Object.entries(halloweenCopy).forEach(([lang, copy]) => Object.assign(I18N[lang], {halloweenGreeting:copy[0], halloweenJoin:copy[1], halloweenIntro:copy[2]}));
+
 function setLanguage(lang) {
   if (!I18N[lang]) lang = 'en';
   state.language = lang;
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   headerLanguage.value = lang;
+  document.querySelectorAll("[data-welcome-language]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.welcomeLanguage === lang)));
   document.querySelectorAll('.language-card').forEach(btn => btn.classList.toggle('selected', btn.dataset.language === lang));
   document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; el.textContent = t(k); });
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { const k = el.dataset.i18nPlaceholder; el.setAttribute('placeholder', t(k)); });
@@ -5679,7 +5684,7 @@ function initWelcomeScreen() {
   };
 
   document.body.classList.add('welcome-open');
-  showStage('language');
+  showStage('guide');
 
   languageChoices.forEach(btn => {
     btn.addEventListener('click', () => {

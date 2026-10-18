@@ -1,71 +1,39 @@
-/* Seasonal welcome artwork. Keep translated copy in normal document flow. */
-.welcome-panel:has(.welcome-guide-stage:not([hidden])) {
-  background: #16090e;
+/* Text-free seasonal artwork, with readable live language controls and copy. */
+.welcome-screen { background:#f4e7d8!important; }
+.welcome-screen .welcome-panel {
+ width:min(1440px,100%)!important; padding:0!important; border:1px solid #e1c4a2;
+ border-radius:20px!important; background:#ffe4b1 url('welcome-halloween-golden.png') center/cover no-repeat!important;
+ min-height:min(850px,calc(100dvh - 48px)); text-align:start; scrollbar-gutter:auto;
 }
-.welcome-guide-stage::before { display: none; }
-.welcome-guide-stage > .welcome-kicker,
-.welcome-guide-stage > .welcome-title-hero,
-.welcome-guide-stage > .welcome-title-slash,
-.welcome-guide-stage > .welcome-guide-copy {
-  position: relative;
-  z-index: 1;
+.halloween-header {display:flex;align-items:center;gap:24px;padding:18px 32px;background:#fff9ef;color:#642538;border-bottom:1px solid #d7bda3;font-size:12px;letter-spacing:.12em;}
+.halloween-brand {font-family:Georgia,serif;font-size:40px;letter-spacing:-.06em;}
+.halloween-languages {display:flex;flex-wrap:wrap;gap:8px;padding:14px 32px;background:#fff9eff2;position:relative;z-index:2;}
+.halloween-languages .welcome-language-choice {display:flex;align-items:center;gap:7px;min-height:42px;width:auto;margin:0;padding:8px 13px;border:1px solid #b79478;border-radius:8px;background:#fffaf2!important;color:#52212c!important;font-size:14px;box-shadow:none;}
+.halloween-languages .welcome-language-choice span{font-size:10px;color:#795545;}
+.halloween-languages .welcome-language-choice strong{font-size:14px;color:inherit;}
+.halloween-languages .welcome-language-choice[aria-pressed="true"] {background:#76223b!important;color:#fffaf2!important;border-color:#76223b;}
+.halloween-languages .welcome-language-choice[aria-pressed="true"] span{color:#fffaf2;}
+.halloween-languages button:focus-visible,.welcome-enter:focus-visible{outline:3px solid #332b8d;outline-offset:3px;}
+.welcome-guide-stage {padding:clamp(30px,5vw,76px) clamp(24px,5vw,76px) 220px;position:relative;background:linear-gradient(90deg,#fff3dca8,transparent 80%);}
+.welcome-guide-stage::before{display:none;}
+.welcome-guide-stage .welcome-title {font:700 clamp(40px,5.5vw,84px)/1.08 'Cormorant Garamond',Georgia,serif!important;letter-spacing:-.025em!important;color:#6e1831!important;text-shadow:none!important;text-align:start;max-width:850px;margin:0;animation:none!important;}
+.welcome-guide-stage .welcome-subtitle {color:#5e2c30!important;font-size:clamp(18px,2vw,25px);text-align:start;margin:24px 0!important;max-width:650px;text-shadow:none;}
+.welcome-guide-stage .welcome-action {display:flex;flex-wrap:wrap;justify-content:flex-start;gap:14px;margin-top:32px!important;animation:none!important;max-width:780px;}
+.welcome-guide-stage .welcome-enter {background:#7a203d!important;color:#fff9ee!important;border:1px solid #7a203d;border-radius:10px;padding:17px 24px;letter-spacing:0;font-family:inherit;font-size:17px;min-height:52px;white-space:normal;max-width:100%;box-shadow:0 5px 20px #6f293222;}
+.welcome-guide-stage .welcome-enter.secondary {background:#fff8eefa!important;color:#68233a!important;}
+html[lang="ar"] .welcome-guide-stage .welcome-title {font-family:'Noto Sans Arabic',sans-serif!important;font-size:clamp(36px,4vw,64px)!important;line-height:1.5!important;letter-spacing:normal!important;}
+html[lang="ko"] .welcome-guide-stage .welcome-title {font-family:'Noto Sans KR',sans-serif!important;font-size:clamp(34px,4vw,64px)!important;line-height:1.4!important;word-break:keep-all;}
+html[dir="rtl"] .welcome-guide-stage {background:linear-gradient(270deg,#fff3dce8,#fff3dc88);}
+.welcome-next-arrow{display:inline-block;}html[dir="rtl"] .welcome-next-arrow{transform:rotate(180deg);}
+.welcome-screen.lookup-open .welcome-panel {background:#26131b!important;}
+.lookup-open .halloween-header,.lookup-open .halloween-languages{display:none;}
+.lookup-open .welcome-guide-stage{padding:0;background:none;}
+@media(max-width:620px){
+ .welcome-screen .welcome-panel{min-height:calc(100dvh - 16px);background-position:65% bottom!important;}
+ .halloween-header{padding:14px 18px;gap:16px;font-size:10px;}.halloween-brand{font-size:32px;}
+ .halloween-languages{padding:12px 16px;gap:6px;}.halloween-languages .welcome-language-choice{padding:7px 9px;}
+ .welcome-guide-stage{padding:30px 22px 230px;background:linear-gradient(#fff0d8f5,#fff0d8c9 60%,transparent);}
+ .welcome-guide-stage .welcome-title{font-size:44px!important;}
+ .welcome-guide-stage .welcome-action{margin-top:22px!important;gap:10px;}
+ .welcome-guide-stage .welcome-enter{width:100%;font-size:16px;padding:14px 16px;}
 }
-.welcome-guide-copy {
-  color: #eedbd8;
-  text-wrap: balance;
-}
-.halloween-art {
-  position: relative;
-  width: min(100%, calc(52dvh * 1.777));
-  margin: -5% auto 0;
-  pointer-events: none;
-  /* Blend the empty sky into the live text area without cropping the trio. */
-  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 94%, transparent);
-}
-.halloween-art img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-.welcome-guide-stage .welcome-action {
-  margin-top: 8px !important;
-}
-.welcome-guide-stage .welcome-enter.secondary {
-  color: #ffe3db !important;
-  border-color: #b97978;
-  background: #32151e !important;
-}
-.welcome-guide-stage .welcome-enter:focus-visible {
-  outline: 3px solid #ffd36f;
-  outline-offset: 4px;
-}
-/* Script-appropriate fonts and wrapping also cover longer translated copy. */
-html[lang="ar"] .welcome-guide-stage .welcome-title {
-  font-family: "Noto Sans Arabic", sans-serif;
-  line-height: 1.55;
-  letter-spacing: normal;
-}
-html[lang="ko"] .welcome-guide-stage .welcome-title {
-  font-family: "Noto Sans KR", sans-serif;
-  line-height: 1.4;
-  word-break: keep-all;
-}
-.welcome-guide-stage .welcome-enter {
-  max-width: 100%;
-  white-space: normal;
-  overflow-wrap: anywhere;
-}
-@media (max-width: 620px) {
-  .halloween-art { width: calc(100% + 28px); margin: -3% -14px 0; }
-  .welcome-guide-stage .welcome-action { gap: 10px; }
-  .welcome-guide-stage .welcome-enter {
-    width: 100%;
-    min-width: 0;
-    padding: 13px 12px;
-    letter-spacing: .035em;
-  }
-}
-
-.welcome-guide-copy bdi { white-space: nowrap; }
-.welcome-next-arrow { display: inline-block; }
-html[dir="rtl"] .welcome-next-arrow { transform: rotate(180deg); }
