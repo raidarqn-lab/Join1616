@@ -1,3 +1,18 @@
+# Our History — October 20, 2026
+
+`story.html` now contains the approved Season 0–4 timeline, styled by `history.css`.
+The welcome screen and application header both link to it. The page supports the
+same eight languages as the application through `history-translations.js` and
+`history.js`, including Arabic right-to-left layout. Its Join 1616 links return
+to the application and preserve the saved draft and selected language.
+
+Season 4 results remain explicitly in progress. Update the English page and all
+seven translation dictionaries together when results are confirmed.
+
+Validation: desktop and 320px/390px mobile browser checks, all eight languages,
+Season 2 disclosure, welcome/history/application navigation, saved-draft and
+language restoration, translation coverage, local assets, and script syntax.
+
 # 1616 Server Transfer Application v74
 
 Includes the Dolphy support-agent question widget header, Discord/not-live-chat messaging, and all previous v72 viewport fixes.
