@@ -2,7 +2,7 @@ window.WHY1616_I18N = {
   "en": [
     "Why 1616",
     "Apply to transfer →",
-    "Your next server. Your next home.",
+    "A little spooky. A lot to call home.",
     "Big power.",
     "Better company.",
     "Competitive alliances, experienced leadership, and people you’ll want to log in for. Find your place in 1616.",
@@ -30,12 +30,13 @@ window.WHY1616_I18N = {
     "Our history explains how we became the server we are today.",
     "Read our story →",
     "1616 · Your next chapter starts here.",
-    "Already applied? Edit your application →"
+    "Already applied? Edit your application →",
+    "Good reasons. Great spirits."
   ],
   "es": [
     "Por qué 1616",
     "Solicitar traslado →",
-    "Tu próximo servidor. Tu próximo hogar.",
+    "Un toque de misterio. Mucho que sentir como hogar.",
     "Gran poder.",
     "Mejor compañía.",
     "Alianzas competitivas, líderes con experiencia y personas por las que querrás conectarte. Encuentra tu lugar en 1616.",
@@ -63,12 +64,13 @@ window.WHY1616_I18N = {
     "Nuestra historia explica cómo llegamos a ser el servidor que somos hoy.",
     "Lee nuestra historia →",
     "1616 · Tu próximo capítulo comienza aquí.",
-    "¿Ya solicitaste el traslado? Edita tu solicitud →"
+    "¿Ya solicitaste el traslado? Edita tu solicitud →",
+    "Buenas razones. Grandes espíritus."
   ],
   "pt": [
     "Por que 1616",
     "Solicitar transferência →",
-    "Seu próximo servidor. Seu próximo lar.",
+    "Um toque de mistério. Muitos motivos para chamar de lar.",
     "Muito poder.",
     "Companhia ainda melhor.",
     "Alianças competitivas, líderes experientes e pessoas que dão vontade de entrar no jogo. Encontre seu lugar no 1616.",
@@ -96,12 +98,13 @@ window.WHY1616_I18N = {
     "Nossa história mostra como nos tornamos o servidor que somos hoje.",
     "Leia nossa história →",
     "1616 · Seu próximo capítulo começa aqui.",
-    "Já se inscreveu? Edite sua inscrição →"
+    "Já se inscreveu? Edite sua inscrição →",
+    "Bons motivos. Grandes espíritos."
   ],
   "fr": [
     "Pourquoi 1616",
     "Demander un transfert →",
-    "Votre prochain serveur. Votre prochain chez-vous.",
+    "Un peu de mystère. Beaucoup de raisons de se sentir chez soi.",
     "De la puissance.",
     "Et de bons compagnons.",
     "Des alliances compétitives, des dirigeants expérimentés et des personnes qui vous donnent envie de vous connecter. Trouvez votre place sur 1616.",
@@ -129,12 +132,13 @@ window.WHY1616_I18N = {
     "Notre histoire explique comment nous sommes devenus le serveur d’aujourd’hui.",
     "Lisez notre histoire →",
     "1616 · Votre prochain chapitre commence ici.",
-    "Déjà candidat ? Modifiez votre demande →"
+    "Déjà candidat ? Modifiez votre demande →",
+    "De bonnes raisons. De beaux esprits."
   ],
   "ar": [
     "لماذا 1616",
     "قدّم طلب انتقال ←",
-    "سيرفرك القادم. بيتك القادم.",
+    "قليل من الغموض. والكثير مما يجعلك تشعر أنك في بيتك.",
     "قوة كبيرة.",
     "ورفقة أفضل.",
     "تحالفات تنافسية، وقيادة خبيرة، وأشخاص يجعلك وجودهم ترغب في دخول اللعبة. اعثر على مكانك في 1616.",
@@ -162,12 +166,13 @@ window.WHY1616_I18N = {
     "توضح قصتنا كيف أصبحنا السيرفر الذي نحن عليه اليوم.",
     "اقرأ قصتنا ←",
     "1616 · فصلك القادم يبدأ هنا.",
-    "قدّمت طلبًا بالفعل؟ عدّل طلبك ←"
+    "قدّمت طلبًا بالفعل؟ عدّل طلبك ←",
+    "أسباب رائعة. وأرواح مرحة."
   ],
   "vi": [
     "Vì sao chọn 1616",
     "Đăng ký chuyển server →",
-    "Server tiếp theo. Mái nhà tiếp theo.",
+    "Một chút ma mị. Thật nhiều điều để gọi là nhà.",
     "Sức mạnh lớn.",
     "Đồng đội tuyệt vời.",
     "Các liên minh cạnh tranh, ban lãnh đạo giàu kinh nghiệm và những người khiến bạn muốn đăng nhập mỗi ngày. Tìm nơi thuộc về bạn tại 1616.",
@@ -195,12 +200,13 @@ window.WHY1616_I18N = {
     "Lịch sử kể lại cách chúng tôi trở thành server như ngày hôm nay.",
     "Đọc câu chuyện của chúng tôi →",
     "1616 · Chương tiếp theo của bạn bắt đầu tại đây.",
-    "Đã đăng ký? Chỉnh sửa đơn của bạn →"
+    "Đã đăng ký? Chỉnh sửa đơn của bạn →",
+    "Lý do tuyệt vời. Những tâm hồn đáng mến."
   ],
   "ko": [
     "1616을 선택하는 이유",
     "서버 이전 신청 →",
-    "다음 서버. 새로운 보금자리.",
+    "조금은 으스스하게. 마음은 집처럼 따뜻하게.",
     "강한 전력.",
     "더 좋은 동료.",
     "경쟁력 있는 연맹, 경험 많은 리더, 접속하고 싶게 만드는 사람들. 1616에서 여러분의 자리를 찾아보세요.",
@@ -228,12 +234,13 @@ window.WHY1616_I18N = {
     "오늘의 1616이 되기까지의 여정을 소개합니다.",
     "우리의 이야기 읽기 →",
     "1616 · 새로운 이야기가 여기서 시작됩니다.",
-    "이미 신청하셨나요? 신청서 수정 →"
+    "이미 신청하셨나요? 신청서 수정 →",
+    "좋은 이유. 멋진 영혼들."
   ],
   "de": [
     "Warum 1616",
     "Transfer beantragen →",
-    "Dein nächster Server. Dein nächstes Zuhause.",
+    "Ein wenig schaurig. Viel zum Zuhausefühlen.",
     "Viel Stärke.",
     "Noch bessere Gesellschaft.",
     "Wettbewerbsfähige Allianzen, erfahrene Führung und Menschen, für die du dich gern einloggst. Finde deinen Platz auf 1616.",
@@ -261,6 +268,7 @@ window.WHY1616_I18N = {
     "Unsere Geschichte zeigt, wie wir zu dem Server geworden sind, der wir heute sind.",
     "Lies unsere Geschichte →",
     "1616 · Dein nächstes Kapitel beginnt hier.",
-    "Schon beworben? Bewerbung bearbeiten →"
+    "Schon beworben? Bewerbung bearbeiten →",
+    "Gute Gründe. Großartige Geister."
   ]
 };

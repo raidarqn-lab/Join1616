@@ -1,0 +1,52 @@
+/* Moonlit Manor: the approved Halloween treatment for the reasons-first page. */
+body.welcome-open {background:#231525;}
+#welcome-screen {background:#231525!important;}
+#welcome-screen .welcome-panel {background:#231525!important;}
+#welcome-screen .w-site {color:#dfc9d6;}
+#welcome-screen .w-header,#welcome-screen .halloween-languages,
+#welcome-screen .w-proofline,#welcome-screen .w-benefit {border-color:#604054;}
+#welcome-screen .w-logo,#welcome-screen h1,#welcome-screen h2,
+#welcome-screen h3,#welcome-screen a,#welcome-screen .w-nav a,
+#welcome-screen .w-textlink,#welcome-screen .w-proofline {color:#fff0d9;}
+#welcome-screen .w-season-label {display:block;font:600 11px/1.4 Inter,Arial,sans-serif;letter-spacing:1.7px;text-transform:uppercase;color:#ffb15b;margin-top:8px;}
+#welcome-screen .w-nav a[aria-current] {border-color:#ffb15b;}
+#welcome-screen .w-apply {background:#ffb15b;color:#301b20;}
+#welcome-screen .w-apply:hover {background:#ffc482;}
+#welcome-screen .w-kicker,#welcome-screen #welcome-title>span:last-child {color:#ffb15b;}
+#welcome-screen .w-hero {background:radial-gradient(ellipse at 85% 35%,#dd873328,transparent 52%);gap:38px;}
+#welcome-screen .w-emblem {position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-height:380px;padding:32px 22px 28px;border-color:#604054;border-radius:180px 180px 16px 16px;background:radial-gradient(circle at 50% 42%,#dd873330,transparent 65%),#332039;}
+#welcome-screen .w-hero-boo {display:block;width:250px;height:250px;max-width:100%;object-fit:contain;position:relative;z-index:1;filter:drop-shadow(0 12px 18px #dd873333);}
+#welcome-screen .w-emblem p {position:relative;z-index:1;color:#fff0d9;margin-top:7px;font-size:24px;}
+#welcome-screen .w-moon {position:absolute;z-index:0;width:120px;height:120px;background:#ffb15b;border-radius:50%;top:27px;right:24px;opacity:.75;box-shadow:0 0 45px #dd873333;}
+#welcome-screen .w-moon::after {content:"";position:absolute;width:105px;height:105px;background:#332039;border-radius:50%;top:-9px;right:-14px;}
+#welcome-screen .w-star {position:absolute;color:#ffb15b;font:26px/1 Georgia,serif;z-index:1;}
+#welcome-screen .w-star-one {top:63px;left:20px;}
+#welcome-screen .w-star-two {top:78px;right:18px;font-size:18px;}
+#welcome-screen .w-proofline > span::before,
+#welcome-screen .w-benefit::before {background-color:#ffb15b;}
+#welcome-screen .w-section-heading {display:flex;justify-content:space-between;align-items:center;gap:20px;padding:30px 48px 0;}
+#welcome-screen .w-section-heading h2 {font-size:32px;margin:0;}
+#welcome-screen .w-section-heading p {margin:0;color:#ffb15b;text-transform:uppercase;letter-spacing:1px;font-size:11px;}
+#welcome-screen .w-benefits {padding-top:32px;}
+#welcome-screen .w-benefit {position:relative;}
+#welcome-screen .w-benefit::before {position:relative;z-index:1;margin:8px 0 20px 8px;}
+#welcome-screen .w-benefit::after {content:"";position:absolute;top:0;inset-inline-start:0;width:40px;height:40px;background:#332039;border-radius:11px;}
+#welcome-screen .w-bottom {background:#332039;}
+#welcome-screen .halloween-languages {background:#231525;}
+#welcome-screen .halloween-languages .welcome-language-choice {background:#332039!important;color:#dfc9d6!important;border-color:#604054;}
+#welcome-screen .halloween-languages .welcome-language-choice span {color:#dfc9d6;}
+#welcome-screen .halloween-languages .welcome-language-choice[aria-pressed=true] {background:#ffb15b!important;color:#301b20!important;border-color:#ffb15b;}
+#welcome-screen .halloween-languages .welcome-language-choice[aria-pressed=true] span {color:#301b20;}
+#welcome-screen :is(button,a):focus-visible {outline:3px solid #ffce90;outline-offset:4px;}
+html[dir=rtl] #welcome-screen .w-benefit::before {margin-left:0;margin-right:8px;}
+@media(max-width:760px){
+ #welcome-screen .w-emblem {display:flex;min-height:280px;max-width:340px;width:100%;justify-self:center;padding:24px;}
+ #welcome-screen .w-hero-boo {width:185px;height:185px;}
+ #welcome-screen .w-emblem p {font-size:22px;}
+ #welcome-screen .w-moon {width:95px;height:95px;top:25px;right:25px;}
+ #welcome-screen .w-moon::after {width:86px;height:86px;}
+ #welcome-screen .w-section-heading {padding:26px 24px 0;flex-direction:column;align-items:flex-start;gap:12px;}
+ #welcome-screen .w-section-heading h2 {font-size:30px;}
+ #welcome-screen .w-hero {gap:28px;}
+}
+#welcome-screen #welcome-edit {color:#fff0d9!important;}
