@@ -1,0 +1,68 @@
+/* Reasons-first homepage; application and chat retain their existing styles. */
+body.welcome-open {overflow:auto;background:#fbf6ed;}
+body.welcome-open>.site-header,body.welcome-open>.app-shell {display:none!important;}
+#welcome-screen {position:relative;inset:auto;min-height:100dvh;padding:0!important;background:#fbf6ed!important;overflow:visible!important;}
+#welcome-screen .welcome-panel {width:min(1200px,100%)!important;max-height:none;min-height:0;margin:0 auto!important;padding:0!important;border:0;border-radius:0!important;background:#fbf6ed!important;box-shadow:none;overflow:visible!important;}
+#welcome-screen .welcome-panel::before {display:none;}
+#welcome-screen .welcome-guide-stage {padding:0;background:none;animation:none!important;}
+#welcome-screen .w-site {font:16px/1.6 Inter,Arial,sans-serif;color:#66544d;}
+#welcome-screen .w-site * {box-sizing:border-box;}
+#welcome-screen .w-header {display:flex;gap:26px;align-items:center;flex-wrap:wrap;padding:25px 40px;border-bottom:1px solid #dfd0be;}
+#welcome-screen .w-logo {font:700 44px/1 Georgia,serif;letter-spacing:-3px;color:#582738;}
+#welcome-screen .w-nav {display:flex;align-items:center;gap:24px;margin-inline-start:auto;flex-wrap:wrap;}
+#welcome-screen a {color:#582738;text-underline-offset:5px;}
+#welcome-screen .w-nav a {font-size:14px;text-decoration:none;}
+#welcome-screen .w-nav a[aria-current] {border-bottom:2px solid #7a2943;padding-block:8px;}
+#welcome-screen .w-apply {display:inline-flex;align-items:center;justify-content:center;background:#7a2943;color:#fff8ed;border:0;border-radius:7px;padding:14px 22px;font:600 14px/1.5 Inter,Arial,sans-serif;min-height:48px;cursor:pointer;}
+#welcome-screen .w-apply:hover {background:#602037;}
+#welcome-screen .w-textlink {color:#582738;font:inherit;font-size:14px;text-decoration:underline;text-underline-offset:5px;background:none;border:0;padding:10px 0;cursor:pointer;}
+#welcome-screen .w-kicker {font-size:12px;letter-spacing:1.8px;font-weight:600;text-transform:uppercase;color:#805c2e;margin:0 0 18px;}
+#welcome-screen h1,#welcome-screen h2,#welcome-screen h3 {font-family:Georgia,serif;font-weight:400;color:#582738;letter-spacing:-.6px;text-align:start;text-shadow:none;}
+#welcome-screen h1 {font-size:clamp(44px,5.8vw,76px);line-height:1.06;margin:0 0 24px;}
+#welcome-screen h2 {font-size:32px;line-height:1.2;margin:0 0 12px;}
+#welcome-screen h3 {font-size:26px;line-height:1.2;margin:0 0 14px;}
+#welcome-screen p {margin-top:0;}
+#welcome-screen .w-lead {font-size:18px;max-width:570px;line-height:1.7;margin-bottom:28px;}
+#welcome-screen .w-actions {display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+#welcome-screen .w-hero {padding:52px 48px 44px;display:grid;grid-template-columns:1.3fr .8fr;align-items:center;gap:55px;}
+#welcome-screen .w-emblem {border:1px solid #dfd0be;border-radius:160px 160px 12px 12px;text-align:center;padding:52px 20px;background:#f0e6d7;}
+#welcome-screen .w-emblem strong {display:block;font:112px/1 Georgia,serif;letter-spacing:-7px;color:#582738;margin:20px 0 25px;}
+#welcome-screen .w-emblem small {font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#805c2e;}
+#welcome-screen .w-emblem p {font:24px/1.4 Georgia,serif;margin:0;color:#582738;}
+#welcome-screen .w-proofline {display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-block:1px solid #dfd0be;padding:22px 48px;color:#582738;font-size:14px;font-weight:500;}
+#welcome-screen .w-benefits {padding:40px 48px 10px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px 38px;scroll-margin-top:20px;}
+#welcome-screen .w-benefit {padding:0 0 26px;border-bottom:1px solid #dfd0be;}
+#welcome-screen .w-benefit p {font-size:15px;margin:0;line-height:1.75;}
+#welcome-screen .w-bottom {padding:32px;margin:28px 48px;background:#f0e6d7;border-radius:9px;display:flex;justify-content:space-between;align-items:center;gap:25px;}
+#welcome-screen .w-bottom p {font-size:15px;margin:0;}
+#welcome-screen .w-bottom a {flex-shrink:0;}
+#welcome-screen .w-footer {display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;padding:10px 48px 110px;font-size:13px;}
+#welcome-screen .halloween-languages {padding:12px 40px;background:#fbf6ed;border-bottom:1px solid #dfd0be;gap:7px;}
+#welcome-screen .halloween-languages .welcome-language-choice {min-height:44px;padding:8px 10px;}
+#welcome-screen :is(button,a):focus-visible {outline:3px solid #332b8d;outline-offset:4px;}
+#welcome-screen.lookup-open {min-height:100dvh;justify-content:center!important;padding:24px!important;}
+#welcome-screen.lookup-open .welcome-panel {background:#26131b!important;margin:auto!important;}
+#welcome-screen.lookup-open .w-header,#welcome-screen.lookup-open .halloween-languages {display:none;}
+#welcome-screen.lookup-open #application-lookup h2 {color:#fff8ed;}
+html[lang=ar] #welcome-screen :is(h1,h2,h3) {font-family:'Noto Sans Arabic',sans-serif;letter-spacing:0;line-height:1.5;}
+html[lang=ko] #welcome-screen :is(h1,h2,h3) {font-family:'Noto Sans KR',sans-serif;word-break:keep-all;line-height:1.35;}
+@media(max-width:760px){
+ #welcome-screen .w-header {padding:20px 24px;gap:18px;}
+ #welcome-screen .w-nav {gap:16px;}
+ #welcome-screen .w-hero {padding:36px 24px;grid-template-columns:1fr;gap:24px;}
+ #welcome-screen .w-emblem {display:none;}
+ #welcome-screen .w-proofline {padding:22px 24px;gap:12px;}
+ #welcome-screen .w-benefits {padding:30px 24px 10px;grid-template-columns:1fr 1fr;gap:26px;}
+ #welcome-screen .w-bottom {margin:24px;padding:26px;flex-direction:column;align-items:flex-start;}
+ #welcome-screen .w-footer {padding:10px 24px 110px;}
+ #welcome-screen .halloween-languages {padding:12px 24px;}
+}
+@media(max-width:480px){
+ #welcome-screen .w-header {gap:14px;}
+ #welcome-screen .w-nav {width:100%;margin:0;gap:16px;}
+ #welcome-screen .w-nav .w-apply {width:100%;}
+ #welcome-screen .w-benefits {grid-template-columns:1fr;}
+ #welcome-screen .w-actions {align-items:flex-start;flex-direction:column;}
+ #welcome-screen .w-lead {font-size:17px;}
+}
+#welcome-screen #welcome-edit {border:0!important;box-shadow:none!important;background:none!important;border-radius:0;animation:none!important;font-weight:400;}
