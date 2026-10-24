@@ -25,6 +25,10 @@ const decisionRows={
  ar:['تمت الموافقة على طلب النقل الخاص بك.','طلبك بانتظار قرار الفريق.','لم تتم الموافقة على طلبك. راجع السبب أدناه.','تم سحب طلبك.']
 };
 export function statusCopy(lang='en'){const selected=Object.hasOwn(rows,lang)?lang:'en';return {decisions:Object.fromEntries(decisionKeys.map((key,i)=>[key,decisionRows[selected][i]])),...Object.fromEntries(keys.map((key,i)=>[key,rows[selected][i]])),statuses:Object.fromEntries(statusKeys.map((key,i)=>[key,statusRows[selected][i]])),reasons:Object.fromEntries(reasonKeys.map((key,i)=>[key,reasonRows[selected][i]]))};}
+export function rejectionMessage(data,copy){
+ const message=typeof data.rejectionReasonText==='string'?data.rejectionReasonText.trim():'';
+ return message||copy.reasons[data.rejectionReasonCode]||copy.noReason;
+}
 let snapshot=null,language='en';
 export function showApplicationStatus(data,lang='en'){snapshot=data;language=lang;render();}
 function render(){
@@ -43,7 +47,7 @@ function render(){
  }
  body.append(facts);
  if(status==='Declined'){
-  const reason=el('div','','rejection-explanation');reason.append(el('strong',copy.reason),el('p',snapshot.rejectionReasonCode==='other'&&snapshot.rejectionReasonText?snapshot.rejectionReasonText:copy.reasons[snapshot.rejectionReasonCode]||copy.noReason));body.append(reason);
+  const reason=el('div','','rejection-explanation');reason.append(el('strong',copy.reason),el('p',rejectionMessage(snapshot,copy)));body.append(reason);
  }
  const decision=el('dl','','status-approval');decision.append(el('dt',copy.approval),el('dd',copy[approval]));body.append(decision,el('p',copy.note,'status-note'));root.append(body);
 }

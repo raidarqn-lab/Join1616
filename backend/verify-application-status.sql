@@ -28,6 +28,16 @@ begin
  update transfer_private.portal_records set payload=payload||jsonb_build_object('status','Declined','rejectionReasonCode','other','rejectionReasonText','An applicant-facing explanation.') where kind='players' and key=player_key;
  summary:=public.transfer_application_status(req);
  if summary#>>'{status,approval}'<>'declined' or summary#>>'{status,rejectionReasonText}'<>'An applicant-facing explanation.' or summary#>>'{status,destinationAlliance}' is not null then raise exception 'Rejection projection'; end if;
+ update transfer_private.portal_records set payload=payload||jsonb_build_object('rejectionReasonCode','low_kills','rejectionReasonText','Thank you for applying. We are sorry, but your troop kill count does not meet our requirements for this window.') where kind='players' and key=player_key;
+ summary:=public.transfer_application_status(req);
+ if summary#>>'{status,rejectionReasonCode}'<>'low_kills' or summary#>>'{status,rejectionReasonText}' not like 'Thank you for applying.%' then raise exception 'Standard reason message lost'; end if;
+ update transfer_private.portal_records set payload=payload||jsonb_build_object('rejectionReasonCode','no_seat','rejectionReasonText','An edited message about available seats.') where kind='players' and key=player_key;
+ summary:=public.transfer_application_status(req);
+ if summary#>>'{status,rejectionReasonText}'<>'An edited message about available seats.' then raise exception 'Edited standard message lost'; end if;
+ update transfer_private.portal_records set payload=payload||jsonb_build_object('rejectionReasonCode','unknown_code') where kind='players' and key=player_key;
+ summary:=public.transfer_application_status(req);
+ if summary#>>'{status,rejectionReasonCode}' is not null or summary#>>'{status,rejectionReasonText}' is not null then raise exception 'Unknown reason exposed'; end if;
+ update transfer_private.portal_records set payload=payload||jsonb_build_object('rejectionReasonCode','no_seat') where kind='players' and key=player_key;
  if summary::text like '%PRIVATE%' or summary::text like '%'||code||'%' or summary::text like '%code_hash%' then raise exception 'Private information leaked'; end if;
  update transfer_private.portal_records set payload=payload||jsonb_build_object('status','Pending') where kind='players' and key=player_key;
  summary:=public.transfer_application_status(req);
@@ -44,5 +54,5 @@ begin
  if public.transfer_application_status(req)->>'ok'<>'false' then raise exception 'Deleted records exposed'; end if;
 end;
 $$;
-select 'PASS: private receipt, new/pending/approved/rejected/withdrawn/unconfirmed states, selected alliance, confirmed-only seat, safe fields, stale reasons, ambiguous/deleted matches; all fixtures rolled back' as verification;
+select 'PASS: private receipt, new/pending/approved/rejected/withdrawn/unconfirmed states, selected alliance, confirmed-only seat, editable standard messages, safe fields, stale reasons, ambiguous/deleted matches; all fixtures rolled back' as verification;
 rollback;

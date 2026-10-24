@@ -34,8 +34,8 @@ begin
  return jsonb_build_object('ok',true,'status',jsonb_build_object(
   'playerName',coalesce(nullif(p->>'name',''),a.payload->>'username'),
   'applicationStatus',current_status,'approval',decision,'destinationAlliance',destination,
-  'confirmedSeat',seat,'rejectionReasonCode',case when current_status='Declined' and p->>'rejectionReasonCode' in ('no_seat','requirements','placement','information','other') then p->>'rejectionReasonCode' end,
-  'rejectionReasonText',case when current_status='Declined' and p->>'rejectionReasonCode'='other' then left(p->>'rejectionReasonText',1000) end,'receivedAt',a.created_at,'checkedAt',clock_timestamp()));
+  'confirmedSeat',seat,'rejectionReasonCode',case when current_status='Declined' and p->>'rejectionReasonCode' in ('no_seat','low_kills','low_profession','low_hq','low_participation','low_power','group_full','conflict','not_specified','other','requirements','placement','information') then p->>'rejectionReasonCode' end,
+  'rejectionReasonText',case when current_status='Declined' and p->>'rejectionReasonCode' in ('no_seat','low_kills','low_profession','low_hq','low_participation','low_power','group_full','conflict','not_specified','other','requirements','placement','information') then left(p->>'rejectionReasonText',1000) end,'receivedAt',a.created_at,'checkedAt',clock_timestamp()));
 end;
 $$;
 revoke all on function public.transfer_application_status(jsonb) from public,anon,authenticated;
