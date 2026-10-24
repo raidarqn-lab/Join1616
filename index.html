@@ -5398,7 +5398,7 @@ async function copyConfirmationCode() {
 async function loadExistingApplication(){
  const button=document.getElementById('lookup-application'),error=document.getElementById('lookup-error');if(button.disabled)return;error.textContent='';button.disabled=true;
  try{const result=await sendToGoogleSheets({requestType:'application.lookup',confirmationCode:document.getElementById('application-code-input').value.trim(),website:''}),p=result.application;if(!p||!p.applicationId)throw Error('Unavailable');
- const statusView=await import('./application-status.js?v=guidelines-20261023');statusView.showApplicationStatus(result.applicationStatus,state.language);
+ const statusView=await import('./application-status.js?v=rules-page-20261023');statusView.showApplicationStatus(result.applicationStatus,state.language);
  form.reset();state.applicationId=p.applicationId;state.confirmationCode=p.confirmationCode;state.editing=true;state.submitted=false;state.editRevision=result.editRevision||0;state.editRequestId='';state.groupMembers=Array.isArray(p.groupMembers)?p.groupMembers.map(member=>({...member,id:member.id||crypto.randomUUID()})):[];
  form.querySelectorAll('[data-numeric]').forEach(input=>{input.dataset.numericInvalid='';});
  form.querySelectorAll('.invalid').forEach(input=>input.classList.remove('invalid'));
