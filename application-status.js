@@ -30,6 +30,27 @@ export function rejectionMessage(data,copy){
  return message||copy.reasons[data.rejectionReasonCode]||copy.noReason;
 }
 let snapshot=null,language='en';
+const guidelineLabels={
+ en:['Please read alliance rules and guidelines.','About this alliance','Rules & guidelines','This alliance has not published its guidelines yet. Please check back or contact the transfer team.','Close'],
+ de:['Bitte lies die Allianzregeln und Richtlinien.','Über diese Allianz','Regeln & Richtlinien','Diese Allianz hat ihre Richtlinien noch nicht veröffentlicht. Schau später noch einmal nach oder kontaktiere das Transferteam.','Schließen'],
+ pt:['Leia as regras e diretrizes da aliança.','Sobre esta aliança','Regras e diretrizes','Esta aliança ainda não publicou suas diretrizes. Volte mais tarde ou contate a equipe de transferência.','Fechar'],
+ fr:['Veuillez lire les règles et consignes de l’alliance.','À propos de cette alliance','Règles et consignes','Cette alliance n’a pas encore publié ses consignes. Revenez plus tard ou contactez l’équipe de transfert.','Fermer'],
+ es:['Lee las reglas y directrices de la alianza.','Sobre esta alianza','Reglas y directrices','Esta alianza aún no ha publicado sus directrices. Vuelve más tarde o contacta con el equipo de traslados.','Cerrar'],
+ ko:['연맹 규칙과 지침을 읽어주세요.','연맹 소개','규칙 및 지침','아직 이 연맹의 지침이 게시되지 않았습니다. 나중에 다시 확인하거나 이전 담당 팀에 문의하세요.','닫기'],
+ vi:['Vui lòng đọc nội quy và hướng dẫn của liên minh.','Giới thiệu liên minh','Nội quy và hướng dẫn','Liên minh này chưa công bố hướng dẫn. Vui lòng kiểm tra lại sau hoặc liên hệ đội phụ trách chuyển máy chủ.','Đóng'],
+ ar:['يرجى قراءة قواعد التحالف وإرشاداته.','عن هذا التحالف','القواعد والإرشادات','لم ينشر هذا التحالف إرشاداته بعد. يرجى العودة لاحقًا أو التواصل مع فريق النقل.','إغلاق']
+};
+export function assignedAlliance(data){return ['NvSP','NvEM','WaE','DRoN','ECKO'].includes(data?.destinationAlliance)&&!['Declined','Withdrawn','Unconfirmed'].includes(data?.applicationStatus)?data.destinationAlliance:null;}
+export function localizedGuidelines(published,lang='en'){return published?.translations?.[lang]||(lang==='en'?published:null);}
+function openGuidelines(opener){
+ const home=assignedAlliance(snapshot);if(!home)return;const labels=guidelineLabels[language]||guidelineLabels.en;
+ const dialog=document.createElement('dialog');dialog.className='alliance-guidelines-dialog';dialog.lang=language;dialog.dir=language==='ar'?'rtl':'ltr';dialog.setAttribute('aria-label',home+' · '+labels[2]);
+ const add=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;dialog.append(n);return n;};
+ add('h2',home+' · '+labels[2]);
+ const published=localizedGuidelines(snapshot.allianceGuidelines,language);
+ if(published?.introduction&&published?.guidelines){add('h3',labels[1]);add('p',published.introduction);add('h3',labels[2]);add('p',published.guidelines);}else add('p',labels[3]);
+ const close=add('button',labels[4]);close.type='button';close.onclick=()=>dialog.close();dialog.addEventListener('close',()=>{dialog.remove();opener.focus();});document.body.append(dialog);dialog.showModal();close.focus();
+}
 export function showApplicationStatus(data,lang='en'){snapshot=data;language=lang;render();}
 function render(){
  const root=document.getElementById('application-status-summary');if(!root)return;
@@ -42,8 +63,10 @@ function render(){
  const outcome=el('div','','status-outcome');const icon=el('span',{approved:'✓',pending:'…',declined:'×',withdrawn:'–'}[approval],'status-icon');icon.setAttribute('aria-hidden','true');
  outcome.append(icon,el('strong',copy.statuses[status],'status-badge'));header.append(outcome,el('p',copy.decisions[approval],'status-message'));
  const body=el('div','','status-body'),facts=el('dl','','status-facts');
- for(const [label,value]of [[copy.alliance,snapshot.destinationAlliance||copy.unselected],[copy.seat,copy.statuses[snapshot.confirmedSeat]||copy.unconfirmed]]){
-  const box=el('div','');box.append(el('dt',label),el('dd',value));facts.append(box);
+ for(const [label,value]of [[copy.alliance,assignedAlliance(snapshot)||copy.unselected],[copy.seat,copy.statuses[snapshot.confirmedSeat]||copy.unconfirmed]]){
+  const box=el('div','');box.append(el('dt',label),el('dd',value));
+  if(label===copy.alliance&&assignedAlliance(snapshot)){const link=el('button',(guidelineLabels[language]||guidelineLabels.en)[0],'alliance-guidelines-link');link.type='button';link.setAttribute('aria-haspopup','dialog');link.onclick=()=>openGuidelines(link);const detail=el('dd','');detail.append(link);box.append(detail);}
+  facts.append(box);
  }
  body.append(facts);
  if(status==='Declined'){

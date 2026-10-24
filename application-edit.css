@@ -1,4 +1,11 @@
 /* Returning applicants edit saved sections in one dialog. */
+.alliance-guidelines-link{display:block;margin-top:8px;padding:4px 0;border:0;background:none;color:#ffcf92;font:400 13px/1.6 Inter,Arial,sans-serif;text-align:start;text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
+.alliance-guidelines-dialog{box-sizing:border-box;width:min(700px,calc(100% - 28px));max-height:calc(100dvh - 40px);overflow:auto;border:1px solid #906d67;border-radius:16px;background:#271c22;color:#fff4ed;padding:24px;}
+.alliance-guidelines-dialog::backdrop{background:#171016b8;backdrop-filter:blur(5px);}
+.alliance-guidelines-dialog h2{font:600 24px/1.3 Inter,Arial,sans-serif;margin:0 0 24px;}
+.alliance-guidelines-dialog h3{font:600 17px/1.4 Inter,Arial,sans-serif;margin:24px 0 10px;color:#ffcf92;}
+.alliance-guidelines-dialog p{white-space:pre-wrap;overflow-wrap:anywhere;font:400 15px/1.75 Inter,Arial,sans-serif;color:#dfc9d6;}
+.alliance-guidelines-dialog button{min-height:44px;padding:10px 20px;border:1px solid #987086;border-radius:8px;background:#332039;color:#fff4ed;font:500 14px/1.5 Inter,Arial,sans-serif;cursor:pointer;}
 body.application-editor-open { overflow: hidden; }
 #application-editor { box-sizing: border-box; width: min(900px, calc(100% - 24px)); max-width: 900px; max-height: calc(100dvh - 32px); margin: auto; padding: 0; border: 1px solid #906d67; border-radius: 18px; color: #fff4ed; background: #271c22; box-shadow: 0 24px 90px #0008; }
 #application-editor::backdrop { background: #171016b8; backdrop-filter: blur(7px); }
