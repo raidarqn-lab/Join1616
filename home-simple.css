@@ -1,0 +1,43 @@
+/* Approved two-choice homepage; keep the existing application and lookup flows. */
+#welcome-screen:not(.lookup-open) .welcome-panel{width:min(960px,100%)!important;}
+#welcome-screen .w-header{padding:28px 40px;justify-content:space-between;flex-wrap:nowrap;}
+#welcome-screen .w-logo{font-size:36px;letter-spacing:-2px;}
+#welcome-screen .home-subtitle{display:block;margin-top:9px;color:#dfc9d6;font:500 10px/1.5 Inter,Arial,sans-serif;letter-spacing:1.5px;max-width:220px;}
+#welcome-screen .home-language{flex-shrink:0;}
+#welcome-screen .home-language select{width:auto;max-width:145px;min-height:44px;border:1px solid #604054;border-radius:8px;background:#332039;color:#fff0d9;font:400 14px/1.5 Inter,Arial,sans-serif;padding:8px 12px;}
+#welcome-screen .home-content{padding:42px 40px;}
+#welcome-screen .home-heading{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:28px;}
+#welcome-screen .home-heading h1{font-size:clamp(34px,5vw,52px);line-height:1.12;margin:0;}
+#welcome-screen .home-heading .w-kicker{margin-bottom:16px;font-size:11px;letter-spacing:2.6px;}
+#welcome-screen .home-ghost{display:block;width:80px;height:80px;object-fit:contain;flex-shrink:0;}
+#welcome-screen .home-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+#welcome-screen .home-choice{display:flex;flex-direction:column;align-items:stretch;padding:24px;background:#332039;border:1px solid #604054;border-radius:12px;min-width:0;}
+#welcome-screen .home-choice h2{font-size:25px;margin:15px 0 8px;line-height:1.2;}
+#welcome-screen .home-choice p{font-size:14px;line-height:1.6;margin:0 0 24px;color:#dfc9d6;}
+#welcome-screen .home-choice-icon{display:block;width:24px;height:24px;background:#ffb15b;mask:var(--home-icon) center/contain no-repeat;-webkit-mask:var(--home-icon) center/contain no-repeat;}
+#welcome-screen .home-icon-apply{--home-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4'/%3E%3Cpath d='M14 2v6h6M3 15h6M6 12v6'/%3E%3C/svg%3E");}
+#welcome-screen .home-icon-edit{--home-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8l6 6v4M14 2v6h6M8 12h2M8 16h2M16 16l3-3 3 3-6 6h-3v-3z'/%3E%3C/svg%3E");}
+#welcome-screen .home-action{display:flex;align-items:center;justify-content:center;gap:12px;min-height:56px;width:100%;padding:16px;margin-top:auto;border-radius:12px;cursor:pointer;font:600 15px/1.4 Inter,Arial,sans-serif;white-space:normal;}
+#welcome-screen .home-action>span:last-child{flex-shrink:0;}
+#welcome-screen .home-action-primary{background:#ffb15b;color:#301b20;border:1px solid #ffb15b;}
+#welcome-screen .home-action-primary:hover{background:#ffc482;}
+#welcome-screen #welcome-edit.home-action-secondary{background:#332039!important;border:1px solid #987086!important;border-radius:12px;color:#fff0d9!important;font-weight:600;}
+#welcome-screen #welcome-edit.home-action-secondary:hover{background:#432b49!important;}
+#welcome-screen .home-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 40px;border-top:1px solid #604054;}
+#welcome-screen .home-footer :is(a,button){background:none;border:0;padding:8px 0;color:#dfc9d6;font:400 13px/1.5 Inter,Arial,sans-serif;cursor:pointer;text-decoration:underline;text-underline-offset:4px;}
+body.welcome-open .question-fab{display:none!important;}
+html[dir=rtl] #welcome-screen .home-action>span:last-child{transform:scaleX(-1);}
+@media(max-width:600px){
+ #welcome-screen .w-header{padding:22px;gap:12px;}
+ #welcome-screen .home-subtitle{max-width:160px;letter-spacing:1px;}
+ #welcome-screen .home-language select{max-width:120px;}
+ #welcome-screen .home-content{padding:30px 22px;}
+ #welcome-screen .home-heading{gap:10px;}
+ #welcome-screen .home-ghost{width:60px;height:60px;}
+ #welcome-screen .home-choices{grid-template-columns:1fr;gap:14px;}
+ #welcome-screen .home-choice{padding:18px;}
+ #welcome-screen .home-choice-icon{display:none;}
+ #welcome-screen .home-choice h2{margin:0 0 6px;font-size:23px;}
+ #welcome-screen .home-choice p{margin-bottom:16px;}
+ #welcome-screen .home-footer{padding:18px 22px;}
+}
