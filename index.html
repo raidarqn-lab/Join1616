@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Tint&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=two-way-chat-1" />
-<link rel="stylesheet" href="application-edit.css?v=guidelines-20261023" />
+<link rel="stylesheet" href="application-edit.css?v=confetti-20261024" />
   <link rel="stylesheet" href="support.css?v=3" />
   <link rel="stylesheet" href="halloween.css?v=3" />
   <link rel="stylesheet" href="why1616.css?v=2" />
@@ -5398,13 +5398,13 @@ async function copyConfirmationCode() {
 async function loadExistingApplication(){
  const button=document.getElementById('lookup-application'),error=document.getElementById('lookup-error');if(button.disabled)return;error.textContent='';button.disabled=true;
  try{const result=await sendToGoogleSheets({requestType:'application.lookup',confirmationCode:document.getElementById('application-code-input').value.trim(),website:''}),p=result.application;if(!p||!p.applicationId)throw Error('Unavailable');
- const statusView=await import('./application-status.js?v=rules-page-20261023');statusView.showApplicationStatus(result.applicationStatus,state.language);
+ const statusView=await import('./application-status.js?v=confetti-20261024');statusView.showApplicationStatus(result.applicationStatus,state.language);
  form.reset();state.applicationId=p.applicationId;state.confirmationCode=p.confirmationCode;state.editing=true;state.submitted=false;state.editRevision=result.editRevision||0;state.editRequestId='';state.groupMembers=Array.isArray(p.groupMembers)?p.groupMembers.map(member=>({...member,id:member.id||crypto.randomUUID()})):[];
  form.querySelectorAll('[data-numeric]').forEach(input=>{input.dataset.numericInvalid='';});
  form.querySelectorAll('.invalid').forEach(input=>input.classList.remove('invalid'));
  form.querySelectorAll('.field-error').forEach(error=>{error.textContent='';});
  for(const [key,value]of Object.entries(p)){for(const el of form.querySelectorAll('[name="'+CSS.escape(key)+'"]')){if(el.type==='radio'||el.type==='checkbox')el.checked=el.value===String(value);else el.value=value==null?'':String(value);}}
- groupBuilder.hidden=currentGroupAnswer()!=='yes';renderGroupMembers();syncGroupSameAllianceQuestion();updateGroupContactOptions();updateGroupSummary();document.querySelectorAll('select').forEach(syncCustomSelect);state.transferGroupReminderAcknowledgedFor=p.transferGroupName||'';submitButton.disabled=false;document.getElementById('welcome-screen').hidden=true;document.body.classList.remove('welcome-open');showTopPage('application');goToStep(5);renderReview();openApplicationEditor();
+ groupBuilder.hidden=currentGroupAnswer()!=='yes';renderGroupMembers();syncGroupSameAllianceQuestion();updateGroupContactOptions();updateGroupSummary();document.querySelectorAll('select').forEach(syncCustomSelect);state.transferGroupReminderAcknowledgedFor=p.transferGroupName||'';submitButton.disabled=false;document.getElementById('welcome-screen').hidden=true;document.body.classList.remove('welcome-open');showTopPage('application');goToStep(5);renderReview();openApplicationEditor();statusView.celebrateApproval();
  }catch(_){error.textContent=t('lookupFailed');}finally{button.disabled=false;}
 }
 async function saveConfirmationPng(){
@@ -5472,6 +5472,7 @@ function closeApplicationEditor() {
   if (!dialog.open) return;
   closeStatsGuideModal();
   editorGuideParent.append(document.getElementById('stats-guide-modal'));
+  window.Join1616Status?.stopCelebration();
   dialog.close();
   document.body.classList.remove('application-editor-open');
   form.querySelectorAll('.editor-section').forEach(accordion => accordion.replaceWith(accordion.querySelector('.form-step')));
