@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#231525" />
-  <meta name="description" content="Discover why players transfer to Last War server 1616: competitive alliances, experienced leaders, a stable home, and an international community." />
-  <title>Why transfer to 1616 · Join 1616</title>
+  <meta name="description" content="Apply to transfer to Last War server 1616, edit your application, or check your application status." />
+  <title>Apply or view application status · Join 1616</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Tint&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="halloween.css?v=3" />
   <link rel="stylesheet" href="why1616.css?v=2" />
   <link rel="stylesheet" href="moonlit-manor.css?v=1" />
-  <script src="why1616-translations.js?v=3"></script>
+  <link rel="stylesheet" href="home-simple.css?v=1" />
+  <script src="why1616-translations.js?v=4"></script>
 </head>
 <body>
 
@@ -71,35 +72,27 @@
 
 
 <section class="welcome-screen" id="welcome-screen" aria-labelledby="welcome-title">
-<div class="welcome-panel w-site">
-      <header class="w-header"><span class="w-logo">1616<span class="w-season-label" data-i18n="halloweenGreeting">Happy Halloween!</span></span><nav class="w-nav" aria-label="Main navigation"><a href="#reasons-benefits" aria-current="page" data-i18n="why0">Why 1616</a><a href="story.html" data-i18n="navStory">Our history</a><button type="button" class="w-apply" data-start-application data-i18n="why1">Apply to transfer →</button></nav></header>
-<div class="halloween-languages" role="group" aria-label="Choose your language">
-          <button type="button" class="welcome-language-choice" data-welcome-language="en"><span>EN</span><strong>English</strong></button>
-          <button type="button" class="welcome-language-choice" data-welcome-language="es"><span>ES</span><strong>Español</strong></button>
-          <button type="button" class="welcome-language-choice" data-welcome-language="pt"><span>PT</span><strong>Português</strong></button>
-          <button type="button" class="welcome-language-choice" data-welcome-language="fr"><span>FR</span><strong>Français</strong></button>
-          <button type="button" class="welcome-language-choice" data-welcome-language="ar"><span>AR</span><strong>العربية</strong></button>
-          <button type="button" class="welcome-language-choice" data-welcome-language="vi"><span>VI</span><strong>Tiếng Việt</strong></button>
-          <button type="button" class="welcome-language-choice" data-welcome-language="ko"><span>KO</span><strong>한국어</strong></button>
-          <button type="button" class="welcome-language-choice" data-welcome-language="de"><span>DE</span><strong>Deutsch</strong></button>
+  <div class="welcome-panel w-site">
+    <header class="w-header">
+      <span class="w-logo">1616<span class="home-subtitle" data-i18n="serverTransferApplication">TRANSFER APPLICATION</span></span>
+      <label class="home-language"><span class="sr-only" data-i18n="headerChooseLanguage">Choose a language</span><select id="welcome-language" aria-label="Language" data-native-select="true">
+        <option value="en">English</option><option value="es">Español</option><option value="pt">Português</option><option value="fr">Français</option><option value="ar">العربية</option><option value="vi">Tiếng Việt</option><option value="ko">한국어</option><option value="de">Deutsch</option>
+      </select></label>
+    </header>
+    <div id="welcome-language-stage" hidden></div>
+    <div class="welcome-guide-stage" id="welcome-guide-stage">
+      <div class="home-content">
+        <div class="home-heading"><div><p class="w-kicker" data-i18n="why32">Welcome to 1616</p><h1 id="welcome-title" data-i18n="why33">Let’s get you started.</h1></div><img class="home-ghost" src="halloween-support-ghost.png" alt="" width="80" height="80"></div>
+        <div class="home-choices">
+          <article class="home-choice"><span class="home-choice-icon home-icon-apply" aria-hidden="true"></span><h2 data-i18n="why34">New application</h2><p data-i18n="why35">Tell us about yourself and your account.</p><button type="button" class="home-action home-action-primary" id="welcome-enter"><span data-i18n="why1">Apply</span><span aria-hidden="true">→</span></button></article>
+          <article class="home-choice"><span class="home-choice-icon home-icon-edit" aria-hidden="true"></span><h2 data-i18n="why36">Already applied?</h2><p data-i18n="why37">View your status or update your details.</p><button type="button" class="home-action home-action-secondary" id="welcome-edit"><span data-i18n="why30">Edit application/View status</span><span aria-hidden="true">→</span></button></article>
         </div>
-<div id="welcome-language-stage" hidden></div>
-<div class="welcome-guide-stage" id="welcome-guide-stage">
-      <div class="w-hero w-hero-split"><div><p class="w-kicker" data-i18n="why2">A little spooky. A lot to call home.</p><h1 id="welcome-title"><span data-i18n="why3">Big power.</span><br><span data-i18n="why4">Better company.</span></h1><p class="w-lead" data-i18n="why5">Competitive alliances, experienced leadership, and people you’ll want to log in for. Find your place in 1616.</p><div class="w-actions"><button type="button" class="w-apply" id="welcome-enter" data-i18n="why6">Make 1616 your next chapter →</button><a class="w-textlink" href="#reasons-benefits" data-i18n="why7">See why people stay ↓</a></div></div><div class="w-emblem"><span class="w-moon" aria-hidden="true"></span><span class="w-star w-star-one" aria-hidden="true">✧</span><span class="w-star w-star-two" aria-hidden="true">✦</span><img class="w-hero-boo" src="halloween-support-ghost.png" alt="" width="1254" height="1254" fetchpriority="high"><p><span data-i18n="why9">Come for a fresh start.</span><br><span data-i18n="why10">Stay for the people.</span></p></div></div>
-      <div class="w-proofline"><span data-i18n="why11"> Five active alliances</span><span data-i18n="why12"> Multiple Diamond League alliances</span><span data-i18n="why13"> An international community</span></div>
-      <div class="w-section-heading"><h2 data-i18n="why31">Good reasons. Great spirits.</h2><p data-i18n="why8">Strength · Stability · Belonging</p></div>
-      <div class="w-benefits" id="reasons-benefits">
-        <article class="w-benefit"><h3 data-i18n="why14">Strong without the short fuse.</h3><p data-i18n="why15">Whales who won’t ash you because they’re annoyed. The days of burning each other’s bases and alliances are behind us.</p></article>
-        <article class="w-benefit"><h3 data-i18n="why16">A place to compete.</h3><p data-i18n="why17">Multiple Diamond League alliances give competitive players options. Five active alliances offer a variety of playstyles.</p></article>
-        <article class="w-benefit"><h3 data-i18n="why18">Experience that’s shared.</h3><p data-i18n="why19">Seasoned leaders and veterans of earlier servers bring knowledge that we keep building on together.</p></article>
-        <article class="w-benefit"><h3 data-i18n="why20">Your time zone matters.</h3><p data-i18n="why21">We’re an international server. Planning considers participation across different time zones.</p></article>
-        <article class="w-benefit"><h3 data-i18n="why22">More than one language.</h3><p data-i18n="why23">Multilingual chats are familiar territory. Make friends across countries and cultures—and maybe swap a recipe or two.</p></article>
-        <article class="w-benefit"><h3 data-i18n="why24">New arrivals become family.</h3><p data-i18n="why25">Transfers from earlier seasons are now some of our closest friends and allies. There’s room for your story here, too.</p></article>
       </div>
-      <div class="w-bottom"><div><h2 data-i18n="why26">We’ve grown through every season.</h2><p data-i18n="why27">Our history explains how we became the server we are today.</p></div><a class="w-textlink" href="story.html" data-i18n="why28">Read our story →</a></div>
-      <footer class="w-footer"><span data-i18n="why29">1616 · Your next chapter starts here.</span><button type="button" class="w-textlink" id="welcome-edit" data-i18n="why30">Already applied? View status or edit →</button></footer>
-<div id="application-lookup" hidden><button type="button" id="lookup-back" class="lookup-back">← <span data-i18n="back">Back</span></button><h2 data-i18n="editMyApplication">Edit my application</h2><label for="application-code-input" data-i18n="editCodeLabel">Application confirmation code</label><input id="application-code-input" autocomplete="off" spellcheck="false" autocapitalize="characters" maxlength="80" aria-describedby="lookup-help"><p id="lookup-help"><span data-i18n="editCodeHelp"></span> <button type="button" id="lost-code-help" aria-controls="question-panel" data-i18n="lostCodeHelp">Lost your code? Contact the transfer team.</button></p><button type="button" class="button submit" id="lookup-application" data-i18n="retrieveApplication">Open my application</button><p id="lookup-error" role="alert"></p></div>
-</div></div></section>
+      <footer class="home-footer"><a href="story.html" data-i18n="navStory">Our history</a><button type="button" id="welcome-help" data-i18n="why38">Need help?</button></footer>
+      <div id="application-lookup" hidden><button type="button" id="lookup-back" class="lookup-back">← <span data-i18n="back">Back</span></button><h2 data-i18n="why30">Edit application/View status</h2><label for="application-code-input" data-i18n="editCodeLabel">Application confirmation code</label><input id="application-code-input" autocomplete="off" spellcheck="false" autocapitalize="characters" maxlength="80" aria-describedby="lookup-help"><p id="lookup-help"><span data-i18n="editCodeHelp"></span> <button type="button" id="lost-code-help" aria-controls="question-panel" data-i18n="lostCodeHelp">Lost your code? Contact the transfer team.</button></p><button type="button" class="button submit" id="lookup-application" data-i18n="retrieveApplication">Open my application</button><p id="lookup-error" role="alert"></p></div>
+    </div>
+  </div>
+</section>
 
   <header class="site-header">
     <div class="brand-wrap">
@@ -4273,6 +4266,7 @@ function renderCustomSelectOptions(select) {
 
 function enhanceSelect(select) {
   if (!select) return;
+  if (select.dataset.nativeSelect === 'true') return;
 
   // Player server selectors remain native so the browser renders their
   // dropdown menu above the surrounding player cards without clipping.
@@ -4401,6 +4395,7 @@ function setLanguage(lang) {
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   headerLanguage.value = lang;
+  document.getElementById("welcome-language").value = lang;
   document.querySelectorAll("[data-welcome-language]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.welcomeLanguage === lang)));
   document.querySelectorAll('.language-card').forEach(btn => btn.classList.toggle('selected', btn.dataset.language === lang));
   document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; el.textContent = t(k); });
@@ -5701,6 +5696,8 @@ function initWelcomeScreen() {
     });
   });
 
+  document.getElementById('welcome-language').addEventListener('change', event => setLanguage(event.target.value));
+  document.getElementById('welcome-help').onclick=()=>openQuestionPanel();
   document.getElementById('lost-code-help').onclick=()=>openQuestionPanel();
   document.getElementById('welcome-edit').onclick=()=>{document.getElementById('welcome-screen').classList.add('lookup-open');document.getElementById('application-lookup').hidden=false;document.querySelector('.welcome-panel').scrollTop=0;document.getElementById('application-code-input').focus({preventScroll:true});};
   document.getElementById('lookup-back').onclick=()=>{document.getElementById('application-lookup').hidden=true;document.getElementById('welcome-screen').classList.remove('lookup-open');document.getElementById('welcome-edit').focus({preventScroll:true});};
