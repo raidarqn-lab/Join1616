@@ -13,12 +13,38 @@ const statusKeys=['Received','Pending','Under Review','Approved','Waitlisted','D
 const statusRows={en:['Received','Pending','Under review','Approved','Waitlisted','Rejected','Withdrawn','Transferred','Unconfirmed','Gold','Purple','Blue','White'],de:['Eingegangen','Ausstehend','In Prüfung','Genehmigt','Warteliste','Abgelehnt','Zurückgezogen','Transfer abgeschlossen','Unbestätigt','Gold','Violett','Blau','Weiß'],pt:['Recebida','Pendente','Em análise','Aprovada','Lista de espera','Recusada','Retirada','Transferência concluída','Não confirmada','Dourado','Roxo','Azul','Branco'],fr:['Reçue','En attente','En cours d’examen','Approuvée','Liste d’attente','Refusée','Retirée','Transfert effectué','Non confirmée','Or','Violet','Bleu','Blanc'],es:['Recibida','Pendiente','En revisión','Aprobada','Lista de espera','Rechazada','Retirada','Transferencia completada','Sin confirmar','Dorado','Morado','Azul','Blanco'],ko:['접수됨','대기 중','검토 중','승인됨','대기 명단','거절됨','철회됨','이전 완료','미확정','금색','보라색','파란색','흰색'],vi:['Đã nhận','Đang chờ','Đang xét duyệt','Đã duyệt','Danh sách chờ','Đã từ chối','Đã rút','Đã chuyển','Chưa xác nhận','Vàng','Tím','Xanh dương','Trắng'],ar:['تم الاستلام','قيد الانتظار','قيد المراجعة','تمت الموافقة','قائمة الانتظار','مرفوض','تم سحبه','تم النقل','غير مؤكد','ذهبي','بنفسجي','أزرق','أبيض']};
 const reasonKeys=['no_seat','requirements','placement','information'];
 const reasonRows={en:['No suitable seat available','Transfer requirements not met','Alliance/group placement unavailable','Application information incomplete or unverified'],de:['Kein geeigneter Sitz verfügbar','Transferanforderungen nicht erfüllt','Keine Platzierung für Allianz/Gruppe verfügbar','Bewerbungsangaben unvollständig oder nicht bestätigt'],pt:['Não há vaga adequada disponível','Requisitos de transferência não cumpridos','Não é possível acomodar a aliança/grupo','Informações da candidatura incompletas ou não verificadas'],fr:['Aucune place adaptée disponible','Conditions de transfert non remplies','Placement en alliance/groupe indisponible','Informations de candidature incomplètes ou non vérifiées'],es:['No hay una plaza adecuada disponible','No se cumplen los requisitos de transferencia','No hay ubicación disponible para la alianza/grupo','Información de la solicitud incompleta o sin verificar'],ko:['적합한 좌석이 없음','이전 요건을 충족하지 못함','연맹/그룹 배치가 불가능함','신청 정보가 불완전하거나 확인되지 않음'],vi:['Không có suất phù hợp','Chưa đáp ứng yêu cầu chuyển máy chủ','Không thể sắp xếp liên minh/nhóm','Thông tin đơn chưa đầy đủ hoặc chưa được xác minh'],ar:['لا يوجد مقعد مناسب متاح','لم تُستوفَ متطلبات النقل','لا يتوفر مكان للتحالف أو المجموعة','معلومات الطلب غير مكتملة أو غير موثقة']};
-export function statusCopy(lang='en'){const selected=Object.hasOwn(rows,lang)?lang:'en';return {...Object.fromEntries(keys.map((key,i)=>[key,rows[selected][i]])),statuses:Object.fromEntries(statusKeys.map((key,i)=>[key,statusRows[selected][i]])),reasons:Object.fromEntries(reasonKeys.map((key,i)=>[key,reasonRows[selected][i]]))};}
+const decisionKeys=['approved','pending','declined','withdrawn'];
+const decisionRows={
+ en:['Your transfer application has been approved.','Your application is awaiting a team decision.','Your application was not approved. See the reason below.','Your application has been withdrawn.'],
+ de:['Deine Transferbewerbung wurde genehmigt.','Deine Bewerbung wartet auf eine Entscheidung des Teams.','Deine Bewerbung wurde nicht genehmigt. Den Grund findest du unten.','Deine Bewerbung wurde zurückgezogen.'],
+ pt:['A sua candidatura de transferência foi aprovada.','A sua candidatura aguarda uma decisão da equipa.','A sua candidatura não foi aprovada. Consulte o motivo abaixo.','A sua candidatura foi retirada.'],
+ fr:['Votre candidature de transfert a été approuvée.','Votre candidature attend une décision de l’équipe.','Votre candidature n’a pas été approuvée. Consultez le motif ci-dessous.','Votre candidature a été retirée.'],
+ es:['Tu solicitud de transferencia ha sido aprobada.','Tu solicitud está pendiente de una decisión del equipo.','Tu solicitud no ha sido aprobada. Consulta el motivo a continuación.','Tu solicitud ha sido retirada.'],
+ ko:['이전 신청이 승인되었습니다.','신청이 담당 팀의 결정을 기다리고 있습니다.','신청이 승인되지 않았습니다. 아래 사유를 확인하세요.','신청이 철회되었습니다.'],
+ vi:['Đơn đăng ký chuyển máy chủ của bạn đã được duyệt.','Đơn của bạn đang chờ quyết định từ đội phụ trách.','Đơn của bạn không được duyệt. Xem lý do bên dưới.','Đơn của bạn đã được rút.'],
+ ar:['تمت الموافقة على طلب النقل الخاص بك.','طلبك بانتظار قرار الفريق.','لم تتم الموافقة على طلبك. راجع السبب أدناه.','تم سحب طلبك.']
+};
+export function statusCopy(lang='en'){const selected=Object.hasOwn(rows,lang)?lang:'en';return {decisions:Object.fromEntries(decisionKeys.map((key,i)=>[key,decisionRows[selected][i]])),...Object.fromEntries(keys.map((key,i)=>[key,rows[selected][i]])),statuses:Object.fromEntries(statusKeys.map((key,i)=>[key,statusRows[selected][i]])),reasons:Object.fromEntries(reasonKeys.map((key,i)=>[key,reasonRows[selected][i]]))};}
 let snapshot=null,language='en';
 export function showApplicationStatus(data,lang='en'){snapshot=data;language=lang;render();}
-function render(){const root=document.getElementById('application-status-summary');if(!root)return;const copy=statusCopy(language);root.replaceChildren();root.hidden=false;const el=(tag,text,cls)=>{const n=document.createElement(tag);n.textContent=text;if(cls)n.className=cls;return n;};const header=el('div','','status-heading');header.append(el('h3',copy.title));root.append(header);if(!snapshot){root.append(el('p',copy.unavailable));return;}
- const status=Object.hasOwn(copy.statuses,snapshot.applicationStatus)?snapshot.applicationStatus:'Unconfirmed';const approval=['approved','pending','declined','withdrawn'].includes(snapshot.approval)?snapshot.approval:'pending';root.dataset.approval=approval;header.append(el('span',copy.statuses[status],'status-badge'));
- const facts=el('dl','');for(const [label,value]of [[copy.approval,copy[approval]],[copy.alliance,snapshot.destinationAlliance||copy.unselected],[copy.seat,copy.statuses[snapshot.confirmedSeat]||copy.unconfirmed]]){const box=el('div','');box.append(el('dt',label),el('dd',value));facts.append(box);}root.append(facts);
- if(status==='Declined'){const reason=el('div','','rejection-explanation');reason.append(el('strong',copy.reason),el('p',snapshot.rejectionReasonCode==='other'&&snapshot.rejectionReasonText?snapshot.rejectionReasonText:copy.reasons[snapshot.rejectionReasonCode]||copy.noReason));root.append(reason);}root.append(el('p',copy.note));
+function render(){
+ const root=document.getElementById('application-status-summary');if(!root)return;
+ const copy=statusCopy(language);root.replaceChildren();root.hidden=false;delete root.dataset.approval;
+ const el=(tag,text,cls)=>{const n=document.createElement(tag);n.textContent=text;if(cls)n.className=cls;return n;};
+ const header=el('div','','status-heading');header.append(el('h3',copy.title));root.append(header);
+ if(!snapshot){header.append(el('p',copy.unavailable,'status-message'));return;}
+ const status=statusKeys.slice(0,9).includes(snapshot.applicationStatus)?snapshot.applicationStatus:'Unconfirmed';
+ const approval=decisionKeys.includes(snapshot.approval)?snapshot.approval:'pending';root.dataset.approval=approval;
+ const outcome=el('div','','status-outcome');const icon=el('span',{approved:'✓',pending:'…',declined:'×',withdrawn:'–'}[approval],'status-icon');icon.setAttribute('aria-hidden','true');
+ outcome.append(icon,el('strong',copy.statuses[status],'status-badge'));header.append(outcome,el('p',copy.decisions[approval],'status-message'));
+ const body=el('div','','status-body'),facts=el('dl','','status-facts');
+ for(const [label,value]of [[copy.alliance,snapshot.destinationAlliance||copy.unselected],[copy.seat,copy.statuses[snapshot.confirmedSeat]||copy.unconfirmed]]){
+  const box=el('div','');box.append(el('dt',label),el('dd',value));facts.append(box);
+ }
+ body.append(facts);
+ if(status==='Declined'){
+  const reason=el('div','','rejection-explanation');reason.append(el('strong',copy.reason),el('p',snapshot.rejectionReasonCode==='other'&&snapshot.rejectionReasonText?snapshot.rejectionReasonText:copy.reasons[snapshot.rejectionReasonCode]||copy.noReason));body.append(reason);
+ }
+ const decision=el('dl','','status-approval');decision.append(el('dt',copy.approval),el('dd',copy[approval]));body.append(decision,el('p',copy.note,'status-note'));root.append(body);
 }
 if(typeof window!=='undefined')window.Join1616Status={setLanguage(lang){language=lang;render();}};
