@@ -30,7 +30,29 @@ export function rejectionMessage(data,copy){
  const message=typeof data.rejectionReasonText==='string'?data.rejectionReasonText.trim():'';
  return message||copy.reasons[data.rejectionReasonCode]||copy.noReason;
 }
-let snapshot=null,language='en';
+let snapshot=null,language='en',stopCelebration=()=>{};
+export function celebrateApproval(){
+ stopCelebration();
+ const root=document.getElementById('application-status-summary');
+ if(!root||root.hidden||snapshot?.applicationStatus!=='Approved'||snapshot?.approval!=='approved'||window.matchMedia('(prefers-reduced-motion: reduce)').matches||!root.getClientRects().length)return;
+ const layer=document.createElement('div');layer.className='approval-confetti';layer.setAttribute('aria-hidden','true');root.append(layer);
+ const motion=window.matchMedia('(prefers-reduced-motion: reduce)'),animations=[];
+ let cleanupTimer;
+ stopCelebration=()=>{clearTimeout(cleanupTimer);animations.forEach(a=>a.cancel());layer.remove();motion.removeEventListener('change',onMotion);};
+ const onMotion=()=>{if(motion.matches)stopCelebration();};motion.addEventListener('change',onMotion);
+ const width=root.clientWidth,height=root.clientHeight;
+ for(let i=0;i<50;i++){
+  const piece=document.createElement('span');piece.className='approval-confetti-piece';piece.style.left=`${Math.random()*width}px`;piece.style.setProperty('--confetti-colour',['#f4c982','#a9e4cb','#e2a0bd','#fff4ed'][i%4]);piece.style.borderRadius=i%3===0?'50%':'1px';layer.append(piece);
+  const drift=(Math.random()-.5)*100;
+  animations.push(piece.animate([
+   {transform:'translate(0,-16px) rotate(0deg)',opacity:0},
+   {transform:`translate(${drift*.1}px,${height*.05}px) rotate(30deg)`,opacity:.9,offset:.1},
+   {transform:`translate(${drift*.6}px,${height*.55}px) rotate(240deg)`,opacity:.8,offset:.6},
+   {transform:`translate(${drift}px,${height+16}px) rotate(550deg)`,opacity:0}
+  ],{duration:2200+Math.random()*350,delay:Math.random()*400,easing:'linear',fill:'both'}));
+ }
+ cleanupTimer=setTimeout(stopCelebration,3000);
+}
 const guidelineLabels={
  en:['Please read alliance rules and guidelines.','About this alliance','Rules & guidelines','This alliance has not published its guidelines yet. Please check back or contact the transfer team.','Close'],
  de:['Bitte lies die Allianzregeln und Richtlinien.','Über diese Allianz','Regeln & Richtlinien','Diese Allianz hat ihre Richtlinien noch nicht veröffentlicht. Schau später noch einmal nach oder kontaktiere das Transferteam.','Schließen'],
@@ -45,6 +67,7 @@ export function assignedAlliance(data){return ['NvSP','NvEM','WaE','DRoN','ECKO'
 export function localizedGuidelines(published,lang='en'){return published?.translations?.[lang]||(lang==='en'?published:null);}
 export function showApplicationStatus(data,lang='en'){snapshot=data;language=lang;render();}
 function render(){
+ stopCelebration();
  const root=document.getElementById('application-status-summary');if(!root)return;
  const copy=statusCopy(language);root.replaceChildren();root.hidden=false;delete root.dataset.approval;
  const el=(tag,text,cls)=>{const n=document.createElement(tag);n.textContent=text;if(cls)n.className=cls;return n;};
@@ -66,4 +89,4 @@ function render(){
  }
  const decision=el('dl','','status-approval');decision.append(el('dt',copy.approval),el('dd',copy[approval]));body.append(decision,el('p',copy.note,'status-note'));root.append(body);
 }
-if(typeof window!=='undefined')window.Join1616Status={setLanguage(lang){language=lang;render();}};
+if(typeof window!=='undefined')window.Join1616Status={setLanguage(lang){language=lang;render();},stopCelebration(){stopCelebration();}};
