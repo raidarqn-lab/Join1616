@@ -84,5 +84,42 @@ body.application-editor-open { overflow: hidden; }
 .confirmation-close { position: absolute; top: 6px; inset-inline-end: 6px; width: 32px; height: 32px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 50%; background: transparent; color: #795c49; font: 26px/1 sans-serif; cursor: pointer; }
 .confirmation-close:hover { background: #f1e5d8; color: #ae1836; }
 .confirmation-close:focus-visible { outline: 2px solid #ae1836; outline-offset: 1px; }
-/* Read-only review outcome appears before editable applicant details. */
-#application-status-summary{margin:20px 24px;padding:22px;border:1px solid #866779;border-radius:14px;background:#372637;color:#fff0df}#application-status-summary[hidden]{display:none}#application-status-summary .status-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}#application-status-summary h3{margin:0;font-size:19px;color:#ffe0b8}#application-status-summary .status-badge{padding:6px 12px;border-radius:20px;background:#64516b;color:#fff0df;font-size:13px;font-weight:700}#application-status-summary[data-approval=approved] .status-badge{background:#315d4d;color:#ceffe6}#application-status-summary dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:20px 0}#application-status-summary dt{font-size:12px;color:#d4bccc}#application-status-summary dd{margin:5px 0 0;font-size:16px;font-weight:650;overflow-wrap:anywhere}#application-status-summary p{font-size:13px;line-height:1.6;margin:12px 0 0;color:#dfc9d5}#application-status-summary .rejection-explanation{padding:15px;border:1px solid #be8192;border-radius:10px;background:#502a3b}#application-status-summary .rejection-explanation strong{font-size:13px;color:#ffe1da}#application-status-summary .rejection-explanation p{color:#fff0e5;white-space:pre-wrap;overflow-wrap:anywhere}@media(max-width:600px){#application-status-summary{margin:16px;padding:18px}#application-status-summary dl{grid-template-columns:1fr;gap:14px}#application-status-summary .status-heading{align-items:flex-start;flex-direction:column}}
+/* Make the saved review outcome the first, unmistakable part of the editor. */
+#application-status-summary {
+  --status-accent: #94580d;
+  --status-tint: #fff0cb;
+  margin: 24px;
+  padding: 24px;
+  border: 1px solid #e6bd81;
+  border-block-start: 6px solid var(--status-accent);
+  border-radius: 16px;
+  background: #fff7e9;
+  color: #30232b;
+  box-shadow: 0 8px 28px #10091230;
+  color-scheme: light;
+}
+#application-status-summary[hidden] { display: none; }
+#application-status-summary[data-approval=approved] { --status-accent: #216347; --status-tint: #e2f3e9; }
+#application-status-summary[data-approval=declined] { --status-accent: #a52c47; --status-tint: #fbe5e8; }
+#application-status-summary[data-approval=withdrawn] { --status-accent: #65546c; --status-tint: #eee6f0; }
+#application-status-summary .status-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+#application-status-summary h3 { margin: 0; font-size: clamp(24px, 3.5vw, 30px); line-height: 1.2; font-weight: 800; color: #30232b; }
+#application-status-summary .status-badge { padding: 10px 18px; border: 1px solid var(--status-accent); border-radius: 10px; background: var(--status-tint); color: var(--status-accent); font-size: 20px; line-height: 1.3; font-weight: 800; overflow-wrap: anywhere; }
+#application-status-summary dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 22px 0 16px; }
+#application-status-summary dl > div { min-width: 0; padding: 16px; border: 1px solid #e2d1bc; border-radius: 10px; background: #fffdf8; }
+#application-status-summary dt { font-size: 13px; line-height: 1.4; color: #6a555e; font-weight: 600; }
+#application-status-summary dd { margin: 8px 0 0; font-size: 19px; line-height: 1.35; font-weight: 750; color: #30232b; overflow-wrap: anywhere; }
+#application-status-summary dl > div:first-child { background: var(--status-tint); border-color: var(--status-accent); }
+#application-status-summary dl > div:first-child dd { color: var(--status-accent); }
+#application-status-summary p { font-size: 13px; line-height: 1.6; margin: 16px 0 0; color: #6a555e; }
+#application-status-summary .rejection-explanation { padding: 18px; border: 1px solid #cc8c9b; border-inline-start: 4px solid #a52c47; border-radius: 10px; background: #fbe5e8; }
+#application-status-summary .rejection-explanation strong { font-size: 15px; color: #822039; }
+#application-status-summary .rejection-explanation p { margin-top: 8px; color: #452632; font-size: 16px; font-weight: 600; white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  #application-status-summary { margin: 16px; padding: 18px; }
+  #application-status-summary .status-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
+  #application-status-summary .status-badge { font-size: 18px; padding: 8px 14px; }
+  #application-status-summary dl { grid-template-columns: 1fr; gap: 10px; margin-top: 18px; }
+  #application-status-summary dl > div { padding: 12px 14px; }
+  #application-status-summary dd { margin-top: 5px; font-size: 18px; }
+}
