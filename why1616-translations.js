@@ -30,7 +30,7 @@ window.WHY1616_I18N = {
     "Our history explains how we became the server we are today.",
     "Read our story →",
     "1616 · Your next chapter starts here.",
-    "Already applied? Edit your application →",
+    "Already applied? View status or edit →",
     "Good reasons. Great spirits."
   ],
   "es": [
@@ -64,7 +64,7 @@ window.WHY1616_I18N = {
     "Nuestra historia explica cómo llegamos a ser el servidor que somos hoy.",
     "Lee nuestra historia →",
     "1616 · Tu próximo capítulo comienza aquí.",
-    "¿Ya solicitaste el traslado? Edita tu solicitud →",
+    "¿Ya solicitaste? Ver estado o editar →",
     "Buenas razones. Grandes espíritus."
   ],
   "pt": [
@@ -98,7 +98,7 @@ window.WHY1616_I18N = {
     "Nossa história mostra como nos tornamos o servidor que somos hoje.",
     "Leia nossa história →",
     "1616 · Seu próximo capítulo começa aqui.",
-    "Já se inscreveu? Edite sua inscrição →",
+    "Já se candidatou? Ver estado ou editar →",
     "Bons motivos. Grandes espíritos."
   ],
   "fr": [
@@ -132,7 +132,7 @@ window.WHY1616_I18N = {
     "Notre histoire explique comment nous sommes devenus le serveur d’aujourd’hui.",
     "Lisez notre histoire →",
     "1616 · Votre prochain chapitre commence ici.",
-    "Déjà candidat ? Modifiez votre demande →",
+    "Déjà candidat ? Voir le statut ou modifier →",
     "De bonnes raisons. De beaux esprits."
   ],
   "ar": [
@@ -166,7 +166,7 @@ window.WHY1616_I18N = {
     "توضح قصتنا كيف أصبحنا السيرفر الذي نحن عليه اليوم.",
     "اقرأ قصتنا ←",
     "1616 · فصلك القادم يبدأ هنا.",
-    "قدّمت طلبًا بالفعل؟ عدّل طلبك ←",
+    "قدمت طلباً؟ عرض الحالة أو التعديل ←",
     "أسباب رائعة. وأرواح مرحة."
   ],
   "vi": [
@@ -200,7 +200,7 @@ window.WHY1616_I18N = {
     "Lịch sử kể lại cách chúng tôi trở thành server như ngày hôm nay.",
     "Đọc câu chuyện của chúng tôi →",
     "1616 · Chương tiếp theo của bạn bắt đầu tại đây.",
-    "Đã đăng ký? Chỉnh sửa đơn của bạn →",
+    "Đã đăng ký? Xem trạng thái hoặc chỉnh sửa →",
     "Lý do tuyệt vời. Những tâm hồn đáng mến."
   ],
   "ko": [
@@ -234,7 +234,7 @@ window.WHY1616_I18N = {
     "오늘의 1616이 되기까지의 여정을 소개합니다.",
     "우리의 이야기 읽기 →",
     "1616 · 새로운 이야기가 여기서 시작됩니다.",
-    "이미 신청하셨나요? 신청서 수정 →",
+    "이미 신청하셨나요? 상태 확인 또는 수정 →",
     "좋은 이유. 멋진 영혼들."
   ],
   "de": [
@@ -268,7 +268,7 @@ window.WHY1616_I18N = {
     "Unsere Geschichte zeigt, wie wir zu dem Server geworden sind, der wir heute sind.",
     "Lies unsere Geschichte →",
     "1616 · Dein nächstes Kapitel beginnt hier.",
-    "Schon beworben? Bewerbung bearbeiten →",
+    "Schon beworben? Status ansehen oder bearbeiten →",
     "Gute Gründe. Großartige Geister."
   ]
 };
