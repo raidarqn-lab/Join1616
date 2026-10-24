@@ -7,15 +7,11 @@ test('guidelines are linked only for a known selected destination and eligible s
  for(const applicationStatus of ['Declined','Withdrawn','Unconfirmed'])assert.equal(assignedAlliance({destinationAlliance:'NvSP',applicationStatus}),null);
  for(const destinationAlliance of [null,'','unknown','<script>'])assert.equal(assignedAlliance({destinationAlliance,applicationStatus:'Approved'}),null);
 });
-test('published guidelines open as literal text and empty publications show a clear message',()=>{
+test('assigned applicants get a shareable page link in their selected language without application credentials',()=>{
  const nodes=[];
- class Element{constructor(tag){this.tag=tag;this.children=[];this.dataset={};this.textContent='';nodes.push(this);}append(...n){this.children.push(...n);}replaceChildren(){this.children=[];}setAttribute(){}addEventListener(){}showModal(){this.open=true;}focus(){} }
- const root=new Element('section');globalThis.document={getElementById:()=>root,createElement:tag=>new Element(tag),body:new Element('body')};
- for(const published of [null,{introduction:'<img onerror=alert(1)>',guidelines:'Rule 1\nRule 2'}]){
-  showApplicationStatus({applicationStatus:'Approved',approval:'approved',destinationAlliance:'NvSP',allianceGuidelines:published},'en');
-  const link=nodes.filter(n=>n.tag==='button'&&n.textContent==='Please read alliance rules and guidelines.').at(-1);assert.ok(link);link.onclick();
-  const dialog=nodes.filter(n=>n.tag==='dialog').at(-1);assert.equal(dialog.open,true);
-  if(published){assert.ok(dialog.children.some(n=>n.textContent===published.introduction));assert.ok(dialog.children.some(n=>n.textContent===published.guidelines));assert.equal(dialog.children.some(n=>n.tag==='img'),false);}else assert.ok(dialog.children.some(n=>n.textContent.includes('not published')));
- }
+ class Element{constructor(tag){this.tag=tag;this.children=[];this.dataset={};this.textContent='';nodes.push(this);}append(...n){this.children.push(...n);}replaceChildren(){this.children=[];}setAttribute(){} }
+ const root=new Element('section');globalThis.document={getElementById:()=>root,createElement:tag=>new Element(tag)};
+ showApplicationStatus({applicationStatus:'Approved',approval:'approved',destinationAlliance:'NvSP'},'de');
+ const link=nodes.filter(n=>n.tag==='a').at(-1);assert.equal(link.href,'/alliances/nvsp/?lang=de');assert.equal(link.target,'_blank');assert.equal(link.rel,'noopener');
  delete globalThis.document;
 });

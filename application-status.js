@@ -1,3 +1,4 @@
+import {rulesPath} from './alliance-rules-core.js?v=1';
 const keys=['title','approval','alliance','seat','unselected','unconfirmed','reason','noReason','note','unavailable','approved','pending','declined','withdrawn'];
 const rows={
  en:['Application status','Approval','Selected destination alliance','Confirmed seat colour','Not selected yet','Not confirmed yet','Reason for rejection','Contact the transfer team for the reason.','Alliance selection and seat confirmation are separate from approval. This shows the latest saved review when you open your application. Editing your details does not approve your application.','Your status could not be confirmed. You can still edit your application; contact the transfer team for an update.','Approved','Pending','Not approved','Withdrawn'],
@@ -42,15 +43,6 @@ const guidelineLabels={
 };
 export function assignedAlliance(data){return ['NvSP','NvEM','WaE','DRoN','ECKO'].includes(data?.destinationAlliance)&&!['Declined','Withdrawn','Unconfirmed'].includes(data?.applicationStatus)?data.destinationAlliance:null;}
 export function localizedGuidelines(published,lang='en'){return published?.translations?.[lang]||(lang==='en'?published:null);}
-function openGuidelines(opener){
- const home=assignedAlliance(snapshot);if(!home)return;const labels=guidelineLabels[language]||guidelineLabels.en;
- const dialog=document.createElement('dialog');dialog.className='alliance-guidelines-dialog';dialog.lang=language;dialog.dir=language==='ar'?'rtl':'ltr';dialog.setAttribute('aria-label',home+' · '+labels[2]);
- const add=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;dialog.append(n);return n;};
- add('h2',home+' · '+labels[2]);
- const published=localizedGuidelines(snapshot.allianceGuidelines,language);
- if(published?.introduction&&published?.guidelines){add('h3',labels[1]);add('p',published.introduction);add('h3',labels[2]);add('p',published.guidelines);}else add('p',labels[3]);
- const close=add('button',labels[4]);close.type='button';close.onclick=()=>dialog.close();dialog.addEventListener('close',()=>{dialog.remove();opener.focus();});document.body.append(dialog);dialog.showModal();close.focus();
-}
 export function showApplicationStatus(data,lang='en'){snapshot=data;language=lang;render();}
 function render(){
  const root=document.getElementById('application-status-summary');if(!root)return;
@@ -65,7 +57,7 @@ function render(){
  const body=el('div','','status-body'),facts=el('dl','','status-facts');
  for(const [label,value]of [[copy.alliance,assignedAlliance(snapshot)||copy.unselected],[copy.seat,copy.statuses[snapshot.confirmedSeat]||copy.unconfirmed]]){
   const box=el('div','');box.append(el('dt',label),el('dd',value));
-  if(label===copy.alliance&&assignedAlliance(snapshot)){const link=el('button',(guidelineLabels[language]||guidelineLabels.en)[0],'alliance-guidelines-link');link.type='button';link.setAttribute('aria-haspopup','dialog');link.onclick=()=>openGuidelines(link);const detail=el('dd','');detail.append(link);box.append(detail);}
+  if(label===copy.alliance&&assignedAlliance(snapshot)){const link=el('a',(guidelineLabels[language]||guidelineLabels.en)[0],'alliance-guidelines-link');link.href=rulesPath(assignedAlliance(snapshot),language);link.target='_blank';link.rel='noopener';const detail=el('dd','');detail.append(link);box.append(detail);}
   facts.append(box);
  }
  body.append(facts);
