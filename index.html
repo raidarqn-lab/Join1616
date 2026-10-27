@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="moonlit-manor.css?v=1" />
   <link rel="stylesheet" href="home-simple.css?v=1" />
   <script src="why1616-translations.js?v=4"></script>
+  <link rel="stylesheet" href="transfer-evidence.css">
 </head>
 <body>
 
@@ -452,7 +453,7 @@
 
 
           <fieldset class="choice-fieldset seat-fieldset">
-            <legend><span data-i18n="seatColourKnown">What is your anticipated seat colour?</span> <span class="optional-label" data-i18n="optional">(Optional)</span></legend>
+            <legend><span data-i18n="seatColourKnown">What is your confirmed seat colour?</span> <em>*</em></legend>
             <div class="choice-grid four-col" id="seat-colour-options">
               <label class="choice-card seat gold"><input type="radio" name="seatColour" value="gold" /><span class="choice-dot"></span><strong data-i18n="gold">Gold</strong></label>
               <label class="choice-card seat purple"><input type="radio" name="seatColour" value="purple" /><span class="choice-dot"></span><strong data-i18n="purple">Purple</strong></label>
@@ -461,13 +462,16 @@
               <label class="choice-card seat"><input type="radio" name="seatColour" value="unknownSeat" /><span class="choice-dot"></span><strong data-i18n="unknownSeat">Not sure yet</strong></label>
             </div>
             <p class="field-error" data-error-for="seat-colour"></p>
-            <button class="help-toggle standalone" type="button" data-help-toggle="seat-help" data-i18n="howToFindSeat">About anticipated seat colour</button>
-            <div class="inline-help" id="seat-help" hidden>
-              <ol>
-                <li data-i18n="seatHelp1">Choose the seat colour you currently expect.</li>
-                <li data-i18n="seatHelp2">This is an estimate, not a confirmed seat allocation.</li>
-                <li data-i18n="seatHelp3">If you are unsure, choose “Not sure yet”.</li>
-              </ol>
+            <p class="field-help" data-i18n="seatEvidenceNote"></p>
+            <button class="help-toggle standalone" type="button" id="transfer-guide-open" aria-haspopup="dialog" data-i18n="howToFindSeat"></button>
+            <div class="transfer-evidence">
+              <label for="transfer-screenshot" data-i18n="transferScreenshot"></label>
+              <p id="transfer-screenshot-help" class="field-help" data-i18n="screenshotHelp"></p>
+              <input id="transfer-screenshot" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="transfer-screenshot-help transfer-screenshot-error" />
+              <p id="transfer-screenshot-status" role="status"></p>
+              <img id="transfer-screenshot-preview" class="transfer-evidence-preview" alt="Transfer-score screenshot" hidden />
+              <button id="transfer-screenshot-remove" type="button" class="help-toggle" data-i18n="screenshotRemove" hidden></button>
+              <p id="transfer-screenshot-error" class="field-error" role="alert"></p>
             </div>
           </fieldset>
         </section>
@@ -1044,6 +1048,17 @@
     </div>
   </section>
 
+<dialog id="transfer-guide" class="transfer-guide" aria-labelledby="transfer-guide-title">
+  <header><h2 id="transfer-guide-title" data-i18n="seatHelpTitle"></h2><button type="button" id="transfer-guide-close" data-i18n="closeGuide" autofocus>Close</button></header>
+  <div class="transfer-guide-body">
+    <ol><li data-i18n="seatHelp1"></li><li data-i18n="seatHelp2"></li><li data-i18n="seatHelp3"></li></ol>
+    <figure><figcaption data-i18n="screenshotExample"></figcaption><img src="assets/transfer-guide/transfer-points-example.jpg" width="1080" height="2034" alt="About Transfer Points — Individual Points: Your Transfer Points and Your Status" loading="lazy"></figure>
+    <p class="example-note" data-i18n="exampleOnly"></p>
+    <figure><figcaption data-i18n="routeExample"></figcaption><img src="assets/transfer-guide/open-transfer-surge.png" width="1080" height="1330" alt="Map icon opens Transfer Surge; Your Status appears at the bottom" loading="lazy"></figure>
+  </div>
+</dialog>
+<script src="transfer-evidence-copy.js"></script>
+<script src="transfer-evidence.js"></script>
 <script>
 'use strict';
 
@@ -4177,6 +4192,8 @@ const reviewContainer = document.getElementById('review-container');
 const submissionStatus = document.getElementById('submission-status');
 
 
+for (const [language, copy] of Object.entries(window.TransferEvidenceCopy)) Object.assign(I18N[language],copy);
+
 function t(key) { return (I18N[state.language] && I18N[state.language][key]) || I18N.en[key] || key; }
 
 function generateApplicationId() {
@@ -4392,6 +4409,7 @@ function setLanguage(lang) {
   if (!I18N[lang]) lang = 'en';
   state.language = lang;
   window.Join1616Status?.setLanguage(lang);
+  transferEvidence.translate();
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   headerLanguage.value = lang;
@@ -4655,6 +4673,11 @@ function collectMissingQuestions() {
     if (!Number.isInteger(n) || n < 1573 || n > 1636) add(getQuestionForInput(server));
   }
 
+  if (state.step === 2) {
+    if(!form.querySelector('input[name="seatColour"]:checked'))add(t('seatColourKnown'));
+    if(document.getElementById('transfer-screenshot-error').textContent)add(t('transferScreenshot'));
+  }
+
   if (state.step === 3) {
     const groupAnswer = form.querySelector('input[name="transferWithGroup"]:checked');
 
@@ -4757,6 +4780,11 @@ function validateCurrentStep() {
     }
   }
 
+  if (state.step === 2) {
+    const colour=form.querySelector('input[name="seatColour"]:checked')?.value;
+    document.querySelector('[data-error-for="seat-colour"]').textContent=colour?'':t('chooseError');
+    if(!colour || !transferEvidence.validate(colour))ok=false;
+  }
   if (state.step === 3) {
     const groupAnswer = form.querySelector('input[name="transferWithGroup"]:checked');
     const groupErr = document.querySelector('[data-error-for="transfer-with-group"]');
@@ -4991,6 +5019,8 @@ function collectPayload() {
     decorationPower: digitsOnly(document.getElementById('decoration-power')?.value || ''),
     t11Unlocked: form.querySelector('input[name="t11Unlocked"]:checked')?.value || '',
     reportedTransferScore: digitsOnly(document.getElementById('reported-transfer-score')?.value || ''),
+    seatEvidenceVersion: '1',
+    transferEvidence: transferEvidence.payload(),
     estimatedSeatColour: '',
     estimatedTransferScoreBand: '',
     seatColour: form.querySelector('input[name="seatColour"]:checked')?.value || '',
@@ -5022,7 +5052,7 @@ function renderReview() {
   const members = p.groupMembers.length ? `<div class="review-members"><div class="review-label">${escapeHtml(t('groupMembers'))}</div>${p.groupMembers.map(m => `<div class="review-member"><span>${escapeHtml(m.name)}</span><span>${escapeHtml(m.alliance)}</span><span>${escapeHtml(m.server)}</span></div>`).join('')}</div>` : '';
   reviewContainer.innerHTML = [
     reviewSection(t('reviewApplicant'), 1, `<div class="review-grid">${reviewItem(t('currentServer'), p.currentServer)}${reviewItem(t('username'), p.username)}${reviewItem(t('allianceTag'), p.alliance)}</div>`),
-    reviewSection(t('reviewGame'), 2, `<div class="review-grid">${reviewItem(t('professionLevel'), p.professionLevel)}${reviewItem(t('killCount'), formatNumber(p.killCount))}${reviewItem(t('heroPower'), formatNumber(p.heroPower))}${reviewItem(t('seatColour'), seatLabel)}${p.reportedTransferScore ? reviewItem(t('reportedTransferScore'), formatNumber(p.reportedTransferScore)) : ''}</div>`),
+    reviewSection(t('reviewGame'), 2, `<div class="review-grid">${reviewItem(t('professionLevel'), p.professionLevel)}${reviewItem(t('killCount'), formatNumber(p.killCount))}${reviewItem(t('heroPower'), formatNumber(p.heroPower))}${reviewItem(t('seatColour'), seatLabel)}${reviewItem(t('transferScreenshot'), transferEvidence.hasImage()?t('screenshotReady'):t('notProvided'))}${p.reportedTransferScore ? reviewItem(t('reportedTransferScore'), formatNumber(p.reportedTransferScore)) : ''}</div>`),
     reviewSection(t('reviewGroup'), 3, `<div class="review-grid">${reviewItem(t('transferAnswer'), transferLabel)}${reviewItem(t('transferGroupNameShort'), p.transferGroupName || t('notProvided'))}${reviewItem(t('totalGroup'), p.transferWithGroup === 'yes' ? (p.expectedAdditionalPlayers ? String(Number(p.expectedAdditionalPlayers) + 1) : (p.groupMembers.length ? `≥ ${p.groupMembers.length + 1}` : t('notProvided'))) : '1')}${reviewItem(t('additionalPlayers'), String(p.groupMembers.length))}${members}</div>`),
     reviewSection(t('reviewAdditional'), 4, `<div class="review-grid">${reviewItem(t('alliancePreferenceReview'), p.preferred1616Alliance || t('notProvided'))}${p.transferWithGroup === 'yes' ? reviewItem(t('groupSameAllianceReview'), p.groupSameAlliance ? t(p.groupSameAlliance) : t('notProvided')) : ''}${reviewItem(t('referrerUsername'), p.referrerUsername || t('notProvided'))}${reviewItem(t('referrerAlliance'), p.referrerAlliance || t('notProvided'))}${reviewItem(t('comments'), p.comments || t('none'))}</div>`)
   ].join('');
@@ -5041,6 +5071,7 @@ function saveDraft() {
     applicationId: state.applicationId,
     confirmationCode: state.confirmationCode,
     editing:!!state.editing,editRevision:state.editRevision||0,
+    seatEvidenceVersion: '1',transferEvidence:transferEvidence.draft(),
     values: Object.fromEntries([...new FormData(form).entries()].filter(([k]) => k !== 'website'))
   };
   try { localStorage.setItem(CONFIG.draftKey, JSON.stringify(data)); } catch (_) {}
@@ -5056,6 +5087,8 @@ function restoreDraft() {
     if (data.applicationId) state.applicationId = data.applicationId;
     if (data.confirmationCode) state.confirmationCode = data.confirmationCode;state.editing=!!data.editing;state.editRevision=data.editRevision||0;
     const v = data.values || {};
+    if(data.seatEvidenceVersion!=='1')delete v.seatColour;
+    transferEvidence.restore(data.transferEvidence);
     Object.entries(v).forEach(([name, value]) => {
       const elements = form.querySelectorAll(`[name="${CSS.escape(name)}"]`);
       elements.forEach(el => {
@@ -5297,6 +5330,7 @@ function clearEntireForm() {
   state.applicationId = '';
   state.confirmationCode = '';state.submitted=false;state.editing=false;state.editRevision=0;state.editRequestId='';
   state.language = preservedLanguage;
+  transferEvidence.reset();
 
   clearDraft();
 
@@ -5399,7 +5433,7 @@ async function loadExistingApplication(){
  const button=document.getElementById('lookup-application'),error=document.getElementById('lookup-error');if(button.disabled)return;error.textContent='';button.disabled=true;
  try{const result=await sendToGoogleSheets({requestType:'application.lookup',confirmationCode:document.getElementById('application-code-input').value.trim(),website:''}),p=result.application;if(!p||!p.applicationId)throw Error('Unavailable');
  const statusView=await import('./application-status.js?v=confetti-20261024');statusView.showApplicationStatus(result.applicationStatus,state.language);
- form.reset();state.applicationId=p.applicationId;state.confirmationCode=p.confirmationCode;state.editing=true;state.submitted=false;state.editRevision=result.editRevision||0;state.editRequestId='';state.groupMembers=Array.isArray(p.groupMembers)?p.groupMembers.map(member=>({...member,id:member.id||crypto.randomUUID()})):[];
+ form.reset();transferEvidence.load(result.transferEvidence);if(p.seatEvidenceVersion!=='1')p.seatColour='';state.applicationId=p.applicationId;state.confirmationCode=p.confirmationCode;state.editing=true;state.submitted=false;state.editRevision=result.editRevision||0;state.editRequestId='';state.groupMembers=Array.isArray(p.groupMembers)?p.groupMembers.map(member=>({...member,id:member.id||crypto.randomUUID()})):[];
  form.querySelectorAll('[data-numeric]').forEach(input=>{input.dataset.numericInvalid='';});
  form.querySelectorAll('.invalid').forEach(input=>input.classList.remove('invalid'));
  form.querySelectorAll('.field-error').forEach(error=>{error.textContent='';});
@@ -5855,6 +5889,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && !document.getElementById('stats-guide-modal')?.hidden) closeStatsGuideModal();
 });
 
+const transferEvidence=window.mountTransferEvidence({t,onChange:()=>{saveDraft();if(state.step===5)renderReview();}});
 restoreDraft();
 renderGroupMembers();
 setupNumericInputs();

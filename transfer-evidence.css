@@ -1,0 +1,20 @@
+.transfer-evidence {margin-top:1.25rem;padding:1.25rem;border:1px solid #cba890;border-radius:14px;background:rgba(255,249,241,.8);color:#423a33}
+.transfer-evidence label {display:block;font-weight:700;margin-bottom:.6rem}
+.transfer-evidence input[type=file] {width:100%;max-width:100%;padding:.7rem;background:#fffaf2;color:#423a33;border:1px solid #b99880;border-radius:8px}
+.transfer-evidence input::file-selector-button {padding:.6rem;border:1px solid #b99880;border-radius:6px;background:#f1e3d3;color:#423a33;cursor:pointer;margin-inline-end:.5rem}
+.transfer-evidence-preview {display:block;max-width:min(100%,300px);max-height:420px;object-fit:contain;margin:1rem auto;border-radius:8px}
+.transfer-evidence-preview[hidden],.transfer-evidence [hidden] {display:none}
+.transfer-guide {width:min(920px,calc(100vw - 24px));max-height:90dvh;box-sizing:border-box;overflow:auto;padding:0;border:1px solid #cba890;border-radius:18px;background:#fff8ee;color:#423a33;box-shadow:0 20px 100px #0008}
+.transfer-guide::backdrop {background:#141118bb}
+.transfer-guide header {position:sticky;top:0;z-index:1;display:flex;gap:1rem;justify-content:space-between;align-items:center;padding:1rem 1.25rem;background:#f3e8d7;border-bottom:1px solid #cba890}
+.transfer-guide h2 {font:700 1.15rem/1.4 system-ui;margin:0;color:#423a33}
+.transfer-guide button {flex-shrink:0;padding:.6rem .9rem;border:1px solid #b99880;border-radius:8px;background:#fff8ee;color:#423a33;cursor:pointer}
+.transfer-guide-body {padding:1.25rem}
+.transfer-guide ol {padding-inline-start:1.4rem;line-height:1.6}
+.transfer-guide li+li {margin-top:.65rem}
+.transfer-guide figure {margin:1.5rem 0}
+.transfer-guide figcaption {font-weight:700;margin-bottom:.75rem}
+.transfer-guide img {display:block;width:100%;height:auto;max-width:540px;margin:auto;border-radius:8px}
+.transfer-guide .example-note {padding:1rem;border-inline-start:3px solid #aa4538;background:#f3e8d7;line-height:1.5}
+.transfer-evidence .field-help {color:#625248;line-height:1.5}
+.transfer-evidence .help-toggle {color:#923426}
