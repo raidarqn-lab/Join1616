@@ -1,5 +1,7 @@
-export const allianceNames={NvSP:'Nova Sapphire',NvEM:'Nova Emerald',WaE:'WaE',DRoN:'DRoN',ECKO:'ECKO'};
+import {allianceKey} from './alliance-names.mjs?v=1';
+export const allianceNames={NvSP:'Nova Sapphire',NvEM:'BadaBingBadaBoom',WaE:'WaE',DRoN:'DRoN',ECKO:'ECKO'};
 export function rulesPath(alliance,lang='en'){
+ alliance=allianceKey(alliance);
  if(!Object.hasOwn(allianceNames,alliance))return null;
  const selected=['en','es','pt','fr','de','ko','vi','ar'].includes(lang)?lang:'en';
  return (alliance==='NvSP'?'/alliances/nvsp/':'/alliance-rules.html?alliance='+encodeURIComponent(alliance))+(alliance==='NvSP'?'?':'&')+'lang='+selected;

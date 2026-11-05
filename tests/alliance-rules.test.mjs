@@ -26,3 +26,7 @@ test('content rendering cannot interpret HTML or unsafe links',()=>{
  assert.equal(node.children[1].tag,'strong');assert.ok(node.children.every(n=>['span','strong'].includes(n.tag)));assert.ok(node.children.at(-1).textContent.includes('<img'));
  assert.equal(parseRules('## Heading\n\n- One\n- Two')[1].items.length,2);
 });
+
+test('BaDa name resolves to the existing alliance rules and published content',()=>{
+ assert.equal(rulesPath('BaDa','en'),rulesPath('NvEM','en'));
+});
