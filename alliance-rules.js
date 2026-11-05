@@ -1,7 +1,8 @@
+import {allianceTag,allianceKey} from './alliance-names.mjs?v=1';
 import {languages,rulesCopy} from './alliance-rules-copy.js?v=1';
-import {allianceNames,rulesPath,parseRules,splitSummary,appendInline} from './alliance-rules-core.js?v=1';
+import {allianceNames,rulesPath,parseRules,splitSummary,appendInline} from './alliance-rules-core.js?v=bada-1';
 const params=new URLSearchParams(location.search);
-const alliance=location.pathname.includes('/alliances/nvsp')?'NvSP':params.get('alliance');
+const alliance=location.pathname.includes('/alliances/nvsp')?'NvSP':allianceKey(params.get('alliance'));
 let lang=Object.hasOwn(languages,params.get('lang'))?params.get('lang'):'en',publication=null,failed=false;
 const $=id=>document.getElementById(id),element=(tag,text)=>{const el=document.createElement(tag);if(text)el.textContent=text;return el;};
 for(const [code,label]of Object.entries(languages)){const option=element('option',label);option.value=code;$('rules-language').append(option);}
@@ -20,7 +21,7 @@ function render(){
  const copy=rulesCopy(lang);document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';$('rules-language').value=lang;
  for(const el of document.querySelectorAll('[data-copy]'))el.textContent=copy[el.dataset.copy];
  $('rules-language').setAttribute('aria-label',copy.language);document.querySelector('article').setAttribute('aria-label',copy.title);$('toc-links').setAttribute('aria-label',copy.contents);
- $('alliance-tag').textContent=Object.hasOwn(allianceNames,alliance)?alliance:'1616';$('alliance-name').textContent=allianceNames[alliance]||'Alliance';document.title=(allianceNames[alliance]||'Alliance')+' · '+copy.title;
+ $('alliance-tag').textContent=Object.hasOwn(allianceNames,alliance)?allianceTag(alliance):'1616';$('alliance-name').textContent=allianceNames[alliance]||'Alliance';document.title=(allianceNames[alliance]||'Alliance')+' · '+copy.title;
  for(const id of ['rules-introduction','rules-body','toc-links','summary-cards'])$(id).replaceChildren();
  const text=publication?.translations?.[lang];$('document').hidden=!text;$('quick-reference').hidden=true;$('rules-status').hidden=!!text;
  $('rules-status-text').textContent=failed?copy.error:publication===null?copy.loading:copy.empty;$('retry').hidden=!failed;$('published-date').textContent='';

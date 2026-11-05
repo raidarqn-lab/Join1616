@@ -1,4 +1,5 @@
-import {rulesPath} from './alliance-rules-core.js?v=1';
+import {allianceTag} from './alliance-names.mjs?v=1';
+import {rulesPath} from './alliance-rules-core.js?v=bada-1';
 const keys=['title','approval','alliance','seat','unselected','unconfirmed','reason','noReason','note','unavailable','approved','pending','declined','withdrawn'];
 const rows={
  en:['Application status','Approval','Selected destination alliance','Confirmed seat colour','Not selected yet','Not confirmed yet','Reason for rejection','Contact the transfer team for the reason.','Alliance selection and seat confirmation are separate from approval. This shows the latest saved review when you open your application. Editing your details does not approve your application.','Your status could not be confirmed. You can still edit your application; contact the transfer team for an update.','Approved','Pending','Not approved','Withdrawn'],
@@ -78,7 +79,7 @@ function render(){
  const outcome=el('div','','status-outcome');const icon=el('span',{approved:'✓',pending:'…',declined:'×',withdrawn:'–'}[approval],'status-icon');icon.setAttribute('aria-hidden','true');
  outcome.append(icon,el('strong',copy.statuses[status],'status-badge'));header.append(outcome,el('p',copy.decisions[approval],'status-message'));
  const body=el('div','','status-body'),facts=el('dl','','status-facts');
- for(const [label,value]of [[copy.alliance,assignedAlliance(snapshot)||copy.unselected],[copy.seat,copy.statuses[snapshot.confirmedSeat]||copy.unconfirmed]]){
+ for(const [label,value]of [[copy.alliance,allianceTag(assignedAlliance(snapshot))||copy.unselected],[copy.seat,copy.statuses[snapshot.confirmedSeat]||copy.unconfirmed]]){
   const box=el('div','');box.append(el('dt',label),el('dd',value));
   if(label===copy.alliance&&assignedAlliance(snapshot)){const link=el('a',(guidelineLabels[language]||guidelineLabels.en)[0],'alliance-guidelines-link');link.href=rulesPath(assignedAlliance(snapshot),language);link.target='_blank';link.rel='noopener';const detail=el('dd','');detail.append(link);box.append(detail);}
   facts.append(box);
